@@ -1,0 +1,15 @@
+name: "pavel.logacev"
+output_dir: website
+navbar:
+  title: "Pavel Logačev"
+left:
+    - text: "Home"
+      href: index.html
+
+output:
+  html_document:
+    css: ["style.css"] 
+    theme: readable
+    highlight: textmate
+exclude: ["*.csv", "*.bib","*.sh","*.R","*.sublime-*","*.tex"] 
+include: ["custom/*.*"]

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% include "shared/head" %}
+  <body id="{{slug}}">
+    <section id="wrapper" class="magic">
+      {% include "shared/header" %}	
+	  
+	    <article>
+	      <!-- <h2>{{headline}}</h2> -->
+		    <section role="main">
+		      {{body}}
+		    </section>
+	    </article>
+		<aside>
+			<img src="images/pavel.jpg" alt="me" width="100"/>
+			<div class="label">
+			<b>email</b>
+			<div class="labelcontent">{{email}}</div>
+			</div>
+
+			<div class="label">
+			<b>postal address  </b>
+			<div class="labelcontent">{{address}}</div>
+			</div>
+			
+		</aside>
+		<div class="clear"></div>
+      {% include "shared/footer" %}
+    </section>
+    {% include "shared/analytics" %}
+  </body>
+</html>
