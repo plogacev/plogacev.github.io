@@ -1,5 +1,5 @@
 name: "pavel.logacev"
-output_dir: website
+output_dir: docs
 navbar:
   title: "Pavel Logačev"
 left:
