@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Lecture Notes, Data Processing in R</title>
+  <meta name="description" content="Lecture notes on data processing in R." />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Lecture Notes, Data Processing in R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Lecture notes on data processing in R." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Lecture Notes, Data Processing in R" />
+  
+  <meta name="twitter:description" content="Lecture notes on data processing in R." />
+  
+
+<meta name="author" content="Pavel Logacev" />
+
+
+<meta name="date" content="2020-11-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="intro.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Getting Started</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#initial-remarks"><i class="fa fa-check"></i><b>1.1</b> Initial Remarks</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#installing-and-setting-up-rstudio"><i class="fa fa-check"></i><b>1.2</b> Installing and Setting up RStudio</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#local-rstudio-installation"><i class="fa fa-check"></i><b>1.2.1</b> Local RStudio installation</a></li>
+<li class="chapter" data-level="1.2.2" data-path="index.html"><a href="index.html#rstudio-cloud"><i class="fa fa-check"></i><b>1.2.2</b> RStudio Cloud</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#basics-of-the-rstudio-environment"><i class="fa fa-check"></i><b>1.3</b> Basics of the RStudio environment</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a><ul>
+<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#introduction-to-r"><i class="fa fa-check"></i><b>2.1</b> Introduction to R</a></li>
+<li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#the-basics"><i class="fa fa-check"></i><b>2.2</b> The Basics</a></li>
+<li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#assignment"><i class="fa fa-check"></i><b>2.3</b> Assignment</a></li>
+<li class="chapter" data-level="2.4" data-path="intro.html"><a href="intro.html#evaluation"><i class="fa fa-check"></i><b>2.4</b> Evaluation</a></li>
+<li class="chapter" data-level="2.5" data-path="intro.html"><a href="intro.html#operators"><i class="fa fa-check"></i><b>2.5</b> Operators</a></li>
+<li class="chapter" data-level="2.6" data-path="intro.html"><a href="intro.html#using-r-help"><i class="fa fa-check"></i><b>2.6</b> Using R Help</a></li>
+<li class="chapter" data-level="2.7" data-path="intro.html"><a href="intro.html#data-types"><i class="fa fa-check"></i><b>2.7</b> Data Types</a></li>
+<li class="chapter" data-level="2.8" data-path="intro.html"><a href="intro.html#determining-data-types"><i class="fa fa-check"></i><b>2.8</b> Determining Data Types</a></li>
+<li class="chapter" data-level="2.9" data-path="intro.html"><a href="intro.html#packages"><i class="fa fa-check"></i><b>2.9</b> Packages</a></li>
+<li class="chapter" data-level="2.10" data-path="intro.html"><a href="intro.html#plotting"><i class="fa fa-check"></i><b>2.10</b> Plotting</a></li>
+<li class="chapter" data-level="2.11" data-path="intro.html"><a href="intro.html#example-putting-it-all-and-some-more-together"><i class="fa fa-check"></i><b>2.11</b> Example: Putting it all (and some more) together</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Lecture Notes, Data Processing in R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">Lecture Notes, Data Processing in R</h1>
+<p class="author"><em>Pavel Logacev</em></p>
+<p class="date"><em>2020-11-01</em></p>
+</div>
+<div id="getting-started" class="section level1">
+<h1><span class="header-section-number">Chapter 1</span> Getting Started</h1>
+<div id="initial-remarks" class="section level2">
+<h2><span class="header-section-number">1.1</span> Initial Remarks</h2>
+<ul>
+<li>The purpose of these lecture notes is to allow you to quickly revisit concepts covered in class. On their own, they likely won’t form a sufficient introduction to R.</li>
+<li>In the following I will draw on the following resources:
+<ul>
+<li>The great introduction materials developed at the University of Glasgow: <a href="https://psyteachr.github.io/" class="uri">https://psyteachr.github.io/</a>, in particular <a href="https://psyteachr.github.io/msc-data-skills/">‘Data Skills for Reproducible Science’</a>.</li>
+<li>Primers on a variety of topics: <a href="https://rstudio.cloud/learn/primers" class="uri">https://rstudio.cloud/learn/primers</a></li>
+<li>Cheat sheets on a variety of topics: <a href="https://rstudio.cloud/learn/cheat-sheets" class="uri">https://rstudio.cloud/learn/cheat-sheets</a>
+&lt;!–</li>
+</ul></li>
+<li>the O’Reiley book</li>
+<li>–&gt;</li>
+</ul>
+</div>
+<div id="installing-and-setting-up-rstudio" class="section level2">
+<h2><span class="header-section-number">1.2</span> Installing and Setting up RStudio</h2>
+<p>Currently, the most convenient interface to R is the RStudio GUI. You can either install it locally, or use it online on RSudio Cloud. <a href="">RStudio Cloud</a>.</p>
+<div id="local-rstudio-installation" class="section level3">
+<h3><span class="header-section-number">1.2.1</span> Local RStudio installation</h3>
+<ul>
+<li>Typically, <em>RStudio</em> is run on a local computer.</li>
+</ul>
+<p>Please download R and RStudio separately from:
+- <a href="https://cran.r-project.org/" class="uri">https://cran.r-project.org/</a>
+- <a href="https://rstudio.com/products/rstudio/download/" class="uri">https://rstudio.com/products/rstudio/download/</a> (download ‘RStudio Desktop’)</p>
+</div>
+<div id="rstudio-cloud" class="section level3">
+<h3><span class="header-section-number">1.2.2</span> RStudio Cloud</h3>
+<p>You can use the RStudio cloud service for free after getting an account to <a href="https://rstudio.cloud" class="uri">https://rstudio.cloud</a>.</p>
+<!--
+## RStudio Interface 
+- Let's take a look at the RStudio interface.
+- Let's take a look at the [RStudio Cloud](https://rstudio.cloud) interface.
+-->
+</div>
+</div>
+<div id="basics-of-the-rstudio-environment" class="section level2">
+<h2><span class="header-section-number">1.3</span> Basics of the RStudio environment</h2>
+<p>Please take a look at the following <a href="https://github.com/hbctraining/Intro-to-R/blob/master/lessons/01_introR-R-and-RStudio.md">thorough introduction to the RStudio environment</a>.</p>
+<p>Please watch the following video by Lisa DeBruine:
+- <a href="https://www.youtube.com/watch?v=CbA6ZVlJE78&amp;list=PLA2iRWVwbpTIweEBHD2dOKjZHK1atRmXt&amp;index=2&amp;ab_channel=LisaDeBruine">‘RStudio Setup’</a></p>
+<!--
+This is a _sample_ book written in **Markdown**. You can use anything that Pandoc's Markdown supports, e.g., a math equation $a^2 + b^2 = c^2$.
+
+The **bookdown** package can be installed from CRAN or Github:
+
+
+```r
+install.packages("bookdown")
+# or the development version
+# devtools::install_github("rstudio/bookdown")
+```
+
+Remember each Rmd file contains one and only one chapter, and a chapter is defined by the first-level heading `#`.
+
+To compile this example to PDF, you need XeLaTeX. You are recommended to install TinyTeX (which includes XeLaTeX): <https://yihui.org/tinytex/>.
+
+
+-->
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="intro.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["LectureNotes.pdf", "LectureNotes.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
