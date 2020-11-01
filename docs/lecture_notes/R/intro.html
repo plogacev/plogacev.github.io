@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 2 Introduction | Lecture Notes, Data Processing in R</title>
+  <title>Chapter 2 Introduction | Data Processing in R, Lecture Notes</title>
   <meta name="description" content="Lecture notes on data processing in R." />
   <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 2 Introduction | Lecture Notes, Data Processing in R" />
+  <meta property="og:title" content="Chapter 2 Introduction | Data Processing in R, Lecture Notes" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 2 Introduction | Lecture Notes, Data Processing in R" />
+  <meta name="twitter:title" content="Chapter 2 Introduction | Data Processing in R, Lecture Notes" />
   
   <meta name="twitter:description" content="Lecture notes on data processing in R." />
   
@@ -24,7 +24,7 @@
 <meta name="author" content="Pavel Logacev" />
 
 
-<meta name="date" content="2020-10-27" />
+<meta name="date" content="2020-11-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -50,6 +50,9 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -153,7 +156,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.8" data-path="intro.html"><a href="intro.html#determining-data-types"><i class="fa fa-check"></i><b>2.8</b> Determining Data Types</a></li>
 <li class="chapter" data-level="2.9" data-path="intro.html"><a href="intro.html#packages"><i class="fa fa-check"></i><b>2.9</b> Packages</a></li>
 <li class="chapter" data-level="2.10" data-path="intro.html"><a href="intro.html#plotting"><i class="fa fa-check"></i><b>2.10</b> Plotting</a></li>
-<li class="chapter" data-level="2.11" data-path="intro.html"><a href="intro.html#example-putting-it-all-and-some-more-together"><i class="fa fa-check"></i><b>2.11</b> Example: Putting it all (and some more) together</a></li>
+<li class="chapter" data-level="2.11" data-path="intro.html"><a href="intro.html#example-putting-it-all-and-some-more-together"><i class="fa fa-check"></i><b>2.11</b> Example: Putting it all (and some more) together</a><ul>
+<li class="chapter" data-level="2.11.1" data-path="intro.html"><a href="intro.html#how-much-would-other-coffee-sizes-cost-if-starbucks-introduced-them"><i class="fa fa-check"></i><b>2.11.1</b> How much would other coffee sizes cost if Starbucks introduced them?</a></li>
+<li class="chapter" data-level="2.11.2" data-path="intro.html"><a href="intro.html#how-much-would-other-coffee-sizes-cost-if-starbucks-introduced-them-a-second-attempt"><i class="fa fa-check"></i><b>2.11.2</b> How much would other coffee sizes cost if Starbucks introduced them? A second attempt</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -168,7 +174,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Lecture Notes, Data Processing in R</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Processing in R, Lecture Notes</a>
           </h1>
         </div>
 
@@ -346,51 +352,109 @@ Variables are created implicitly, by being <strong>assigned</strong> a value. Th
 <div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="intro.html#cb50-1"></a><span class="op">&gt;</span><span class="st"> </span><span class="co"># install ggplot2</span></span>
 <span id="cb50-2"><a href="intro.html#cb50-2"></a><span class="er">&gt;</span><span class="st"> </span><span class="kw">install.packages</span>(<span class="st">&quot;ggplot2&quot;</span>)</span>
 <span id="cb50-3"><a href="intro.html#cb50-3"></a><span class="op">&gt;</span><span class="st"> </span><span class="co"># install other packages we will use in this course</span></span>
-<span id="cb50-4"><a href="intro.html#cb50-4"></a><span class="er">&gt;</span><span class="st"> </span><span class="kw">install.packages</span>(<span class="kw">c</span>(<span class="st">&quot;tidyverse&quot;</span>, <span class="st">&quot;magrittr&quot;</span>, <span class="st">&quot;brms&quot;</span>))</span>
+<span id="cb50-4"><a href="intro.html#cb50-4"></a><span class="er">&gt;</span><span class="st"> </span><span class="kw">install.packages</span>(<span class="kw">c</span>(<span class="st">&quot;tidyverse&quot;</span>, <span class="st">&quot;magrittr&quot;</span>, <span class="st">&quot;Hmisc&quot;</span>)) </span>
 <span id="cb50-5"><a href="intro.html#cb50-5"></a><span class="op">&gt;</span><span class="st"> </span></span>
 <span id="cb50-6"><a href="intro.html#cb50-6"></a><span class="er">&gt;</span><span class="st"> </span><span class="co"># load ggplot2</span></span>
 <span id="cb50-7"><a href="intro.html#cb50-7"></a><span class="er">&gt;</span><span class="st"> </span><span class="kw">library</span>(ggplot2)</span></code></pre></div>
+<p>Some important functions in R are located in packages. For example, the function <code>recode</code> substitutes values by others.
+Let’s take a look at the function <code>recode</code> in the package <code>dplyr</code> (<code>dplyr::recode</code>, in R lingo).</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="intro.html#cb51-1"></a><span class="op">&gt;</span><span class="st"> </span><span class="co"># Let&#39;s define a vector with my favorite fruits</span></span>
+<span id="cb51-2"><a href="intro.html#cb51-2"></a><span class="er">&gt;</span><span class="st"> </span>my_favorite_fruit &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;apples&quot;</span>, <span class="st">&quot;pears&quot;</span>, <span class="st">&quot;ornges&quot;</span>, <span class="st">&quot;mangoes&quot;</span>)</span>
+<span id="cb51-3"><a href="intro.html#cb51-3"></a><span class="op">&gt;</span><span class="st"> </span></span>
+<span id="cb51-4"><a href="intro.html#cb51-4"></a><span class="er">&gt;</span><span class="st"> </span><span class="co"># Oh no, I made a typo - it should be &#39;oranges&#39;, not &#39;ornges&#39;</span></span>
+<span id="cb51-5"><a href="intro.html#cb51-5"></a><span class="er">&gt;</span><span class="st"> </span><span class="co"># Let&#39;s replace it, using the function dplyr::recode</span></span>
+<span id="cb51-6"><a href="intro.html#cb51-6"></a><span class="er">&gt;</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">recode</span>(my_favorite_fruit, <span class="st">&#39;ornges&#39;</span>=<span class="st">&#39;oranges&#39;</span>) </span></code></pre></div>
+<pre><code>## [1] &quot;apples&quot;  &quot;pears&quot;   &quot;oranges&quot; &quot;mangoes&quot;</code></pre>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="intro.html#cb53-1"></a><span class="op">&gt;</span><span class="st"> </span><span class="co"># As an alternative way of doing the same thing,</span></span>
+<span id="cb53-2"><a href="intro.html#cb53-2"></a><span class="er">&gt;</span><span class="st"> </span><span class="co"># we can first load the package to gain access </span></span>
+<span id="cb53-3"><a href="intro.html#cb53-3"></a><span class="er">&gt;</span><span class="st"> </span><span class="co"># to all of its functions.</span></span>
+<span id="cb53-4"><a href="intro.html#cb53-4"></a><span class="er">&gt;</span><span class="st"> </span><span class="kw">library</span>(dplyr)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="intro.html#cb57-1"></a><span class="op">&gt;</span><span class="st"> </span><span class="co"># Having done this, we can just call this function and all </span></span>
+<span id="cb57-2"><a href="intro.html#cb57-2"></a><span class="er">&gt;</span><span class="st"> </span><span class="co"># the other functions in  directly, without the `dplyr::`</span></span>
+<span id="cb57-3"><a href="intro.html#cb57-3"></a><span class="er">&gt;</span><span class="st"> </span><span class="co"># prefix.</span></span>
+<span id="cb57-4"><a href="intro.html#cb57-4"></a><span class="er">&gt;</span><span class="st"> </span><span class="kw">recode</span>(my_favorite_fruit, <span class="st">&#39;ornges&#39;</span>=<span class="st">&#39;oranges&#39;</span>) </span></code></pre></div>
+<pre><code>## [1] &quot;apples&quot;  &quot;pears&quot;   &quot;oranges&quot; &quot;mangoes&quot;</code></pre>
 </div>
 <div id="plotting" class="section level2">
 <h2><span class="header-section-number">2.10</span> Plotting</h2>
-<p>…</p>
+<p>One of the great things about R, is that it contains the package <code>ggplot2</code>, which produces pretty decent graphics with relatively little effort.</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="intro.html#cb59-1"></a><span class="op">&gt;</span><span class="st"> </span><span class="co"># Load the ggplot2 package.</span></span>
+<span id="cb59-2"><a href="intro.html#cb59-2"></a><span class="er">&gt;</span><span class="st"> </span><span class="kw">library</span>(ggplot2)</span>
+<span id="cb59-3"><a href="intro.html#cb59-3"></a><span class="op">&gt;</span><span class="st"> </span></span>
+<span id="cb59-4"><a href="intro.html#cb59-4"></a><span class="er">&gt;</span><span class="st"> </span><span class="co"># create a vector of the numbers from 1 to 10</span></span>
+<span id="cb59-5"><a href="intro.html#cb59-5"></a><span class="er">&gt;</span><span class="st"> </span>x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span></span>
+<span id="cb59-6"><a href="intro.html#cb59-6"></a><span class="op">&gt;</span><span class="st"> </span><span class="co"># now, create a vector of their squares</span></span>
+<span id="cb59-7"><a href="intro.html#cb59-7"></a><span class="er">&gt;</span><span class="st"> </span>y &lt;-<span class="st"> </span>x<span class="op">^</span><span class="dv">2</span></span>
+<span id="cb59-8"><a href="intro.html#cb59-8"></a><span class="op">&gt;</span><span class="st"> </span></span>
+<span id="cb59-9"><a href="intro.html#cb59-9"></a><span class="er">&gt;</span><span class="st"> </span><span class="co"># Create a scatterplot of x ~ y, and draw the best fit quadratic function line though them</span></span>
+<span id="cb59-10"><a href="intro.html#cb59-10"></a><span class="er">&gt;</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data=</span><span class="ot">NULL</span>, <span class="kw">aes</span>(x, y)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb59-11"><a href="intro.html#cb59-11"></a><span class="op">+</span><span class="st">       </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb59-12"><a href="intro.html#cb59-12"></a><span class="op">+</span><span class="st">       </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">formula =</span> y<span class="op">~</span>x <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(x<span class="op">^</span><span class="dv">2</span>) )</span></code></pre></div>
+<p><img src="LectureNotes_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
 </div>
 <div id="example-putting-it-all-and-some-more-together" class="section level2">
 <h2><span class="header-section-number">2.11</span> Example: Putting it all (and some more) together</h2>
 <p>Let’s try to understand the Starbucks pricing system.</p>
 <p>Here is how we get our data into R.</p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="intro.html#cb51-1"></a><span class="op">&gt;</span><span class="st"> </span><span class="co"># store size labels in a vector</span></span>
-<span id="cb51-2"><a href="intro.html#cb51-2"></a><span class="er">&gt;</span><span class="st"> </span>label &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;tall&#39;</span>, <span class="st">&#39;grande&#39;</span>, <span class="st">&#39;venti&#39;</span>)</span>
-<span id="cb51-3"><a href="intro.html#cb51-3"></a><span class="op">&gt;</span><span class="st"> </span><span class="co"># make it an ordered vector</span></span>
-<span id="cb51-4"><a href="intro.html#cb51-4"></a><span class="er">&gt;</span><span class="st"> </span>label &lt;-<span class="st"> </span><span class="kw">ordered</span>(label, <span class="kw">c</span>(<span class="st">&#39;tall&#39;</span>, <span class="st">&#39;grande&#39;</span>, <span class="st">&#39;venti&#39;</span>))</span>
-<span id="cb51-5"><a href="intro.html#cb51-5"></a><span class="op">&gt;</span><span class="st"> </span></span>
-<span id="cb51-6"><a href="intro.html#cb51-6"></a><span class="er">&gt;</span><span class="st"> </span><span class="co"># store sizes in ounces in a vector</span></span>
-<span id="cb51-7"><a href="intro.html#cb51-7"></a><span class="er">&gt;</span><span class="st"> </span>size_oz &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">12</span>, <span class="dv">16</span>, <span class="dv">20</span>)</span>
-<span id="cb51-8"><a href="intro.html#cb51-8"></a><span class="op">&gt;</span><span class="st"> </span></span>
-<span id="cb51-9"><a href="intro.html#cb51-9"></a><span class="er">&gt;</span><span class="st"> </span><span class="co"># store cafe latte prices in a vector; prices probably not up to date</span></span>
-<span id="cb51-10"><a href="intro.html#cb51-10"></a><span class="er">&gt;</span><span class="st"> </span>price_tl &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">8.50</span>, <span class="fl">9.75</span>, <span class="fl">11.00</span>) </span>
-<span id="cb51-11"><a href="intro.html#cb51-11"></a><span class="op">&gt;</span><span class="st"> </span></span>
-<span id="cb51-12"><a href="intro.html#cb51-12"></a><span class="er">&gt;</span><span class="st"> </span>df_starbucks_coffee &lt;-<span class="st"> </span><span class="kw">data.frame</span>(label, size_oz, price_tl)</span>
-<span id="cb51-13"><a href="intro.html#cb51-13"></a><span class="op">&gt;</span><span class="st"> </span>df_starbucks_coffee</span></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="intro.html#cb60-1"></a><span class="op">&gt;</span><span class="st"> </span><span class="co"># store size labels in a vector</span></span>
+<span id="cb60-2"><a href="intro.html#cb60-2"></a><span class="er">&gt;</span><span class="st"> </span>label &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;tall&#39;</span>, <span class="st">&#39;grande&#39;</span>, <span class="st">&#39;venti&#39;</span>)</span>
+<span id="cb60-3"><a href="intro.html#cb60-3"></a><span class="op">&gt;</span><span class="st"> </span><span class="co"># make it an ordered vector</span></span>
+<span id="cb60-4"><a href="intro.html#cb60-4"></a><span class="er">&gt;</span><span class="st"> </span>label &lt;-<span class="st"> </span><span class="kw">ordered</span>(label, <span class="kw">c</span>(<span class="st">&#39;tall&#39;</span>, <span class="st">&#39;grande&#39;</span>, <span class="st">&#39;venti&#39;</span>))</span>
+<span id="cb60-5"><a href="intro.html#cb60-5"></a><span class="op">&gt;</span><span class="st"> </span></span>
+<span id="cb60-6"><a href="intro.html#cb60-6"></a><span class="er">&gt;</span><span class="st"> </span><span class="co"># store sizes in ounces in a vector</span></span>
+<span id="cb60-7"><a href="intro.html#cb60-7"></a><span class="er">&gt;</span><span class="st"> </span>size_oz &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">12</span>, <span class="dv">16</span>, <span class="dv">20</span>)</span>
+<span id="cb60-8"><a href="intro.html#cb60-8"></a><span class="op">&gt;</span><span class="st"> </span></span>
+<span id="cb60-9"><a href="intro.html#cb60-9"></a><span class="er">&gt;</span><span class="st"> </span><span class="co"># store cafe latte prices in a vector; prices probably not up to date</span></span>
+<span id="cb60-10"><a href="intro.html#cb60-10"></a><span class="er">&gt;</span><span class="st"> </span>price_tl &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">8.50</span>, <span class="fl">9.75</span>, <span class="fl">11.00</span>) </span>
+<span id="cb60-11"><a href="intro.html#cb60-11"></a><span class="op">&gt;</span><span class="st"> </span></span>
+<span id="cb60-12"><a href="intro.html#cb60-12"></a><span class="er">&gt;</span><span class="st"> </span>df_starbucks_coffee &lt;-<span class="st"> </span><span class="kw">data.frame</span>(label, size_oz, price_tl)</span>
+<span id="cb60-13"><a href="intro.html#cb60-13"></a><span class="op">&gt;</span><span class="st"> </span>df_starbucks_coffee</span></code></pre></div>
 <pre><code>##    label size_oz price_tl
 ## 1   tall      12     8.50
 ## 2 grande      16     9.75
 ## 3  venti      20    11.00</code></pre>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="intro.html#cb53-1"></a><span class="op">&gt;</span><span class="st"> </span><span class="kw">library</span>(ggplot2)</span>
-<span id="cb53-2"><a href="intro.html#cb53-2"></a><span class="op">&gt;</span><span class="st"> </span></span>
-<span id="cb53-3"><a href="intro.html#cb53-3"></a><span class="er">&gt;</span><span class="st"> </span><span class="co"># plot cup size by size category, use a bar plot;</span></span>
-<span id="cb53-4"><a href="intro.html#cb53-4"></a><span class="er">&gt;</span><span class="st"> </span><span class="kw">ggplot</span>(df_starbucks_coffee, <span class="kw">aes</span>(label, size_oz)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>)</span></code></pre></div>
-<p><img src="LectureNotes_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="intro.html#cb54-1"></a><span class="op">&gt;</span><span class="st"> </span><span class="co"># plot cup size by price, use a scatterplot;  draw a line through the points</span></span>
-<span id="cb54-2"><a href="intro.html#cb54-2"></a><span class="er">&gt;</span><span class="st"> </span><span class="kw">ggplot</span>(df_starbucks_coffee, <span class="kw">aes</span>(price_tl, size_oz)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()  <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="intro.html#cb62-1"></a><span class="op">&gt;</span><span class="st"> </span><span class="kw">library</span>(ggplot2)</span>
+<span id="cb62-2"><a href="intro.html#cb62-2"></a><span class="op">&gt;</span><span class="st"> </span></span>
+<span id="cb62-3"><a href="intro.html#cb62-3"></a><span class="er">&gt;</span><span class="st"> </span><span class="co"># plot cup size by size category, use a bar plot;</span></span>
+<span id="cb62-4"><a href="intro.html#cb62-4"></a><span class="er">&gt;</span><span class="st"> </span><span class="kw">ggplot</span>(df_starbucks_coffee, <span class="kw">aes</span>(label, size_oz)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>)</span></code></pre></div>
+<p><img src="LectureNotes_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="intro.html#cb63-1"></a><span class="op">&gt;</span><span class="st"> </span><span class="co"># plot cup size by price, use a scatterplot;  draw a line through the points</span></span>
+<span id="cb63-2"><a href="intro.html#cb63-2"></a><span class="er">&gt;</span><span class="st"> </span><span class="kw">ggplot</span>(df_starbucks_coffee, <span class="kw">aes</span>(price_tl, size_oz)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()  <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>)</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="LectureNotes_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="intro.html#cb56-1"></a><span class="op">&gt;</span><span class="st"> </span><span class="co"># plot cup size by price, use a scatterplot;  draw a line through the points</span></span>
-<span id="cb56-2"><a href="intro.html#cb56-2"></a><span class="er">&gt;</span><span class="st"> </span><span class="kw">ggplot</span>(df_starbucks_coffee, <span class="kw">aes</span>(price_tl, size_oz)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()  <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">fullrange=</span><span class="ot">TRUE</span>) <span class="op">+</span><span class="st"> </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">15</span>))  <span class="op">+</span><span class="st"> </span><span class="kw">scale_y_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">25</span>))</span></code></pre></div>
+<p><img src="LectureNotes_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
+<div id="how-much-would-other-coffee-sizes-cost-if-starbucks-introduced-them" class="section level3">
+<h3><span class="header-section-number">2.11.1</span> How much would other coffee sizes cost if Starbucks introduced them?</h3>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="intro.html#cb65-1"></a><span class="op">&gt;</span><span class="st"> </span><span class="co"># plot cup size by price, use a scatterplot;  draw a line through the points</span></span>
+<span id="cb65-2"><a href="intro.html#cb65-2"></a><span class="er">&gt;</span><span class="st"> </span><span class="kw">ggplot</span>(df_starbucks_coffee, <span class="kw">aes</span>(price_tl, size_oz)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()  <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">fullrange=</span><span class="ot">TRUE</span>) <span class="op">+</span><span class="st"> </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">15</span>))  <span class="op">+</span><span class="st"> </span><span class="kw">scale_y_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">3</span>, <span class="dv">25</span>))</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<pre><code>## Warning: Removed 20 rows containing missing values (geom_smooth).</code></pre>
-<p><img src="LectureNotes_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
-<p>Does this plot even make sense? Why not?</p>
+<pre><code>## Warning: Removed 23 rows containing missing values (geom_smooth).</code></pre>
+<p><img src="LectureNotes_files/figure-html/unnamed-chunk-38-1.png" width="672" /></p>
+<ul>
+<li>Does this plot even make sense? Why not?</li>
+</ul>
+<p>…</p>
+<ul>
+<li>The above plot isn’t the most intuitive way to visualize the price-coffee size relationship, because we tend to interpret such plots in terms of ‘a change of a certain number of units on the x-axis <em>leads</em> to a change of a certain number of units on the y-axis’.</li>
+<li>In the above case, this means that <em>‘if I choose to pay approximately 5 lira, I’ll get 0 ounces of coffee’</em>, or <em>‘if I choose to pay 4 lira, I’ll get -2.5 ounces of coffee’</em>. This is of course nonsensical.</li>
+</ul>
+</div>
+<div id="how-much-would-other-coffee-sizes-cost-if-starbucks-introduced-them-a-second-attempt" class="section level3">
+<h3><span class="header-section-number">2.11.2</span> How much would other coffee sizes cost if Starbucks introduced them? A second attempt</h3>
+<ul>
+<li>Flipping the coordinates, with coffee size on the x-axis, and price on the y-axis makes it <em>easier</em> to see that the only useful part of the plot is where the coffee size is larger than <span class="math inline">\(0\)</span>, since you’d never ask yourself the question <em>‘How much would I need to pay, in order to <em>give</em> Starbucks 1 ounce of coffee?’</em>.</li>
+</ul>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="intro.html#cb68-1"></a><span class="op">&gt;</span><span class="st"> </span><span class="co"># plot cup size by price, use a scatterplot;  draw a line through the points</span></span>
+<span id="cb68-2"><a href="intro.html#cb68-2"></a><span class="er">&gt;</span><span class="st"> </span><span class="kw">ggplot</span>(df_starbucks_coffee, <span class="kw">aes</span>(size_oz, price_tl)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()  <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">fullrange=</span><span class="ot">TRUE</span>) <span class="op">+</span><span class="st"> </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">25</span>))  <span class="op">+</span><span class="st"> </span><span class="kw">scale_y_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">15</span>))</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="LectureNotes_files/figure-html/unnamed-chunk-39-1.png" width="672" /></p>
 <!--
 You can label chapter and section titles using `{#label}` after them, e.g., we can reference Chapter \@ref(intro). If you do not manually label them, there will be automatic labels anyway, e.g., Chapter \@ref(methods).
 
@@ -421,32 +485,33 @@ knitr::kable(
 
 Table: (\#tab:nice-tab)Here is a nice table!
 
- Sepal.Length   Sepal.Width   Petal.Length   Petal.Width  Species 
--------------  ------------  -------------  ------------  --------
-          5.1           3.5            1.4           0.2  setosa  
-          4.9           3.0            1.4           0.2  setosa  
-          4.7           3.2            1.3           0.2  setosa  
-          4.6           3.1            1.5           0.2  setosa  
-          5.0           3.6            1.4           0.2  setosa  
-          5.4           3.9            1.7           0.4  setosa  
-          4.6           3.4            1.4           0.3  setosa  
-          5.0           3.4            1.5           0.2  setosa  
-          4.4           2.9            1.4           0.2  setosa  
-          4.9           3.1            1.5           0.1  setosa  
-          5.4           3.7            1.5           0.2  setosa  
-          4.8           3.4            1.6           0.2  setosa  
-          4.8           3.0            1.4           0.1  setosa  
-          4.3           3.0            1.1           0.1  setosa  
-          5.8           4.0            1.2           0.2  setosa  
-          5.7           4.4            1.5           0.4  setosa  
-          5.4           3.9            1.3           0.4  setosa  
-          5.1           3.5            1.4           0.3  setosa  
-          5.7           3.8            1.7           0.3  setosa  
-          5.1           3.8            1.5           0.3  setosa  
+| Sepal.Length| Sepal.Width| Petal.Length| Petal.Width|Species |
+|------------:|-----------:|------------:|-----------:|:-------|
+|          5.1|         3.5|          1.4|         0.2|setosa  |
+|          4.9|         3.0|          1.4|         0.2|setosa  |
+|          4.7|         3.2|          1.3|         0.2|setosa  |
+|          4.6|         3.1|          1.5|         0.2|setosa  |
+|          5.0|         3.6|          1.4|         0.2|setosa  |
+|          5.4|         3.9|          1.7|         0.4|setosa  |
+|          4.6|         3.4|          1.4|         0.3|setosa  |
+|          5.0|         3.4|          1.5|         0.2|setosa  |
+|          4.4|         2.9|          1.4|         0.2|setosa  |
+|          4.9|         3.1|          1.5|         0.1|setosa  |
+|          5.4|         3.7|          1.5|         0.2|setosa  |
+|          4.8|         3.4|          1.6|         0.2|setosa  |
+|          4.8|         3.0|          1.4|         0.1|setosa  |
+|          4.3|         3.0|          1.1|         0.1|setosa  |
+|          5.8|         4.0|          1.2|         0.2|setosa  |
+|          5.7|         4.4|          1.5|         0.4|setosa  |
+|          5.4|         3.9|          1.3|         0.4|setosa  |
+|          5.1|         3.5|          1.4|         0.3|setosa  |
+|          5.7|         3.8|          1.7|         0.3|setosa  |
+|          5.1|         3.8|          1.5|         0.3|setosa  |
 
 You can write citations, too. For example, we are using the **bookdown** package [@R-bookdown] in this sample book, which was built on top of R Markdown and **knitr** [@xie2015].
 -->
 
+</div>
 </div>
 </div>
             </section>
