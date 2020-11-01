@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Pavel Logacev</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/readable.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="site_libs/anchor-sections-1.0/anchor-sections.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="custom/css/academicons.css" type="text/css" />
+<link rel="stylesheet" href="custom/css/academicons.min.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 66px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 71px;
+  margin-top: -71px;
+}
+.section h2 {
+  padding-top: 71px;
+  margin-top: -71px;
+}
+.section h3 {
+  padding-top: 71px;
+  margin-top: -71px;
+}
+.section h4 {
+  padding-top: 71px;
+  margin-top: -71px;
+}
+.section h5 {
+  padding-top: 71px;
+  margin-top: -71px;
+}
+.section h6 {
+  padding-top: 71px;
+  margin-top: -71px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Bruno Nicenboim</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="publications.html">
+    <span class="fa fa-book  fa-2x"></span>
+     
+    Publications &amp; Presentations
+  </a>
+</li>
+<li>
+  <a href="cv.html">
+    <span class="fa fa-file  fa-2x"></span>
+     
+    CV
+  </a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/bnicenboim">
+    <span class="fa fa-github fa-2x"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://twitter.com/bruno_nicenboim">
+    <span class="fa fa-twitter fa-2x"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="http://orcid.org/0000-0002-5176-3943">
+    <span class="ai ai-orcid ai-2x"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://osf.io/cmist/#!">
+    <span class="ai ai-osf ai-2x"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Pavel Logacev</h1>
+
+</div>
+
+
+<div class="bigr-left">
+<p><img src="img/pavel.jpg" /> <br/> <br/> <br/> <br/> <br/></p>
+</div>
+<div class="bigr-right">
+<table>
+<tbody>
+<tr class="odd">
+<td align="left">Email:</td>
+<td align="left">[initial].[lastname] [at] uvt.nl</td>
+</tr>
+<tr class="even">
+<td align="left">Office:</td>
+<td align="left">D108, Dante Building, Tilburg University</td>
+</tr>
+<tr class="odd">
+<td align="left">Address:</td>
+<td align="left">Department of Cognitive Science and Artificial Intelligence</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">Tilburg University</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">PO Box 90153</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">5000 LE Tilburg</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">The Netherlands</td>
+</tr>
+</tbody>
+</table>
+<p><br/> <br/></p>
+</div>
+<p><br /> <br /> <br /> <br /></p>
+<div id="about-me" class="section level1">
+<h1>About me</h1>
+<p><br /></p>
+<p>I’m an assistant professor at the department of <a href="https://research.tilburguniversity.edu/en/persons/bruno-nicenboim">Cognitive Science and AI of Tilburg University</a> and a guest researcher at the department of Linguistics the University of Potsdam, Germany. Before that I did my PhD and Postdoc in <a href="http://www.ling.uni-potsdam.de/~vasishth/">Shravan Vasishth’s lab</a>, at the Department of Linguistics of University of Potsdam, Germany.</p>
+<hr />
+<p><br /></p>
+<div id="my-main-interests" class="section level3">
+<h3>My main interests</h3>
+<div id="computational-cognitive-modeling" class="section level4">
+<h4>Computational (cognitive) modeling</h4>
+<ul>
+<li><p>I worked on computational cognitive models that link memory processes with sentence comprehension, and on individual differences in sentence processing. The most important output of my PhD was <a href="papers/NicenboimVasishth2017Models.pdf">this paper about models of retrieval</a>; DOI: <a href="https://doi.org/10.1016/j.jml.2017.08.004">10.1016/j.jml.2017.08.004</a>. The paper shows the computational implementation of two different sentence processing theories (a verbal model and an ACT-R model) on the same framework using hierarchical Bayesian modeling.</p></li>
+<li><p>I’m currently working with the linear ballistic accumulator (see my <a href="https://htmlpreview.github.io/?https://github.com/stan-dev/stancon_talks/blob/master/2018-helsinki/Contributed-Talks/nicenboim/LBA_stancon2018.html">Stancon submission</a>).</p></li>
+</ul>
+</div>
+<div id="eeg" class="section level4">
+<h4>EEG</h4>
+<ul>
+<li><p>I worked on predictions in language using EEG <a href="https://psyarxiv.com/2atrh/">(preprint)</a>; using novel EEG data, together with a meta-analysis of available data, we show that the N400 effect is, at least in part, caused by linguistic preactivation that occurs prior to the predicted target word, as opposed to semantic integration that occurs after the target word has been read. While this idea has been present in the literature for more than 10 years, experimental evidence has been so far controversial and included several failed replications.</p></li>
+<li><p>I’m developing a package for the manipulation of EEG data in R: <a href="https://bnicenboim.github.io/eeguana/" class="uri">https://bnicenboim.github.io/eeguana/</a>. It is in the early stages of development, but feedback and comments (and <a href="https://github.com/bnicenboim/eeguana/issues">github issues</a>) are welcome.</p></li>
+</ul>
+</div>
+<div id="statistical-methods-and-bayesian-modeling" class="section level4">
+<h4>Statistical methods and Bayesian modeling:</h4>
+<ul>
+<li><p>I’m working on <a href="https://vasishth.github.io/Bayes_CogSci/">this textbook</a> (in progress) together with <a href="http://www.ling.uni-potsdam.de/~vasishth/">Shravan Vasishth</a> and <a href="https://danielschad.github.io/">Daniel Schad</a>.</p></li>
+<li><p>Data and code for my published papers is mostly in the <a href="https://osf.io/cmist/">OSF website</a> (with some exceptions in my <a href="https://github.com/bnicenboim">github</a> repo). And I’m also contributing to the <a href="https://github.com/tmalsburg/PsychlingDatasets/wiki/A-directory-of-publicly-available-data-sets-from-psycholinguistic-studies">list of publicly available psycholinguistics datasets</a>.</p></li>
+</ul>
+<!-- #### News  -->
+<!-- <\!-- -------------- -\-> -->
+<!-- - I'll be teaching at the  [The Third Potsdam Summer School on Statistical Methods for Linguistics and Psychology (SMLP)](https://vasishth.github.io/smlp2020/), University of Potsdam, Germany. **7-11th September, 2020**. -->
+<!-- <br/> -->
+<!-- # News -->
+<!-- &#128197; I'm teaching the following workshops/summer schools: -->
+<!-- * Methods in Advanced Statistics together with Shravan Vasishth at the 2020 Winter School organized by Netherlands Graduate School in Linguistics (LOT) in Tilburg, Netherlands. **13-17th January, 2020** -->
+<!-- * an introduction to computational Bayesian methods using Stan together with Shravan Vasishth in Berlin in the framework of [Physalia courses](https://www.physalia-courses.org/courses-workshops/course46/). **16-20th March, 2020** -->
+<!-- -  advanced Bayesian methods using [Stan](http://mc-stan.org/) at the [The Third Potsdam Summer School on Statistical Methods for Linguistics and Psychology (SMLP)](https://vasishth.github.io/smlp2020/), University of Potsdam, Germany. **7-11th September, 2020**. -->
+<!-- - -->
+<!-- 
+*  An introductory workshop on Bayesian methods  at the University of Edinburgh, UK. **14th and 15th September, 2019**.
+* Another introductory workshop on Bayesian methods  at the University of Cologne, Germany. **24th and 25th September, 2019**.
+&#128197; "Computational models of retrieval processes in sentence processing" got accepted in TiCS! Preprint is [here](https://psyarxiv.com/e4jds).
+&#128197; I'm teaching advanced Bayesian methods using [Stan](http://mc-stan.org/) at the [The Third Potsdam Summer School on Statistical Methods for Linguistics and Psychology (SMLP)](https://vasishth.github.io/smlp2019/), University of Potsdam, Germany. **9-14th September, 2019**.
+&#128197; I'll be giving a talk on "Statistical inference: Alternative tools and paradigms" at [BICLCE 2019](https://www.uni-bamberg.de/en/anglistik/chair-of-english-linguistics/biclce-2019/), at the Otto-Friedrich-Universität Bamberg, Germany. **Between 26th and 28th September, 2019**
+# News
+&#128197; **24 October 2018** I will be talking about *Cognitive models of memory processes in sentence comprehension* at the [Masterclass in Bayesian Statistic](https://www.chairejeanmorlet.com/2018-2-mengersen-pudlo-1854.html), CIRM (Marseille Luminy, France).  
+&#128197; **30 or 31 August 2018** I will be talking about a Stan implementation of the linear ballistic accumulator at [StanCon](http://mc-stan.org/events/stancon2018Helsinki/) in Helsinki, Finland.
+&#128197; **8 September 2018** Ernesto Guerra and I will be presenting a poster (A crack in the crystall ball: Evidence against pre-activation of gender features in sentence comprehension) at [AMLAP](https://amor.cms.hu-berlin.de/~knoeferp/AMLaP2018/Home.html) in Berlin, Germany.    
+&#128197; **10 - 14 September 2018** I will be assisting [Michael Betancourt](https://betanalpha.github.io/) and teaching one Bayesian modeling one morning at the [The Second Potsdam Summer School on Statistical Methods for Linguistics and Psychology (SMLP)](https://vasishth.github.io/SMLP2018/), University of Potsdam, Germany.  
+&#128197; **17 September 2018** I will be talking about the testing of psychological theories using a Bayesian approach
+ in the symposium "Bayesian Approaches in Psychological Research" at [Kongress der Deutschen Gesellschaft für Psychologie](https://www.dgpskongress.de/frontend/index.php?sub=16) in Frankfurt, Germany.    
+♣ [My poster](https://osf.io/dhd7y/) will be hanging at [CUNY 2017](https://cuny2017.mit.edu) **without me** or my co-author [Shravan Vasishth](http://www.ling.uni-potsdam.de/~vasishth) this Thursday (March 30th). But I'll be happy to get feedback by e-mail or twitter. And you can check our manuscript under review [here](https://arxiv.org/abs/1612.04174).
+<!-- 
+&#128197;  I'll be giving a talk about Bayesian models in psycholinguistics at the Institut für Linguistik - Phonetik, University of Cologne on **July 3rd, 2017**.
+ -->
+<!-- 
+&#128197;  I successfully defended my PhD at University of Potsdam on **July 19rd, 2017**!
+&#128197; I taught [Stan](http://mc-stan.org/) at the [The First Potsdam Summer School on Statistical Methods for Linguistics and Psychology (SMLP)](https://vasishth.github.io/SMLP2017/), University of Potsdam, Germany. **28 August - 1 September 2017**. My materials are [here](material/Bayes-SMLP2017.zip).
+&#128197; I'll be teaching together with [Shravan Vasishth](http://www.ling.uni-potsdam.de/~vasishth) **Introduction to Bayesian Modeling using Stan**, at the [13. Tagung der Fachgruppe Methoden und Evaluation der Deutschen Gesellschaft für Psychologie](http://fgme2017.de/), Tübingen, Germany. **17 September 2017**. Details [here](http://www.ling.uni-potsdam.de/~vasishth/courses/IntroStanFGME2017.html). 
+ -->
+</div>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

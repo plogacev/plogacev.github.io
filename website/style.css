@@ -1,0 +1,49 @@
+.gap-right {
+  margin-right: 10px;
+}
+
+/*tr td:first-child {padding-left:0px; }*/
+  
+  td {padding:2px 0px 2px 50px;}
+
+
+
+.pull-left {
+  float: left;
+  width: 47%;
+}
+.pull-right {
+  float: right;
+  width: 47%;
+}
+.pull-right ~ * {
+  clear: both;
+}
+
+body,p,  td {
+  font-size: 140%;
+}
+
+.bigl-left {
+  float: left;
+  width: 60%;
+}
+.bigl-right {
+  float: right;
+  width: 40%;
+}
+.bigl-right ~ * {
+  clear: both;
+}
+
+.bigr-left {
+  float: left;
+  width: 40%;
+}
+.bigr-right {
+  float: right;
+  width: 60%;
+}
+.bigl-right ~ * {
+  clear: both;
+}
