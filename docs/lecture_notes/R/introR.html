@@ -24,7 +24,7 @@
 <meta name="author" content="Pavel Logacev" />
 
 
-<meta name="date" content="2020-11-14" />
+<meta name="date" content="2020-11-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -162,6 +162,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.11.1" data-path="intro.html"><a href="intro.html#how-much-would-other-coffee-sizes-cost-if-starbucks-introduced-them"><i class="fa fa-check"></i><b>2.11.1</b> How much would other coffee sizes cost if Starbucks introduced them?</a></li>
 <li class="chapter" data-level="2.11.2" data-path="intro.html"><a href="intro.html#how-much-would-other-coffee-sizes-cost-if-starbucks-introduced-them-a-second-attempt"><i class="fa fa-check"></i><b>2.11.2</b> How much would other coffee sizes cost if Starbucks introduced them? A second attempt</a></li>
 </ul></li>
+<li class="chapter" data-level="2.12" data-path="intro.html"><a href="intro.html#operators-and-functions-in-this-section"><i class="fa fa-check"></i><b>2.12</b> Operators and functions in this section</a><ul>
+<li class="chapter" data-level="2.12.1" data-path="intro.html"><a href="intro.html#operators-1"><i class="fa fa-check"></i><b>2.12.1</b> Operators</a></li>
+<li class="chapter" data-level="2.12.2" data-path="intro.html"><a href="intro.html#functions"><i class="fa fa-check"></i><b>2.12.2</b> Functions</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="introR.html"><a href="introR.html"><i class="fa fa-check"></i><b>3</b> Data Structures</a><ul>
 <li class="chapter" data-level="3.1" data-path="introR.html"><a href="introR.html#recap-data-types-in-r"><i class="fa fa-check"></i><b>3.1</b> Recap: Data Types in R</a></li>
@@ -182,8 +186,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.3.1" data-path="working-with-data.html"><a href="working-with-data.html#the-problem"><i class="fa fa-check"></i><b>4.3.1</b> The problem</a></li>
 <li class="chapter" data-level="4.3.2" data-path="working-with-data.html"><a href="working-with-data.html#pipes-1"><i class="fa fa-check"></i><b>4.3.2</b> Pipes</a></li>
 </ul></li>
+<li class="chapter" data-level="4.4" data-path="working-with-data.html"><a href="working-with-data.html#functions-used-in-this-section"><i class="fa fa-check"></i><b>4.4</b> Functions used in this section</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="working-with-data.html"><a href="working-with-data.html#operators-2"><i class="fa fa-check"></i><b>4.4.1</b> Operators</a></li>
+<li class="chapter" data-level="4.4.2" data-path="working-with-data.html"><a href="working-with-data.html#functions-1"><i class="fa fa-check"></i><b>4.4.2</b> Functions</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>5</b> Functions</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="functions-2.html"><a href="functions-2.html"><i class="fa fa-check"></i><b>5</b> Functions</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -213,7 +221,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 }
 .function {
   background-color: lightgrey;
-  padding: 0.5em 0.5em 0.5em 0.5em;
+  padding: 0.5em 0.5em 0.5em 4em;
   border: 1px solid black;
 }
 </style>
@@ -313,14 +321,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="introR.html#cb1-1"></a><span class="co"># create and print vectors, don&#39;t save</span></span>
 <span id="cb1-2"><a href="introR.html#cb1-2"></a><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>, <span class="dv">1000</span>)</span></code></pre></div>
-<pre><code>## [1]    1    2 1000</code></pre>
+<pre class="r-output"><code>## [1]    1    2 1000</code></pre>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="introR.html#cb3-1"></a><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>, <span class="dv">1000</span>, pi)</span></code></pre></div>
-<pre><code>## [1]    1.000000    2.000000 1000.000000    3.141593</code></pre>
+<pre class="r-output"><code>## [1]    1.000000    2.000000 1000.000000    3.141593</code></pre>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="introR.html#cb5-1"></a><span class="dv">1</span><span class="op">:</span><span class="dv">3</span></span></code></pre></div>
-<pre><code>## [1] 1 2 3</code></pre>
+<pre class="r-output"><code>## [1] 1 2 3</code></pre>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="introR.html#cb7-1"></a><span class="co"># create and print a data.frame</span></span>
 <span id="cb7-2"><a href="introR.html#cb7-2"></a><span class="kw">data.frame</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)</span></code></pre></div>
-<pre><code>##   X1.3
+<pre class="r-output"><code>##   X1.3
 ## 1    1
 ## 2    2
 ## 3    3</code></pre>
@@ -334,64 +342,64 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="introR.html#cb9-1"></a>vector_var &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>)</span>
 <span id="cb9-2"><a href="introR.html#cb9-2"></a>vector_var</span></code></pre></div>
-<pre><code>## [1] 1 2 3 4 5 6 7 8</code></pre>
+<pre class="r-output"><code>## [1] 1 2 3 4 5 6 7 8</code></pre>
 <ul>
 <li>There is even a more elegant ways to do that:</li>
 </ul>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="introR.html#cb11-1"></a>vector_var &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">8</span></span>
 <span id="cb11-2"><a href="introR.html#cb11-2"></a>vector_var</span></code></pre></div>
-<pre><code>## [1] 1 2 3 4 5 6 7 8</code></pre>
+<pre class="r-output"><code>## [1] 1 2 3 4 5 6 7 8</code></pre>
 <ul>
 <li>Now, let’s create a simple vector with integers between 1 and 8, going in steps of 2.</li>
 </ul>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="introR.html#cb13-1"></a>vector_var &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">1</span>,<span class="dv">8</span>, <span class="dt">by=</span><span class="dv">2</span>)</span>
 <span id="cb13-2"><a href="introR.html#cb13-2"></a>vector_var</span></code></pre></div>
-<pre><code>## [1] 1 3 5 7</code></pre>
+<pre class="r-output"><code>## [1] 1 3 5 7</code></pre>
 <ul>
 <li>Some useful vectors already exist in R.</li>
 </ul>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="introR.html#cb15-1"></a>letters</span></code></pre></div>
-<pre><code>##  [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot; &quot;f&quot; &quot;g&quot; &quot;h&quot; &quot;i&quot; &quot;j&quot; &quot;k&quot; &quot;l&quot; &quot;m&quot; &quot;n&quot; &quot;o&quot; &quot;p&quot; &quot;q&quot; &quot;r&quot; &quot;s&quot;
+<pre class="r-output"><code>##  [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot; &quot;f&quot; &quot;g&quot; &quot;h&quot; &quot;i&quot; &quot;j&quot; &quot;k&quot; &quot;l&quot; &quot;m&quot; &quot;n&quot; &quot;o&quot; &quot;p&quot; &quot;q&quot; &quot;r&quot; &quot;s&quot;
 ## [20] &quot;t&quot; &quot;u&quot; &quot;v&quot; &quot;w&quot; &quot;x&quot; &quot;y&quot; &quot;z&quot;</code></pre>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="introR.html#cb17-1"></a>LETTERS</span></code></pre></div>
-<pre><code>##  [1] &quot;A&quot; &quot;B&quot; &quot;C&quot; &quot;D&quot; &quot;E&quot; &quot;F&quot; &quot;G&quot; &quot;H&quot; &quot;I&quot; &quot;J&quot; &quot;K&quot; &quot;L&quot; &quot;M&quot; &quot;N&quot; &quot;O&quot; &quot;P&quot; &quot;Q&quot; &quot;R&quot; &quot;S&quot;
+<pre class="r-output"><code>##  [1] &quot;A&quot; &quot;B&quot; &quot;C&quot; &quot;D&quot; &quot;E&quot; &quot;F&quot; &quot;G&quot; &quot;H&quot; &quot;I&quot; &quot;J&quot; &quot;K&quot; &quot;L&quot; &quot;M&quot; &quot;N&quot; &quot;O&quot; &quot;P&quot; &quot;Q&quot; &quot;R&quot; &quot;S&quot;
 ## [20] &quot;T&quot; &quot;U&quot; &quot;V&quot; &quot;W&quot; &quot;X&quot; &quot;Y&quot; &quot;Z&quot;</code></pre>
 <ul>
 <li>Some useful vectors already exist in R.</li>
 </ul>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="introR.html#cb19-1"></a>letters</span></code></pre></div>
-<pre><code>##  [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot; &quot;f&quot; &quot;g&quot; &quot;h&quot; &quot;i&quot; &quot;j&quot; &quot;k&quot; &quot;l&quot; &quot;m&quot; &quot;n&quot; &quot;o&quot; &quot;p&quot; &quot;q&quot; &quot;r&quot; &quot;s&quot;
+<pre class="r-output"><code>##  [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot; &quot;f&quot; &quot;g&quot; &quot;h&quot; &quot;i&quot; &quot;j&quot; &quot;k&quot; &quot;l&quot; &quot;m&quot; &quot;n&quot; &quot;o&quot; &quot;p&quot; &quot;q&quot; &quot;r&quot; &quot;s&quot;
 ## [20] &quot;t&quot; &quot;u&quot; &quot;v&quot; &quot;w&quot; &quot;x&quot; &quot;y&quot; &quot;z&quot;</code></pre>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="introR.html#cb21-1"></a>LETTERS</span></code></pre></div>
-<pre><code>##  [1] &quot;A&quot; &quot;B&quot; &quot;C&quot; &quot;D&quot; &quot;E&quot; &quot;F&quot; &quot;G&quot; &quot;H&quot; &quot;I&quot; &quot;J&quot; &quot;K&quot; &quot;L&quot; &quot;M&quot; &quot;N&quot; &quot;O&quot; &quot;P&quot; &quot;Q&quot; &quot;R&quot; &quot;S&quot;
+<pre class="r-output"><code>##  [1] &quot;A&quot; &quot;B&quot; &quot;C&quot; &quot;D&quot; &quot;E&quot; &quot;F&quot; &quot;G&quot; &quot;H&quot; &quot;I&quot; &quot;J&quot; &quot;K&quot; &quot;L&quot; &quot;M&quot; &quot;N&quot; &quot;O&quot; &quot;P&quot; &quot;Q&quot; &quot;R&quot; &quot;S&quot;
 ## [20] &quot;T&quot; &quot;U&quot; &quot;V&quot; &quot;W&quot; &quot;X&quot; &quot;Y&quot; &quot;Z&quot;</code></pre>
 <ul>
 <li>We can select specific elements of a vector by indexing it with <code>[]</code>.</li>
 </ul>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="introR.html#cb23-1"></a><span class="co"># the first letter</span></span>
 <span id="cb23-2"><a href="introR.html#cb23-2"></a>letters[<span class="dv">1</span>]</span></code></pre></div>
-<pre><code>## [1] &quot;a&quot;</code></pre>
+<pre class="r-output"><code>## [1] &quot;a&quot;</code></pre>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="introR.html#cb25-1"></a><span class="co"># the 13-th letter</span></span>
 <span id="cb25-2"><a href="introR.html#cb25-2"></a>letters[<span class="dv">13</span>]</span></code></pre></div>
-<pre><code>## [1] &quot;m&quot;</code></pre>
+<pre class="r-output"><code>## [1] &quot;m&quot;</code></pre>
 <ul>
 <li>Indices can be vectors too.</li>
 </ul>
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="introR.html#cb27-1"></a><span class="co"># both of them</span></span>
 <span id="cb27-2"><a href="introR.html#cb27-2"></a>letters[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">13</span>)]</span></code></pre></div>
-<pre><code>## [1] &quot;a&quot; &quot;m&quot;</code></pre>
+<pre class="r-output"><code>## [1] &quot;a&quot; &quot;m&quot;</code></pre>
 <ul>
 <li>We can even take a whole <em>‘slice’</em> of a vector.</li>
 </ul>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="introR.html#cb29-1"></a><span class="co"># both of them</span></span>
 <span id="cb29-2"><a href="introR.html#cb29-2"></a>letters[<span class="dv">6</span><span class="op">:</span><span class="dv">12</span>]</span></code></pre></div>
-<pre><code>## [1] &quot;f&quot; &quot;g&quot; &quot;h&quot; &quot;i&quot; &quot;j&quot; &quot;k&quot; &quot;l&quot;</code></pre>
+<pre class="r-output"><code>## [1] &quot;f&quot; &quot;g&quot; &quot;h&quot; &quot;i&quot; &quot;j&quot; &quot;k&quot; &quot;l&quot;</code></pre>
 <ul>
 <li>Indices can even be negative. A negative index <span class="math inline">\(-n\)</span> means <em>‘everything’ except <span class="math inline">\(n\)</span></em>.</li>
 </ul>
 <div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="introR.html#cb31-1"></a><span class="co"># both of them</span></span>
 <span id="cb31-2"><a href="introR.html#cb31-2"></a>letters[<span class="op">-</span><span class="dv">1</span>]</span></code></pre></div>
-<pre><code>##  [1] &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot; &quot;f&quot; &quot;g&quot; &quot;h&quot; &quot;i&quot; &quot;j&quot; &quot;k&quot; &quot;l&quot; &quot;m&quot; &quot;n&quot; &quot;o&quot; &quot;p&quot; &quot;q&quot; &quot;r&quot; &quot;s&quot; &quot;t&quot;
+<pre class="r-output"><code>##  [1] &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot; &quot;f&quot; &quot;g&quot; &quot;h&quot; &quot;i&quot; &quot;j&quot; &quot;k&quot; &quot;l&quot; &quot;m&quot; &quot;n&quot; &quot;o&quot; &quot;p&quot; &quot;q&quot; &quot;r&quot; &quot;s&quot; &quot;t&quot;
 ## [20] &quot;u&quot; &quot;v&quot; &quot;w&quot; &quot;x&quot; &quot;y&quot; &quot;z&quot;</code></pre>
 <ul>
 <li>Vectors can be named.</li>
@@ -401,19 +409,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>In this case, we can index by the name</li>
 </ul>
 <div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="introR.html#cb34-1"></a>digits[<span class="kw">c</span>(<span class="st">&#39;one&#39;</span>, <span class="st">&#39;six&#39;</span>)]</span></code></pre></div>
-<pre><code>## one six 
+<pre class="r-output"><code>## one six 
 ##   1   6</code></pre>
 <ul>
 <li>Believe it or not, everything in R is actually a vector. For example <code>9</code> is a vector with only one element, which is <code>9</code>.</li>
 </ul>
 <div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="introR.html#cb36-1"></a><span class="dv">9</span></span></code></pre></div>
-<pre><code>## [1] 9</code></pre>
+<pre class="r-output"><code>## [1] 9</code></pre>
 <ul>
 <li>This is why every output begins with <code>[1]</code>. R tries to help you find numbers in printed vectors. Every time a vector is printed, it reminds you at which position in the vector we are.</li>
 <li>The <code>[1]</code> in the output below tells you that <code>"a"</code> is the first element, and the <code>[20]</code> tells you that <code>"t"</code> is the 20-th element.</li>
 </ul>
 <div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="introR.html#cb38-1"></a>letters <span class="co"># print a vector with all lower-case letters</span></span></code></pre></div>
-<pre><code>##  [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot; &quot;f&quot; &quot;g&quot; &quot;h&quot; &quot;i&quot; &quot;j&quot; &quot;k&quot; &quot;l&quot; &quot;m&quot; &quot;n&quot; &quot;o&quot; &quot;p&quot; &quot;q&quot; &quot;r&quot; &quot;s&quot;
+<pre class="r-output"><code>##  [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot; &quot;f&quot; &quot;g&quot; &quot;h&quot; &quot;i&quot; &quot;j&quot; &quot;k&quot; &quot;l&quot; &quot;m&quot; &quot;n&quot; &quot;o&quot; &quot;p&quot; &quot;q&quot; &quot;r&quot; &quot;s&quot;
 ## [20] &quot;t&quot; &quot;u&quot; &quot;v&quot; &quot;w&quot; &quot;x&quot; &quot;y&quot; &quot;z&quot;</code></pre>
 <div id="what-are-vectors-good-for" class="section level3">
 <h3><span class="header-section-number">3.3.1</span> What are vectors good for?</h3>
@@ -427,24 +435,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Let’s find out which game is more profitable …</li>
 </ul>
 <div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="introR.html#cb42-1"></a><span class="kw">sum</span>(horse_bets_payout_tl)</span></code></pre></div>
-<pre><code>## [1] 399</code></pre>
+<pre class="r-output"><code>## [1] 399</code></pre>
 <div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="introR.html#cb44-1"></a><span class="kw">sum</span>(poker_payout_tl)</span></code></pre></div>
-<pre><code>## [1] 293.9</code></pre>
+<pre class="r-output"><code>## [1] 293.9</code></pre>
 <p>… we may also need these functions:</p>
 <div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="introR.html#cb46-1"></a><span class="kw">length</span>(horse_bets_payout_tl)</span></code></pre></div>
-<pre><code>## [1] 16</code></pre>
+<pre class="r-output"><code>## [1] 16</code></pre>
 <div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="introR.html#cb48-1"></a><span class="kw">mean</span>(horse_bets_payout_tl)</span></code></pre></div>
-<pre><code>## [1] 24.9375</code></pre>
+<pre class="r-output"><code>## [1] 24.9375</code></pre>
 <div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="introR.html#cb50-1"></a><span class="kw">sum</span>(horse_bets_payout_tl)<span class="op">/</span><span class="kw">length</span>(horse_bets_payout_tl)</span></code></pre></div>
-<pre><code>## [1] 24.9375</code></pre>
+<pre class="r-output"><code>## [1] 24.9375</code></pre>
 <p>… so which game is more profitable?</p>
 <ul>
 <li>It seems that betting is more profitable.</li>
 </ul>
 <div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="introR.html#cb52-1"></a><span class="kw">mean</span>(horse_bets_payout_tl)</span></code></pre></div>
-<pre><code>## [1] 24.9375</code></pre>
+<pre class="r-output"><code>## [1] 24.9375</code></pre>
 <div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="introR.html#cb54-1"></a><span class="kw">mean</span>(poker_payout_tl)</span></code></pre></div>
-<pre><code>## [1] 24.49167</code></pre>
+<pre class="r-output"><code>## [1] 24.49167</code></pre>
 <p>Now, I forgot to mention that my bookie charges me 1.5 TL per bet on a horse, on average. The poker payouts correspond to the profits, though. </p>
 <ul>
 <li><p>Luckily, we can just add numbers and vectors. Let’s just create two new vectors which contain the profits.</p></li>
@@ -459,21 +467,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Let’s compare:</li>
 </ul>
 <div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="introR.html#cb58-1"></a>horse_bets_payout_tl</span></code></pre></div>
-<pre><code>##  [1] 100 -50   1 100 -10 -20 250 -40 -30  23 -23  55  14   8  24  -3</code></pre>
+<pre class="r-output"><code>##  [1] 100 -50   1 100 -10 -20 250 -40 -30  23 -23  55  14   8  24  -3</code></pre>
 <div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="introR.html#cb60-1"></a>horse_bets_profits_tl</span></code></pre></div>
-<pre><code>##  [1]  98.5 -51.5  -0.5  98.5 -11.5 -21.5 248.5 -41.5 -31.5  21.5 -24.5  53.5
+<pre class="r-output"><code>##  [1]  98.5 -51.5  -0.5  98.5 -11.5 -21.5 248.5 -41.5 -31.5  21.5 -24.5  53.5
 ## [13]  12.5   6.5  22.5  -4.5</code></pre>
 <div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="introR.html#cb62-1"></a>poker_payout_tl</span></code></pre></div>
-<pre><code>##  [1]  24.0   5.0 -38.1  12.0 103.0  15.0   5.0 187.0  13.0 -23.0 -45.0  36.0</code></pre>
+<pre class="r-output"><code>##  [1]  24.0   5.0 -38.1  12.0 103.0  15.0   5.0 187.0  13.0 -23.0 -45.0  36.0</code></pre>
 <div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="introR.html#cb64-1"></a>poker_profits_tl</span></code></pre></div>
-<pre><code>##  [1]  24.0   5.0 -38.1  12.0 103.0  15.0   5.0 187.0  13.0 -23.0 -45.0  36.0</code></pre>
+<pre class="r-output"><code>##  [1]  24.0   5.0 -38.1  12.0 103.0  15.0   5.0 187.0  13.0 -23.0 -45.0  36.0</code></pre>
 <ul>
 <li>Which game is more profitable now?</li>
 </ul>
 <div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="introR.html#cb66-1"></a><span class="kw">mean</span>(horse_bets_profits_tl)</span></code></pre></div>
-<pre><code>## [1] 23.4375</code></pre>
+<pre class="r-output"><code>## [1] 23.4375</code></pre>
 <div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="introR.html#cb68-1"></a><span class="kw">mean</span>(poker_profits_tl)</span></code></pre></div>
-<pre><code>## [1] 24.49167</code></pre>
+<pre class="r-output"><code>## [1] 24.49167</code></pre>
 </div>
 </div>
 <div id="data-frames" class="section level2">
@@ -506,7 +514,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Let’s take a look at what we’ve created.</li>
 </ul>
 <div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="introR.html#cb73-1"></a>df_horse_bets</span></code></pre></div>
-<pre><code>##    wday profit
+<pre class="r-output"><code>##    wday profit
 ## 1   Wed   98.5
 ## 2    Fr  -51.5
 ## 3   Wed   -0.5
@@ -529,7 +537,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>We’ll use the function <code>head()</code>, which takes a <code>data.frame</code> and a number <span class="math inline">\(n\)</span>, and outputs the first <span class="math inline">\(n\)</span> lines.</p></li>
 </ul>
 <div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="introR.html#cb75-1"></a><span class="kw">head</span>(df_horse_bets, <span class="dv">2</span>)</span></code></pre></div>
-<pre><code>##   wday profit
+<pre class="r-output"><code>##   wday profit
 ## 1  Wed   98.5
 ## 2   Fr  -51.5</code></pre>
 <ul>
@@ -547,7 +555,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Unfortunately, now, we don’t have any information on which profits are from which game.</li>
 </ul>
 <div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="introR.html#cb79-1"></a><span class="kw">head</span>(df_gambling)</span></code></pre></div>
-<pre><code>##   wday profit
+<pre class="r-output"><code>##   wday profit
 ## 1  Wed   98.5
 ## 2   Fr  -51.5
 ## 3  Wed   -0.5
@@ -564,7 +572,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="introR.html#cb82-1"></a>df_gambling &lt;-<span class="st"> </span><span class="kw">rbind</span>(df_horse_bets, df_poker)</span>
 <span id="cb82-2"><a href="introR.html#cb82-2"></a><span class="kw">head</span>(df_gambling)</span></code></pre></div>
-<pre><code>##   wday profit       game
+<pre class="r-output"><code>##   wday profit       game
 ## 1  Wed   98.5 horse_bets
 ## 2   Fr  -51.5 horse_bets
 ## 3  Wed   -0.5 horse_bets
@@ -597,7 +605,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb88-2"><a href="introR.html#cb88-2"></a><span class="st">  </span><span class="kw">group_by</span>(game) <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb88-3"><a href="introR.html#cb88-3"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">avg_profit =</span> <span class="kw">mean</span>(profit))</span></code></pre></div>
 <pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
-<pre><code>## # A tibble: 2 x 2
+<pre class="r-output"><code>## # A tibble: 2 x 2
 ##   game       avg_profit
 ##   &lt;chr&gt;           &lt;dbl&gt;
 ## 1 horse_bets       23.4
@@ -611,7 +619,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb92-2"><a href="introR.html#cb92-2"></a><span class="st">  </span><span class="kw">group_by</span>(game, wday) <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb92-3"><a href="introR.html#cb92-3"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">avg_profit =</span> <span class="kw">mean</span>(profit))</span></code></pre></div>
 <pre><code>## `summarise()` regrouping output by &#39;game&#39; (override with `.groups` argument)</code></pre>
-<pre><code>## # A tibble: 4 x 3
+<pre class="r-output"><code>## # A tibble: 4 x 3
 ## # Groups:   game [2]
 ##   game       wday  avg_profit
 ##   &lt;chr&gt;      &lt;chr&gt;      &lt;dbl&gt;
@@ -626,7 +634,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb95-2"><a href="introR.html#cb95-2"></a><span class="st">  </span><span class="kw">group_by</span>(game, wday) <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb95-3"><a href="introR.html#cb95-3"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">avg_proportion_wins =</span> <span class="kw">mean</span>(profit<span class="op">&gt;</span><span class="dv">0</span>) )</span></code></pre></div>
 <pre><code>## `summarise()` regrouping output by &#39;game&#39; (override with `.groups` argument)</code></pre>
-<pre><code>## # A tibble: 4 x 3
+<pre class="r-output"><code>## # A tibble: 4 x 3
 ## # Groups:   game [2]
 ##   game       wday  avg_proportion_wins
 ##   &lt;chr&gt;      &lt;chr&gt;               &lt;dbl&gt;
@@ -653,49 +661,77 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="introR.html#cb102-1"></a><span class="kw">library</span>(ggplot2)</span></code></pre></div>
 <div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="introR.html#cb103-1"></a><span class="kw">ggplot</span>(profits_by_game, <span class="kw">aes</span>(game, avg_profit)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</span></code></pre></div>
-<p><img src="LectureNotes_files/figure-html/unnamed-chunk-49-1.png" width="672" /></p>
+<p><img src="LectureNotes_files/figure-html/unnamed-chunk-47-1.png" width="672" /></p>
 <div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="introR.html#cb104-1"></a><span class="kw">library</span>(ggplot2)</span>
 <span id="cb104-2"><a href="introR.html#cb104-2"></a><span class="kw">ggplot</span>(profits_by_game_and_wday, <span class="kw">aes</span>(game, avg_profit, <span class="dt">color =</span> wday, <span class="dt">group =</span> wday)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>()</span></code></pre></div>
-<p><img src="LectureNotes_files/figure-html/unnamed-chunk-50-1.png" width="672" /></p>
+<p><img src="LectureNotes_files/figure-html/unnamed-chunk-48-1.png" width="672" /></p>
 <div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="introR.html#cb105-1"></a><span class="kw">library</span>(ggplot2)</span>
 <span id="cb105-2"><a href="introR.html#cb105-2"></a><span class="kw">ggplot</span>(profits_by_game, <span class="kw">aes</span>(game, avg_profit)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>)</span></code></pre></div>
-<p><img src="LectureNotes_files/figure-html/unnamed-chunk-51-1.png" width="672" /></p>
+<p><img src="LectureNotes_files/figure-html/unnamed-chunk-49-1.png" width="672" /></p>
 <div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="introR.html#cb106-1"></a><span class="kw">library</span>(ggplot2)</span>
 <span id="cb106-2"><a href="introR.html#cb106-2"></a><span class="kw">ggplot</span>(profits_by_game_and_wday, <span class="kw">aes</span>(game, avg_profit, <span class="dt">fill =</span> wday)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>)</span></code></pre></div>
-<p><img src="LectureNotes_files/figure-html/unnamed-chunk-52-1.png" width="672" /></p>
+<p><img src="LectureNotes_files/figure-html/unnamed-chunk-50-1.png" width="672" /></p>
+<!-- 
+- dollar sign
+-->
 </div>
 <div id="functions-in-this-section" class="section level2">
 <h2><span class="header-section-number">3.6</span> Functions in this section</h2>
 <div class="function">
+<p><code>data.frame(a = x, b = y, ...)</code></p>
+<p>Create a data frame from several vectors. The vectors can be different types.</p>
+<ul>
+<li><code>x</code> A vector with <span class="math inline">\(n\)</span> elements.</li>
+<li><code>y</code> Another vector with <span class="math inline">\(n\)</span> elements.</li>
+<li><code>...</code> More vectors can be provided.</li>
+</ul>
+</div>
+<br>
+<div class="function">
+<p><code>View(x)</code></p>
+<p>Display a data frame, or another structure.</p>
+</div>
+<br>
+<div class="function">
+<p><code>head(df, n=6)</code></p>
+<p>Show the first <span class="math inline">\(n\)</span> rows in the data frame df.</p>
+<ul>
+<li><code>df</code> Data frame from which to display the first <span class="math inline">\(n\)</span> rows.</li>
+<li><code>n</code> The number of rows to display. The default value for <span class="math inline">\(n\)</span> is 6.</li>
+</ul>
+</div>
+<br>
+<div class="function">
 <p><code>sum(x)</code></p>
+<p>Compute the sum of a vector.</p>
 </div>
 <br>
 <div class="function">
 <p><code>length(x)</code></p>
+<p>Return the length of a vector.</p>
 </div>
 <br>
 <div class="function">
 <p><code>mean(x)</code></p>
+<p>Compute the mean of a vector.</p>
 </div>
 <br>
 <div class="function">
-<p><code>rep(x)</code></p>
+<p><code>rep(x, n)</code></p>
+<p>Repeat the contents of a vector <span class="math inline">\(n\)</span> times</p>
+<ul>
+<li><code>x</code> The vector to be repeated.</li>
+<li><code>n</code> How many times to repeat the vector x.</li>
+</ul>
 </div>
 <br>
 <div class="function">
-<p><code>View(x)</code></p>
-</div>
-<br>
-<div class="function">
-<p><code>rbind(x)</code></p>
-</div>
-<br>
-<div class="function">
-<p><code>View(x)</code></p>
-</div>
-<br>
-<div class="function">
-<p><code>head(x)</code></p>
+<p><code>rbind(df1, df2)</code></p>
+<p>Append df1 to df2 and return the resulting data frame. Both data frames need to have the same number of columns with the same names.</p>
+<ul>
+<li><code>df1</code> First data frame.</li>
+<li><code>df2</code> Second data frame.</li>
+</ul>
 </div>
 <br>
 <div class="function">
