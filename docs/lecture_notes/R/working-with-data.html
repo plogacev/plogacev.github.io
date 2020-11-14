@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 4 Working with data | Data Processing in R, Lecture Notes</title>
   <meta name="description" content="Lecture notes on data processing in R." />
-  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 4 Working with data | Data Processing in R, Lecture Notes" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Pavel Logacev" />
 
 
-<meta name="date" content="2020-11-10" />
+<meta name="date" content="2020-11-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="introR.html"/>
-<link rel="next" href="functions.html"/>
+<link rel="next" href="functions-1.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -144,6 +144,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#rstudio-interface"><i class="fa fa-check"></i><b>1.3</b> RStudio Interface</a></li>
 <li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#basics-of-the-rstudio-environment"><i class="fa fa-check"></i><b>1.4</b> Basics of the RStudio environment</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#special-blocks-in-the-following"><i class="fa fa-check"></i><b>1.5</b> Special blocks in the following</a></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#lecture-notes-source-code"><i class="fa fa-check"></i><b>1.6</b> Lecture Notes Source Code</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a><ul>
 <li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#introduction-to-r"><i class="fa fa-check"></i><b>2.1</b> Introduction to R</a></li>
@@ -160,6 +162,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.11.1" data-path="intro.html"><a href="intro.html#how-much-would-other-coffee-sizes-cost-if-starbucks-introduced-them"><i class="fa fa-check"></i><b>2.11.1</b> How much would other coffee sizes cost if Starbucks introduced them?</a></li>
 <li class="chapter" data-level="2.11.2" data-path="intro.html"><a href="intro.html#how-much-would-other-coffee-sizes-cost-if-starbucks-introduced-them-a-second-attempt"><i class="fa fa-check"></i><b>2.11.2</b> How much would other coffee sizes cost if Starbucks introduced them? A second attempt</a></li>
 </ul></li>
+<li class="chapter" data-level="2.12" data-path="intro.html"><a href="intro.html#operators-and-functions-in-this-section"><i class="fa fa-check"></i><b>2.12</b> Operators and functions in this section</a><ul>
+<li class="chapter" data-level="2.12.1" data-path="intro.html"><a href="intro.html#operators-1"><i class="fa fa-check"></i><b>2.12.1</b> Operators</a></li>
+<li class="chapter" data-level="2.12.2" data-path="intro.html"><a href="intro.html#functions"><i class="fa fa-check"></i><b>2.12.2</b> Functions</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="introR.html"><a href="introR.html"><i class="fa fa-check"></i><b>3</b> Data Structures</a><ul>
 <li class="chapter" data-level="3.1" data-path="introR.html"><a href="introR.html#recap-data-types-in-r"><i class="fa fa-check"></i><b>3.1</b> Recap: Data Types in R</a></li>
@@ -169,6 +175,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="3.4" data-path="introR.html"><a href="introR.html#data-frames"><i class="fa fa-check"></i><b>3.4</b> Data Frames</a></li>
 <li class="chapter" data-level="3.5" data-path="introR.html"><a href="introR.html#working-with-data-frames"><i class="fa fa-check"></i><b>3.5</b> Working with data frames</a></li>
+<li class="chapter" data-level="3.6" data-path="introR.html"><a href="introR.html#functions-in-this-section"><i class="fa fa-check"></i><b>3.6</b> Functions in this section</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="working-with-data.html"><a href="working-with-data.html"><i class="fa fa-check"></i><b>4</b> Working with data</a><ul>
 <li class="chapter" data-level="4.1" data-path="working-with-data.html"><a href="working-with-data.html#summarizing-data"><i class="fa fa-check"></i><b>4.1</b> Summarizing data</a><ul>
@@ -179,8 +186,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.3.1" data-path="working-with-data.html"><a href="working-with-data.html#the-problem"><i class="fa fa-check"></i><b>4.3.1</b> The problem</a></li>
 <li class="chapter" data-level="4.3.2" data-path="working-with-data.html"><a href="working-with-data.html#pipes-1"><i class="fa fa-check"></i><b>4.3.2</b> Pipes</a></li>
 </ul></li>
+<li class="chapter" data-level="4.4" data-path="working-with-data.html"><a href="working-with-data.html#functions-used-in-this-section"><i class="fa fa-check"></i><b>4.4</b> Functions used in this section</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>5</b> Functions</a></li>
+<li class="chapter" data-level="5" data-path="functions-1.html"><a href="functions-1.html"><i class="fa fa-check"></i><b>5</b> Functions</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -204,18 +212,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="working-with-data" class="section level1">
 <h1><span class="header-section-number">Chapter 4</span> Working with data</h1>
+<style type="text/css">
+.r-output {
+  font-weight: bold;
+}
+.function {
+  background-color: lightgrey;
+  padding: 0.5em 0.5em 0.5em 4em;
+  border: 1px solid black;
+}
+</style>
 <ul>
 <li><p>Today, let’s work with realistic data. In order to access it, we’ll need to load the R package <code>languageR</code>. It provides a number of interesting data sets related to language.</p></li>
 <li><p>You may need to install it, if it’s not already installed:</p></li>
 </ul>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="working-with-data.html#cb9-1"></a><span class="op">&gt;</span><span class="st"> </span><span class="kw">install.packages</span>(<span class="st">&quot;languageR&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="working-with-data.html#cb1-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;languageR&quot;</span>)</span></code></pre></div>
 <ul>
 <li>Let’s load the package and take a look at the data set.</li>
 </ul>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="working-with-data.html#cb10-1"></a><span class="op">&gt;</span><span class="st"> </span><span class="kw">library</span>(languageR)</span>
-<span id="cb10-2"><a href="working-with-data.html#cb10-2"></a><span class="op">&gt;</span><span class="st"> </span></span>
-<span id="cb10-3"><a href="working-with-data.html#cb10-3"></a><span class="er">&gt;</span><span class="st"> </span><span class="kw">head</span>(dativeSimplified)</span></code></pre></div>
-<pre><code>##   RealizationOfRec  Verb AnimacyOfRec AnimacyOfTheme LengthOfTheme
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="working-with-data.html#cb2-1"></a><span class="kw">library</span>(languageR)</span>
+<span id="cb2-2"><a href="working-with-data.html#cb2-2"></a></span>
+<span id="cb2-3"><a href="working-with-data.html#cb2-3"></a><span class="kw">head</span>(dativeSimplified)</span></code></pre></div>
+<pre class="r-output"><code>##   RealizationOfRec  Verb AnimacyOfRec AnimacyOfTheme LengthOfTheme
 ## 1               NP  feed      animate      inanimate      2.639057
 ## 2               NP  give      animate      inanimate      1.098612
 ## 3               NP  give      animate      inanimate      2.564949
@@ -225,7 +243,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>This data set happens to be documented. Let’s take a look at its description. (You can also see it <a href="https://rdrr.io/cran/languageR/man/dativeSimplified.html">here</a>. )</li>
 </ul>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="working-with-data.html#cb12-1"></a><span class="op">&gt;</span><span class="st"> </span><span class="kw">help</span>(<span class="st">&quot;dativeSimplified&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="working-with-data.html#cb4-1"></a><span class="kw">help</span>(<span class="st">&quot;dativeSimplified&quot;</span>)</span></code></pre></div>
 <ul>
 <li>The dative alternation in English is the alternation between (1) and (2). Both are grammatical and have the same truth conditions.</li>
 <li>Bresnan et al. (2007) used this data to determine which factors affect the choice between (1) and (2).</li>
@@ -237,18 +255,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Let’s take a look at a few rows chosen at random to get a look at a more representative sample …</li>
 </ul>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="working-with-data.html#cb13-1"></a><span class="op">&gt;</span><span class="st"> </span><span class="co"># store all possible row indices in a vector</span></span>
-<span id="cb13-2"><a href="working-with-data.html#cb13-2"></a><span class="er">&gt;</span><span class="st"> </span>indices_all &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(dativeSimplified)</span>
-<span id="cb13-3"><a href="working-with-data.html#cb13-3"></a><span class="op">&gt;</span><span class="st"> </span></span>
-<span id="cb13-4"><a href="working-with-data.html#cb13-4"></a><span class="er">&gt;</span><span class="st"> </span><span class="co"># set the random seed to make the results reproducible</span></span>
-<span id="cb13-5"><a href="working-with-data.html#cb13-5"></a><span class="er">&gt;</span><span class="st"> </span><span class="kw">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb13-6"><a href="working-with-data.html#cb13-6"></a><span class="op">&gt;</span><span class="st"> </span></span>
-<span id="cb13-7"><a href="working-with-data.html#cb13-7"></a><span class="er">&gt;</span><span class="st"> </span><span class="co"># choose 10 such numbers at random without replacement</span></span>
-<span id="cb13-8"><a href="working-with-data.html#cb13-8"></a><span class="er">&gt;</span><span class="st"> </span>indices_random &lt;-<span class="st"> </span><span class="kw">sample</span>(indices_all, <span class="dt">size =</span> <span class="dv">10</span>)</span>
-<span id="cb13-9"><a href="working-with-data.html#cb13-9"></a><span class="op">&gt;</span><span class="st"> </span></span>
-<span id="cb13-10"><a href="working-with-data.html#cb13-10"></a><span class="er">&gt;</span><span class="st"> </span><span class="co"># use them to index the data frame to get the corresponding rows</span></span>
-<span id="cb13-11"><a href="working-with-data.html#cb13-11"></a><span class="er">&gt;</span><span class="st"> </span>dativeSimplified[indices_random,]</span></code></pre></div>
-<pre><code>##     RealizationOfRec  Verb AnimacyOfRec AnimacyOfTheme LengthOfTheme
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="working-with-data.html#cb5-1"></a><span class="co"># store all possible row indices in a vector</span></span>
+<span id="cb5-2"><a href="working-with-data.html#cb5-2"></a>indices_all &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(dativeSimplified)</span>
+<span id="cb5-3"><a href="working-with-data.html#cb5-3"></a></span>
+<span id="cb5-4"><a href="working-with-data.html#cb5-4"></a><span class="co"># set the random seed to make the results reproducible</span></span>
+<span id="cb5-5"><a href="working-with-data.html#cb5-5"></a><span class="kw">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb5-6"><a href="working-with-data.html#cb5-6"></a></span>
+<span id="cb5-7"><a href="working-with-data.html#cb5-7"></a><span class="co"># choose 10 such numbers at random without replacement</span></span>
+<span id="cb5-8"><a href="working-with-data.html#cb5-8"></a>indices_random &lt;-<span class="st"> </span><span class="kw">sample</span>(indices_all, <span class="dt">size =</span> <span class="dv">10</span>)</span>
+<span id="cb5-9"><a href="working-with-data.html#cb5-9"></a></span>
+<span id="cb5-10"><a href="working-with-data.html#cb5-10"></a><span class="co"># use them to index the data frame to get the corresponding rows</span></span>
+<span id="cb5-11"><a href="working-with-data.html#cb5-11"></a>dativeSimplified[indices_random,]</span></code></pre></div>
+<pre class="r-output"><code>##     RealizationOfRec  Verb AnimacyOfRec AnimacyOfTheme LengthOfTheme
 ## 415               NP  give    inanimate      inanimate     1.7917595
 ## 463               NP grant      animate      inanimate     1.0986123
 ## 179               NP grant      animate      inanimate     2.3978953
@@ -272,22 +290,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Let’s take a look at the percentages of NP realizations of the recipient by animacy of theme.</li>
 </ul>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="working-with-data.html#cb15-1"></a><span class="op">&gt;</span><span class="st"> </span><span class="co"># let&#39;s take a look at the key dependent variable </span></span>
-<span id="cb15-2"><a href="working-with-data.html#cb15-2"></a><span class="er">&gt;</span><span class="st"> </span><span class="kw">unique</span>(dativeSimplified<span class="op">$</span>RealizationOfRec)</span></code></pre></div>
-<pre><code>## [1] NP PP
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="working-with-data.html#cb7-1"></a><span class="co"># let&#39;s take a look at the key dependent variable </span></span>
+<span id="cb7-2"><a href="working-with-data.html#cb7-2"></a><span class="kw">unique</span>(dativeSimplified<span class="op">$</span>RealizationOfRec)</span></code></pre></div>
+<pre class="r-output"><code>## [1] NP PP
 ## Levels: NP PP</code></pre>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="working-with-data.html#cb17-1"></a><span class="op">&gt;</span><span class="st"> </span><span class="co"># now, compute the percentages (perc_NP) and the number of observations in each subset</span></span>
-<span id="cb17-2"><a href="working-with-data.html#cb17-2"></a><span class="er">&gt;</span><span class="st"> </span>dativeSimplified <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb17-3"><a href="working-with-data.html#cb17-3"></a><span class="op">+</span><span class="st">   </span><span class="kw">group_by</span>(AnimacyOfRec) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb17-4"><a href="working-with-data.html#cb17-4"></a><span class="op">+</span><span class="st">   </span>dplyr<span class="op">::</span><span class="kw">summarize</span>(<span class="dt">perc_NP =</span> <span class="kw">mean</span>(RealizationOfRec <span class="op">==</span><span class="st"> &quot;NP&quot;</span>), </span>
-<span id="cb17-5"><a href="working-with-data.html#cb17-5"></a><span class="op">+</span><span class="st">                    </span><span class="dt">N =</span> <span class="kw">n</span>()</span>
-<span id="cb17-6"><a href="working-with-data.html#cb17-6"></a><span class="op">+</span><span class="st">                   </span>)</span></code></pre></div>
-<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
-<pre><code>## # A tibble: 2 x 3
-##   AnimacyOfRec perc_NP     N
-##   &lt;fct&gt;          &lt;dbl&gt; &lt;int&gt;
-## 1 animate        0.634   822
-## 2 inanimate      0.420    81</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="working-with-data.html#cb9-1"></a><span class="co"># now, compute the percentages (perc_NP) and the number of observations in each subset</span></span>
+<span id="cb9-2"><a href="working-with-data.html#cb9-2"></a>dativeSimplified <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb9-3"><a href="working-with-data.html#cb9-3"></a><span class="st">  </span><span class="kw">group_by</span>(AnimacyOfRec) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb9-4"><a href="working-with-data.html#cb9-4"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">summarize</span>(<span class="dt">perc_NP =</span> <span class="kw">mean</span>(RealizationOfRec <span class="op">==</span><span class="st"> &quot;NP&quot;</span>), </span>
+<span id="cb9-5"><a href="working-with-data.html#cb9-5"></a>                   <span class="dt">N =</span> <span class="kw">n</span>()</span>
+<span id="cb9-6"><a href="working-with-data.html#cb9-6"></a>                  )</span></code></pre></div>
+<pre><code>## Error in dativeSimplified %&gt;% group_by(AnimacyOfRec) %&gt;% dplyr::summarize(perc_NP = mean(RealizationOfRec == : could not find function &quot;%&gt;%&quot;</code></pre>
 <div id="now-step-by-step" class="section level3">
 <h3><span class="header-section-number">4.1.1</span> Now, step by step</h3>
 <ul>
@@ -295,45 +308,45 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>But let’s break down the computations into their elementary parts and take look at the logic …</p></li>
 <li><p>First, we’ll need to add a column which we can later use to compute the percentage of NP realizations.</p></li>
 </ul>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="working-with-data.html#cb20-1"></a><span class="op">&gt;</span><span class="st"> </span><span class="co"># first, let&#39;s create a new column encoding whether RealizationOfRec is &#39;NP&#39;</span></span>
-<span id="cb20-2"><a href="working-with-data.html#cb20-2"></a><span class="er">&gt;</span><span class="st"> </span>dativeSimplified<span class="op">$</span>is_realization_NP &lt;-<span class="st"> </span><span class="kw">as.integer</span>( dativeSimplified<span class="op">$</span>RealizationOfRec <span class="op">==</span><span class="st"> &quot;NP&quot;</span> )</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="working-with-data.html#cb11-1"></a><span class="co"># first, let&#39;s create a new column encoding whether RealizationOfRec is &#39;NP&#39;</span></span>
+<span id="cb11-2"><a href="working-with-data.html#cb11-2"></a>dativeSimplified<span class="op">$</span>is_realization_NP &lt;-<span class="st"> </span><span class="kw">as.integer</span>( dativeSimplified<span class="op">$</span>RealizationOfRec <span class="op">==</span><span class="st"> &quot;NP&quot;</span> )</span></code></pre></div>
 <ul>
 <li>Take a subset of the data frame where AnimacyOfRec equals “animate” (note the ‘==’!).</li>
 </ul>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="working-with-data.html#cb21-1"></a><span class="op">&gt;</span><span class="st"> </span><span class="co"># take a look at the values that can occur in this columns</span></span>
-<span id="cb21-2"><a href="working-with-data.html#cb21-2"></a><span class="er">&gt;</span><span class="st"> </span><span class="kw">unique</span>(dativeSimplified<span class="op">$</span>AnimacyOfRec)</span></code></pre></div>
-<pre><code>## [1] animate   inanimate
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="working-with-data.html#cb12-1"></a><span class="co"># take a look at the values that can occur in this columns</span></span>
+<span id="cb12-2"><a href="working-with-data.html#cb12-2"></a><span class="kw">unique</span>(dativeSimplified<span class="op">$</span>AnimacyOfRec)</span></code></pre></div>
+<pre class="r-output"><code>## [1] animate   inanimate
 ## Levels: animate inanimate</code></pre>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="working-with-data.html#cb23-1"></a><span class="op">&gt;</span><span class="st"> </span><span class="co"># take two subsets corresponding to the values we determined above</span></span>
-<span id="cb23-2"><a href="working-with-data.html#cb23-2"></a><span class="er">&gt;</span><span class="st"> </span>df_animate &lt;-<span class="st"> </span><span class="kw">subset</span>(dativeSimplified, AnimacyOfRec <span class="op">==</span><span class="st"> &quot;animate&quot;</span>)</span>
-<span id="cb23-3"><a href="working-with-data.html#cb23-3"></a><span class="op">&gt;</span><span class="st"> </span>df_inanimate &lt;-<span class="st"> </span><span class="kw">subset</span>(dativeSimplified, AnimacyOfRec <span class="op">==</span><span class="st"> &quot;inanimate&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="working-with-data.html#cb14-1"></a><span class="co"># take two subsets corresponding to the values we determined above</span></span>
+<span id="cb14-2"><a href="working-with-data.html#cb14-2"></a>df_animate &lt;-<span class="st"> </span><span class="kw">subset</span>(dativeSimplified, AnimacyOfRec <span class="op">==</span><span class="st"> &quot;animate&quot;</span>)</span>
+<span id="cb14-3"><a href="working-with-data.html#cb14-3"></a>df_inanimate &lt;-<span class="st"> </span><span class="kw">subset</span>(dativeSimplified, AnimacyOfRec <span class="op">==</span><span class="st"> &quot;inanimate&quot;</span>)</span></code></pre></div>
 <ul>
 <li>Compute the average of the column <code>is_realization_NP</code> in each data frame, as well as the number of rows in it.</li>
 </ul>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="working-with-data.html#cb24-1"></a><span class="op">&gt;</span><span class="st"> </span><span class="co"># compute the percentage of NP realizations </span></span>
-<span id="cb24-2"><a href="working-with-data.html#cb24-2"></a><span class="er">&gt;</span><span class="st"> </span>perc_NP_animate =<span class="st"> </span><span class="kw">mean</span>(df_animate<span class="op">$</span>is_realization_NP)</span>
-<span id="cb24-3"><a href="working-with-data.html#cb24-3"></a><span class="op">&gt;</span><span class="st"> </span></span>
-<span id="cb24-4"><a href="working-with-data.html#cb24-4"></a><span class="er">&gt;</span><span class="st"> </span><span class="co"># compute the percentage of NP realizations </span></span>
-<span id="cb24-5"><a href="working-with-data.html#cb24-5"></a><span class="er">&gt;</span><span class="st"> </span>N_animate =<span class="st"> </span><span class="kw">nrow</span>(df_animate)</span>
-<span id="cb24-6"><a href="working-with-data.html#cb24-6"></a><span class="op">&gt;</span><span class="st"> </span></span>
-<span id="cb24-7"><a href="working-with-data.html#cb24-7"></a><span class="er">&gt;</span><span class="st"> </span><span class="co"># bind to data frame</span></span>
-<span id="cb24-8"><a href="working-with-data.html#cb24-8"></a><span class="er">&gt;</span><span class="st"> </span>(res_animate &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">AnimacyOfRec =</span> <span class="st">&quot;animate&quot;</span>, <span class="dt">perc_NP =</span> perc_NP_animate, <span class="dt">N=</span>N_animate))</span></code></pre></div>
-<pre><code>##   AnimacyOfRec perc_NP   N
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="working-with-data.html#cb15-1"></a><span class="co"># compute the percentage of NP realizations </span></span>
+<span id="cb15-2"><a href="working-with-data.html#cb15-2"></a>perc_NP_animate =<span class="st"> </span><span class="kw">mean</span>(df_animate<span class="op">$</span>is_realization_NP)</span>
+<span id="cb15-3"><a href="working-with-data.html#cb15-3"></a></span>
+<span id="cb15-4"><a href="working-with-data.html#cb15-4"></a><span class="co"># compute the percentage of NP realizations </span></span>
+<span id="cb15-5"><a href="working-with-data.html#cb15-5"></a>N_animate =<span class="st"> </span><span class="kw">nrow</span>(df_animate)</span>
+<span id="cb15-6"><a href="working-with-data.html#cb15-6"></a></span>
+<span id="cb15-7"><a href="working-with-data.html#cb15-7"></a><span class="co"># bind to data frame</span></span>
+<span id="cb15-8"><a href="working-with-data.html#cb15-8"></a>(res_animate &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">AnimacyOfRec =</span> <span class="st">&quot;animate&quot;</span>, <span class="dt">perc_NP =</span> perc_NP_animate, <span class="dt">N=</span>N_animate))</span></code></pre></div>
+<pre class="r-output"><code>##   AnimacyOfRec perc_NP   N
 ## 1      animate 0.63382 822</code></pre>
 <ul>
 <li>Now, do the same for inanimates.</li>
 </ul>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="working-with-data.html#cb26-1"></a><span class="op">&gt;</span><span class="st"> </span>perc_NP_inanimate =<span class="st"> </span><span class="kw">mean</span>(df_inanimate<span class="op">$</span>is_realization_NP)</span>
-<span id="cb26-2"><a href="working-with-data.html#cb26-2"></a><span class="op">&gt;</span><span class="st"> </span>N_inanimate =<span class="st"> </span><span class="kw">nrow</span>(df_inanimate)</span>
-<span id="cb26-3"><a href="working-with-data.html#cb26-3"></a><span class="op">&gt;</span><span class="st"> </span>(res_inanimate &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">AnimacyOfRec =</span> <span class="st">&quot;inanimate&quot;</span>, <span class="dt">perc_NP =</span> perc_NP_animate, <span class="dt">N=</span>N_animate))</span></code></pre></div>
-<pre><code>##   AnimacyOfRec perc_NP   N
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="working-with-data.html#cb17-1"></a>perc_NP_inanimate =<span class="st"> </span><span class="kw">mean</span>(df_inanimate<span class="op">$</span>is_realization_NP)</span>
+<span id="cb17-2"><a href="working-with-data.html#cb17-2"></a>N_inanimate =<span class="st"> </span><span class="kw">nrow</span>(df_inanimate)</span>
+<span id="cb17-3"><a href="working-with-data.html#cb17-3"></a>(res_inanimate &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">AnimacyOfRec =</span> <span class="st">&quot;inanimate&quot;</span>, <span class="dt">perc_NP =</span> perc_NP_animate, <span class="dt">N=</span>N_animate))</span></code></pre></div>
+<pre class="r-output"><code>##   AnimacyOfRec perc_NP   N
 ## 1    inanimate 0.63382 822</code></pre>
 <ul>
 <li>Now, bind the results into a single data frame, which we can use for plotting, creating tables, etc.</li>
 </ul>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="working-with-data.html#cb28-1"></a><span class="op">&gt;</span><span class="st"> </span>res &lt;-<span class="st"> </span><span class="kw">rbind</span>(res_animate, res_inanimate)</span>
-<span id="cb28-2"><a href="working-with-data.html#cb28-2"></a><span class="op">&gt;</span><span class="st"> </span>res</span></code></pre></div>
-<pre><code>##   AnimacyOfRec perc_NP   N
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="working-with-data.html#cb19-1"></a>res &lt;-<span class="st"> </span><span class="kw">rbind</span>(res_animate, res_inanimate)</span>
+<span id="cb19-2"><a href="working-with-data.html#cb19-2"></a>res</span></code></pre></div>
+<pre class="r-output"><code>##   AnimacyOfRec perc_NP   N
 ## 1      animate 0.63382 822
 ## 2    inanimate 0.63382 822</code></pre>
 <ul>
@@ -353,13 +366,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>The package <em>dplyr</em> (<a href="http://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf">cheat sheet</a>) provides a set of functions for working with data frames</li>
 <li>Some of functions don’t perform a noticeable action, while others reshape data frames or create new ones (the latter are called ‘verbs’)</li>
 </ul>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="working-with-data.html#cb30-1"></a><span class="op">&gt;</span><span class="st"> </span><span class="kw">library</span>(dplyr)</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="working-with-data.html#cb21-1"></a><span class="kw">library</span>(dplyr)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union</code></pre>
 <ul>
 <li><code>arrange()</code> sorts the data frame by one or several columns</li>
 <li>By default, it does so in ascending order.</li>
 </ul>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="working-with-data.html#cb31-1"></a><span class="op">&gt;</span><span class="st"> </span><span class="kw">arrange</span>(dative[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,], LengthOfTheme)</span></code></pre></div>
-<pre><code>##    Speaker Modality  Verb SemanticClass LengthOfRecipient AnimacyOfRec
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="working-with-data.html#cb25-1"></a><span class="kw">arrange</span>(dative[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,], LengthOfTheme)</span></code></pre></div>
+<pre class="r-output"><code>##    Speaker Modality  Verb SemanticClass LengthOfRecipient AnimacyOfRec
 ## 8     &lt;NA&gt;  written bring             a                 1      animate
 ## 10    &lt;NA&gt;  written  give             a                 1      animate
 ## 2     &lt;NA&gt;  written  give             a                 2      animate
@@ -395,8 +416,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>The modifier <code>desc()</code> switches <code>arrange()</code> to an decending order.</li>
 </ul>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="working-with-data.html#cb33-1"></a><span class="op">&gt;</span><span class="st"> </span><span class="kw">arrange</span>(dative[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,], <span class="kw">desc</span>(LengthOfTheme))</span></code></pre></div>
-<pre><code>##    Speaker Modality  Verb SemanticClass LengthOfRecipient AnimacyOfRec
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="working-with-data.html#cb27-1"></a><span class="kw">arrange</span>(dative[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,], <span class="kw">desc</span>(LengthOfTheme))</span></code></pre></div>
+<pre class="r-output"><code>##    Speaker Modality  Verb SemanticClass LengthOfRecipient AnimacyOfRec
 ## 1     &lt;NA&gt;  written  feed             t                 1      animate
 ## 3     &lt;NA&gt;  written  give             a                 1      animate
 ## 9     &lt;NA&gt;  written teach             a                 1      animate
@@ -432,23 +453,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><code>select()</code> keeps <em>only</em> the pre-specified columns from the data frame</li>
 </ul>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="working-with-data.html#cb35-1"></a><span class="op">&gt;</span><span class="st"> </span><span class="co"># </span></span>
-<span id="cb35-2"><a href="working-with-data.html#cb35-2"></a><span class="er">&gt;</span><span class="st"> </span><span class="kw">select</span>(dative, game, profit)</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="working-with-data.html#cb29-1"></a><span class="co"># </span></span>
+<span id="cb29-2"><a href="working-with-data.html#cb29-2"></a><span class="kw">select</span>(dative, game, profit)</span></code></pre></div>
 <pre><code>## Error: Can&#39;t subset columns that don&#39;t exist.
 ## [31mx[39m Column `game` doesn&#39;t exist.</code></pre>
 <ul>
 <li><code>left_join</code> merges two data frames by common columns. This is very useful when data comes from two different sources.</li>
 </ul>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="working-with-data.html#cb37-1"></a><span class="op">&gt;</span><span class="st"> </span>df1 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">name =</span> <span class="kw">c</span>(<span class="st">&quot;Peter&quot;</span>, <span class="st">&quot;Mary&quot;</span>, <span class="st">&quot;Susy&quot;</span>, <span class="st">&quot;John&quot;</span>), <span class="dt">n_apples =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">1</span>))</span>
-<span id="cb37-2"><a href="working-with-data.html#cb37-2"></a><span class="op">&gt;</span><span class="st"> </span>df2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">name =</span> <span class="kw">c</span>(<span class="st">&quot;Peter&quot;</span>, <span class="st">&quot;Mary&quot;</span>, <span class="st">&quot;Susy&quot;</span>), <span class="dt">n_oranges =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">20</span>,<span class="dv">0</span>))</span>
-<span id="cb37-3"><a href="working-with-data.html#cb37-3"></a><span class="op">&gt;</span><span class="st"> </span>df &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">left_join</span>(df1, df2)</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="working-with-data.html#cb31-1"></a>df1 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">name =</span> <span class="kw">c</span>(<span class="st">&quot;Peter&quot;</span>, <span class="st">&quot;Mary&quot;</span>, <span class="st">&quot;Susy&quot;</span>, <span class="st">&quot;John&quot;</span>), <span class="dt">n_apples =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">1</span>))</span>
+<span id="cb31-2"><a href="working-with-data.html#cb31-2"></a>df2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">name =</span> <span class="kw">c</span>(<span class="st">&quot;Peter&quot;</span>, <span class="st">&quot;Mary&quot;</span>, <span class="st">&quot;Susy&quot;</span>), <span class="dt">n_oranges =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">20</span>,<span class="dv">0</span>))</span>
+<span id="cb31-3"><a href="working-with-data.html#cb31-3"></a>df &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">left_join</span>(df1, df2)</span></code></pre></div>
 <pre><code>## Joining, by = &quot;name&quot;</code></pre>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="working-with-data.html#cb39-1"></a><span class="op">&gt;</span><span class="st"> </span>df<span class="op">$</span>n_fruit &lt;-<span class="st"> </span>df<span class="op">$</span>n_apples <span class="op">+</span><span class="st"> </span>df<span class="op">$</span>n_oranges</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="working-with-data.html#cb33-1"></a>df<span class="op">$</span>n_fruit &lt;-<span class="st"> </span>df<span class="op">$</span>n_apples <span class="op">+</span><span class="st"> </span>df<span class="op">$</span>n_oranges</span></code></pre></div>
 <ul>
 <li><code>sample_n</code> shows a few random rows from the data frame</li>
 </ul>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="working-with-data.html#cb40-1"></a><span class="op">&gt;</span><span class="st"> </span><span class="kw">sample_n</span>(dativeSimplified, <span class="dv">10</span>)</span></code></pre></div>
-<pre><code>##     RealizationOfRec  Verb AnimacyOfRec AnimacyOfTheme LengthOfTheme
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="working-with-data.html#cb34-1"></a><span class="kw">sample_n</span>(dativeSimplified, <span class="dv">10</span>)</span></code></pre></div>
+<pre class="r-output"><code>##     RealizationOfRec  Verb AnimacyOfRec AnimacyOfTheme LengthOfTheme
 ## 14                NP  give      animate      inanimate     0.6931472
 ## 374               NP  sell      animate      inanimate     0.0000000
 ## 665               PP  give      animate      inanimate     1.6094379
@@ -473,18 +494,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><code>group_by</code> and <code>ungroup</code> add and remove information about grouping variables</li>
 </ul>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="working-with-data.html#cb42-1"></a><span class="op">&gt;</span><span class="st"> </span><span class="co"># let&#39;s &#39;group&#39; a small subset of the gambling data frame by game</span></span>
-<span id="cb42-2"><a href="working-with-data.html#cb42-2"></a><span class="er">&gt;</span><span class="st"> </span><span class="kw">group_by</span>(dativeSimplified[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>,], RealizationOfRec) </span></code></pre></div>
-<pre><code>## # A tibble: 2 x 6
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="working-with-data.html#cb36-1"></a><span class="co"># let&#39;s &#39;group&#39; a small subset of the gambling data frame by game</span></span>
+<span id="cb36-2"><a href="working-with-data.html#cb36-2"></a><span class="kw">group_by</span>(dativeSimplified[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>,], RealizationOfRec) </span></code></pre></div>
+<pre class="r-output"><code>## # A tibble: 2 x 6
 ## # Groups:   RealizationOfRec [1]
 ##   RealizationOfRec Verb  AnimacyOfRec AnimacyOfTheme LengthOfTheme
 ##   &lt;fct&gt;            &lt;fct&gt; &lt;fct&gt;        &lt;fct&gt;                  &lt;dbl&gt;
 ## 1 NP               feed  animate      inanimate               2.64
 ## 2 NP               give  animate      inanimate               1.10
 ## # … with 1 more variable: is_realization_NP &lt;int&gt;</code></pre>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="working-with-data.html#cb44-1"></a><span class="op">&gt;</span><span class="st"> </span><span class="co"># let&#39;s compare to the original data frame</span></span>
-<span id="cb44-2"><a href="working-with-data.html#cb44-2"></a><span class="er">&gt;</span><span class="st"> </span>dativeSimplified[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>,]</span></code></pre></div>
-<pre><code>##   RealizationOfRec Verb AnimacyOfRec AnimacyOfTheme LengthOfTheme
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="working-with-data.html#cb38-1"></a><span class="co"># let&#39;s compare to the original data frame</span></span>
+<span id="cb38-2"><a href="working-with-data.html#cb38-2"></a>dativeSimplified[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>,]</span></code></pre></div>
+<pre class="r-output"><code>##   RealizationOfRec Verb AnimacyOfRec AnimacyOfTheme LengthOfTheme
 ## 1               NP feed      animate      inanimate      2.639057
 ## 2               NP give      animate      inanimate      1.098612
 ##   is_realization_NP
@@ -493,44 +514,45 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>data frames need to be grouped for use with <code>summarize()</code> and <code>mutate()</code></li>
 </ul>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="working-with-data.html#cb46-1"></a><span class="op">&gt;</span><span class="st"> </span><span class="co"># let&#39;s group the dativeSimplified data frame </span></span>
-<span id="cb46-2"><a href="working-with-data.html#cb46-2"></a><span class="er">&gt;</span><span class="st"> </span>dativeSimplified_grouped &lt;-<span class="st"> </span><span class="kw">group_by</span>(dativeSimplified, Verb)</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="working-with-data.html#cb40-1"></a><span class="co"># let&#39;s group the dativeSimplified data frame </span></span>
+<span id="cb40-2"><a href="working-with-data.html#cb40-2"></a>dativeSimplified_grouped &lt;-<span class="st"> </span><span class="kw">group_by</span>(dativeSimplified, Verb)</span></code></pre></div>
 <ul>
 <li><code>summarize()</code> divides a grouped data frame into subsets, with <em>each</em> subset corresponding to one value of the grouping variable (or a combination of values for several grouping variables), …</li>
 <li>… and computes one or several values on each such subset</li>
 </ul>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="working-with-data.html#cb47-1"></a><span class="op">&gt;</span><span class="st"> </span><span class="co"># summarize several variables</span></span>
-<span id="cb47-2"><a href="working-with-data.html#cb47-2"></a><span class="er">&gt;</span><span class="st"> </span><span class="kw">summarize</span>(dativeSimplified_grouped, </span>
-<span id="cb47-3"><a href="working-with-data.html#cb47-3"></a><span class="op">+</span><span class="st">           </span><span class="dt">prop_NP =</span> <span class="kw">mean</span>(is_realization_NP),</span>
-<span id="cb47-4"><a href="working-with-data.html#cb47-4"></a><span class="op">+</span><span class="st">           </span><span class="dt">prop_animate_rec =</span> <span class="kw">mean</span>( AnimacyOfRec <span class="op">==</span><span class="st"> &quot;animate&quot;</span> ),</span>
-<span id="cb47-5"><a href="working-with-data.html#cb47-5"></a><span class="op">+</span><span class="st">           </span><span class="dt">prop_animate_theme =</span> <span class="kw">mean</span>( AnimacyOfTheme <span class="op">==</span><span class="st"> &quot;animate&quot;</span> ),</span>
-<span id="cb47-6"><a href="working-with-data.html#cb47-6"></a><span class="op">+</span><span class="st">           </span>)</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="working-with-data.html#cb41-1"></a><span class="co"># summarize several variables</span></span>
+<span id="cb41-2"><a href="working-with-data.html#cb41-2"></a><span class="kw">summarize</span>(dativeSimplified_grouped, </span>
+<span id="cb41-3"><a href="working-with-data.html#cb41-3"></a>          <span class="dt">prop_NP =</span> <span class="kw">mean</span>(is_realization_NP),</span>
+<span id="cb41-4"><a href="working-with-data.html#cb41-4"></a>          <span class="dt">prop_animate_rec =</span> <span class="kw">mean</span>( AnimacyOfRec <span class="op">==</span><span class="st"> &quot;animate&quot;</span> ),</span>
+<span id="cb41-5"><a href="working-with-data.html#cb41-5"></a>          <span class="dt">prop_animate_theme =</span> <span class="kw">mean</span>( AnimacyOfTheme <span class="op">==</span><span class="st"> &quot;animate&quot;</span> ),</span>
+<span id="cb41-6"><a href="working-with-data.html#cb41-6"></a>          <span class="dt">N =</span> <span class="kw">n</span>()</span>
+<span id="cb41-7"><a href="working-with-data.html#cb41-7"></a>          )</span></code></pre></div>
 <pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
-<pre><code>## # A tibble: 65 x 4
-##    Verb     prop_NP prop_animate_rec prop_animate_theme
-##    &lt;fct&gt;      &lt;dbl&gt;            &lt;dbl&gt;              &lt;dbl&gt;
-##  1 accord     1                1                      0
-##  2 allocate   0                0                      0
-##  3 allow      1                0.833                  0
-##  4 assess     1                1                      0
-##  5 assure     1                1                      0
-##  6 award      0.389            0.944                  0
-##  7 bequeath   0                1                      0
-##  8 bet        1                1                      0
-##  9 bring      0.545            0.818                  0
-## 10 carry      0                1                      0
+<pre class="r-output"><code>## # A tibble: 65 x 5
+##    Verb     prop_NP prop_animate_rec prop_animate_theme     N
+##    &lt;fct&gt;      &lt;dbl&gt;            &lt;dbl&gt;              &lt;dbl&gt; &lt;int&gt;
+##  1 accord     1                1                      0     1
+##  2 allocate   0                0                      0     3
+##  3 allow      1                0.833                  0     6
+##  4 assess     1                1                      0     1
+##  5 assure     1                1                      0     2
+##  6 award      0.389            0.944                  0    18
+##  7 bequeath   0                1                      0     1
+##  8 bet        1                1                      0     1
+##  9 bring      0.545            0.818                  0    11
+## 10 carry      0                1                      0     1
 ## # … with 55 more rows</code></pre>
 <ul>
 <li><code>summarize()</code> can use the results of previous computations</li>
 </ul>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="working-with-data.html#cb50-1"></a><span class="op">&gt;</span><span class="st"> </span><span class="co"># compute the averages of profit</span></span>
-<span id="cb50-2"><a href="working-with-data.html#cb50-2"></a><span class="er">&gt;</span><span class="st"> </span><span class="kw">summarize</span>(dativeSimplified_grouped, </span>
-<span id="cb50-3"><a href="working-with-data.html#cb50-3"></a><span class="op">+</span><span class="st">           </span><span class="dt">prop_NP =</span> <span class="kw">mean</span>(is_realization_NP),</span>
-<span id="cb50-4"><a href="working-with-data.html#cb50-4"></a><span class="op">+</span><span class="st">           </span><span class="dt">prop_PP =</span> <span class="dv">1</span><span class="op">-</span>prop_NP,</span>
-<span id="cb50-5"><a href="working-with-data.html#cb50-5"></a><span class="op">+</span><span class="st">           </span><span class="dt">how_many_NP_realizations =</span> <span class="kw">ifelse</span>(prop_NP <span class="op">&gt;</span><span class="st"> </span><span class="fl">0.5</span>, <span class="st">&quot;a lot&quot;</span>, <span class="st">&quot;few&quot;</span>)</span>
-<span id="cb50-6"><a href="working-with-data.html#cb50-6"></a><span class="op">+</span><span class="st">           </span>)</span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="working-with-data.html#cb44-1"></a><span class="co"># compute the averages of profit</span></span>
+<span id="cb44-2"><a href="working-with-data.html#cb44-2"></a><span class="kw">summarize</span>(dativeSimplified_grouped, </span>
+<span id="cb44-3"><a href="working-with-data.html#cb44-3"></a>          <span class="dt">prop_NP =</span> <span class="kw">mean</span>(is_realization_NP),</span>
+<span id="cb44-4"><a href="working-with-data.html#cb44-4"></a>          <span class="dt">prop_PP =</span> <span class="dv">1</span><span class="op">-</span>prop_NP,</span>
+<span id="cb44-5"><a href="working-with-data.html#cb44-5"></a>          <span class="dt">how_many_NP_realizations =</span> <span class="kw">ifelse</span>(prop_NP <span class="op">&gt;</span><span class="st"> </span><span class="fl">0.5</span>, <span class="st">&quot;a lot&quot;</span>, <span class="st">&quot;few&quot;</span>)</span>
+<span id="cb44-6"><a href="working-with-data.html#cb44-6"></a>          )</span></code></pre></div>
 <pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
-<pre><code>## # A tibble: 65 x 4
+<pre class="r-output"><code>## # A tibble: 65 x 4
 ##    Verb     prop_NP prop_PP how_many_NP_realizations
 ##    &lt;fct&gt;      &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;                   
 ##  1 accord     1       0     a lot                   
@@ -549,19 +571,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p><code>mutate()</code> proceeds similarly to <code>summarize()</code> in dividing a grouped dataset into subsets, but instead of computing one or several values for each subset, it creates or modifies a column</p></li>
 <li><p>A very simple application is to simply create a new column. In this case, we don’t even need to group</p></li>
 </ul>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="working-with-data.html#cb53-1"></a><span class="op">&gt;</span><span class="st"> </span><span class="co"># these two lines performs exactly the same action, except the latter stores the result in df </span></span>
-<span id="cb53-2"><a href="working-with-data.html#cb53-2"></a><span class="er">&gt;</span><span class="st"> </span>dativeSimplified<span class="op">$</span>is_realization_NP &lt;-<span class="st"> </span>(dativeSimplified<span class="op">$</span>RealizationOfRec <span class="op">==</span><span class="st"> &quot;NP&quot;</span> ) </span>
-<span id="cb53-3"><a href="working-with-data.html#cb53-3"></a><span class="op">&gt;</span><span class="st"> </span>df &lt;-<span class="st"> </span><span class="kw">mutate</span>(dativeSimplified, <span class="dt">is_realization_NP =</span> (RealizationOfRec <span class="op">==</span><span class="st"> &quot;NP&quot;</span>) )</span>
-<span id="cb53-4"><a href="working-with-data.html#cb53-4"></a><span class="op">&gt;</span><span class="st"> </span></span>
-<span id="cb53-5"><a href="working-with-data.html#cb53-5"></a><span class="er">&gt;</span><span class="st"> </span><span class="kw">head</span>(df, <span class="dv">2</span>)</span></code></pre></div>
-<pre><code>##   RealizationOfRec Verb AnimacyOfRec AnimacyOfTheme LengthOfTheme
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="working-with-data.html#cb47-1"></a><span class="co"># these two lines performs exactly the same action, except the latter stores the result in df </span></span>
+<span id="cb47-2"><a href="working-with-data.html#cb47-2"></a>dativeSimplified<span class="op">$</span>is_realization_NP &lt;-<span class="st"> </span>(dativeSimplified<span class="op">$</span>RealizationOfRec <span class="op">==</span><span class="st"> &quot;NP&quot;</span> ) </span>
+<span id="cb47-3"><a href="working-with-data.html#cb47-3"></a>df &lt;-<span class="st"> </span><span class="kw">mutate</span>(dativeSimplified, <span class="dt">is_realization_NP =</span> (RealizationOfRec <span class="op">==</span><span class="st"> &quot;NP&quot;</span>) )</span>
+<span id="cb47-4"><a href="working-with-data.html#cb47-4"></a></span>
+<span id="cb47-5"><a href="working-with-data.html#cb47-5"></a><span class="kw">head</span>(df, <span class="dv">2</span>)</span></code></pre></div>
+<pre class="r-output"><code>##   RealizationOfRec Verb AnimacyOfRec AnimacyOfTheme LengthOfTheme
 ## 1               NP feed      animate      inanimate      2.639057
 ## 2               NP give      animate      inanimate      1.098612
 ##   is_realization_NP
 ## 1              TRUE
 ## 2              TRUE</code></pre>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="working-with-data.html#cb55-1"></a><span class="op">&gt;</span><span class="st"> </span><span class="kw">head</span>(dativeSimplified, <span class="dv">2</span>)</span></code></pre></div>
-<pre><code>##   RealizationOfRec Verb AnimacyOfRec AnimacyOfTheme LengthOfTheme
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="working-with-data.html#cb49-1"></a><span class="kw">head</span>(dativeSimplified, <span class="dv">2</span>)</span></code></pre></div>
+<pre class="r-output"><code>##   RealizationOfRec Verb AnimacyOfRec AnimacyOfTheme LengthOfTheme
 ## 1               NP feed      animate      inanimate      2.639057
 ## 2               NP give      animate      inanimate      1.098612
 ##   is_realization_NP
@@ -575,61 +597,47 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>The code below is really hard to read, even harder to maintain, and <code>dativeSimplified_grouped_by_AnimacyOfRec_and_AnimacyOfTheme</code> is a terribly long variable name.</li>
 </ul>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="working-with-data.html#cb57-1"></a><span class="op">&gt;</span><span class="st"> </span>dativeSimplified_grouped_by_AnimacyOfRec_and_AnimacyOfTheme &lt;-</span>
-<span id="cb57-2"><a href="working-with-data.html#cb57-2"></a><span class="op">+</span><span class="st">       </span><span class="kw">group_by</span>(dativeSimplified, AnimacyOfRec, AnimacyOfTheme)</span>
-<span id="cb57-3"><a href="working-with-data.html#cb57-3"></a><span class="op">&gt;</span><span class="st"> </span>df &lt;-<span class="st"> </span><span class="kw">mutate</span>(dativeSimplified_grouped_by_AnimacyOfRec_and_AnimacyOfTheme, </span>
-<span id="cb57-4"><a href="working-with-data.html#cb57-4"></a><span class="op">+</span><span class="st">                   </span><span class="dt">perc_NP =</span> <span class="kw">mean</span>(RealizationOfRec <span class="op">==</span><span class="st"> &quot;NP&quot;</span>) )</span>
-<span id="cb57-5"><a href="working-with-data.html#cb57-5"></a><span class="op">&gt;</span><span class="st"> </span>df</span></code></pre></div>
-<pre><code>## # A tibble: 903 x 7
-## # Groups:   AnimacyOfRec, AnimacyOfTheme [4]
-##    RealizationOfRec Verb  AnimacyOfRec AnimacyOfTheme LengthOfTheme
-##    &lt;fct&gt;            &lt;fct&gt; &lt;fct&gt;        &lt;fct&gt;                  &lt;dbl&gt;
-##  1 NP               feed  animate      inanimate              2.64 
-##  2 NP               give  animate      inanimate              1.10 
-##  3 NP               give  animate      inanimate              2.56 
-##  4 NP               give  animate      inanimate              1.61 
-##  5 NP               offer animate      inanimate              1.10 
-##  6 NP               give  animate      inanimate              1.39 
-##  7 NP               pay   animate      inanimate              1.39 
-##  8 NP               bring animate      inanimate              0    
-##  9 NP               teach animate      inanimate              2.40 
-## 10 NP               give  animate      inanimate              0.693
-## # … with 893 more rows, and 2 more variables: is_realization_NP &lt;lgl&gt;,
-## #   perc_NP &lt;dbl&gt;</code></pre>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="working-with-data.html#cb51-1"></a>dativeSimplified_grouped_by_AnimacyOfRec_and_AnimacyOfTheme &lt;-</span>
+<span id="cb51-2"><a href="working-with-data.html#cb51-2"></a><span class="st">      </span><span class="kw">group_by</span>(dativeSimplified, AnimacyOfRec, AnimacyOfTheme)</span>
+<span id="cb51-3"><a href="working-with-data.html#cb51-3"></a>df &lt;-<span class="st"> </span><span class="kw">summarize</span>(dativeSimplified_grouped_by_AnimacyOfRec_and_AnimacyOfTheme, </span>
+<span id="cb51-4"><a href="working-with-data.html#cb51-4"></a>                  <span class="dt">perc_NP =</span> <span class="kw">mean</span>(RealizationOfRec <span class="op">==</span><span class="st"> &quot;NP&quot;</span>) )</span></code></pre></div>
+<pre><code>## `summarise()` regrouping output by &#39;AnimacyOfRec&#39; (override with `.groups` argument)</code></pre>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="working-with-data.html#cb53-1"></a>df</span></code></pre></div>
+<pre class="r-output"><code>## # A tibble: 4 x 3
+## # Groups:   AnimacyOfRec [2]
+##   AnimacyOfRec AnimacyOfTheme perc_NP
+##   &lt;fct&gt;        &lt;fct&gt;            &lt;dbl&gt;
+## 1 animate      animate          0.8  
+## 2 animate      inanimate        0.633
+## 3 inanimate    animate          1    
+## 4 inanimate    inanimate        0.412</code></pre>
 <ul>
 <li>This alternative is also quite bad. To read this code, you need to know which bracket matches which other bracket.</li>
 </ul>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="working-with-data.html#cb59-1"></a><span class="op">&gt;</span><span class="st"> </span>df &lt;-<span class="st"> </span><span class="kw">mutate</span>(<span class="kw">group_by</span>(dativeSimplified, AnimacyOfRec, AnimacyOfTheme), </span>
-<span id="cb59-2"><a href="working-with-data.html#cb59-2"></a><span class="op">+</span><span class="st">                   </span><span class="dt">perc_NP =</span> <span class="kw">mean</span>(RealizationOfRec <span class="op">==</span><span class="st"> &quot;NP&quot;</span>) )</span>
-<span id="cb59-3"><a href="working-with-data.html#cb59-3"></a><span class="op">&gt;</span><span class="st"> </span>df</span></code></pre></div>
-<pre><code>## # A tibble: 903 x 7
-## # Groups:   AnimacyOfRec, AnimacyOfTheme [4]
-##    RealizationOfRec Verb  AnimacyOfRec AnimacyOfTheme LengthOfTheme
-##    &lt;fct&gt;            &lt;fct&gt; &lt;fct&gt;        &lt;fct&gt;                  &lt;dbl&gt;
-##  1 NP               feed  animate      inanimate              2.64 
-##  2 NP               give  animate      inanimate              1.10 
-##  3 NP               give  animate      inanimate              2.56 
-##  4 NP               give  animate      inanimate              1.61 
-##  5 NP               offer animate      inanimate              1.10 
-##  6 NP               give  animate      inanimate              1.39 
-##  7 NP               pay   animate      inanimate              1.39 
-##  8 NP               bring animate      inanimate              0    
-##  9 NP               teach animate      inanimate              2.40 
-## 10 NP               give  animate      inanimate              0.693
-## # … with 893 more rows, and 2 more variables: is_realization_NP &lt;lgl&gt;,
-## #   perc_NP &lt;dbl&gt;</code></pre>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="working-with-data.html#cb55-1"></a>df &lt;-<span class="st"> </span><span class="kw">summarize</span>(<span class="kw">group_by</span>(dativeSimplified, AnimacyOfRec, AnimacyOfTheme), </span>
+<span id="cb55-2"><a href="working-with-data.html#cb55-2"></a>                  <span class="dt">perc_NP =</span> <span class="kw">mean</span>(RealizationOfRec <span class="op">==</span><span class="st"> &quot;NP&quot;</span>) )</span></code></pre></div>
+<pre><code>## `summarise()` regrouping output by &#39;AnimacyOfRec&#39; (override with `.groups` argument)</code></pre>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="working-with-data.html#cb57-1"></a>df</span></code></pre></div>
+<pre class="r-output"><code>## # A tibble: 4 x 3
+## # Groups:   AnimacyOfRec [2]
+##   AnimacyOfRec AnimacyOfTheme perc_NP
+##   &lt;fct&gt;        &lt;fct&gt;            &lt;dbl&gt;
+## 1 animate      animate          0.8  
+## 2 animate      inanimate        0.633
+## 3 inanimate    animate          1    
+## 4 inanimate    inanimate        0.412</code></pre>
 <ul>
 <li>One nested function call may be OK. But try to read this.</li>
 </ul>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="working-with-data.html#cb61-1"></a><span class="op">&gt;</span><span class="st"> </span>df &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">summarize</span>(<span class="kw">group_by</span>(<span class="kw">mutate</span>(dativeSimplified, <span class="dt">long_theme =</span> <span class="kw">ifelse</span>(LengthOfTheme <span class="op">&gt;</span><span class="st"> </span><span class="fl">1.6</span>, <span class="st">&quot;long&quot;</span>, <span class="st">&quot;short&quot;</span>) ), long_theme),</span>
-<span id="cb61-2"><a href="working-with-data.html#cb61-2"></a><span class="op">+</span><span class="st">               </span><span class="dt">perc_NP =</span> <span class="kw">mean</span>(RealizationOfRec <span class="op">==</span><span class="st"> &quot;NP&quot;</span>)</span>
-<span id="cb61-3"><a href="working-with-data.html#cb61-3"></a><span class="op">+</span><span class="st">               </span>)</span></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="working-with-data.html#cb59-1"></a>df &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">summarize</span>(<span class="kw">group_by</span>(<span class="kw">mutate</span>(dativeSimplified, <span class="dt">long_theme =</span> <span class="kw">ifelse</span>(LengthOfTheme <span class="op">&gt;</span><span class="st"> </span><span class="fl">1.6</span>, <span class="st">&quot;long&quot;</span>, <span class="st">&quot;short&quot;</span>) ), long_theme),</span>
+<span id="cb59-2"><a href="working-with-data.html#cb59-2"></a>              <span class="dt">perc_NP =</span> <span class="kw">mean</span>(RealizationOfRec <span class="op">==</span><span class="st"> &quot;NP&quot;</span>)</span>
+<span id="cb59-3"><a href="working-with-data.html#cb59-3"></a>              )</span></code></pre></div>
 <pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
 <ul>
 <li>Or consider this expression (<code>sqrt</code> is the square root.)</li>
 </ul>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="working-with-data.html#cb63-1"></a><span class="op">&gt;</span><span class="st"> </span><span class="kw">sqrt</span>(<span class="kw">divide_by</span>(<span class="kw">sum</span>(<span class="kw">divide_by</span>(<span class="dv">2</span>,<span class="dv">3</span>), <span class="kw">multiply_by</span>(<span class="dv">2</span>,<span class="dv">3</span>)), <span class="kw">sum</span>(<span class="dv">3</span>,<span class="dv">4</span>)))</span></code></pre></div>
-<pre><code>## [1] 0.9759001</code></pre>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="working-with-data.html#cb61-1"></a><span class="kw">sqrt</span>(<span class="kw">divide_by</span>(<span class="kw">sum</span>(<span class="kw">divide_by</span>(<span class="dv">2</span>,<span class="dv">3</span>), <span class="kw">multiply_by</span>(<span class="dv">2</span>,<span class="dv">3</span>)), <span class="kw">sum</span>(<span class="dv">3</span>,<span class="dv">4</span>)))</span></code></pre></div>
+<pre><code>## Error in divide_by(sum(divide_by(2, 3), multiply_by(2, 3)), sum(3, 4)): could not find function &quot;divide_by&quot;</code></pre>
 <ul>
 <li>Luckily, there a better way to write this expression.</li>
 </ul>
@@ -641,28 +649,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>In natural language we avoid multiple embeddings of that sort by making shorter sentences, and using anaphors to refer to previous discourse.</li>
 <li>The packages <strong>dplyr</strong> and <strong>magrittr</strong> provide a limited version of such functionality, and we’ll need to use <strong>pipe</strong> operators (<code>%&gt;%</code> and <code>%&lt;&gt;%</code>) to link expressions with an ‘anaphoric dependency’.</li>
 </ul>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="working-with-data.html#cb65-1"></a><span class="op">&gt;</span><span class="st"> </span><span class="co"># Typical notation. Read as &quot;Divide 10 by 2.&quot;</span></span>
-<span id="cb65-2"><a href="working-with-data.html#cb65-2"></a><span class="er">&gt;</span><span class="st"> </span><span class="kw">divide_by</span>(<span class="dv">10</span>, <span class="dv">2</span>)</span></code></pre></div>
-<pre><code>## [1] 5</code></pre>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="working-with-data.html#cb67-1"></a><span class="op">&gt;</span><span class="st"> </span><span class="co"># Equivalent pipe notation. Read as &quot;Take 10, and divide it by 2.&quot;</span></span>
-<span id="cb67-2"><a href="working-with-data.html#cb67-2"></a><span class="er">&gt;</span><span class="st"> </span><span class="dv">10</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">divide_by</span>(., <span class="dv">2</span>)</span></code></pre></div>
-<pre><code>## [1] 5</code></pre>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="working-with-data.html#cb69-1"></a><span class="op">&gt;</span><span class="st"> </span><span class="co"># Equivalent pipe notation. Read as &quot;Take 2, and divide 10 by it.&quot;</span></span>
-<span id="cb69-2"><a href="working-with-data.html#cb69-2"></a><span class="er">&gt;</span><span class="st"> </span><span class="dv">2</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">divide_by</span>(<span class="dv">10</span>, .)</span></code></pre></div>
-<pre><code>## [1] 5</code></pre>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="working-with-data.html#cb63-1"></a><span class="co"># Typical notation. Read as &quot;Divide 10 by 2.&quot;</span></span>
+<span id="cb63-2"><a href="working-with-data.html#cb63-2"></a><span class="kw">divide_by</span>(<span class="dv">10</span>, <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## Error in divide_by(10, 2): could not find function &quot;divide_by&quot;</code></pre>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="working-with-data.html#cb65-1"></a><span class="co"># Equivalent pipe notation. Read as &quot;Take 10, and divide it by 2.&quot;</span></span>
+<span id="cb65-2"><a href="working-with-data.html#cb65-2"></a><span class="dv">10</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">divide_by</span>(., <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## Error in divide_by(., 2): could not find function &quot;divide_by&quot;</code></pre>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="working-with-data.html#cb67-1"></a><span class="co"># Equivalent pipe notation. Read as &quot;Take 2, and divide 10 by it.&quot;</span></span>
+<span id="cb67-2"><a href="working-with-data.html#cb67-2"></a><span class="dv">2</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">divide_by</span>(<span class="dv">10</span>, .)</span></code></pre></div>
+<pre><code>## Error in divide_by(10, .): could not find function &quot;divide_by&quot;</code></pre>
 <ul>
 <li>If the dot operator occurs in the first argument slot, it can be omitted. (R has pro-drop.)</li>
 </ul>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="working-with-data.html#cb71-1"></a><span class="op">&gt;</span><span class="st"> </span><span class="co"># pipe notation with omission of &#39;.&#39;</span></span>
-<span id="cb71-2"><a href="working-with-data.html#cb71-2"></a><span class="er">&gt;</span><span class="st"> </span><span class="dv">10</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">divide_by</span>(<span class="dv">2</span>)</span></code></pre></div>
-<pre><code>## [1] 5</code></pre>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="working-with-data.html#cb69-1"></a><span class="co"># pipe notation with omission of &#39;.&#39;</span></span>
+<span id="cb69-2"><a href="working-with-data.html#cb69-2"></a><span class="dv">10</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">divide_by</span>(<span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## Error in divide_by(., 2): could not find function &quot;divide_by&quot;</code></pre>
 <ul>
 <li>Let’s see how it can resolve the mess below. (Repetition of previous example.)</li>
 </ul>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="working-with-data.html#cb73-1"></a><span class="op">&gt;</span><span class="st"> </span>df &lt;-<span class="st"> </span><span class="kw">mutate</span>(<span class="kw">group_by</span>(dativeSimplified, AnimacyOfRec, AnimacyOfTheme), </span>
-<span id="cb73-2"><a href="working-with-data.html#cb73-2"></a><span class="op">+</span><span class="st">                   </span><span class="dt">perc_NP =</span> <span class="kw">mean</span>(RealizationOfRec <span class="op">==</span><span class="st"> &quot;NP&quot;</span>) )</span>
-<span id="cb73-3"><a href="working-with-data.html#cb73-3"></a><span class="op">&gt;</span><span class="st"> </span>df</span></code></pre></div>
-<pre><code>## # A tibble: 903 x 7
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="working-with-data.html#cb71-1"></a>df &lt;-<span class="st"> </span><span class="kw">mutate</span>(<span class="kw">group_by</span>(dativeSimplified, AnimacyOfRec, AnimacyOfTheme), </span>
+<span id="cb71-2"><a href="working-with-data.html#cb71-2"></a>                  <span class="dt">perc_NP =</span> <span class="kw">mean</span>(RealizationOfRec <span class="op">==</span><span class="st"> &quot;NP&quot;</span>) )</span>
+<span id="cb71-3"><a href="working-with-data.html#cb71-3"></a>df</span></code></pre></div>
+<pre class="r-output"><code>## # A tibble: 903 x 7
 ## # Groups:   AnimacyOfRec, AnimacyOfTheme [4]
 ##    RealizationOfRec Verb  AnimacyOfRec AnimacyOfTheme LengthOfTheme
 ##    &lt;fct&gt;            &lt;fct&gt; &lt;fct&gt;        &lt;fct&gt;                  &lt;dbl&gt;
@@ -681,1842 +689,93 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>And here is the much more readable version of this code:</li>
 </ul>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="working-with-data.html#cb75-1"></a><span class="op">&gt;</span><span class="st"> </span>df &lt;-<span class="st">  </span>dativeSimplified <span class="op">%&gt;%</span></span>
-<span id="cb75-2"><a href="working-with-data.html#cb75-2"></a><span class="op">+</span><span class="st">           </span><span class="kw">mutate</span>(., <span class="dt">long_theme =</span> <span class="kw">ifelse</span>(LengthOfTheme <span class="op">&gt;</span><span class="st"> </span><span class="fl">1.6</span>, <span class="st">&quot;long&quot;</span>, <span class="st">&quot;short&quot;</span>) ) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb75-3"><a href="working-with-data.html#cb75-3"></a><span class="op">+</span><span class="st">           </span><span class="kw">group_by</span>(., long_theme) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb75-4"><a href="working-with-data.html#cb75-4"></a><span class="op">+</span><span class="st">           </span>dplyr<span class="op">::</span><span class="kw">summarize</span>(., <span class="dt">perc_NP =</span> <span class="kw">mean</span>(RealizationOfRec <span class="op">==</span><span class="st"> &quot;NP&quot;</span>) )</span></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="working-with-data.html#cb73-1"></a>df &lt;-<span class="st">  </span>dativeSimplified <span class="op">%&gt;%</span></span>
+<span id="cb73-2"><a href="working-with-data.html#cb73-2"></a><span class="st">          </span><span class="kw">mutate</span>(., <span class="dt">long_theme =</span> <span class="kw">ifelse</span>(LengthOfTheme <span class="op">&gt;</span><span class="st"> </span><span class="fl">1.6</span>, <span class="st">&quot;long&quot;</span>, <span class="st">&quot;short&quot;</span>) ) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb73-3"><a href="working-with-data.html#cb73-3"></a><span class="st">          </span><span class="kw">group_by</span>(., long_theme) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb73-4"><a href="working-with-data.html#cb73-4"></a><span class="st">          </span>dplyr<span class="op">::</span><span class="kw">summarize</span>(., <span class="dt">perc_NP =</span> <span class="kw">mean</span>(RealizationOfRec <span class="op">==</span><span class="st"> &quot;NP&quot;</span>) )</span></code></pre></div>
 <pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
 <ul>
 <li>We don’t actually need the dot:</li>
 </ul>
-<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="working-with-data.html#cb77-1"></a><span class="op">&gt;</span><span class="st"> </span>df &lt;-<span class="st">  </span>dativeSimplified <span class="op">%&gt;%</span></span>
-<span id="cb77-2"><a href="working-with-data.html#cb77-2"></a><span class="op">+</span><span class="st">           </span><span class="kw">mutate</span>(<span class="dt">long_theme =</span> <span class="kw">ifelse</span>(LengthOfTheme <span class="op">&gt;</span><span class="st"> </span><span class="fl">1.6</span>, <span class="st">&quot;long&quot;</span>, <span class="st">&quot;short&quot;</span>) ) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb77-3"><a href="working-with-data.html#cb77-3"></a><span class="op">+</span><span class="st">           </span><span class="kw">group_by</span>(long_theme) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb77-4"><a href="working-with-data.html#cb77-4"></a><span class="op">+</span><span class="st">           </span>dplyr<span class="op">::</span><span class="kw">summarize</span>(<span class="dt">perc_NP =</span> <span class="kw">mean</span>(RealizationOfRec <span class="op">==</span><span class="st"> &quot;NP&quot;</span>) )</span></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="working-with-data.html#cb75-1"></a>df &lt;-<span class="st">  </span>dativeSimplified <span class="op">%&gt;%</span></span>
+<span id="cb75-2"><a href="working-with-data.html#cb75-2"></a><span class="st">          </span><span class="kw">mutate</span>(<span class="dt">long_theme =</span> <span class="kw">ifelse</span>(LengthOfTheme <span class="op">&gt;</span><span class="st"> </span><span class="fl">1.6</span>, <span class="st">&quot;long&quot;</span>, <span class="st">&quot;short&quot;</span>) ) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb75-3"><a href="working-with-data.html#cb75-3"></a><span class="st">          </span><span class="kw">group_by</span>(long_theme) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb75-4"><a href="working-with-data.html#cb75-4"></a><span class="st">          </span>dplyr<span class="op">::</span><span class="kw">summarize</span>(<span class="dt">perc_NP =</span> <span class="kw">mean</span>(RealizationOfRec <span class="op">==</span><span class="st"> &quot;NP&quot;</span>) )</span></code></pre></div>
 <pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
 <ul>
 <li>The <code>%&lt;&gt;%</code> operator is a convenient combination of <code>%&gt;%</code> and <code>&lt;-</code> which you can use to directly modify an object.</li>
 </ul>
-<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="working-with-data.html#cb79-1"></a><span class="op">&gt;</span><span class="st"> </span><span class="co"># create a vector with numbers from 1 to 10</span></span>
-<span id="cb79-2"><a href="working-with-data.html#cb79-2"></a><span class="er">&gt;</span><span class="st"> </span>x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span></span>
-<span id="cb79-3"><a href="working-with-data.html#cb79-3"></a><span class="op">&gt;</span><span class="st"> </span><span class="co"># keep only numbers &lt; 5:</span></span>
-<span id="cb79-4"><a href="working-with-data.html#cb79-4"></a><span class="er">&gt;</span><span class="st"> </span><span class="co">#   (i) without %&lt;&gt;%</span></span>
-<span id="cb79-5"><a href="working-with-data.html#cb79-5"></a><span class="er">&gt;</span><span class="st"> </span>x &lt;-<span class="st"> </span>x[x<span class="op">&lt;</span><span class="dv">5</span>]</span>
-<span id="cb79-6"><a href="working-with-data.html#cb79-6"></a><span class="op">&gt;</span><span class="st"> </span><span class="co">#   (i) with %&lt;&gt;%</span></span>
-<span id="cb79-7"><a href="working-with-data.html#cb79-7"></a><span class="er">&gt;</span><span class="st"> </span>x <span class="op">%&lt;&gt;%</span><span class="st"> </span>.[.<span class="op">&lt;</span><span class="dv">5</span>]</span></code></pre></div>
-<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="working-with-data.html#cb80-1"></a><span class="op">&gt;</span><span class="st"> </span><span class="co"># lets add several columns to &#39;dativeSimplified&#39;</span></span>
-<span id="cb80-2"><a href="working-with-data.html#cb80-2"></a><span class="er">&gt;</span><span class="st"> </span>dativeSimplified <span class="op">%&lt;&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">A=</span><span class="dv">1</span>, <span class="dt">B=</span><span class="dv">2</span>, <span class="dt">C=</span><span class="dv">3</span>, <span class="dt">D=</span><span class="dv">4</span>)</span>
-<span id="cb80-3"><a href="working-with-data.html#cb80-3"></a><span class="op">&gt;</span><span class="st"> </span>dativeSimplified</span></code></pre></div>
-<pre><code>##     RealizationOfRec      Verb AnimacyOfRec AnimacyOfTheme LengthOfTheme
-## 1                 NP      feed      animate      inanimate     2.6390573
-## 2                 NP      give      animate      inanimate     1.0986123
-## 3                 NP      give      animate      inanimate     2.5649494
-## 4                 NP      give      animate      inanimate     1.6094379
-## 5                 NP     offer      animate      inanimate     1.0986123
-## 6                 NP      give      animate      inanimate     1.3862944
-## 7                 NP       pay      animate      inanimate     1.3862944
-## 8                 NP     bring      animate      inanimate     0.0000000
-## 9                 NP     teach      animate      inanimate     2.3978953
-## 10                NP      give      animate      inanimate     0.6931472
-## 11                NP     offer      animate      inanimate     1.0986123
-## 12                NP      give    inanimate      inanimate     1.0986123
-## 13                NP       pay      animate      inanimate     1.6094379
-## 14                NP      give      animate      inanimate     0.6931472
-## 15                NP      give      animate      inanimate     2.0794415
-## 16                NP      give      animate      inanimate     0.6931472
-## 17                NP      send      animate      inanimate     3.5553481
-## 18                NP       pay      animate      inanimate     1.0986123
-## 19                NP     grant      animate      inanimate     1.3862944
-## 20                NP      give      animate      inanimate     1.7917595
-## 21                NP      give      animate      inanimate     2.5649494
-## 22                NP      give      animate      inanimate     1.9459101
-## 23                NP      give      animate      inanimate     2.8903718
-## 24                NP     grant      animate      inanimate     2.4849066
-## 25                NP      give      animate      inanimate     2.3025851
-## 26                NP      give    inanimate      inanimate     3.1354942
-## 27                NP      give    inanimate      inanimate     0.6931472
-## 28                NP      give      animate      inanimate     2.5649494
-## 29                NP      give      animate      inanimate     2.8903718
-## 30                NP      send      animate      inanimate     0.0000000
-## 31                NP      send      animate      inanimate     0.6931472
-## 32                NP      deny      animate      inanimate     2.8903718
-## 33                NP      give      animate      inanimate     2.3025851
-## 34                NP      give      animate      inanimate     2.3025851
-## 35                NP      give      animate      inanimate     0.6931472
-## 36                NP      hand      animate      inanimate     0.6931472
-## 37                NP       owe      animate      inanimate     1.9459101
-## 38                NP     bring      animate      inanimate     1.6094379
-## 39                NP      cost      animate      inanimate     1.9459101
-## 40                NP      give      animate      inanimate     1.9459101
-## 41                NP      give      animate      inanimate     0.6931472
-## 42                NP      cost      animate      inanimate     1.6094379
-## 43                NP      give      animate      inanimate     3.5263605
-## 44                NP      cost      animate      inanimate     0.6931472
-## 45                NP      give      animate      inanimate     1.9459101
-## 46                NP      give      animate      inanimate     1.7917595
-## 47                NP     offer      animate      inanimate     1.0986123
-## 48                NP      give      animate      inanimate     1.7917595
-## 49                NP      give      animate      inanimate     1.0986123
-## 50                NP      give      animate      inanimate     2.3978953
-## 51                NP      give      animate      inanimate     2.6390573
-## 52                NP      give      animate      inanimate     1.3862944
-## 53                NP      cost      animate      inanimate     1.0986123
-## 54                NP     offer      animate      inanimate     1.6094379
-## 55                NP      give      animate      inanimate     2.3025851
-## 56                NP      give      animate      inanimate     2.1972246
-## 57                NP      give      animate      inanimate     0.6931472
-## 58                NP      give      animate        animate     1.0986123
-## 59                NP      give      animate      inanimate     2.3978953
-## 60                NP      send      animate      inanimate     2.3025851
-## 61                NP       pay      animate      inanimate     2.0794415
-## 62                NP      give      animate      inanimate     2.5649494
-## 63                NP       owe      animate      inanimate     1.9459101
-## 64                NP      loan      animate      inanimate     0.6931472
-## 65                NP     award      animate      inanimate     1.0986123
-## 66                NP      give      animate      inanimate     2.4849066
-## 67                NP      give    inanimate      inanimate     1.6094379
-## 68                NP      give      animate      inanimate     3.4657359
-## 69                NP      give      animate      inanimate     2.4849066
-## 70                NP      give      animate      inanimate     1.9459101
-## 71                NP       pay    inanimate      inanimate     0.6931472
-## 72                NP       pay      animate      inanimate     1.7917595
-## 73                NP      give      animate      inanimate     1.7917595
-## 74                NP      give    inanimate      inanimate     1.0986123
-## 75                NP      give      animate      inanimate     2.8332133
-## 76                NP      give      animate      inanimate     1.0986123
-## 77                NP      give      animate      inanimate     2.7080502
-## 78                NP      give      animate      inanimate     2.3025851
-## 79                NP     award      animate      inanimate     2.1972246
-## 80                NP       owe      animate      inanimate     2.4849066
-## 81                NP        do      animate      inanimate     0.6931472
-## 82                NP        do      animate      inanimate     1.0986123
-## 83                NP     allow      animate      inanimate     1.7917595
-## 84                NP      give      animate      inanimate     1.0986123
-## 85                NP     offer      animate      inanimate     1.3862944
-## 86                NP      give      animate      inanimate     1.0986123
-## 87                NP      give      animate      inanimate     0.6931472
-## 88                NP      give      animate      inanimate     2.0794415
-## 89                NP      send      animate      inanimate     3.0445224
-## 90                NP      cost      animate      inanimate     1.6094379
-## 91                NP      give      animate      inanimate     2.0794415
-## 92                NP       pay      animate      inanimate     0.6931472
-## 93                NP      give      animate      inanimate     0.6931472
-## 94                NP      give      animate      inanimate     2.0794415
-## 95                NP      give      animate      inanimate     1.0986123
-## 96                NP      give      animate      inanimate     3.1780538
-## 97                NP      give      animate      inanimate     1.7917595
-## 98                NP      give      animate      inanimate     1.0986123
-## 99                NP      give      animate      inanimate     2.3978953
-## 100               NP      give      animate        animate     2.8903718
-## 101               NP     teach      animate      inanimate     1.6094379
-## 102               NP       bet      animate      inanimate     0.0000000
-## 103               NP      tell      animate      inanimate     0.0000000
-## 104               NP      give      animate      inanimate     1.6094379
-## 105               NP      tell      animate      inanimate     1.3862944
-## 106               NP     grant      animate      inanimate     2.6390573
-## 107               NP      give      animate      inanimate     0.6931472
-## 108               NP      give      animate      inanimate     2.3025851
-## 109               NP     offer      animate      inanimate     2.3978953
-## 110               NP   deliver      animate      inanimate     1.7917595
-## 111               NP      give      animate      inanimate     0.6931472
-## 112               NP      give      animate      inanimate     0.6931472
-## 113               NP      give      animate      inanimate     1.9459101
-## 114               NP      give      animate      inanimate     2.3978953
-## 115               NP      cost      animate      inanimate     0.6931472
-## 116               NP      give      animate      inanimate     2.6390573
-## 117               NP       pay      animate      inanimate     1.9459101
-## 118               NP       pay      animate      inanimate     0.6931472
-## 119               NP      give    inanimate      inanimate     1.0986123
-## 120               NP      give      animate      inanimate     1.6094379
-## 121               NP       pay      animate      inanimate     1.6094379
-## 122               NP      cost      animate      inanimate     1.3862944
-## 123               NP       pay      animate      inanimate     3.4965076
-## 124               NP      give      animate      inanimate     1.6094379
-## 125               NP      lend      animate      inanimate     0.6931472
-## 126               NP      give      animate      inanimate     2.0794415
-## 127               NP      give      animate      inanimate     2.5649494
-## 128               NP      give      animate      inanimate     1.9459101
-## 129               NP      give      animate      inanimate     1.6094379
-## 130               NP      cost      animate      inanimate     2.3025851
-## 131               NP      give      animate      inanimate     1.7917595
-## 132               NP      give    inanimate      inanimate     3.6375862
-## 133               NP     allow      animate      inanimate     2.8332133
-## 134               NP      give      animate      inanimate     0.6931472
-## 135               NP      give    inanimate      inanimate     1.6094379
-## 136               NP     leave      animate      inanimate     1.9459101
-## 137               NP      give      animate      inanimate     1.7917595
-## 138               NP      give      animate      inanimate     1.7917595
-## 139               NP      give      animate      inanimate     2.9444390
-## 140               NP    extend      animate      inanimate     2.9444390
-## 141               NP     offer      animate      inanimate     1.6094379
-## 142               NP      give      animate      inanimate     1.6094379
-## 143               NP      give    inanimate        animate     2.6390573
-## 144               NP      give      animate      inanimate     0.6931472
-## 145               NP      give      animate      inanimate     2.4849066
-## 146               NP   promise      animate      inanimate     0.6931472
-## 147               NP     leave      animate      inanimate     1.3862944
-## 148               NP      give      animate      inanimate     1.0986123
-## 149               NP     grant      animate      inanimate     2.1972246
-## 150               NP      give      animate      inanimate     0.6931472
-## 151               NP      give      animate      inanimate     0.6931472
-## 152               NP      give      animate      inanimate     2.3978953
-## 153               NP      cost      animate      inanimate     0.6931472
-## 154               NP      give      animate      inanimate     2.1972246
-## 155               NP      give      animate      inanimate     2.3025851
-## 156               NP      give      animate      inanimate     0.6931472
-## 157               NP      tell      animate      inanimate     0.0000000
-## 158               NP      give    inanimate      inanimate     0.0000000
-## 159               NP     offer      animate      inanimate     1.3862944
-## 160               NP      cost      animate      inanimate     1.3862944
-## 161               NP      give    inanimate      inanimate     2.8332133
-## 162               NP      give    inanimate      inanimate     0.6931472
-## 163               NP      give    inanimate      inanimate     1.6094379
-## 164               NP     award      animate      inanimate     2.5649494
-## 165               NP      give      animate      inanimate     3.2958369
-## 166               NP      give      animate      inanimate     1.3862944
-## 167               NP     offer      animate      inanimate     1.7917595
-## 168               NP    extend      animate      inanimate     1.0986123
-## 169               NP      give      animate      inanimate     2.0794415
-## 170               NP guarantee      animate      inanimate     1.7917595
-## 171               NP      give      animate      inanimate     2.3978953
-## 172               NP      give      animate      inanimate     0.0000000
-## 173               NP      give      animate      inanimate     1.6094379
-## 174               NP      give      animate      inanimate     1.9459101
-## 175               NP      lend      animate      inanimate     0.6931472
-## 176               NP       owe      animate      inanimate     1.0986123
-## 177               NP      give      animate      inanimate     3.0445224
-## 178               NP      give      animate      inanimate     1.6094379
-## 179               NP     grant      animate      inanimate     2.3978953
-## 180               NP      give      animate      inanimate     2.9444390
-## 181               NP     award      animate      inanimate     1.6094379
-## 182               NP    charge      animate      inanimate     0.0000000
-## 183               NP      give      animate      inanimate     2.7725887
-## 184               NP      give    inanimate      inanimate     2.1972246
-## 185               NP      give    inanimate      inanimate     0.6931472
-## 186               NP      give      animate      inanimate     2.5649494
-## 187               NP      give      animate      inanimate     1.6094379
-## 188               NP      give      animate      inanimate     1.6094379
-## 189               NP      give    inanimate      inanimate     0.6931472
-## 190               NP     allow    inanimate      inanimate     2.0794415
-## 191               NP reimburse      animate      inanimate     1.6094379
-## 192               NP      give      animate      inanimate     2.3978953
-## 193               NP      deny      animate      inanimate     2.1972246
-## 194               NP      give      animate      inanimate     3.0910425
-## 195               NP      tell      animate      inanimate     3.2580965
-## 196               NP     award      animate      inanimate     2.7725887
-## 197               NP      give      animate      inanimate     3.2188758
-## 198               NP      give      animate      inanimate     2.9957323
-## 199               NP     offer      animate      inanimate     2.3978953
-## 200               NP       pay      animate      inanimate     1.6094379
-## 201               NP      give      animate      inanimate     1.9459101
-## 202               NP      give      animate      inanimate     2.7080502
-## 203               NP      give      animate      inanimate     2.5649494
-## 204               NP       pay      animate      inanimate     1.3862944
-## 205               NP      cost      animate      inanimate     0.6931472
-## 206               NP       pay      animate      inanimate     2.3978953
-## 207               NP      give      animate      inanimate     1.6094379
-## 208               NP      give      animate      inanimate     1.6094379
-## 209               NP      give    inanimate      inanimate     0.6931472
-## 210               NP      give      animate      inanimate     2.3025851
-## 211               NP     allow      animate      inanimate     1.7917595
-## 212               NP       owe      animate      inanimate     1.6094379
-## 213               NP      give      animate      inanimate     3.1354942
-## 214               NP       pay      animate      inanimate     1.0986123
-## 215               NP     grant      animate      inanimate     1.0986123
-## 216               NP      give      animate      inanimate     1.0986123
-## 217               NP      give      animate      inanimate     2.4849066
-## 218               NP      give      animate      inanimate     3.0445224
-## 219               NP      give      animate      inanimate     1.7917595
-## 220               NP      give      animate      inanimate     0.6931472
-## 221               NP      give      animate      inanimate     0.0000000
-## 222               NP       pay      animate      inanimate     0.6931472
-## 223               NP      cost      animate      inanimate     1.6094379
-## 224               NP      give      animate      inanimate     1.0986123
-## 225               NP     award      animate      inanimate     0.6931472
-## 226               NP      give      animate      inanimate     1.6094379
-## 227               NP       pay      animate      inanimate     1.0986123
-## 228               NP      give      animate      inanimate     1.9459101
-## 229               NP      give    inanimate      inanimate     1.6094379
-## 230               NP      give      animate      inanimate     2.5649494
-## 231               NP      give      animate      inanimate     3.4011974
-## 232               NP      give      animate      inanimate     1.3862944
-## 233               NP      give      animate      inanimate     1.6094379
-## 234               NP      give      animate      inanimate     1.6094379
-## 235               NP       pay      animate      inanimate     0.0000000
-## 236               NP      lend      animate      inanimate     0.0000000
-## 237               NP      give      animate      inanimate     1.7917595
-## 238               NP      give      animate      inanimate     3.1354942
-## 239               NP      give      animate      inanimate     1.9459101
-## 240               NP    accord      animate      inanimate     1.6094379
-## 241               NP      give      animate      inanimate     2.1972246
-## 242               NP      give      animate      inanimate     1.6094379
-## 243               NP      will      animate      inanimate     0.6931472
-## 244               NP      wish      animate      inanimate     1.0986123
-## 245               NP       pay      animate      inanimate     2.4849066
-## 246               NP     offer      animate      inanimate     2.5649494
-## 247               NP     offer      animate      inanimate     1.9459101
-## 248               NP       pay      animate      inanimate     0.6931472
-## 249               NP      give      animate      inanimate     1.3862944
-## 250               NP      give      animate      inanimate     2.8332133
-## 251               NP      give      animate      inanimate     1.0986123
-## 252               NP      give    inanimate      inanimate     0.6931472
-## 253               NP      deny      animate      inanimate     2.0794415
-## 254               NP      give      animate      inanimate     2.0794415
-## 255               NP      give      animate      inanimate     1.0986123
-## 256               NP      give      animate      inanimate     2.5649494
-## 257               NP    assure      animate      inanimate     1.0986123
-## 258               NP      give      animate      inanimate     0.6931472
-## 259               NP      cost      animate      inanimate     1.3862944
-## 260               NP      give      animate      inanimate     2.3978953
-## 261               NP     offer      animate      inanimate     2.1972246
-## 262               NP     offer      animate      inanimate     2.8903718
-## 263               NP     offer      animate      inanimate     2.5649494
-## 264               NP     offer      animate      inanimate     2.4849066
-## 265               NP      give      animate      inanimate     1.7917595
-## 266               NP     allow      animate      inanimate     1.0986123
-## 267               NP      mail      animate      inanimate     2.7725887
-## 268               NP     offer      animate      inanimate     2.4849066
-## 269               NP      give      animate      inanimate     1.9459101
-## 270               NP      give      animate      inanimate     0.6931472
-## 271               NP      give      animate      inanimate     2.8903718
-## 272               NP      give      animate      inanimate     2.3978953
-## 273               NP       pay      animate      inanimate     2.8332133
-## 274               NP      give      animate      inanimate     1.3862944
-## 275               NP      send      animate      inanimate     1.0986123
-## 276               NP      give      animate      inanimate     2.5649494
-## 277               NP      send      animate      inanimate     3.4011974
-## 278               NP      give      animate      inanimate     1.0986123
-## 279               NP       pay      animate      inanimate     2.6390573
-## 280               NP       pay      animate      inanimate     0.6931472
-## 281               NP       pay      animate      inanimate     0.6931472
-## 282               NP      give      animate      inanimate     0.6931472
-## 283               NP     bring      animate      inanimate     2.3025851
-## 284               NP      lend      animate      inanimate     0.6931472
-## 285               NP      give      animate      inanimate     1.3862944
-## 286               NP      give    inanimate      inanimate     1.3862944
-## 287               NP      give      animate      inanimate     1.9459101
-## 288               NP      give    inanimate      inanimate     1.0986123
-## 289               NP     grant      animate      inanimate     0.6931472
-## 290               NP      give      animate      inanimate     1.6094379
-## 291               NP      give      animate      inanimate     3.3672958
-## 292               NP       owe      animate      inanimate     2.3025851
-## 293               NP       pay      animate      inanimate     0.6931472
-## 294               NP      give      animate      inanimate     0.6931472
-## 295               NP      give      animate      inanimate     1.0986123
-## 296               NP      give      animate      inanimate     1.9459101
-## 297               NP     bring      animate      inanimate     1.7917595
-## 298               NP      give      animate      inanimate     2.9957323
-## 299               NP      hand      animate      inanimate     0.6931472
-## 300               NP      give      animate      inanimate     2.7725887
-## 301               NP      give      animate      inanimate     2.9444390
-## 302               NP      give      animate      inanimate     1.6094379
-## 303               NP      cost      animate      inanimate     1.0986123
-## 304               NP      cost      animate      inanimate     2.1972246
-## 305               NP      give      animate      inanimate     2.3978953
-## 306               NP      give      animate      inanimate     1.3862944
-## 307               NP      give      animate      inanimate     1.7917595
-## 308               NP   promise      animate      inanimate     1.6094379
-## 309               NP     offer      animate      inanimate     0.0000000
-## 310               NP      give      animate      inanimate     2.9444390
-## 311               NP   promise      animate      inanimate     2.3025851
-## 312               NP       pay      animate      inanimate     0.6931472
-## 313               NP       pay      animate      inanimate     0.6931472
-## 314               NP      give      animate      inanimate     1.9459101
-## 315               NP      give      animate      inanimate     1.9459101
-## 316               NP      give      animate      inanimate     1.7917595
-## 317               NP      give      animate      inanimate     0.6931472
-## 318               NP      deny      animate      inanimate     2.8332133
-## 319               NP      give      animate      inanimate     0.6931472
-## 320               NP     offer      animate      inanimate     2.3025851
-## 321               NP      give    inanimate      inanimate     1.6094379
-## 322               NP      give      animate      inanimate     2.0794415
-## 323               NP      give      animate      inanimate     3.0910425
-## 324               NP      give    inanimate      inanimate     1.6094379
-## 325               NP     offer      animate      inanimate     2.4849066
-## 326               NP      give      animate      inanimate     0.6931472
-## 327               NP      give      animate      inanimate     1.7917595
-## 328               NP      give      animate      inanimate     1.7917595
-## 329               NP       pay      animate      inanimate     1.0986123
-## 330               NP      give    inanimate      inanimate     1.6094379
-## 331               NP      give      animate      inanimate     1.3862944
-## 332               NP     teach      animate      inanimate     2.5649494
-## 333               NP      hand      animate      inanimate     2.0794415
-## 334               NP      give      animate      inanimate     1.9459101
-## 335               NP      give      animate      inanimate     1.0986123
-## 336               NP   promise      animate      inanimate     1.6094379
-## 337               NP    permit      animate      inanimate     1.7917595
-## 338               NP       pay      animate      inanimate     1.7917595
-## 339               NP     bring      animate      inanimate     0.0000000
-## 340               NP      give      animate      inanimate     1.9459101
-## 341               NP      give      animate      inanimate     1.6094379
-## 342               NP      give      animate      inanimate     2.0794415
-## 343               NP       pay      animate      inanimate     2.0794415
-## 344               NP      give      animate      inanimate     2.5649494
-## 345               NP      tell      animate      inanimate     1.3862944
-## 346               NP      give      animate      inanimate     1.6094379
-## 347               NP      give      animate      inanimate     0.6931472
-## 348               NP      cost      animate      inanimate     0.6931472
-## 349               NP       pay      animate      inanimate     1.0986123
-## 350               NP      give      animate      inanimate     3.0910425
-## 351               NP      show      animate      inanimate     0.6931472
-## 352               NP      lend    inanimate      inanimate     1.3862944
-## 353               NP      give      animate      inanimate     2.0794415
-## 354               NP   promise      animate      inanimate     2.3025851
-## 355               NP    assess      animate      inanimate     1.6094379
-## 356               NP      give      animate      inanimate     1.7917595
-## 357               NP      give      animate      inanimate     2.1972246
-## 358               NP      give      animate      inanimate     1.6094379
-## 359               NP    charge      animate      inanimate     1.0986123
-## 360               NP  pay_back      animate      inanimate     1.7917595
-## 361               NP      give      animate      inanimate     1.0986123
-## 362               NP    charge      animate      inanimate     2.8903718
-## 363               NP      sell      animate      inanimate     2.0794415
-## 364               NP      show      animate      inanimate     2.1972246
-## 365               NP      give    inanimate      inanimate     0.6931472
-## 366               NP      give      animate      inanimate     1.6094379
-## 367               NP      give      animate      inanimate     0.6931472
-## 368               NP     offer      animate      inanimate     2.4849066
-## 369               NP       pay      animate      inanimate     2.1972246
-## 370               NP      give      animate      inanimate     0.6931472
-## 371               NP      send      animate      inanimate     2.6390573
-## 372               NP      give      animate      inanimate     0.6931472
-## 373               NP      cost      animate      inanimate     1.0986123
-## 374               NP      sell      animate      inanimate     0.0000000
-## 375               NP      give    inanimate      inanimate     1.0986123
-## 376               NP     offer      animate      inanimate     2.4849066
-## 377               NP      give      animate      inanimate     1.7917595
-## 378               NP      show      animate      inanimate     1.9459101
-## 379               NP       net      animate      inanimate     1.3862944
-## 380               NP      cost      animate      inanimate     0.0000000
-## 381               NP      cost      animate      inanimate     1.6094379
-## 382               NP      give      animate      inanimate     1.3862944
-## 383               NP      give      animate      inanimate     0.6931472
-## 384               NP      give      animate      inanimate     2.5649494
-## 385               NP     offer      animate      inanimate     1.6094379
-## 386               NP   promise      animate      inanimate     2.7725887
-## 387               NP      give      animate      inanimate     2.5649494
-## 388               NP      give      animate      inanimate     1.9459101
-## 389               NP      sell      animate      inanimate     2.7725887
-## 390               NP      lend      animate        animate     0.6931472
-## 391               NP      give      animate      inanimate     1.6094379
-## 392               NP   promise      animate      inanimate     2.7725887
-## 393               NP      give      animate      inanimate     2.6390573
-## 394               NP     allow      animate      inanimate     1.6094379
-## 395               NP      give      animate      inanimate     1.7917595
-## 396               NP       pay      animate      inanimate     1.7917595
-## 397               NP      give      animate      inanimate     1.6094379
-## 398               NP     offer      animate      inanimate     1.6094379
-## 399               NP      give      animate      inanimate     1.7917595
-## 400               NP      give      animate      inanimate     0.6931472
-## 401               NP      give      animate      inanimate     1.7917595
-## 402               NP      give      animate      inanimate     2.1972246
-## 403               NP      give    inanimate      inanimate     2.4849066
-## 404               NP      cost      animate      inanimate     1.0986123
-## 405               NP      send      animate      inanimate     3.3322045
-## 406               NP      cost      animate      inanimate     0.0000000
-## 407               NP      cost      animate      inanimate     1.9459101
-## 408               NP      give      animate      inanimate     1.6094379
-## 409               NP       pay      animate      inanimate     0.6931472
-## 410               NP      lend      animate      inanimate     1.0986123
-## 411               NP      give      animate      inanimate     2.8903718
-## 412               NP      give      animate      inanimate     2.4849066
-## 413               NP      give      animate      inanimate     2.5649494
-## 414               NP     offer      animate      inanimate     1.7917595
-## 415               NP      give    inanimate      inanimate     1.7917595
-## 416               NP      tell      animate      inanimate     1.9459101
-## 417               NP      fine      animate      inanimate     0.0000000
-## 418               NP      give      animate      inanimate     1.9459101
-## 419               NP      give      animate      inanimate     2.4849066
-## 420               NP        do    inanimate      inanimate     0.6931472
-## 421               NP     bring      animate      inanimate     0.6931472
-## 422               NP      give      animate      inanimate     2.7080502
-## 423               NP      give      animate      inanimate     2.7725887
-## 424               NP      cost      animate      inanimate     1.3862944
-## 425               NP      give      animate      inanimate     0.0000000
-## 426               NP      give      animate      inanimate     2.7080502
-## 427               NP      give      animate      inanimate     2.5649494
-## 428               NP      give      animate      inanimate     0.6931472
-## 429               NP      give      animate      inanimate     2.5649494
-## 430               NP      give      animate      inanimate     1.6094379
-## 431               NP      give      animate      inanimate     2.4849066
-## 432               NP      send      animate      inanimate     2.7725887
-## 433               NP      cost      animate      inanimate     0.0000000
-## 434               NP      give      animate      inanimate     2.4849066
-## 435               NP      give      animate      inanimate     1.9459101
-## 436               NP      give      animate      inanimate     1.7917595
-## 437               NP guarantee      animate      inanimate     1.0986123
-## 438               NP     offer      animate      inanimate     1.0986123
-## 439               NP      give      animate      inanimate     1.9459101
-## 440               NP      give      animate      inanimate     1.9459101
-## 441               NP      give      animate      inanimate     2.3025851
-## 442               NP      give      animate      inanimate     2.6390573
-## 443               NP      give    inanimate      inanimate     1.0986123
-## 444               NP      give      animate      inanimate     0.6931472
-## 445               NP      give      animate      inanimate     2.5649494
-## 446               NP      give      animate      inanimate     0.6931472
-## 447               NP      give      animate      inanimate     2.0794415
-## 448               NP      give      animate      inanimate     3.2958369
-## 449               NP      give      animate      inanimate     2.3978953
-## 450               NP      give      animate      inanimate     1.9459101
-## 451               NP      give      animate      inanimate     2.3025851
-## 452               NP      give      animate      inanimate     1.0986123
-## 453               NP       owe      animate      inanimate     1.0986123
-## 454               NP      send      animate      inanimate     3.1354942
-## 455               NP      give      animate      inanimate     3.2580965
-## 456               NP      give      animate      inanimate     1.3862944
-## 457               NP       pay      animate      inanimate     1.0986123
-## 458               NP      vote      animate      inanimate     2.8332133
-## 459               NP      cost      animate      inanimate     0.6931472
-## 460               NP      give      animate      inanimate     2.3978953
-## 461               NP      send      animate      inanimate     2.0794415
-## 462               NP      give      animate      inanimate     2.4849066
-## 463               NP     grant      animate      inanimate     1.0986123
-## 464               NP      give      animate      inanimate     2.5649494
-## 465               NP      cost      animate      inanimate     1.6094379
-## 466               NP      give      animate      inanimate     3.4657359
-## 467               NP      cost      animate      inanimate     1.3862944
-## 468               NP      give      animate      inanimate     0.6931472
-## 469               NP      give      animate      inanimate     2.6390573
-## 470               NP      cost      animate      inanimate     2.1972246
-## 471               NP       pay      animate      inanimate     2.3978953
-## 472               NP      give      animate      inanimate     2.3025851
-## 473               NP     offer      animate      inanimate     1.0986123
-## 474               NP       pay      animate      inanimate     1.3862944
-## 475               NP     offer      animate      inanimate     1.9459101
-## 476               NP    refuse      animate      inanimate     1.0986123
-## 477               NP      give      animate      inanimate     2.0794415
-## 478               NP      fine      animate      inanimate     0.0000000
-## 479               NP     grant      animate      inanimate     1.7917595
-## 480               NP      give      animate      inanimate     2.6390573
-## 481               NP      give      animate      inanimate     1.9459101
-## 482               NP      cost      animate      inanimate     1.6094379
-## 483               NP      hand      animate      inanimate     0.6931472
-## 484               NP        do      animate      inanimate     1.0986123
-## 485               NP      tell      animate      inanimate     0.6931472
-## 486               NP      give      animate      inanimate     2.4849066
-## 487               NP     offer      animate      inanimate     1.7917595
-## 488               NP      give      animate      inanimate     0.6931472
-## 489               NP      feed      animate      inanimate     1.7917595
-## 490               NP      give      animate      inanimate     2.4849066
-## 491               NP      give      animate      inanimate     0.6931472
-## 492               NP      give      animate      inanimate     1.7917595
-## 493               NP      sell      animate      inanimate     2.3025851
-## 494               NP      give      animate      inanimate     1.7917595
-## 495               NP      give      animate      inanimate     2.7080502
-## 496               NP      give      animate      inanimate     2.6390573
-## 497               NP      give      animate      inanimate     1.7917595
-## 498               NP      give      animate      inanimate     3.4965076
-## 499               NP      give      animate      inanimate     2.3025851
-## 500               NP      give      animate      inanimate     1.3862944
-## 501               NP      lend      animate      inanimate     1.3862944
-## 502               NP      give      animate      inanimate     1.0986123
-## 503               NP      give      animate      inanimate     3.0445224
-## 504               NP      cost      animate      inanimate     2.4849066
-## 505               NP    permit      animate      inanimate     1.7917595
-## 506               NP      give      animate        animate     1.9459101
-## 507               NP      give      animate      inanimate     1.9459101
-## 508               NP       pay      animate      inanimate     2.9444390
-## 509               NP      give      animate      inanimate     2.3978953
-## 510               NP      give      animate      inanimate     1.3862944
-## 511               NP      give      animate      inanimate     0.6931472
-## 512               NP      cost      animate      inanimate     1.6094379
-## 513               NP      give      animate      inanimate     2.7725887
-## 514               NP      give      animate      inanimate     1.3862944
-## 515               NP      cost      animate      inanimate     1.7917595
-## 516               NP      give      animate      inanimate     2.0794415
-## 517               NP      give      animate      inanimate     2.4849066
-## 518               NP      give      animate      inanimate     1.3862944
-## 519               NP     offer      animate      inanimate     1.0986123
-## 520               NP      send      animate      inanimate     0.6931472
-## 521               NP      give      animate      inanimate     2.9957323
-## 522               NP    assure      animate      inanimate     1.7917595
-## 523               NP      give      animate      inanimate     2.7725887
-## 524               NP      give      animate      inanimate     2.3978953
-## 525               NP      give      animate      inanimate     1.7917595
-## 526               NP      give      animate      inanimate     2.5649494
-## 527               NP      give      animate      inanimate     1.6094379
-## 528               NP      give      animate      inanimate     2.9957323
-## 529               NP      give      animate      inanimate     2.0794415
-## 530               NP       pay      animate      inanimate     1.6094379
-## 531               NP       pay      animate      inanimate     1.6094379
-## 532               NP      give      animate      inanimate     1.0986123
-## 533               NP      give      animate      inanimate     1.9459101
-## 534               NP      give      animate      inanimate     1.0986123
-## 535               NP      give      animate      inanimate     1.6094379
-## 536               NP      give      animate      inanimate     2.9444390
-## 537               NP      give      animate      inanimate     2.4849066
-## 538               NP      give      animate      inanimate     1.9459101
-## 539               NP      give      animate      inanimate     0.6931472
-## 540               NP       owe    inanimate      inanimate     0.0000000
-## 541               NP      give      animate      inanimate     1.3862944
-## 542               NP      give      animate      inanimate     2.7080502
-## 543               NP      give      animate      inanimate     1.0986123
-## 544               NP      give      animate      inanimate     1.7917595
-## 545               NP      give      animate      inanimate     2.1972246
-## 546               NP      give      animate      inanimate     1.6094379
-## 547               NP      give      animate      inanimate     1.3862944
-## 548               NP     serve      animate      inanimate     1.7917595
-## 549               NP      give      animate      inanimate     2.9444390
-## 550               NP     award      animate      inanimate     2.3025851
-## 551               NP      give      animate      inanimate     2.7080502
-## 552               NP       pay      animate      inanimate     1.3862944
-## 553               NP      give      animate      inanimate     1.6094379
-## 554               NP       pay      animate      inanimate     0.0000000
-## 555               NP      give      animate      inanimate     1.6094379
-## 556               PP      give      animate      inanimate     0.0000000
-## 557               PP      give    inanimate      inanimate     1.7917595
-## 558               PP      give      animate      inanimate     1.3862944
-## 559               PP      give      animate      inanimate     1.3862944
-## 560               PP      sell      animate      inanimate     1.7917595
-## 561               PP      give    inanimate      inanimate     0.6931472
-## 562               PP      give    inanimate      inanimate     0.6931472
-## 563               PP      give      animate      inanimate     1.3862944
-## 564               PP      send      animate      inanimate     2.5649494
-## 565               PP     offer      animate      inanimate     1.9459101
-## 566               PP     offer      animate      inanimate     0.0000000
-## 567               PP      send    inanimate      inanimate     1.3862944
-## 568               PP      send      animate      inanimate     1.7917595
-## 569               PP      sell      animate      inanimate     1.6094379
-## 570               PP   present      animate      inanimate     1.0986123
-## 571               PP      sell      animate      inanimate     1.6094379
-## 572               PP    submit      animate      inanimate     0.6931472
-## 573               PP      sell      animate      inanimate     1.6094379
-## 574               PP      give      animate      inanimate     1.0986123
-## 575               PP      give      animate      inanimate     1.3862944
-## 576               PP     offer      animate      inanimate     1.3862944
-## 577               PP      sell      animate      inanimate     1.0986123
-## 578               PP     offer      animate      inanimate     1.3862944
-## 579               PP      give    inanimate      inanimate     0.6931472
-## 580               PP      sell      animate      inanimate     0.6931472
-## 581               PP      slip      animate      inanimate     1.0986123
-## 582               PP      sell      animate      inanimate     1.7917595
-## 583               PP       pay      animate      inanimate     1.3862944
-## 584               PP      sell      animate      inanimate     1.0986123
-## 585               PP      sell      animate      inanimate     1.7917595
-## 586               PP      lend    inanimate      inanimate     0.0000000
-## 587               PP      sell      animate      inanimate     0.0000000
-## 588               PP      sell      animate      inanimate     1.9459101
-## 589               PP      give      animate      inanimate     1.3862944
-## 590               PP      sell      animate      inanimate     1.3862944
-## 591               PP      loan      animate      inanimate     0.0000000
-## 592               PP      send      animate      inanimate     0.6931472
-## 593               PP      give      animate      inanimate     1.3862944
-## 594               PP      give    inanimate      inanimate     0.0000000
-## 595               PP      sell      animate      inanimate     1.7917595
-## 596               PP       pay      animate      inanimate     0.6931472
-## 597               PP      sell      animate      inanimate     2.6390573
-## 598               PP      make      animate      inanimate     1.3862944
-## 599               PP      give      animate      inanimate     0.0000000
-## 600               PP      sell      animate      inanimate     2.0794415
-## 601               PP      send      animate      inanimate     0.6931472
-## 602               PP       pay      animate      inanimate     1.3862944
-## 603               PP     offer    inanimate      inanimate     1.9459101
-## 604               PP      deny      animate      inanimate     0.0000000
-## 605               PP      sell      animate      inanimate     1.9459101
-## 606               PP      sell      animate      inanimate     2.3978953
-## 607               PP       pay      animate      inanimate     1.0986123
-## 608               PP      sell      animate      inanimate     1.6094379
-## 609               PP      sell      animate      inanimate     0.6931472
-## 610               PP      give    inanimate      inanimate     0.6931472
-## 611               PP     bring      animate      inanimate     1.0986123
-## 612               PP       pay      animate      inanimate     0.6931472
-## 613               PP      sell      animate      inanimate     1.3862944
-## 614               PP      sell      animate      inanimate     1.6094379
-## 615               PP     offer      animate      inanimate     1.0986123
-## 616               PP      sell      animate      inanimate     1.9459101
-## 617               PP      sell      animate      inanimate     0.0000000
-## 618               PP      show      animate      inanimate     1.0986123
-## 619               PP     offer      animate      inanimate     1.0986123
-## 620               PP     award      animate      inanimate     1.6094379
-## 621               PP     award      animate      inanimate     0.0000000
-## 622               PP      send      animate      inanimate     0.0000000
-## 623               PP   deliver      animate      inanimate     1.3862944
-## 624               PP      lend    inanimate      inanimate     0.0000000
-## 625               PP     grant      animate      inanimate     0.0000000
-## 626               PP      sell      animate      inanimate     1.0986123
-## 627               PP       pay      animate      inanimate     1.6094379
-## 628               PP      sell      animate      inanimate     1.3862944
-## 629               PP      sell      animate      inanimate     2.0794415
-## 630               PP      sell      animate      inanimate     1.0986123
-## 631               PP      send      animate      inanimate     2.4849066
-## 632               PP      give      animate      inanimate     0.6931472
-## 633               PP      give      animate      inanimate     0.6931472
-## 634               PP      sell      animate      inanimate     0.6931472
-## 635               PP      give      animate      inanimate     0.0000000
-## 636               PP      give    inanimate      inanimate     0.6931472
-## 637               PP      give    inanimate      inanimate     1.0986123
-## 638               PP       pay      animate      inanimate     0.6931472
-## 639               PP       pay      animate      inanimate     0.6931472
-## 640               PP      give      animate      inanimate     0.0000000
-## 641               PP      sell      animate      inanimate     1.6094379
-## 642               PP      sell      animate      inanimate     1.9459101
-## 643               PP      give      animate      inanimate     0.0000000
-## 644               PP      lend    inanimate      inanimate     0.0000000
-## 645               PP      sell      animate      inanimate     0.6931472
-## 646               PP      give      animate      inanimate     0.6931472
-## 647               PP      sell      animate      inanimate     1.9459101
-## 648               PP      sell      animate      inanimate     1.0986123
-## 649               PP      sell      animate      inanimate     1.0986123
-## 650               PP      sell      animate      inanimate     1.9459101
-## 651               PP      sell      animate      inanimate     1.9459101
-## 652               PP      sell      animate      inanimate     1.0986123
-## 653               PP      give    inanimate      inanimate     1.6094379
-## 654               PP     offer      animate      inanimate     1.0986123
-## 655               PP      give    inanimate      inanimate     1.9459101
-## 656               PP     offer      animate      inanimate     1.6094379
-## 657               PP      read      animate      inanimate     0.0000000
-## 658               PP      sell      animate      inanimate     1.6094379
-## 659               PP      sell      animate      inanimate     0.6931472
-## 660               PP      lend      animate      inanimate     0.0000000
-## 661               PP      lend      animate      inanimate     0.0000000
-## 662               PP      sell      animate      inanimate     0.6931472
-## 663               PP     bring    inanimate      inanimate     0.6931472
-## 664               PP      sell      animate      inanimate     1.6094379
-## 665               PP      give      animate      inanimate     1.6094379
-## 666               PP      sell      animate      inanimate     0.0000000
-## 667               PP  allocate    inanimate      inanimate     0.6931472
-## 668               PP      send      animate      inanimate     1.0986123
-## 669               PP      give      animate      inanimate     1.3862944
-## 670               PP      give    inanimate      inanimate     1.7917595
-## 671               PP      mail      animate      inanimate     0.6931472
-## 672               PP      give    inanimate      inanimate     1.0986123
-## 673               PP  bequeath      animate      inanimate     1.6094379
-## 674               PP      give    inanimate      inanimate     0.6931472
-## 675               PP      give      animate      inanimate     1.0986123
-## 676               PP      sell      animate      inanimate     1.7917595
-## 677               PP      sell      animate      inanimate     0.6931472
-## 678               PP      sell      animate      inanimate     1.7917595
-## 679               PP      give    inanimate      inanimate     0.6931472
-## 680               PP    resell      animate      inanimate     0.0000000
-## 681               PP      sell      animate      inanimate     1.6094379
-## 682               PP      give      animate      inanimate     1.6094379
-## 683               PP      give      animate      inanimate     0.0000000
-## 684               PP      lend    inanimate      inanimate     0.6931472
-## 685               PP      sell      animate      inanimate     1.6094379
-## 686               PP     issue      animate      inanimate     1.7917595
-## 687               PP      sell      animate      inanimate     0.6931472
-## 688               PP      cede      animate      inanimate     0.6931472
-## 689               PP      give    inanimate      inanimate     1.0986123
-## 690               PP      sell      animate      inanimate     2.4849066
-## 691               PP     bring    inanimate      inanimate     0.0000000
-## 692               PP     issue      animate      inanimate     1.0986123
-## 693               PP      sell      animate      inanimate     2.1972246
-## 694               PP      sell      animate      inanimate     2.6390573
-## 695               PP       get      animate      inanimate     0.0000000
-## 696               PP     issue      animate      inanimate     2.0794415
-## 697               PP      send      animate      inanimate     1.6094379
-## 698               PP      give      animate      inanimate     0.0000000
-## 699               PP     issue      animate      inanimate     1.9459101
-## 700               PP      give    inanimate      inanimate     0.6931472
-## 701               PP hand_over      animate      inanimate     0.6931472
-## 702               PP      give      animate      inanimate     0.0000000
-## 703               PP      give    inanimate      inanimate     0.6931472
-## 704               PP      sell      animate      inanimate     0.0000000
-## 705               PP      deny      animate      inanimate     0.6931472
-## 706               PP      deal    inanimate      inanimate     1.0986123
-## 707               PP      give      animate      inanimate     0.0000000
-## 708               PP      give    inanimate      inanimate     1.0986123
-## 709               PP      give      animate      inanimate     0.0000000
-## 710               PP      give      animate      inanimate     0.0000000
-## 711               PP     issue      animate      inanimate     0.6931472
-## 712               PP      sell      animate      inanimate     0.0000000
-## 713               PP      give      animate      inanimate     2.4849066
-## 714               PP      sell      animate      inanimate     1.3862944
-## 715               PP      sell      animate      inanimate     1.9459101
-## 716               PP      sell      animate      inanimate     1.3862944
-## 717               PP      sell      animate      inanimate     0.6931472
-## 718               PP      sell      animate      inanimate     1.6094379
-## 719               PP      give      animate      inanimate     1.0986123
-## 720               PP     grant      animate      inanimate     1.0986123
-## 721               PP      sell      animate      inanimate     1.0986123
-## 722               PP      sell      animate      inanimate     0.6931472
-## 723               PP      sell      animate      inanimate     1.0986123
-## 724               PP      sell      animate      inanimate     1.0986123
-## 725               PP     award      animate      inanimate     2.1972246
-## 726               PP     award      animate      inanimate     1.3862944
-## 727               PP      sell      animate      inanimate     1.7917595
-## 728               PP      sell      animate      inanimate     2.1972246
-## 729               PP     repay      animate      inanimate     1.7917595
-## 730               PP      sell      animate      inanimate     2.0794415
-## 731               PP      sell      animate      inanimate     2.3978953
-## 732               PP      sell      animate      inanimate     1.7917595
-## 733               PP      sell      animate      inanimate     0.0000000
-## 734               PP     bring      animate      inanimate     0.6931472
-## 735               PP      sell      animate      inanimate     0.0000000
-## 736               PP     trade      animate        animate     1.6094379
-## 737               PP    supply      animate      inanimate     0.0000000
-## 738               PP       pay      animate      inanimate     1.0986123
-## 739               PP      give    inanimate      inanimate     0.6931472
-## 740               PP      sell      animate      inanimate     2.7080502
-## 741               PP       pay      animate      inanimate     0.6931472
-## 742               PP      sell      animate      inanimate     0.0000000
-## 743               PP      cede      animate      inanimate     1.9459101
-## 744               PP  sell_off      animate      inanimate     1.6094379
-## 745               PP     offer      animate      inanimate     0.6931472
-## 746               PP      sell      animate      inanimate     2.1972246
-## 747               PP   deliver      animate      inanimate     1.3862944
-## 748               PP    funnel      animate      inanimate     0.0000000
-## 749               PP     grant      animate      inanimate     1.3862944
-## 750               PP      give    inanimate      inanimate     0.6931472
-## 751               PP    prepay      animate      inanimate     1.9459101
-## 752               PP      give    inanimate      inanimate     0.6931472
-## 753               PP     offer      animate      inanimate     1.7917595
-## 754               PP      sell      animate      inanimate     1.0986123
-## 755               PP      lend    inanimate      inanimate     1.0986123
-## 756               PP      sell      animate      inanimate     0.6931472
-## 757               PP      sell      animate      inanimate     1.6094379
-## 758               PP      give      animate      inanimate     1.3862944
-## 759               PP      give      animate      inanimate     0.6931472
-## 760               PP      send      animate      inanimate     2.0794415
-## 761               PP       pay      animate      inanimate     0.6931472
-## 762               PP      give      animate      inanimate     0.0000000
-## 763               PP      send      animate      inanimate     0.6931472
-## 764               PP    extend      animate      inanimate     1.9459101
-## 765               PP      give      animate      inanimate     1.6094379
-## 766               PP      give      animate      inanimate     0.6931472
-## 767               PP      give    inanimate      inanimate     1.3862944
-## 768               PP      sell      animate      inanimate     1.6094379
-## 769               PP      sell      animate      inanimate     1.3862944
-## 770               PP     issue      animate      inanimate     0.0000000
-## 771               PP      give      animate      inanimate     0.0000000
-## 772               PP     lease      animate      inanimate     1.3862944
-## 773               PP    extend      animate      inanimate     0.6931472
-## 774               PP      send      animate      inanimate     0.6931472
-## 775               PP     offer      animate      inanimate     0.6931472
-## 776               PP      sell      animate      inanimate     0.6931472
-## 777               PP      sell      animate      inanimate     2.3025851
-## 778               PP       pay      animate      inanimate     1.3862944
-## 779               PP       pay      animate      inanimate     1.9459101
-## 780               PP     carry      animate      inanimate     0.6931472
-## 781               PP     award      animate      inanimate     0.6931472
-## 782               PP      sell      animate      inanimate     1.3862944
-## 783               PP      make      animate      inanimate     1.0986123
-## 784               PP      lend      animate      inanimate     1.3862944
-## 785               PP      send      animate      inanimate     0.6931472
-## 786               PP     award      animate      inanimate     1.6094379
-## 787               PP      sell      animate      inanimate     1.0986123
-## 788               PP      sell      animate      inanimate     1.6094379
-## 789               PP      sell      animate      inanimate     1.3862944
-## 790               PP     offer      animate      inanimate     1.3862944
-## 791               PP     offer      animate      inanimate     0.6931472
-## 792               PP     award      animate      inanimate     0.6931472
-## 793               PP      send      animate      inanimate     0.6931472
-## 794               PP      send      animate      inanimate     0.6931472
-## 795               PP       pay      animate      inanimate     0.0000000
-## 796               PP      sell      animate      inanimate     2.7725887
-## 797               PP      send      animate      inanimate     0.6931472
-## 798               PP      sell      animate      inanimate     0.6931472
-## 799               PP      sell      animate      inanimate     1.3862944
-## 800               PP      give      animate      inanimate     0.0000000
-## 801               PP      sell      animate      inanimate     2.1972246
-## 802               PP      give      animate      inanimate     0.0000000
-## 803               PP      give    inanimate      inanimate     0.6931472
-## 804               PP      give    inanimate      inanimate     0.6931472
-## 805               PP      give    inanimate      inanimate     0.0000000
-## 806               PP       pay      animate      inanimate     0.6931472
-## 807               PP      tell      animate      inanimate     0.0000000
-## 808               PP       pay      animate      inanimate     1.6094379
-## 809               PP      sell      animate      inanimate     1.7917595
-## 810               PP      sell      animate      inanimate     1.7917595
-## 811               PP     award      animate      inanimate     1.6094379
-## 812               PP     award      animate      inanimate     1.7917595
-## 813               PP      sell      animate      inanimate     1.3862944
-## 814               PP     grant    inanimate      inanimate     0.6931472
-## 815               PP      give    inanimate      inanimate     0.6931472
-## 816               PP     offer      animate      inanimate     0.6931472
-## 817               PP       pay      animate      inanimate     0.6931472
-## 818               PP      give      animate      inanimate     0.0000000
-## 819               PP      give    inanimate      inanimate     0.0000000
-## 820               PP      give    inanimate      inanimate     0.0000000
-## 821               PP      sell      animate      inanimate     1.7917595
-## 822               PP sell_back      animate      inanimate     2.3025851
-## 823               PP      sell      animate      inanimate     1.6094379
-## 824               PP      deal    inanimate      inanimate     1.0986123
-## 825               PP       pay      animate      inanimate     1.3862944
-## 826               PP    tender      animate      inanimate     0.6931472
-## 827               PP      send      animate      inanimate     1.7917595
-## 828               PP      sell      animate      inanimate     0.0000000
-## 829               PP      sell      animate      inanimate     0.0000000
-## 830               PP      sell      animate      inanimate     0.6931472
-## 831               PP      sell      animate      inanimate     1.6094379
-## 832               PP      sell      animate      inanimate     1.0986123
-## 833               PP      sell      animate      inanimate     1.6094379
-## 834               PP       run      animate      inanimate     0.0000000
-## 835               PP      sell      animate      inanimate     1.0986123
-## 836               PP     offer      animate      inanimate     2.1972246
-## 837               PP      tell      animate      inanimate     0.6931472
-## 838               PP      give      animate      inanimate     0.0000000
-## 839               PP      sell      animate      inanimate     1.6094379
-## 840               PP      send      animate      inanimate     0.6931472
-## 841               PP   promise      animate      inanimate     1.3862944
-## 842               PP       pay      animate      inanimate     1.6094379
-## 843               PP      sell      animate      inanimate     0.0000000
-## 844               PP      sell      animate      inanimate     1.6094379
-## 845               PP      sell      animate      inanimate     0.0000000
-## 846               PP      sell      animate      inanimate     1.0986123
-## 847               PP      sell      animate      inanimate     2.3978953
-## 848               PP      sell      animate      inanimate     1.3862944
-## 849               PP       pay      animate      inanimate     1.6094379
-## 850               PP      lend      animate      inanimate     1.7917595
-## 851               PP      sell      animate      inanimate     1.7917595
-## 852               PP     award      animate      inanimate     2.6390573
-## 853               PP      give      animate      inanimate     0.0000000
-## 854               PP      sell      animate      inanimate     1.3862944
-## 855               PP    resell      animate      inanimate     0.0000000
-## 856               PP      sell      animate      inanimate     0.6931472
-## 857               PP     offer      animate      inanimate     1.3862944
-## 858               PP     lease      animate      inanimate     1.6094379
-## 859               PP     lease      animate      inanimate     1.6094379
-## 860               PP     lease      animate      inanimate     0.6931472
-## 861               PP    resell      animate      inanimate     0.0000000
-## 862               PP       pay      animate      inanimate     0.6931472
-## 863               PP     bring      animate      inanimate     2.6390573
-## 864               PP       pay      animate      inanimate     0.6931472
-## 865               PP      give      animate      inanimate     0.0000000
-## 866               PP      sell      animate      inanimate     1.9459101
-## 867               PP      sell      animate      inanimate     1.0986123
-## 868               PP     offer      animate      inanimate     0.6931472
-## 869               PP      give    inanimate      inanimate     0.6931472
-## 870               PP      give    inanimate      inanimate     0.0000000
-## 871               PP       owe      animate      inanimate     1.0986123
-## 872               PP      send      animate      inanimate     0.6931472
-## 873               PP      sell      animate      inanimate     1.7917595
-## 874               PP      show      animate      inanimate     0.0000000
-## 875               PP      sell      animate      inanimate     1.3862944
-## 876               PP      sell      animate      inanimate     1.3862944
-## 877               PP      sell      animate      inanimate     1.6094379
-## 878               PP      send      animate      inanimate     1.0986123
-## 879               PP      sell      animate      inanimate     1.0986123
-## 880               PP      sell      animate      inanimate     1.9459101
-## 881               PP      sell      animate      inanimate     1.3862944
-## 882               PP  allocate    inanimate      inanimate     1.9459101
-## 883               PP  allocate    inanimate      inanimate     0.6931472
-## 884               PP     award    inanimate      inanimate     1.9459101
-## 885               PP       pay      animate      inanimate     0.6931472
-## 886               PP      sell      animate      inanimate     1.6094379
-## 887               PP      make      animate      inanimate     1.0986123
-## 888               PP      give      animate      inanimate     1.0986123
-## 889               PP      give      animate      inanimate     0.6931472
-## 890               PP      sell      animate      inanimate     1.0986123
-## 891               PP      sell      animate      inanimate     1.0986123
-## 892               PP      give      animate      inanimate     0.6931472
-## 893               PP      sell      animate      inanimate     0.0000000
-## 894               PP      sell      animate      inanimate     1.6094379
-## 895               PP      sell      animate      inanimate     2.5649494
-## 896               PP      sell      animate      inanimate     0.6931472
-## 897               PP      sell      animate      inanimate     2.3978953
-## 898               PP      give      animate      inanimate     1.0986123
-## 899               PP      give      animate      inanimate     1.0986123
-## 900               PP     offer      animate      inanimate     1.7917595
-## 901               PP       pay      animate      inanimate     0.0000000
-## 902               PP      give      animate      inanimate     1.3862944
-## 903               PP      give    inanimate      inanimate     1.0986123
-##     is_realization_NP A B C D
-## 1                TRUE 1 2 3 4
-## 2                TRUE 1 2 3 4
-## 3                TRUE 1 2 3 4
-## 4                TRUE 1 2 3 4
-## 5                TRUE 1 2 3 4
-## 6                TRUE 1 2 3 4
-## 7                TRUE 1 2 3 4
-## 8                TRUE 1 2 3 4
-## 9                TRUE 1 2 3 4
-## 10               TRUE 1 2 3 4
-## 11               TRUE 1 2 3 4
-## 12               TRUE 1 2 3 4
-## 13               TRUE 1 2 3 4
-## 14               TRUE 1 2 3 4
-## 15               TRUE 1 2 3 4
-## 16               TRUE 1 2 3 4
-## 17               TRUE 1 2 3 4
-## 18               TRUE 1 2 3 4
-## 19               TRUE 1 2 3 4
-## 20               TRUE 1 2 3 4
-## 21               TRUE 1 2 3 4
-## 22               TRUE 1 2 3 4
-## 23               TRUE 1 2 3 4
-## 24               TRUE 1 2 3 4
-## 25               TRUE 1 2 3 4
-## 26               TRUE 1 2 3 4
-## 27               TRUE 1 2 3 4
-## 28               TRUE 1 2 3 4
-## 29               TRUE 1 2 3 4
-## 30               TRUE 1 2 3 4
-## 31               TRUE 1 2 3 4
-## 32               TRUE 1 2 3 4
-## 33               TRUE 1 2 3 4
-## 34               TRUE 1 2 3 4
-## 35               TRUE 1 2 3 4
-## 36               TRUE 1 2 3 4
-## 37               TRUE 1 2 3 4
-## 38               TRUE 1 2 3 4
-## 39               TRUE 1 2 3 4
-## 40               TRUE 1 2 3 4
-## 41               TRUE 1 2 3 4
-## 42               TRUE 1 2 3 4
-## 43               TRUE 1 2 3 4
-## 44               TRUE 1 2 3 4
-## 45               TRUE 1 2 3 4
-## 46               TRUE 1 2 3 4
-## 47               TRUE 1 2 3 4
-## 48               TRUE 1 2 3 4
-## 49               TRUE 1 2 3 4
-## 50               TRUE 1 2 3 4
-## 51               TRUE 1 2 3 4
-## 52               TRUE 1 2 3 4
-## 53               TRUE 1 2 3 4
-## 54               TRUE 1 2 3 4
-## 55               TRUE 1 2 3 4
-## 56               TRUE 1 2 3 4
-## 57               TRUE 1 2 3 4
-## 58               TRUE 1 2 3 4
-## 59               TRUE 1 2 3 4
-## 60               TRUE 1 2 3 4
-## 61               TRUE 1 2 3 4
-## 62               TRUE 1 2 3 4
-## 63               TRUE 1 2 3 4
-## 64               TRUE 1 2 3 4
-## 65               TRUE 1 2 3 4
-## 66               TRUE 1 2 3 4
-## 67               TRUE 1 2 3 4
-## 68               TRUE 1 2 3 4
-## 69               TRUE 1 2 3 4
-## 70               TRUE 1 2 3 4
-## 71               TRUE 1 2 3 4
-## 72               TRUE 1 2 3 4
-## 73               TRUE 1 2 3 4
-## 74               TRUE 1 2 3 4
-## 75               TRUE 1 2 3 4
-## 76               TRUE 1 2 3 4
-## 77               TRUE 1 2 3 4
-## 78               TRUE 1 2 3 4
-## 79               TRUE 1 2 3 4
-## 80               TRUE 1 2 3 4
-## 81               TRUE 1 2 3 4
-## 82               TRUE 1 2 3 4
-## 83               TRUE 1 2 3 4
-## 84               TRUE 1 2 3 4
-## 85               TRUE 1 2 3 4
-## 86               TRUE 1 2 3 4
-## 87               TRUE 1 2 3 4
-## 88               TRUE 1 2 3 4
-## 89               TRUE 1 2 3 4
-## 90               TRUE 1 2 3 4
-## 91               TRUE 1 2 3 4
-## 92               TRUE 1 2 3 4
-## 93               TRUE 1 2 3 4
-## 94               TRUE 1 2 3 4
-## 95               TRUE 1 2 3 4
-## 96               TRUE 1 2 3 4
-## 97               TRUE 1 2 3 4
-## 98               TRUE 1 2 3 4
-## 99               TRUE 1 2 3 4
-## 100              TRUE 1 2 3 4
-## 101              TRUE 1 2 3 4
-## 102              TRUE 1 2 3 4
-## 103              TRUE 1 2 3 4
-## 104              TRUE 1 2 3 4
-## 105              TRUE 1 2 3 4
-## 106              TRUE 1 2 3 4
-## 107              TRUE 1 2 3 4
-## 108              TRUE 1 2 3 4
-## 109              TRUE 1 2 3 4
-## 110              TRUE 1 2 3 4
-## 111              TRUE 1 2 3 4
-## 112              TRUE 1 2 3 4
-## 113              TRUE 1 2 3 4
-## 114              TRUE 1 2 3 4
-## 115              TRUE 1 2 3 4
-## 116              TRUE 1 2 3 4
-## 117              TRUE 1 2 3 4
-## 118              TRUE 1 2 3 4
-## 119              TRUE 1 2 3 4
-## 120              TRUE 1 2 3 4
-## 121              TRUE 1 2 3 4
-## 122              TRUE 1 2 3 4
-## 123              TRUE 1 2 3 4
-## 124              TRUE 1 2 3 4
-## 125              TRUE 1 2 3 4
-## 126              TRUE 1 2 3 4
-## 127              TRUE 1 2 3 4
-## 128              TRUE 1 2 3 4
-## 129              TRUE 1 2 3 4
-## 130              TRUE 1 2 3 4
-## 131              TRUE 1 2 3 4
-## 132              TRUE 1 2 3 4
-## 133              TRUE 1 2 3 4
-## 134              TRUE 1 2 3 4
-## 135              TRUE 1 2 3 4
-## 136              TRUE 1 2 3 4
-## 137              TRUE 1 2 3 4
-## 138              TRUE 1 2 3 4
-## 139              TRUE 1 2 3 4
-## 140              TRUE 1 2 3 4
-## 141              TRUE 1 2 3 4
-## 142              TRUE 1 2 3 4
-## 143              TRUE 1 2 3 4
-## 144              TRUE 1 2 3 4
-## 145              TRUE 1 2 3 4
-## 146              TRUE 1 2 3 4
-## 147              TRUE 1 2 3 4
-## 148              TRUE 1 2 3 4
-## 149              TRUE 1 2 3 4
-## 150              TRUE 1 2 3 4
-## 151              TRUE 1 2 3 4
-## 152              TRUE 1 2 3 4
-## 153              TRUE 1 2 3 4
-## 154              TRUE 1 2 3 4
-## 155              TRUE 1 2 3 4
-## 156              TRUE 1 2 3 4
-## 157              TRUE 1 2 3 4
-## 158              TRUE 1 2 3 4
-## 159              TRUE 1 2 3 4
-## 160              TRUE 1 2 3 4
-## 161              TRUE 1 2 3 4
-## 162              TRUE 1 2 3 4
-## 163              TRUE 1 2 3 4
-## 164              TRUE 1 2 3 4
-## 165              TRUE 1 2 3 4
-## 166              TRUE 1 2 3 4
-## 167              TRUE 1 2 3 4
-## 168              TRUE 1 2 3 4
-## 169              TRUE 1 2 3 4
-## 170              TRUE 1 2 3 4
-## 171              TRUE 1 2 3 4
-## 172              TRUE 1 2 3 4
-## 173              TRUE 1 2 3 4
-## 174              TRUE 1 2 3 4
-## 175              TRUE 1 2 3 4
-## 176              TRUE 1 2 3 4
-## 177              TRUE 1 2 3 4
-## 178              TRUE 1 2 3 4
-## 179              TRUE 1 2 3 4
-## 180              TRUE 1 2 3 4
-## 181              TRUE 1 2 3 4
-## 182              TRUE 1 2 3 4
-## 183              TRUE 1 2 3 4
-## 184              TRUE 1 2 3 4
-## 185              TRUE 1 2 3 4
-## 186              TRUE 1 2 3 4
-## 187              TRUE 1 2 3 4
-## 188              TRUE 1 2 3 4
-## 189              TRUE 1 2 3 4
-## 190              TRUE 1 2 3 4
-## 191              TRUE 1 2 3 4
-## 192              TRUE 1 2 3 4
-## 193              TRUE 1 2 3 4
-## 194              TRUE 1 2 3 4
-## 195              TRUE 1 2 3 4
-## 196              TRUE 1 2 3 4
-## 197              TRUE 1 2 3 4
-## 198              TRUE 1 2 3 4
-## 199              TRUE 1 2 3 4
-## 200              TRUE 1 2 3 4
-## 201              TRUE 1 2 3 4
-## 202              TRUE 1 2 3 4
-## 203              TRUE 1 2 3 4
-## 204              TRUE 1 2 3 4
-## 205              TRUE 1 2 3 4
-## 206              TRUE 1 2 3 4
-## 207              TRUE 1 2 3 4
-## 208              TRUE 1 2 3 4
-## 209              TRUE 1 2 3 4
-## 210              TRUE 1 2 3 4
-## 211              TRUE 1 2 3 4
-## 212              TRUE 1 2 3 4
-## 213              TRUE 1 2 3 4
-## 214              TRUE 1 2 3 4
-## 215              TRUE 1 2 3 4
-## 216              TRUE 1 2 3 4
-## 217              TRUE 1 2 3 4
-## 218              TRUE 1 2 3 4
-## 219              TRUE 1 2 3 4
-## 220              TRUE 1 2 3 4
-## 221              TRUE 1 2 3 4
-## 222              TRUE 1 2 3 4
-## 223              TRUE 1 2 3 4
-## 224              TRUE 1 2 3 4
-## 225              TRUE 1 2 3 4
-## 226              TRUE 1 2 3 4
-## 227              TRUE 1 2 3 4
-## 228              TRUE 1 2 3 4
-## 229              TRUE 1 2 3 4
-## 230              TRUE 1 2 3 4
-## 231              TRUE 1 2 3 4
-## 232              TRUE 1 2 3 4
-## 233              TRUE 1 2 3 4
-## 234              TRUE 1 2 3 4
-## 235              TRUE 1 2 3 4
-## 236              TRUE 1 2 3 4
-## 237              TRUE 1 2 3 4
-## 238              TRUE 1 2 3 4
-## 239              TRUE 1 2 3 4
-## 240              TRUE 1 2 3 4
-## 241              TRUE 1 2 3 4
-## 242              TRUE 1 2 3 4
-## 243              TRUE 1 2 3 4
-## 244              TRUE 1 2 3 4
-## 245              TRUE 1 2 3 4
-## 246              TRUE 1 2 3 4
-## 247              TRUE 1 2 3 4
-## 248              TRUE 1 2 3 4
-## 249              TRUE 1 2 3 4
-## 250              TRUE 1 2 3 4
-## 251              TRUE 1 2 3 4
-## 252              TRUE 1 2 3 4
-## 253              TRUE 1 2 3 4
-## 254              TRUE 1 2 3 4
-## 255              TRUE 1 2 3 4
-## 256              TRUE 1 2 3 4
-## 257              TRUE 1 2 3 4
-## 258              TRUE 1 2 3 4
-## 259              TRUE 1 2 3 4
-## 260              TRUE 1 2 3 4
-## 261              TRUE 1 2 3 4
-## 262              TRUE 1 2 3 4
-## 263              TRUE 1 2 3 4
-## 264              TRUE 1 2 3 4
-## 265              TRUE 1 2 3 4
-## 266              TRUE 1 2 3 4
-## 267              TRUE 1 2 3 4
-## 268              TRUE 1 2 3 4
-## 269              TRUE 1 2 3 4
-## 270              TRUE 1 2 3 4
-## 271              TRUE 1 2 3 4
-## 272              TRUE 1 2 3 4
-## 273              TRUE 1 2 3 4
-## 274              TRUE 1 2 3 4
-## 275              TRUE 1 2 3 4
-## 276              TRUE 1 2 3 4
-## 277              TRUE 1 2 3 4
-## 278              TRUE 1 2 3 4
-## 279              TRUE 1 2 3 4
-## 280              TRUE 1 2 3 4
-## 281              TRUE 1 2 3 4
-## 282              TRUE 1 2 3 4
-## 283              TRUE 1 2 3 4
-## 284              TRUE 1 2 3 4
-## 285              TRUE 1 2 3 4
-## 286              TRUE 1 2 3 4
-## 287              TRUE 1 2 3 4
-## 288              TRUE 1 2 3 4
-## 289              TRUE 1 2 3 4
-## 290              TRUE 1 2 3 4
-## 291              TRUE 1 2 3 4
-## 292              TRUE 1 2 3 4
-## 293              TRUE 1 2 3 4
-## 294              TRUE 1 2 3 4
-## 295              TRUE 1 2 3 4
-## 296              TRUE 1 2 3 4
-## 297              TRUE 1 2 3 4
-## 298              TRUE 1 2 3 4
-## 299              TRUE 1 2 3 4
-## 300              TRUE 1 2 3 4
-## 301              TRUE 1 2 3 4
-## 302              TRUE 1 2 3 4
-## 303              TRUE 1 2 3 4
-## 304              TRUE 1 2 3 4
-## 305              TRUE 1 2 3 4
-## 306              TRUE 1 2 3 4
-## 307              TRUE 1 2 3 4
-## 308              TRUE 1 2 3 4
-## 309              TRUE 1 2 3 4
-## 310              TRUE 1 2 3 4
-## 311              TRUE 1 2 3 4
-## 312              TRUE 1 2 3 4
-## 313              TRUE 1 2 3 4
-## 314              TRUE 1 2 3 4
-## 315              TRUE 1 2 3 4
-## 316              TRUE 1 2 3 4
-## 317              TRUE 1 2 3 4
-## 318              TRUE 1 2 3 4
-## 319              TRUE 1 2 3 4
-## 320              TRUE 1 2 3 4
-## 321              TRUE 1 2 3 4
-## 322              TRUE 1 2 3 4
-## 323              TRUE 1 2 3 4
-## 324              TRUE 1 2 3 4
-## 325              TRUE 1 2 3 4
-## 326              TRUE 1 2 3 4
-## 327              TRUE 1 2 3 4
-## 328              TRUE 1 2 3 4
-## 329              TRUE 1 2 3 4
-## 330              TRUE 1 2 3 4
-## 331              TRUE 1 2 3 4
-## 332              TRUE 1 2 3 4
-## 333              TRUE 1 2 3 4
-## 334              TRUE 1 2 3 4
-## 335              TRUE 1 2 3 4
-## 336              TRUE 1 2 3 4
-## 337              TRUE 1 2 3 4
-## 338              TRUE 1 2 3 4
-## 339              TRUE 1 2 3 4
-## 340              TRUE 1 2 3 4
-## 341              TRUE 1 2 3 4
-## 342              TRUE 1 2 3 4
-## 343              TRUE 1 2 3 4
-## 344              TRUE 1 2 3 4
-## 345              TRUE 1 2 3 4
-## 346              TRUE 1 2 3 4
-## 347              TRUE 1 2 3 4
-## 348              TRUE 1 2 3 4
-## 349              TRUE 1 2 3 4
-## 350              TRUE 1 2 3 4
-## 351              TRUE 1 2 3 4
-## 352              TRUE 1 2 3 4
-## 353              TRUE 1 2 3 4
-## 354              TRUE 1 2 3 4
-## 355              TRUE 1 2 3 4
-## 356              TRUE 1 2 3 4
-## 357              TRUE 1 2 3 4
-## 358              TRUE 1 2 3 4
-## 359              TRUE 1 2 3 4
-## 360              TRUE 1 2 3 4
-## 361              TRUE 1 2 3 4
-## 362              TRUE 1 2 3 4
-## 363              TRUE 1 2 3 4
-## 364              TRUE 1 2 3 4
-## 365              TRUE 1 2 3 4
-## 366              TRUE 1 2 3 4
-## 367              TRUE 1 2 3 4
-## 368              TRUE 1 2 3 4
-## 369              TRUE 1 2 3 4
-## 370              TRUE 1 2 3 4
-## 371              TRUE 1 2 3 4
-## 372              TRUE 1 2 3 4
-## 373              TRUE 1 2 3 4
-## 374              TRUE 1 2 3 4
-## 375              TRUE 1 2 3 4
-## 376              TRUE 1 2 3 4
-## 377              TRUE 1 2 3 4
-## 378              TRUE 1 2 3 4
-## 379              TRUE 1 2 3 4
-## 380              TRUE 1 2 3 4
-## 381              TRUE 1 2 3 4
-## 382              TRUE 1 2 3 4
-## 383              TRUE 1 2 3 4
-## 384              TRUE 1 2 3 4
-## 385              TRUE 1 2 3 4
-## 386              TRUE 1 2 3 4
-## 387              TRUE 1 2 3 4
-## 388              TRUE 1 2 3 4
-## 389              TRUE 1 2 3 4
-## 390              TRUE 1 2 3 4
-## 391              TRUE 1 2 3 4
-## 392              TRUE 1 2 3 4
-## 393              TRUE 1 2 3 4
-## 394              TRUE 1 2 3 4
-## 395              TRUE 1 2 3 4
-## 396              TRUE 1 2 3 4
-## 397              TRUE 1 2 3 4
-## 398              TRUE 1 2 3 4
-## 399              TRUE 1 2 3 4
-## 400              TRUE 1 2 3 4
-## 401              TRUE 1 2 3 4
-## 402              TRUE 1 2 3 4
-## 403              TRUE 1 2 3 4
-## 404              TRUE 1 2 3 4
-## 405              TRUE 1 2 3 4
-## 406              TRUE 1 2 3 4
-## 407              TRUE 1 2 3 4
-## 408              TRUE 1 2 3 4
-## 409              TRUE 1 2 3 4
-## 410              TRUE 1 2 3 4
-## 411              TRUE 1 2 3 4
-## 412              TRUE 1 2 3 4
-## 413              TRUE 1 2 3 4
-## 414              TRUE 1 2 3 4
-## 415              TRUE 1 2 3 4
-## 416              TRUE 1 2 3 4
-## 417              TRUE 1 2 3 4
-## 418              TRUE 1 2 3 4
-## 419              TRUE 1 2 3 4
-## 420              TRUE 1 2 3 4
-## 421              TRUE 1 2 3 4
-## 422              TRUE 1 2 3 4
-## 423              TRUE 1 2 3 4
-## 424              TRUE 1 2 3 4
-## 425              TRUE 1 2 3 4
-## 426              TRUE 1 2 3 4
-## 427              TRUE 1 2 3 4
-## 428              TRUE 1 2 3 4
-## 429              TRUE 1 2 3 4
-## 430              TRUE 1 2 3 4
-## 431              TRUE 1 2 3 4
-## 432              TRUE 1 2 3 4
-## 433              TRUE 1 2 3 4
-## 434              TRUE 1 2 3 4
-## 435              TRUE 1 2 3 4
-## 436              TRUE 1 2 3 4
-## 437              TRUE 1 2 3 4
-## 438              TRUE 1 2 3 4
-## 439              TRUE 1 2 3 4
-## 440              TRUE 1 2 3 4
-## 441              TRUE 1 2 3 4
-## 442              TRUE 1 2 3 4
-## 443              TRUE 1 2 3 4
-## 444              TRUE 1 2 3 4
-## 445              TRUE 1 2 3 4
-## 446              TRUE 1 2 3 4
-## 447              TRUE 1 2 3 4
-## 448              TRUE 1 2 3 4
-## 449              TRUE 1 2 3 4
-## 450              TRUE 1 2 3 4
-## 451              TRUE 1 2 3 4
-## 452              TRUE 1 2 3 4
-## 453              TRUE 1 2 3 4
-## 454              TRUE 1 2 3 4
-## 455              TRUE 1 2 3 4
-## 456              TRUE 1 2 3 4
-## 457              TRUE 1 2 3 4
-## 458              TRUE 1 2 3 4
-## 459              TRUE 1 2 3 4
-## 460              TRUE 1 2 3 4
-## 461              TRUE 1 2 3 4
-## 462              TRUE 1 2 3 4
-## 463              TRUE 1 2 3 4
-## 464              TRUE 1 2 3 4
-## 465              TRUE 1 2 3 4
-## 466              TRUE 1 2 3 4
-## 467              TRUE 1 2 3 4
-## 468              TRUE 1 2 3 4
-## 469              TRUE 1 2 3 4
-## 470              TRUE 1 2 3 4
-## 471              TRUE 1 2 3 4
-## 472              TRUE 1 2 3 4
-## 473              TRUE 1 2 3 4
-## 474              TRUE 1 2 3 4
-## 475              TRUE 1 2 3 4
-## 476              TRUE 1 2 3 4
-## 477              TRUE 1 2 3 4
-## 478              TRUE 1 2 3 4
-## 479              TRUE 1 2 3 4
-## 480              TRUE 1 2 3 4
-## 481              TRUE 1 2 3 4
-## 482              TRUE 1 2 3 4
-## 483              TRUE 1 2 3 4
-## 484              TRUE 1 2 3 4
-## 485              TRUE 1 2 3 4
-## 486              TRUE 1 2 3 4
-## 487              TRUE 1 2 3 4
-## 488              TRUE 1 2 3 4
-## 489              TRUE 1 2 3 4
-## 490              TRUE 1 2 3 4
-## 491              TRUE 1 2 3 4
-## 492              TRUE 1 2 3 4
-## 493              TRUE 1 2 3 4
-## 494              TRUE 1 2 3 4
-## 495              TRUE 1 2 3 4
-## 496              TRUE 1 2 3 4
-## 497              TRUE 1 2 3 4
-## 498              TRUE 1 2 3 4
-## 499              TRUE 1 2 3 4
-## 500              TRUE 1 2 3 4
-## 501              TRUE 1 2 3 4
-## 502              TRUE 1 2 3 4
-## 503              TRUE 1 2 3 4
-## 504              TRUE 1 2 3 4
-## 505              TRUE 1 2 3 4
-## 506              TRUE 1 2 3 4
-## 507              TRUE 1 2 3 4
-## 508              TRUE 1 2 3 4
-## 509              TRUE 1 2 3 4
-## 510              TRUE 1 2 3 4
-## 511              TRUE 1 2 3 4
-## 512              TRUE 1 2 3 4
-## 513              TRUE 1 2 3 4
-## 514              TRUE 1 2 3 4
-## 515              TRUE 1 2 3 4
-## 516              TRUE 1 2 3 4
-## 517              TRUE 1 2 3 4
-## 518              TRUE 1 2 3 4
-## 519              TRUE 1 2 3 4
-## 520              TRUE 1 2 3 4
-## 521              TRUE 1 2 3 4
-## 522              TRUE 1 2 3 4
-## 523              TRUE 1 2 3 4
-## 524              TRUE 1 2 3 4
-## 525              TRUE 1 2 3 4
-## 526              TRUE 1 2 3 4
-## 527              TRUE 1 2 3 4
-## 528              TRUE 1 2 3 4
-## 529              TRUE 1 2 3 4
-## 530              TRUE 1 2 3 4
-## 531              TRUE 1 2 3 4
-## 532              TRUE 1 2 3 4
-## 533              TRUE 1 2 3 4
-## 534              TRUE 1 2 3 4
-## 535              TRUE 1 2 3 4
-## 536              TRUE 1 2 3 4
-## 537              TRUE 1 2 3 4
-## 538              TRUE 1 2 3 4
-## 539              TRUE 1 2 3 4
-## 540              TRUE 1 2 3 4
-## 541              TRUE 1 2 3 4
-## 542              TRUE 1 2 3 4
-## 543              TRUE 1 2 3 4
-## 544              TRUE 1 2 3 4
-## 545              TRUE 1 2 3 4
-## 546              TRUE 1 2 3 4
-## 547              TRUE 1 2 3 4
-## 548              TRUE 1 2 3 4
-## 549              TRUE 1 2 3 4
-## 550              TRUE 1 2 3 4
-## 551              TRUE 1 2 3 4
-## 552              TRUE 1 2 3 4
-## 553              TRUE 1 2 3 4
-## 554              TRUE 1 2 3 4
-## 555              TRUE 1 2 3 4
-## 556             FALSE 1 2 3 4
-## 557             FALSE 1 2 3 4
-## 558             FALSE 1 2 3 4
-## 559             FALSE 1 2 3 4
-## 560             FALSE 1 2 3 4
-## 561             FALSE 1 2 3 4
-## 562             FALSE 1 2 3 4
-## 563             FALSE 1 2 3 4
-## 564             FALSE 1 2 3 4
-## 565             FALSE 1 2 3 4
-## 566             FALSE 1 2 3 4
-## 567             FALSE 1 2 3 4
-## 568             FALSE 1 2 3 4
-## 569             FALSE 1 2 3 4
-## 570             FALSE 1 2 3 4
-## 571             FALSE 1 2 3 4
-## 572             FALSE 1 2 3 4
-## 573             FALSE 1 2 3 4
-## 574             FALSE 1 2 3 4
-## 575             FALSE 1 2 3 4
-## 576             FALSE 1 2 3 4
-## 577             FALSE 1 2 3 4
-## 578             FALSE 1 2 3 4
-## 579             FALSE 1 2 3 4
-## 580             FALSE 1 2 3 4
-## 581             FALSE 1 2 3 4
-## 582             FALSE 1 2 3 4
-## 583             FALSE 1 2 3 4
-## 584             FALSE 1 2 3 4
-## 585             FALSE 1 2 3 4
-## 586             FALSE 1 2 3 4
-## 587             FALSE 1 2 3 4
-## 588             FALSE 1 2 3 4
-## 589             FALSE 1 2 3 4
-## 590             FALSE 1 2 3 4
-## 591             FALSE 1 2 3 4
-## 592             FALSE 1 2 3 4
-## 593             FALSE 1 2 3 4
-## 594             FALSE 1 2 3 4
-## 595             FALSE 1 2 3 4
-## 596             FALSE 1 2 3 4
-## 597             FALSE 1 2 3 4
-## 598             FALSE 1 2 3 4
-## 599             FALSE 1 2 3 4
-## 600             FALSE 1 2 3 4
-## 601             FALSE 1 2 3 4
-## 602             FALSE 1 2 3 4
-## 603             FALSE 1 2 3 4
-## 604             FALSE 1 2 3 4
-## 605             FALSE 1 2 3 4
-## 606             FALSE 1 2 3 4
-## 607             FALSE 1 2 3 4
-## 608             FALSE 1 2 3 4
-## 609             FALSE 1 2 3 4
-## 610             FALSE 1 2 3 4
-## 611             FALSE 1 2 3 4
-## 612             FALSE 1 2 3 4
-## 613             FALSE 1 2 3 4
-## 614             FALSE 1 2 3 4
-## 615             FALSE 1 2 3 4
-## 616             FALSE 1 2 3 4
-## 617             FALSE 1 2 3 4
-## 618             FALSE 1 2 3 4
-## 619             FALSE 1 2 3 4
-## 620             FALSE 1 2 3 4
-## 621             FALSE 1 2 3 4
-## 622             FALSE 1 2 3 4
-## 623             FALSE 1 2 3 4
-## 624             FALSE 1 2 3 4
-## 625             FALSE 1 2 3 4
-## 626             FALSE 1 2 3 4
-## 627             FALSE 1 2 3 4
-## 628             FALSE 1 2 3 4
-## 629             FALSE 1 2 3 4
-## 630             FALSE 1 2 3 4
-## 631             FALSE 1 2 3 4
-## 632             FALSE 1 2 3 4
-## 633             FALSE 1 2 3 4
-## 634             FALSE 1 2 3 4
-## 635             FALSE 1 2 3 4
-## 636             FALSE 1 2 3 4
-## 637             FALSE 1 2 3 4
-## 638             FALSE 1 2 3 4
-## 639             FALSE 1 2 3 4
-## 640             FALSE 1 2 3 4
-## 641             FALSE 1 2 3 4
-## 642             FALSE 1 2 3 4
-## 643             FALSE 1 2 3 4
-## 644             FALSE 1 2 3 4
-## 645             FALSE 1 2 3 4
-## 646             FALSE 1 2 3 4
-## 647             FALSE 1 2 3 4
-## 648             FALSE 1 2 3 4
-## 649             FALSE 1 2 3 4
-## 650             FALSE 1 2 3 4
-## 651             FALSE 1 2 3 4
-## 652             FALSE 1 2 3 4
-## 653             FALSE 1 2 3 4
-## 654             FALSE 1 2 3 4
-## 655             FALSE 1 2 3 4
-## 656             FALSE 1 2 3 4
-## 657             FALSE 1 2 3 4
-## 658             FALSE 1 2 3 4
-## 659             FALSE 1 2 3 4
-## 660             FALSE 1 2 3 4
-## 661             FALSE 1 2 3 4
-## 662             FALSE 1 2 3 4
-## 663             FALSE 1 2 3 4
-## 664             FALSE 1 2 3 4
-## 665             FALSE 1 2 3 4
-## 666             FALSE 1 2 3 4
-## 667             FALSE 1 2 3 4
-## 668             FALSE 1 2 3 4
-## 669             FALSE 1 2 3 4
-## 670             FALSE 1 2 3 4
-## 671             FALSE 1 2 3 4
-## 672             FALSE 1 2 3 4
-## 673             FALSE 1 2 3 4
-## 674             FALSE 1 2 3 4
-## 675             FALSE 1 2 3 4
-## 676             FALSE 1 2 3 4
-## 677             FALSE 1 2 3 4
-## 678             FALSE 1 2 3 4
-## 679             FALSE 1 2 3 4
-## 680             FALSE 1 2 3 4
-## 681             FALSE 1 2 3 4
-## 682             FALSE 1 2 3 4
-## 683             FALSE 1 2 3 4
-## 684             FALSE 1 2 3 4
-## 685             FALSE 1 2 3 4
-## 686             FALSE 1 2 3 4
-## 687             FALSE 1 2 3 4
-## 688             FALSE 1 2 3 4
-## 689             FALSE 1 2 3 4
-## 690             FALSE 1 2 3 4
-## 691             FALSE 1 2 3 4
-## 692             FALSE 1 2 3 4
-## 693             FALSE 1 2 3 4
-## 694             FALSE 1 2 3 4
-## 695             FALSE 1 2 3 4
-## 696             FALSE 1 2 3 4
-## 697             FALSE 1 2 3 4
-## 698             FALSE 1 2 3 4
-## 699             FALSE 1 2 3 4
-## 700             FALSE 1 2 3 4
-## 701             FALSE 1 2 3 4
-## 702             FALSE 1 2 3 4
-## 703             FALSE 1 2 3 4
-## 704             FALSE 1 2 3 4
-## 705             FALSE 1 2 3 4
-## 706             FALSE 1 2 3 4
-## 707             FALSE 1 2 3 4
-## 708             FALSE 1 2 3 4
-## 709             FALSE 1 2 3 4
-## 710             FALSE 1 2 3 4
-## 711             FALSE 1 2 3 4
-## 712             FALSE 1 2 3 4
-## 713             FALSE 1 2 3 4
-## 714             FALSE 1 2 3 4
-## 715             FALSE 1 2 3 4
-## 716             FALSE 1 2 3 4
-## 717             FALSE 1 2 3 4
-## 718             FALSE 1 2 3 4
-## 719             FALSE 1 2 3 4
-## 720             FALSE 1 2 3 4
-## 721             FALSE 1 2 3 4
-## 722             FALSE 1 2 3 4
-## 723             FALSE 1 2 3 4
-## 724             FALSE 1 2 3 4
-## 725             FALSE 1 2 3 4
-## 726             FALSE 1 2 3 4
-## 727             FALSE 1 2 3 4
-## 728             FALSE 1 2 3 4
-## 729             FALSE 1 2 3 4
-## 730             FALSE 1 2 3 4
-## 731             FALSE 1 2 3 4
-## 732             FALSE 1 2 3 4
-## 733             FALSE 1 2 3 4
-## 734             FALSE 1 2 3 4
-## 735             FALSE 1 2 3 4
-## 736             FALSE 1 2 3 4
-## 737             FALSE 1 2 3 4
-## 738             FALSE 1 2 3 4
-## 739             FALSE 1 2 3 4
-## 740             FALSE 1 2 3 4
-## 741             FALSE 1 2 3 4
-## 742             FALSE 1 2 3 4
-## 743             FALSE 1 2 3 4
-## 744             FALSE 1 2 3 4
-## 745             FALSE 1 2 3 4
-## 746             FALSE 1 2 3 4
-## 747             FALSE 1 2 3 4
-## 748             FALSE 1 2 3 4
-## 749             FALSE 1 2 3 4
-## 750             FALSE 1 2 3 4
-## 751             FALSE 1 2 3 4
-## 752             FALSE 1 2 3 4
-## 753             FALSE 1 2 3 4
-## 754             FALSE 1 2 3 4
-## 755             FALSE 1 2 3 4
-## 756             FALSE 1 2 3 4
-## 757             FALSE 1 2 3 4
-## 758             FALSE 1 2 3 4
-## 759             FALSE 1 2 3 4
-## 760             FALSE 1 2 3 4
-## 761             FALSE 1 2 3 4
-## 762             FALSE 1 2 3 4
-## 763             FALSE 1 2 3 4
-## 764             FALSE 1 2 3 4
-## 765             FALSE 1 2 3 4
-## 766             FALSE 1 2 3 4
-## 767             FALSE 1 2 3 4
-## 768             FALSE 1 2 3 4
-## 769             FALSE 1 2 3 4
-## 770             FALSE 1 2 3 4
-## 771             FALSE 1 2 3 4
-## 772             FALSE 1 2 3 4
-## 773             FALSE 1 2 3 4
-## 774             FALSE 1 2 3 4
-## 775             FALSE 1 2 3 4
-## 776             FALSE 1 2 3 4
-## 777             FALSE 1 2 3 4
-## 778             FALSE 1 2 3 4
-## 779             FALSE 1 2 3 4
-## 780             FALSE 1 2 3 4
-## 781             FALSE 1 2 3 4
-## 782             FALSE 1 2 3 4
-## 783             FALSE 1 2 3 4
-## 784             FALSE 1 2 3 4
-## 785             FALSE 1 2 3 4
-## 786             FALSE 1 2 3 4
-## 787             FALSE 1 2 3 4
-## 788             FALSE 1 2 3 4
-## 789             FALSE 1 2 3 4
-## 790             FALSE 1 2 3 4
-## 791             FALSE 1 2 3 4
-## 792             FALSE 1 2 3 4
-## 793             FALSE 1 2 3 4
-## 794             FALSE 1 2 3 4
-## 795             FALSE 1 2 3 4
-## 796             FALSE 1 2 3 4
-## 797             FALSE 1 2 3 4
-## 798             FALSE 1 2 3 4
-## 799             FALSE 1 2 3 4
-## 800             FALSE 1 2 3 4
-## 801             FALSE 1 2 3 4
-## 802             FALSE 1 2 3 4
-## 803             FALSE 1 2 3 4
-## 804             FALSE 1 2 3 4
-## 805             FALSE 1 2 3 4
-## 806             FALSE 1 2 3 4
-## 807             FALSE 1 2 3 4
-## 808             FALSE 1 2 3 4
-## 809             FALSE 1 2 3 4
-## 810             FALSE 1 2 3 4
-## 811             FALSE 1 2 3 4
-## 812             FALSE 1 2 3 4
-## 813             FALSE 1 2 3 4
-## 814             FALSE 1 2 3 4
-## 815             FALSE 1 2 3 4
-## 816             FALSE 1 2 3 4
-## 817             FALSE 1 2 3 4
-## 818             FALSE 1 2 3 4
-## 819             FALSE 1 2 3 4
-## 820             FALSE 1 2 3 4
-## 821             FALSE 1 2 3 4
-## 822             FALSE 1 2 3 4
-## 823             FALSE 1 2 3 4
-## 824             FALSE 1 2 3 4
-## 825             FALSE 1 2 3 4
-## 826             FALSE 1 2 3 4
-## 827             FALSE 1 2 3 4
-## 828             FALSE 1 2 3 4
-## 829             FALSE 1 2 3 4
-## 830             FALSE 1 2 3 4
-## 831             FALSE 1 2 3 4
-## 832             FALSE 1 2 3 4
-## 833             FALSE 1 2 3 4
-## 834             FALSE 1 2 3 4
-## 835             FALSE 1 2 3 4
-## 836             FALSE 1 2 3 4
-## 837             FALSE 1 2 3 4
-## 838             FALSE 1 2 3 4
-## 839             FALSE 1 2 3 4
-## 840             FALSE 1 2 3 4
-## 841             FALSE 1 2 3 4
-## 842             FALSE 1 2 3 4
-## 843             FALSE 1 2 3 4
-## 844             FALSE 1 2 3 4
-## 845             FALSE 1 2 3 4
-## 846             FALSE 1 2 3 4
-## 847             FALSE 1 2 3 4
-## 848             FALSE 1 2 3 4
-## 849             FALSE 1 2 3 4
-## 850             FALSE 1 2 3 4
-## 851             FALSE 1 2 3 4
-## 852             FALSE 1 2 3 4
-## 853             FALSE 1 2 3 4
-## 854             FALSE 1 2 3 4
-## 855             FALSE 1 2 3 4
-## 856             FALSE 1 2 3 4
-## 857             FALSE 1 2 3 4
-## 858             FALSE 1 2 3 4
-## 859             FALSE 1 2 3 4
-## 860             FALSE 1 2 3 4
-## 861             FALSE 1 2 3 4
-## 862             FALSE 1 2 3 4
-## 863             FALSE 1 2 3 4
-## 864             FALSE 1 2 3 4
-## 865             FALSE 1 2 3 4
-## 866             FALSE 1 2 3 4
-## 867             FALSE 1 2 3 4
-## 868             FALSE 1 2 3 4
-## 869             FALSE 1 2 3 4
-## 870             FALSE 1 2 3 4
-## 871             FALSE 1 2 3 4
-## 872             FALSE 1 2 3 4
-## 873             FALSE 1 2 3 4
-## 874             FALSE 1 2 3 4
-## 875             FALSE 1 2 3 4
-## 876             FALSE 1 2 3 4
-## 877             FALSE 1 2 3 4
-## 878             FALSE 1 2 3 4
-## 879             FALSE 1 2 3 4
-## 880             FALSE 1 2 3 4
-## 881             FALSE 1 2 3 4
-## 882             FALSE 1 2 3 4
-## 883             FALSE 1 2 3 4
-## 884             FALSE 1 2 3 4
-## 885             FALSE 1 2 3 4
-## 886             FALSE 1 2 3 4
-## 887             FALSE 1 2 3 4
-## 888             FALSE 1 2 3 4
-## 889             FALSE 1 2 3 4
-## 890             FALSE 1 2 3 4
-## 891             FALSE 1 2 3 4
-## 892             FALSE 1 2 3 4
-## 893             FALSE 1 2 3 4
-## 894             FALSE 1 2 3 4
-## 895             FALSE 1 2 3 4
-## 896             FALSE 1 2 3 4
-## 897             FALSE 1 2 3 4
-## 898             FALSE 1 2 3 4
-## 899             FALSE 1 2 3 4
-## 900             FALSE 1 2 3 4
-## 901             FALSE 1 2 3 4
-## 902             FALSE 1 2 3 4
-## 903             FALSE 1 2 3 4</code></pre>
-
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="working-with-data.html#cb77-1"></a><span class="co"># create a vector with numbers from 1 to 10</span></span>
+<span id="cb77-2"><a href="working-with-data.html#cb77-2"></a>x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span></span>
+<span id="cb77-3"><a href="working-with-data.html#cb77-3"></a><span class="co"># keep only numbers &lt; 5:</span></span>
+<span id="cb77-4"><a href="working-with-data.html#cb77-4"></a><span class="co">#   (i) without %&lt;&gt;%</span></span>
+<span id="cb77-5"><a href="working-with-data.html#cb77-5"></a>x &lt;-<span class="st"> </span>x[x<span class="op">&lt;</span><span class="dv">5</span>]</span>
+<span id="cb77-6"><a href="working-with-data.html#cb77-6"></a><span class="co">#   (i) with %&lt;&gt;%</span></span>
+<span id="cb77-7"><a href="working-with-data.html#cb77-7"></a>x <span class="op">%&lt;&gt;%</span><span class="st"> </span>.[.<span class="op">&lt;</span><span class="dv">5</span>]</span></code></pre></div>
+<pre><code>## Error in x %&lt;&gt;% .[. &lt; 5]: could not find function &quot;%&lt;&gt;%&quot;</code></pre>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="working-with-data.html#cb79-1"></a><span class="co"># lets add several columns to &#39;dativeSimplified&#39;</span></span>
+<span id="cb79-2"><a href="working-with-data.html#cb79-2"></a>dativeSimplified <span class="op">%&lt;&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">A=</span><span class="dv">1</span>, <span class="dt">B=</span><span class="dv">2</span>, <span class="dt">C=</span><span class="dv">3</span>, <span class="dt">D=</span><span class="dv">4</span>)</span></code></pre></div>
+<pre><code>## Error in dativeSimplified %&lt;&gt;% mutate(A = 1, B = 2, C = 3, D = 4): could not find function &quot;%&lt;&gt;%&quot;</code></pre>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="working-with-data.html#cb81-1"></a><span class="kw">head</span>(dativeSimplified)</span></code></pre></div>
+<pre class="r-output"><code>##   RealizationOfRec  Verb AnimacyOfRec AnimacyOfTheme LengthOfTheme
+## 1               NP  feed      animate      inanimate      2.639057
+## 2               NP  give      animate      inanimate      1.098612
+## 3               NP  give      animate      inanimate      2.564949
+## 4               NP  give      animate      inanimate      1.609438
+## 5               NP offer      animate      inanimate      1.098612
+## 6               NP  give      animate      inanimate      1.386294
+##   is_realization_NP
+## 1              TRUE
+## 2              TRUE
+## 3              TRUE
+## 4              TRUE
+## 5              TRUE
+## 6              TRUE</code></pre>
 </div>
+</div>
+<div id="functions-used-in-this-section" class="section level2">
+<h2><span class="header-section-number">4.4</span> Functions used in this section</h2>
+<div class="function">
+<p><code>as.double(...)</code></p>
+</div>
+<br>
+<div class="function">
+<p><code>sum(x)</code></p>
+</div>
+<br>
+<div class="function">
+<p><code>length(x)</code></p>
+</div>
+<br>
+<div class="function">
+<p><code>mean(x)</code></p>
+</div>
+<br>
+<div class="function">
+<p><code>rep(x)</code></p>
+</div>
+<br>
+<div class="function">
+<p><code>View(x)</code></p>
+</div>
+<br>
+<div class="function">
+<p><code>rbind(x)</code></p>
+</div>
+<br>
+<div class="function">
+<p><code>View(x)</code></p>
+</div>
+<br>
+<div class="function">
+<p><code>head(x)</code></p>
+</div>
+<br>
+<div class="function">
+<p><code>library(x)</code></p>
+</div>
+<p><br></p>
+
 </div>
 </div>
             </section>
@@ -2525,7 +784,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 <a href="introR.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="functions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="functions-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

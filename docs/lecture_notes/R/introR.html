@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 3 Data Structures | Data Processing in R, Lecture Notes</title>
   <meta name="description" content="Lecture notes on data processing in R." />
-  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 3 Data Structures | Data Processing in R, Lecture Notes" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Pavel Logacev" />
 
 
-<meta name="date" content="2020-11-03" />
+<meta name="date" content="2020-11-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="intro.html"/>
-<link rel="next" href="functions.html"/>
+<link rel="next" href="working-with-data.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,6 +50,9 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -141,6 +144,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#rstudio-interface"><i class="fa fa-check"></i><b>1.3</b> RStudio Interface</a></li>
 <li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#basics-of-the-rstudio-environment"><i class="fa fa-check"></i><b>1.4</b> Basics of the RStudio environment</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#special-blocks-in-the-following"><i class="fa fa-check"></i><b>1.5</b> Special blocks in the following</a></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#lecture-notes-source-code"><i class="fa fa-check"></i><b>1.6</b> Lecture Notes Source Code</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a><ul>
 <li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#introduction-to-r"><i class="fa fa-check"></i><b>2.1</b> Introduction to R</a></li>
@@ -166,8 +171,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="3.4" data-path="introR.html"><a href="introR.html#data-frames"><i class="fa fa-check"></i><b>3.4</b> Data Frames</a></li>
 <li class="chapter" data-level="3.5" data-path="introR.html"><a href="introR.html#working-with-data-frames"><i class="fa fa-check"></i><b>3.5</b> Working with data frames</a></li>
+<li class="chapter" data-level="3.6" data-path="introR.html"><a href="introR.html#functions-in-this-section"><i class="fa fa-check"></i><b>3.6</b> Functions in this section</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>4</b> Functions</a></li>
+<li class="chapter" data-level="4" data-path="working-with-data.html"><a href="working-with-data.html"><i class="fa fa-check"></i><b>4</b> Working with data</a><ul>
+<li class="chapter" data-level="4.1" data-path="working-with-data.html"><a href="working-with-data.html#summarizing-data"><i class="fa fa-check"></i><b>4.1</b> Summarizing data</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="working-with-data.html"><a href="working-with-data.html#now-step-by-step"><i class="fa fa-check"></i><b>4.1.1</b> Now, step by step</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="working-with-data.html"><a href="working-with-data.html#working-with-dplyr"><i class="fa fa-check"></i><b>4.2</b> Working with dplyr</a></li>
+<li class="chapter" data-level="4.3" data-path="working-with-data.html"><a href="working-with-data.html#pipes"><i class="fa fa-check"></i><b>4.3</b> Pipes</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="working-with-data.html"><a href="working-with-data.html#the-problem"><i class="fa fa-check"></i><b>4.3.1</b> The problem</a></li>
+<li class="chapter" data-level="4.3.2" data-path="working-with-data.html"><a href="working-with-data.html#pipes-1"><i class="fa fa-check"></i><b>4.3.2</b> Pipes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>5</b> Functions</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -191,6 +207,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="introR" class="section level1">
 <h1><span class="header-section-number">Chapter 3</span> Data Structures</h1>
+<style type="text/css">
+.r-output {
+  font-weight: bold;
+}
+.function {
+  background-color: lightgrey;
+  padding: 0.5em 0.5em 0.5em 0.5em;
+  border: 1px solid black;
+}
+</style>
 <div id="recap-data-types-in-r" class="section level2">
 <h2><span class="header-section-number">3.1</span> Recap: Data Types in R</h2>
 <p>In R, value has a <em>type</em>:</p>
@@ -570,17 +596,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="introR.html#cb88-1"></a>df_gambling <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb88-2"><a href="introR.html#cb88-2"></a><span class="st">  </span><span class="kw">group_by</span>(game) <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb88-3"><a href="introR.html#cb88-3"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">avg_profit =</span> <span class="kw">mean</span>(profit))</span></code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
 <pre><code>## # A tibble: 2 x 2
 ##   game       avg_profit
 ##   &lt;chr&gt;           &lt;dbl&gt;
 ## 1 horse_bets       23.4
 ## 2 poker            24.5</code></pre>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="introR.html#cb91-1"></a>  <span class="co"># summarize(group_by(df_gambling, game),</span></span>
+<span id="cb91-2"><a href="introR.html#cb91-2"></a>  <span class="co">#           avg_profit = mean(profit))</span></span></code></pre></div>
 <ul>
 <li>We can also aggregate over several grouping variables, like <code>game</code> and <code>wday</code>.</li>
 </ul>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="introR.html#cb90-1"></a>df_gambling <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb90-2"><a href="introR.html#cb90-2"></a><span class="st">  </span><span class="kw">group_by</span>(game, wday) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb90-3"><a href="introR.html#cb90-3"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">avg_profit =</span> <span class="kw">mean</span>(profit))</span></code></pre></div>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="introR.html#cb92-1"></a>df_gambling <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb92-2"><a href="introR.html#cb92-2"></a><span class="st">  </span><span class="kw">group_by</span>(game, wday) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb92-3"><a href="introR.html#cb92-3"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">avg_profit =</span> <span class="kw">mean</span>(profit))</span></code></pre></div>
+<pre><code>## `summarise()` regrouping output by &#39;game&#39; (override with `.groups` argument)</code></pre>
 <pre><code>## # A tibble: 4 x 3
 ## # Groups:   game [2]
 ##   game       wday  avg_profit
@@ -592,9 +622,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>… and we can do so in various ways. Here we compute the proportion of wins.</li>
 </ul>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="introR.html#cb92-1"></a>df_gambling <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb92-2"><a href="introR.html#cb92-2"></a><span class="st">  </span><span class="kw">group_by</span>(game, wday) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb92-3"><a href="introR.html#cb92-3"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">avg_proportion_wins =</span> <span class="kw">mean</span>(profit<span class="op">&gt;</span><span class="dv">0</span>) )</span></code></pre></div>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="introR.html#cb95-1"></a>df_gambling <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb95-2"><a href="introR.html#cb95-2"></a><span class="st">  </span><span class="kw">group_by</span>(game, wday) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb95-3"><a href="introR.html#cb95-3"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">avg_proportion_wins =</span> <span class="kw">mean</span>(profit<span class="op">&gt;</span><span class="dv">0</span>) )</span></code></pre></div>
+<pre><code>## `summarise()` regrouping output by &#39;game&#39; (override with `.groups` argument)</code></pre>
 <pre><code>## # A tibble: 4 x 3
 ## # Groups:   game [2]
 ##   game       wday  avg_proportion_wins
@@ -607,29 +638,70 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Now, we can also plot the results.</li>
 <li>But we’ll need to save them first.</li>
 </ul>
-<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="introR.html#cb94-1"></a>profits_by_game &lt;-<span class="st"> </span></span>
-<span id="cb94-2"><a href="introR.html#cb94-2"></a><span class="st">  </span>df_gambling <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb94-3"><a href="introR.html#cb94-3"></a><span class="st">    </span><span class="kw">group_by</span>(game) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb94-4"><a href="introR.html#cb94-4"></a><span class="st">    </span><span class="kw">summarize</span>(<span class="dt">avg_profit =</span> <span class="kw">mean</span>(profit))</span></code></pre></div>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="introR.html#cb95-1"></a>profits_by_game_and_wday &lt;-<span class="st"> </span></span>
-<span id="cb95-2"><a href="introR.html#cb95-2"></a><span class="st">  </span>df_gambling <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb95-3"><a href="introR.html#cb95-3"></a><span class="st">    </span><span class="kw">group_by</span>(game, wday) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb95-4"><a href="introR.html#cb95-4"></a><span class="st">    </span><span class="kw">summarize</span>(<span class="dt">avg_profit =</span> <span class="kw">mean</span>(profit))</span></code></pre></div>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="introR.html#cb98-1"></a>profits_by_game &lt;-<span class="st"> </span></span>
+<span id="cb98-2"><a href="introR.html#cb98-2"></a><span class="st">  </span>df_gambling <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb98-3"><a href="introR.html#cb98-3"></a><span class="st">    </span><span class="kw">group_by</span>(game) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb98-4"><a href="introR.html#cb98-4"></a><span class="st">    </span><span class="kw">summarize</span>(<span class="dt">avg_profit =</span> <span class="kw">mean</span>(profit))</span></code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="introR.html#cb100-1"></a>profits_by_game_and_wday &lt;-<span class="st"> </span></span>
+<span id="cb100-2"><a href="introR.html#cb100-2"></a><span class="st">  </span>df_gambling <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb100-3"><a href="introR.html#cb100-3"></a><span class="st">    </span><span class="kw">group_by</span>(game, wday) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb100-4"><a href="introR.html#cb100-4"></a><span class="st">    </span><span class="kw">summarize</span>(<span class="dt">avg_profit =</span> <span class="kw">mean</span>(profit))</span></code></pre></div>
+<pre><code>## `summarise()` regrouping output by &#39;game&#39; (override with `.groups` argument)</code></pre>
 <ul>
 <li>We will also need yet another package: <code>ggplot2</code>.</li>
 </ul>
-<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="introR.html#cb96-1"></a><span class="kw">library</span>(ggplot2)</span></code></pre></div>
-<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="introR.html#cb97-1"></a><span class="kw">ggplot</span>(profits_by_game, <span class="kw">aes</span>(game, avg_profit)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</span></code></pre></div>
-<p><img src="LectureNotes_files/figure-html/unnamed-chunk-47-1.png" width="672" /></p>
-<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="introR.html#cb98-1"></a><span class="kw">library</span>(ggplot2)</span>
-<span id="cb98-2"><a href="introR.html#cb98-2"></a><span class="kw">ggplot</span>(profits_by_game_and_wday, <span class="kw">aes</span>(game, avg_profit, <span class="dt">color =</span> wday, <span class="dt">group =</span> wday)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>()</span></code></pre></div>
-<p><img src="LectureNotes_files/figure-html/unnamed-chunk-48-1.png" width="672" /></p>
-<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="introR.html#cb99-1"></a><span class="kw">library</span>(ggplot2)</span>
-<span id="cb99-2"><a href="introR.html#cb99-2"></a><span class="kw">ggplot</span>(profits_by_game, <span class="kw">aes</span>(game, avg_profit)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="introR.html#cb102-1"></a><span class="kw">library</span>(ggplot2)</span></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="introR.html#cb103-1"></a><span class="kw">ggplot</span>(profits_by_game, <span class="kw">aes</span>(game, avg_profit)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</span></code></pre></div>
 <p><img src="LectureNotes_files/figure-html/unnamed-chunk-49-1.png" width="672" /></p>
-<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="introR.html#cb100-1"></a><span class="kw">library</span>(ggplot2)</span>
-<span id="cb100-2"><a href="introR.html#cb100-2"></a><span class="kw">ggplot</span>(profits_by_game_and_wday, <span class="kw">aes</span>(game, avg_profit, <span class="dt">fill =</span> wday)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="introR.html#cb104-1"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb104-2"><a href="introR.html#cb104-2"></a><span class="kw">ggplot</span>(profits_by_game_and_wday, <span class="kw">aes</span>(game, avg_profit, <span class="dt">color =</span> wday, <span class="dt">group =</span> wday)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>()</span></code></pre></div>
 <p><img src="LectureNotes_files/figure-html/unnamed-chunk-50-1.png" width="672" /></p>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="introR.html#cb105-1"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb105-2"><a href="introR.html#cb105-2"></a><span class="kw">ggplot</span>(profits_by_game, <span class="kw">aes</span>(game, avg_profit)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>)</span></code></pre></div>
+<p><img src="LectureNotes_files/figure-html/unnamed-chunk-51-1.png" width="672" /></p>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="introR.html#cb106-1"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb106-2"><a href="introR.html#cb106-2"></a><span class="kw">ggplot</span>(profits_by_game_and_wday, <span class="kw">aes</span>(game, avg_profit, <span class="dt">fill =</span> wday)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>)</span></code></pre></div>
+<p><img src="LectureNotes_files/figure-html/unnamed-chunk-52-1.png" width="672" /></p>
+</div>
+<div id="functions-in-this-section" class="section level2">
+<h2><span class="header-section-number">3.6</span> Functions in this section</h2>
+<div class="function">
+<p><code>sum(x)</code></p>
+</div>
+<br>
+<div class="function">
+<p><code>length(x)</code></p>
+</div>
+<br>
+<div class="function">
+<p><code>mean(x)</code></p>
+</div>
+<br>
+<div class="function">
+<p><code>rep(x)</code></p>
+</div>
+<br>
+<div class="function">
+<p><code>View(x)</code></p>
+</div>
+<br>
+<div class="function">
+<p><code>rbind(x)</code></p>
+</div>
+<br>
+<div class="function">
+<p><code>View(x)</code></p>
+</div>
+<br>
+<div class="function">
+<p><code>head(x)</code></p>
+</div>
+<br>
+<div class="function">
+<p><code>library(x)</code></p>
+</div>
+<p><br></p>
 
 </div>
 </div>
@@ -639,7 +711,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 <a href="intro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="functions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="working-with-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
