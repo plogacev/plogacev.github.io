@@ -24,7 +24,7 @@
 <meta name="author" content="Pavel Logacev" />
 
 
-<meta name="date" content="2020-11-14" />
+<meta name="date" content="2020-11-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -293,17 +293,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Let’s take a look at the percentages of NP realizations of the recipient by animacy of theme.</li>
 </ul>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="working-with-data.html#cb7-1"></a><span class="co"># let&#39;s take a look at the key dependent variable </span></span>
-<span id="cb7-2"><a href="working-with-data.html#cb7-2"></a><span class="kw">unique</span>(dativeSimplified<span class="op">$</span>RealizationOfRec)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="working-with-data.html#cb7-1"></a><span class="co"># load the package dplyr to access the group_by/summarize functions</span></span>
+<span id="cb7-2"><a href="working-with-data.html#cb7-2"></a><span class="kw">library</span>(dplyr)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="working-with-data.html#cb11-1"></a><span class="co"># let&#39;s take a look at the key dependent variable </span></span>
+<span id="cb11-2"><a href="working-with-data.html#cb11-2"></a><span class="kw">unique</span>(dativeSimplified<span class="op">$</span>RealizationOfRec)</span></code></pre></div>
 <pre class="r-output"><code>## [1] NP PP
 ## Levels: NP PP</code></pre>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="working-with-data.html#cb9-1"></a><span class="co"># now, compute the percentages (perc_NP) and the number of observations in each subset</span></span>
-<span id="cb9-2"><a href="working-with-data.html#cb9-2"></a>dativeSimplified <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb9-3"><a href="working-with-data.html#cb9-3"></a><span class="st">  </span><span class="kw">group_by</span>(AnimacyOfRec) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb9-4"><a href="working-with-data.html#cb9-4"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">summarize</span>(<span class="dt">perc_NP =</span> <span class="kw">mean</span>(RealizationOfRec <span class="op">==</span><span class="st"> &quot;NP&quot;</span>), </span>
-<span id="cb9-5"><a href="working-with-data.html#cb9-5"></a>                   <span class="dt">N =</span> <span class="kw">n</span>()</span>
-<span id="cb9-6"><a href="working-with-data.html#cb9-6"></a>                  )</span></code></pre></div>
-<pre><code>## Error in dativeSimplified %&gt;% group_by(AnimacyOfRec) %&gt;% dplyr::summarize(perc_NP = mean(RealizationOfRec == : could not find function &quot;%&gt;%&quot;</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="working-with-data.html#cb13-1"></a><span class="co"># now, compute the percentages (perc_NP) and the number of observations in each subset</span></span>
+<span id="cb13-2"><a href="working-with-data.html#cb13-2"></a>dativeSimplified <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb13-3"><a href="working-with-data.html#cb13-3"></a><span class="st">  </span><span class="kw">group_by</span>(AnimacyOfRec) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb13-4"><a href="working-with-data.html#cb13-4"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">summarize</span>(<span class="dt">perc_NP =</span> <span class="kw">mean</span>(RealizationOfRec <span class="op">==</span><span class="st"> &quot;NP&quot;</span>), </span>
+<span id="cb13-5"><a href="working-with-data.html#cb13-5"></a>                   <span class="dt">N =</span> <span class="kw">n</span>()</span>
+<span id="cb13-6"><a href="working-with-data.html#cb13-6"></a>                  )</span></code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<pre class="r-output"><code>## # A tibble: 2 x 3
+##   AnimacyOfRec perc_NP     N
+##   &lt;fct&gt;          &lt;dbl&gt; &lt;int&gt;
+## 1 animate        0.634   822
+## 2 inanimate      0.420    81</code></pre>
 <div id="now-step-by-step" class="section level3">
 <h3><span class="header-section-number">4.1.1</span> Now, step by step</h3>
 <ul>
@@ -311,44 +326,44 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>But let’s break down the computations into their elementary parts and take look at the logic …</p></li>
 <li><p>First, we’ll need to add a column which we can later use to compute the percentage of NP realizations.</p></li>
 </ul>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="working-with-data.html#cb11-1"></a><span class="co"># first, let&#39;s create a new column encoding whether RealizationOfRec is &#39;NP&#39;</span></span>
-<span id="cb11-2"><a href="working-with-data.html#cb11-2"></a>dativeSimplified<span class="op">$</span>is_realization_NP &lt;-<span class="st"> </span><span class="kw">as.integer</span>( dativeSimplified<span class="op">$</span>RealizationOfRec <span class="op">==</span><span class="st"> &quot;NP&quot;</span> )</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="working-with-data.html#cb16-1"></a><span class="co"># first, let&#39;s create a new column encoding whether RealizationOfRec is &#39;NP&#39;</span></span>
+<span id="cb16-2"><a href="working-with-data.html#cb16-2"></a>dativeSimplified<span class="op">$</span>is_realization_NP &lt;-<span class="st"> </span><span class="kw">as.integer</span>( dativeSimplified<span class="op">$</span>RealizationOfRec <span class="op">==</span><span class="st"> &quot;NP&quot;</span> )</span></code></pre></div>
 <ul>
-<li>Take a subset of the data frame where AnimacyOfRec equals “animate” (note the ‘==’!).</li>
+<li>Take a subset of the data frame where AnimacyOfRec equals “animate” (note the <code>==</code>!).</li>
 </ul>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="working-with-data.html#cb12-1"></a><span class="co"># take a look at the values that can occur in this columns</span></span>
-<span id="cb12-2"><a href="working-with-data.html#cb12-2"></a><span class="kw">unique</span>(dativeSimplified<span class="op">$</span>AnimacyOfRec)</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="working-with-data.html#cb17-1"></a><span class="co"># take a look at the values that can occur in this columns</span></span>
+<span id="cb17-2"><a href="working-with-data.html#cb17-2"></a><span class="kw">unique</span>(dativeSimplified<span class="op">$</span>AnimacyOfRec)</span></code></pre></div>
 <pre class="r-output"><code>## [1] animate   inanimate
 ## Levels: animate inanimate</code></pre>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="working-with-data.html#cb14-1"></a><span class="co"># take two subsets corresponding to the values we determined above</span></span>
-<span id="cb14-2"><a href="working-with-data.html#cb14-2"></a>df_animate &lt;-<span class="st"> </span><span class="kw">subset</span>(dativeSimplified, AnimacyOfRec <span class="op">==</span><span class="st"> &quot;animate&quot;</span>)</span>
-<span id="cb14-3"><a href="working-with-data.html#cb14-3"></a>df_inanimate &lt;-<span class="st"> </span><span class="kw">subset</span>(dativeSimplified, AnimacyOfRec <span class="op">==</span><span class="st"> &quot;inanimate&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="working-with-data.html#cb19-1"></a><span class="co"># take two subsets corresponding to the values we determined above</span></span>
+<span id="cb19-2"><a href="working-with-data.html#cb19-2"></a>df_animate &lt;-<span class="st"> </span><span class="kw">subset</span>(dativeSimplified, AnimacyOfRec <span class="op">==</span><span class="st"> &quot;animate&quot;</span>)</span>
+<span id="cb19-3"><a href="working-with-data.html#cb19-3"></a>df_inanimate &lt;-<span class="st"> </span><span class="kw">subset</span>(dativeSimplified, AnimacyOfRec <span class="op">==</span><span class="st"> &quot;inanimate&quot;</span>)</span></code></pre></div>
 <ul>
 <li>Compute the average of the column <code>is_realization_NP</code> in each data frame, as well as the number of rows in it.</li>
 </ul>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="working-with-data.html#cb15-1"></a><span class="co"># compute the percentage of NP realizations </span></span>
-<span id="cb15-2"><a href="working-with-data.html#cb15-2"></a>perc_NP_animate =<span class="st"> </span><span class="kw">mean</span>(df_animate<span class="op">$</span>is_realization_NP)</span>
-<span id="cb15-3"><a href="working-with-data.html#cb15-3"></a></span>
-<span id="cb15-4"><a href="working-with-data.html#cb15-4"></a><span class="co"># compute the percentage of NP realizations </span></span>
-<span id="cb15-5"><a href="working-with-data.html#cb15-5"></a>N_animate =<span class="st"> </span><span class="kw">nrow</span>(df_animate)</span>
-<span id="cb15-6"><a href="working-with-data.html#cb15-6"></a></span>
-<span id="cb15-7"><a href="working-with-data.html#cb15-7"></a><span class="co"># bind to data frame</span></span>
-<span id="cb15-8"><a href="working-with-data.html#cb15-8"></a>(res_animate &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">AnimacyOfRec =</span> <span class="st">&quot;animate&quot;</span>, <span class="dt">perc_NP =</span> perc_NP_animate, <span class="dt">N=</span>N_animate))</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="working-with-data.html#cb20-1"></a><span class="co"># compute the percentage of NP realizations </span></span>
+<span id="cb20-2"><a href="working-with-data.html#cb20-2"></a>perc_NP_animate =<span class="st"> </span><span class="kw">mean</span>(df_animate<span class="op">$</span>is_realization_NP)</span>
+<span id="cb20-3"><a href="working-with-data.html#cb20-3"></a></span>
+<span id="cb20-4"><a href="working-with-data.html#cb20-4"></a><span class="co"># compute the percentage of NP realizations </span></span>
+<span id="cb20-5"><a href="working-with-data.html#cb20-5"></a>N_animate =<span class="st"> </span><span class="kw">nrow</span>(df_animate)</span>
+<span id="cb20-6"><a href="working-with-data.html#cb20-6"></a></span>
+<span id="cb20-7"><a href="working-with-data.html#cb20-7"></a><span class="co"># bind to data frame</span></span>
+<span id="cb20-8"><a href="working-with-data.html#cb20-8"></a>(res_animate &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">AnimacyOfRec =</span> <span class="st">&quot;animate&quot;</span>, <span class="dt">perc_NP =</span> perc_NP_animate, <span class="dt">N=</span>N_animate))</span></code></pre></div>
 <pre class="r-output"><code>##   AnimacyOfRec perc_NP   N
 ## 1      animate 0.63382 822</code></pre>
 <ul>
 <li>Now, do the same for inanimates.</li>
 </ul>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="working-with-data.html#cb17-1"></a>perc_NP_inanimate =<span class="st"> </span><span class="kw">mean</span>(df_inanimate<span class="op">$</span>is_realization_NP)</span>
-<span id="cb17-2"><a href="working-with-data.html#cb17-2"></a>N_inanimate =<span class="st"> </span><span class="kw">nrow</span>(df_inanimate)</span>
-<span id="cb17-3"><a href="working-with-data.html#cb17-3"></a>(res_inanimate &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">AnimacyOfRec =</span> <span class="st">&quot;inanimate&quot;</span>, <span class="dt">perc_NP =</span> perc_NP_animate, <span class="dt">N=</span>N_animate))</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="working-with-data.html#cb22-1"></a>perc_NP_inanimate =<span class="st"> </span><span class="kw">mean</span>(df_inanimate<span class="op">$</span>is_realization_NP)</span>
+<span id="cb22-2"><a href="working-with-data.html#cb22-2"></a>N_inanimate =<span class="st"> </span><span class="kw">nrow</span>(df_inanimate)</span>
+<span id="cb22-3"><a href="working-with-data.html#cb22-3"></a>(res_inanimate &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">AnimacyOfRec =</span> <span class="st">&quot;inanimate&quot;</span>, <span class="dt">perc_NP =</span> perc_NP_animate, <span class="dt">N=</span>N_animate))</span></code></pre></div>
 <pre class="r-output"><code>##   AnimacyOfRec perc_NP   N
 ## 1    inanimate 0.63382 822</code></pre>
 <ul>
 <li>Now, bind the results into a single data frame, which we can use for plotting, creating tables, etc.</li>
 </ul>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="working-with-data.html#cb19-1"></a>res &lt;-<span class="st"> </span><span class="kw">rbind</span>(res_animate, res_inanimate)</span>
-<span id="cb19-2"><a href="working-with-data.html#cb19-2"></a>res</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="working-with-data.html#cb24-1"></a>res &lt;-<span class="st"> </span><span class="kw">rbind</span>(res_animate, res_inanimate)</span>
+<span id="cb24-2"><a href="working-with-data.html#cb24-2"></a>res</span></code></pre></div>
 <pre class="r-output"><code>##   AnimacyOfRec perc_NP   N
 ## 1      animate 0.63382 822
 ## 2    inanimate 0.63382 822</code></pre>
@@ -369,20 +384,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>The package <em>dplyr</em> (<a href="http://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf">cheat sheet</a>) provides a set of functions for working with data frames</li>
 <li>Some of functions don’t perform a noticeable action, while others reshape data frames or create new ones (the latter are called ‘verbs’)</li>
 </ul>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="working-with-data.html#cb21-1"></a><span class="kw">library</span>(dplyr)</span></code></pre></div>
-<pre><code>## 
-## Attaching package: &#39;dplyr&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:stats&#39;:
-## 
-##     filter, lag</code></pre>
-<pre><code>## The following objects are masked from &#39;package:base&#39;:
-## 
-##     intersect, setdiff, setequal, union</code></pre>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="working-with-data.html#cb26-1"></a><span class="kw">library</span>(dplyr)</span></code></pre></div>
 <ul>
 <li><code>arrange()</code> sorts the data frame by one or several columns</li>
 <li>By default, it does so in ascending order.</li>
 </ul>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="working-with-data.html#cb25-1"></a><span class="kw">arrange</span>(dative[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,], LengthOfTheme)</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="working-with-data.html#cb27-1"></a><span class="kw">arrange</span>(dative[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,], LengthOfTheme)</span></code></pre></div>
 <pre class="r-output"><code>##    Speaker Modality  Verb SemanticClass LengthOfRecipient AnimacyOfRec
 ## 8     &lt;NA&gt;  written bring             a                 1      animate
 ## 10    &lt;NA&gt;  written  give             a                 1      animate
@@ -419,7 +426,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>The modifier <code>desc()</code> switches <code>arrange()</code> to an decending order.</li>
 </ul>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="working-with-data.html#cb27-1"></a><span class="kw">arrange</span>(dative[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,], <span class="kw">desc</span>(LengthOfTheme))</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="working-with-data.html#cb29-1"></a><span class="kw">arrange</span>(dative[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,], <span class="kw">desc</span>(LengthOfTheme))</span></code></pre></div>
 <pre class="r-output"><code>##    Speaker Modality  Verb SemanticClass LengthOfRecipient AnimacyOfRec
 ## 1     &lt;NA&gt;  written  feed             t                 1      animate
 ## 3     &lt;NA&gt;  written  give             a                 1      animate
@@ -456,22 +463,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><code>select()</code> keeps <em>only</em> the pre-specified columns from the data frame</li>
 </ul>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="working-with-data.html#cb29-1"></a><span class="co"># </span></span>
-<span id="cb29-2"><a href="working-with-data.html#cb29-2"></a><span class="kw">select</span>(dative, game, profit)</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="working-with-data.html#cb31-1"></a><span class="co"># </span></span>
+<span id="cb31-2"><a href="working-with-data.html#cb31-2"></a><span class="kw">select</span>(dative, game, profit)</span></code></pre></div>
 <pre><code>## Error: Can&#39;t subset columns that don&#39;t exist.
 ## [31mx[39m Column `game` doesn&#39;t exist.</code></pre>
 <ul>
 <li><code>left_join</code> merges two data frames by common columns. This is very useful when data comes from two different sources.</li>
 </ul>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="working-with-data.html#cb31-1"></a>df1 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">name =</span> <span class="kw">c</span>(<span class="st">&quot;Peter&quot;</span>, <span class="st">&quot;Mary&quot;</span>, <span class="st">&quot;Susy&quot;</span>, <span class="st">&quot;John&quot;</span>), <span class="dt">n_apples =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">1</span>))</span>
-<span id="cb31-2"><a href="working-with-data.html#cb31-2"></a>df2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">name =</span> <span class="kw">c</span>(<span class="st">&quot;Peter&quot;</span>, <span class="st">&quot;Mary&quot;</span>, <span class="st">&quot;Susy&quot;</span>), <span class="dt">n_oranges =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">20</span>,<span class="dv">0</span>))</span>
-<span id="cb31-3"><a href="working-with-data.html#cb31-3"></a>df &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">left_join</span>(df1, df2)</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="working-with-data.html#cb33-1"></a>df1 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">name =</span> <span class="kw">c</span>(<span class="st">&quot;Peter&quot;</span>, <span class="st">&quot;Mary&quot;</span>, <span class="st">&quot;Susy&quot;</span>, <span class="st">&quot;John&quot;</span>), <span class="dt">n_apples =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">1</span>))</span>
+<span id="cb33-2"><a href="working-with-data.html#cb33-2"></a>df2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">name =</span> <span class="kw">c</span>(<span class="st">&quot;Peter&quot;</span>, <span class="st">&quot;Mary&quot;</span>, <span class="st">&quot;Susy&quot;</span>), <span class="dt">n_oranges =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">20</span>,<span class="dv">0</span>))</span>
+<span id="cb33-3"><a href="working-with-data.html#cb33-3"></a>df &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">left_join</span>(df1, df2)</span></code></pre></div>
 <pre><code>## Joining, by = &quot;name&quot;</code></pre>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="working-with-data.html#cb33-1"></a>df<span class="op">$</span>n_fruit &lt;-<span class="st"> </span>df<span class="op">$</span>n_apples <span class="op">+</span><span class="st"> </span>df<span class="op">$</span>n_oranges</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="working-with-data.html#cb35-1"></a>df<span class="op">$</span>n_fruit &lt;-<span class="st"> </span>df<span class="op">$</span>n_apples <span class="op">+</span><span class="st"> </span>df<span class="op">$</span>n_oranges</span></code></pre></div>
 <ul>
 <li><code>sample_n</code> shows a few random rows from the data frame</li>
 </ul>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="working-with-data.html#cb34-1"></a><span class="kw">sample_n</span>(dativeSimplified, <span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="working-with-data.html#cb36-1"></a><span class="kw">sample_n</span>(dativeSimplified, <span class="dv">10</span>)</span></code></pre></div>
 <pre class="r-output"><code>##     RealizationOfRec  Verb AnimacyOfRec AnimacyOfTheme LengthOfTheme
 ## 14                NP  give      animate      inanimate     0.6931472
 ## 374               NP  sell      animate      inanimate     0.0000000
@@ -497,8 +504,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><code>group_by</code> and <code>ungroup</code> add and remove information about grouping variables</li>
 </ul>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="working-with-data.html#cb36-1"></a><span class="co"># let&#39;s &#39;group&#39; a small subset of the gambling data frame by game</span></span>
-<span id="cb36-2"><a href="working-with-data.html#cb36-2"></a><span class="kw">group_by</span>(dativeSimplified[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>,], RealizationOfRec) </span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="working-with-data.html#cb38-1"></a><span class="co"># let&#39;s &#39;group&#39; a small subset of the gambling data frame by game</span></span>
+<span id="cb38-2"><a href="working-with-data.html#cb38-2"></a><span class="kw">group_by</span>(dativeSimplified[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>,], RealizationOfRec) </span></code></pre></div>
 <pre class="r-output"><code>## # A tibble: 2 x 6
 ## # Groups:   RealizationOfRec [1]
 ##   RealizationOfRec Verb  AnimacyOfRec AnimacyOfTheme LengthOfTheme
@@ -506,8 +513,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 1 NP               feed  animate      inanimate               2.64
 ## 2 NP               give  animate      inanimate               1.10
 ## # … with 1 more variable: is_realization_NP &lt;int&gt;</code></pre>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="working-with-data.html#cb38-1"></a><span class="co"># let&#39;s compare to the original data frame</span></span>
-<span id="cb38-2"><a href="working-with-data.html#cb38-2"></a>dativeSimplified[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>,]</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="working-with-data.html#cb40-1"></a><span class="co"># let&#39;s compare to the original data frame</span></span>
+<span id="cb40-2"><a href="working-with-data.html#cb40-2"></a>dativeSimplified[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>,]</span></code></pre></div>
 <pre class="r-output"><code>##   RealizationOfRec Verb AnimacyOfRec AnimacyOfTheme LengthOfTheme
 ## 1               NP feed      animate      inanimate      2.639057
 ## 2               NP give      animate      inanimate      1.098612
@@ -517,19 +524,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>data frames need to be grouped for use with <code>summarize()</code> and <code>mutate()</code></li>
 </ul>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="working-with-data.html#cb40-1"></a><span class="co"># let&#39;s group the dativeSimplified data frame </span></span>
-<span id="cb40-2"><a href="working-with-data.html#cb40-2"></a>dativeSimplified_grouped &lt;-<span class="st"> </span><span class="kw">group_by</span>(dativeSimplified, Verb)</span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="working-with-data.html#cb42-1"></a><span class="co"># let&#39;s group the dativeSimplified data frame </span></span>
+<span id="cb42-2"><a href="working-with-data.html#cb42-2"></a>dativeSimplified_grouped &lt;-<span class="st"> </span><span class="kw">group_by</span>(dativeSimplified, Verb)</span></code></pre></div>
 <ul>
 <li><code>summarize()</code> divides a grouped data frame into subsets, with <em>each</em> subset corresponding to one value of the grouping variable (or a combination of values for several grouping variables), …</li>
 <li>… and computes one or several values on each such subset</li>
 </ul>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="working-with-data.html#cb41-1"></a><span class="co"># summarize several variables</span></span>
-<span id="cb41-2"><a href="working-with-data.html#cb41-2"></a><span class="kw">summarize</span>(dativeSimplified_grouped, </span>
-<span id="cb41-3"><a href="working-with-data.html#cb41-3"></a>          <span class="dt">prop_NP =</span> <span class="kw">mean</span>(is_realization_NP),</span>
-<span id="cb41-4"><a href="working-with-data.html#cb41-4"></a>          <span class="dt">prop_animate_rec =</span> <span class="kw">mean</span>( AnimacyOfRec <span class="op">==</span><span class="st"> &quot;animate&quot;</span> ),</span>
-<span id="cb41-5"><a href="working-with-data.html#cb41-5"></a>          <span class="dt">prop_animate_theme =</span> <span class="kw">mean</span>( AnimacyOfTheme <span class="op">==</span><span class="st"> &quot;animate&quot;</span> ),</span>
-<span id="cb41-6"><a href="working-with-data.html#cb41-6"></a>          <span class="dt">N =</span> <span class="kw">n</span>()</span>
-<span id="cb41-7"><a href="working-with-data.html#cb41-7"></a>          )</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="working-with-data.html#cb43-1"></a><span class="co"># summarize several variables</span></span>
+<span id="cb43-2"><a href="working-with-data.html#cb43-2"></a><span class="kw">summarize</span>(dativeSimplified_grouped, </span>
+<span id="cb43-3"><a href="working-with-data.html#cb43-3"></a>          <span class="dt">prop_NP =</span> <span class="kw">mean</span>(is_realization_NP),</span>
+<span id="cb43-4"><a href="working-with-data.html#cb43-4"></a>          <span class="dt">prop_animate_rec =</span> <span class="kw">mean</span>( AnimacyOfRec <span class="op">==</span><span class="st"> &quot;animate&quot;</span> ),</span>
+<span id="cb43-5"><a href="working-with-data.html#cb43-5"></a>          <span class="dt">prop_animate_theme =</span> <span class="kw">mean</span>( AnimacyOfTheme <span class="op">==</span><span class="st"> &quot;animate&quot;</span> ),</span>
+<span id="cb43-6"><a href="working-with-data.html#cb43-6"></a>          <span class="dt">N =</span> <span class="kw">n</span>()</span>
+<span id="cb43-7"><a href="working-with-data.html#cb43-7"></a>          )</span></code></pre></div>
 <pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
 <pre class="r-output"><code>## # A tibble: 65 x 5
 ##    Verb     prop_NP prop_animate_rec prop_animate_theme     N
@@ -548,12 +555,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><code>summarize()</code> can use the results of previous computations</li>
 </ul>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="working-with-data.html#cb44-1"></a><span class="co"># compute the averages of profit</span></span>
-<span id="cb44-2"><a href="working-with-data.html#cb44-2"></a><span class="kw">summarize</span>(dativeSimplified_grouped, </span>
-<span id="cb44-3"><a href="working-with-data.html#cb44-3"></a>          <span class="dt">prop_NP =</span> <span class="kw">mean</span>(is_realization_NP),</span>
-<span id="cb44-4"><a href="working-with-data.html#cb44-4"></a>          <span class="dt">prop_PP =</span> <span class="dv">1</span><span class="op">-</span>prop_NP,</span>
-<span id="cb44-5"><a href="working-with-data.html#cb44-5"></a>          <span class="dt">how_many_NP_realizations =</span> <span class="kw">ifelse</span>(prop_NP <span class="op">&gt;</span><span class="st"> </span><span class="fl">0.5</span>, <span class="st">&quot;a lot&quot;</span>, <span class="st">&quot;few&quot;</span>)</span>
-<span id="cb44-6"><a href="working-with-data.html#cb44-6"></a>          )</span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="working-with-data.html#cb46-1"></a><span class="co"># compute the averages of profit</span></span>
+<span id="cb46-2"><a href="working-with-data.html#cb46-2"></a><span class="kw">summarize</span>(dativeSimplified_grouped, </span>
+<span id="cb46-3"><a href="working-with-data.html#cb46-3"></a>          <span class="dt">prop_NP =</span> <span class="kw">mean</span>(is_realization_NP),</span>
+<span id="cb46-4"><a href="working-with-data.html#cb46-4"></a>          <span class="dt">prop_PP =</span> <span class="dv">1</span><span class="op">-</span>prop_NP,</span>
+<span id="cb46-5"><a href="working-with-data.html#cb46-5"></a>          <span class="dt">how_many_NP_realizations =</span> <span class="kw">ifelse</span>(prop_NP <span class="op">&gt;</span><span class="st"> </span><span class="fl">0.5</span>, <span class="st">&quot;a lot&quot;</span>, <span class="st">&quot;few&quot;</span>)</span>
+<span id="cb46-6"><a href="working-with-data.html#cb46-6"></a>          )</span></code></pre></div>
 <pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
 <pre class="r-output"><code>## # A tibble: 65 x 4
 ##    Verb     prop_NP prop_PP how_many_NP_realizations
@@ -574,18 +581,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p><code>mutate()</code> proceeds similarly to <code>summarize()</code> in dividing a grouped dataset into subsets, but instead of computing one or several values for each subset, it creates or modifies a column</p></li>
 <li><p>A very simple application is to simply create a new column. In this case, we don’t even need to group</p></li>
 </ul>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="working-with-data.html#cb47-1"></a><span class="co"># these two lines performs exactly the same action, except the latter stores the result in df </span></span>
-<span id="cb47-2"><a href="working-with-data.html#cb47-2"></a>dativeSimplified<span class="op">$</span>is_realization_NP &lt;-<span class="st"> </span>(dativeSimplified<span class="op">$</span>RealizationOfRec <span class="op">==</span><span class="st"> &quot;NP&quot;</span> ) </span>
-<span id="cb47-3"><a href="working-with-data.html#cb47-3"></a>df &lt;-<span class="st"> </span><span class="kw">mutate</span>(dativeSimplified, <span class="dt">is_realization_NP =</span> (RealizationOfRec <span class="op">==</span><span class="st"> &quot;NP&quot;</span>) )</span>
-<span id="cb47-4"><a href="working-with-data.html#cb47-4"></a></span>
-<span id="cb47-5"><a href="working-with-data.html#cb47-5"></a><span class="kw">head</span>(df, <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="working-with-data.html#cb49-1"></a><span class="co"># these two lines performs exactly the same action, except the latter stores the result in df </span></span>
+<span id="cb49-2"><a href="working-with-data.html#cb49-2"></a>dativeSimplified<span class="op">$</span>is_realization_NP &lt;-<span class="st"> </span>(dativeSimplified<span class="op">$</span>RealizationOfRec <span class="op">==</span><span class="st"> &quot;NP&quot;</span> ) </span>
+<span id="cb49-3"><a href="working-with-data.html#cb49-3"></a>df &lt;-<span class="st"> </span><span class="kw">mutate</span>(dativeSimplified, <span class="dt">is_realization_NP =</span> (RealizationOfRec <span class="op">==</span><span class="st"> &quot;NP&quot;</span>) )</span>
+<span id="cb49-4"><a href="working-with-data.html#cb49-4"></a></span>
+<span id="cb49-5"><a href="working-with-data.html#cb49-5"></a><span class="kw">head</span>(df, <span class="dv">2</span>)</span></code></pre></div>
 <pre class="r-output"><code>##   RealizationOfRec Verb AnimacyOfRec AnimacyOfTheme LengthOfTheme
 ## 1               NP feed      animate      inanimate      2.639057
 ## 2               NP give      animate      inanimate      1.098612
 ##   is_realization_NP
 ## 1              TRUE
 ## 2              TRUE</code></pre>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="working-with-data.html#cb49-1"></a><span class="kw">head</span>(dativeSimplified, <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="working-with-data.html#cb51-1"></a><span class="kw">head</span>(dativeSimplified, <span class="dv">2</span>)</span></code></pre></div>
 <pre class="r-output"><code>##   RealizationOfRec Verb AnimacyOfRec AnimacyOfTheme LengthOfTheme
 ## 1               NP feed      animate      inanimate      2.639057
 ## 2               NP give      animate      inanimate      1.098612
@@ -600,12 +607,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>The code below is really hard to read, even harder to maintain, and <code>dativeSimplified_grouped_by_AnimacyOfRec_and_AnimacyOfTheme</code> is a terribly long variable name.</li>
 </ul>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="working-with-data.html#cb51-1"></a>dativeSimplified_grouped_by_AnimacyOfRec_and_AnimacyOfTheme &lt;-</span>
-<span id="cb51-2"><a href="working-with-data.html#cb51-2"></a><span class="st">      </span><span class="kw">group_by</span>(dativeSimplified, AnimacyOfRec, AnimacyOfTheme)</span>
-<span id="cb51-3"><a href="working-with-data.html#cb51-3"></a>df &lt;-<span class="st"> </span><span class="kw">summarize</span>(dativeSimplified_grouped_by_AnimacyOfRec_and_AnimacyOfTheme, </span>
-<span id="cb51-4"><a href="working-with-data.html#cb51-4"></a>                  <span class="dt">perc_NP =</span> <span class="kw">mean</span>(RealizationOfRec <span class="op">==</span><span class="st"> &quot;NP&quot;</span>) )</span></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="working-with-data.html#cb53-1"></a>dativeSimplified_grouped_by_AnimacyOfRec_and_AnimacyOfTheme &lt;-</span>
+<span id="cb53-2"><a href="working-with-data.html#cb53-2"></a><span class="st">      </span><span class="kw">group_by</span>(dativeSimplified, AnimacyOfRec, AnimacyOfTheme)</span>
+<span id="cb53-3"><a href="working-with-data.html#cb53-3"></a>df &lt;-<span class="st"> </span><span class="kw">summarize</span>(dativeSimplified_grouped_by_AnimacyOfRec_and_AnimacyOfTheme, </span>
+<span id="cb53-4"><a href="working-with-data.html#cb53-4"></a>                  <span class="dt">perc_NP =</span> <span class="kw">mean</span>(RealizationOfRec <span class="op">==</span><span class="st"> &quot;NP&quot;</span>) )</span></code></pre></div>
 <pre><code>## `summarise()` regrouping output by &#39;AnimacyOfRec&#39; (override with `.groups` argument)</code></pre>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="working-with-data.html#cb53-1"></a>df</span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="working-with-data.html#cb55-1"></a>df</span></code></pre></div>
 <pre class="r-output"><code>## # A tibble: 4 x 3
 ## # Groups:   AnimacyOfRec [2]
 ##   AnimacyOfRec AnimacyOfTheme perc_NP
@@ -617,10 +624,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>This alternative is also quite bad. To read this code, you need to know which bracket matches which other bracket.</li>
 </ul>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="working-with-data.html#cb55-1"></a>df &lt;-<span class="st"> </span><span class="kw">summarize</span>(<span class="kw">group_by</span>(dativeSimplified, AnimacyOfRec, AnimacyOfTheme), </span>
-<span id="cb55-2"><a href="working-with-data.html#cb55-2"></a>                  <span class="dt">perc_NP =</span> <span class="kw">mean</span>(RealizationOfRec <span class="op">==</span><span class="st"> &quot;NP&quot;</span>) )</span></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="working-with-data.html#cb57-1"></a>df &lt;-<span class="st"> </span><span class="kw">summarize</span>(<span class="kw">group_by</span>(dativeSimplified, AnimacyOfRec, AnimacyOfTheme), </span>
+<span id="cb57-2"><a href="working-with-data.html#cb57-2"></a>                  <span class="dt">perc_NP =</span> <span class="kw">mean</span>(RealizationOfRec <span class="op">==</span><span class="st"> &quot;NP&quot;</span>) )</span></code></pre></div>
 <pre><code>## `summarise()` regrouping output by &#39;AnimacyOfRec&#39; (override with `.groups` argument)</code></pre>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="working-with-data.html#cb57-1"></a>df</span></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="working-with-data.html#cb59-1"></a>df</span></code></pre></div>
 <pre class="r-output"><code>## # A tibble: 4 x 3
 ## # Groups:   AnimacyOfRec [2]
 ##   AnimacyOfRec AnimacyOfTheme perc_NP
@@ -632,14 +639,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>One nested function call may be OK. But try to read this.</li>
 </ul>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="working-with-data.html#cb59-1"></a>df &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">summarize</span>(<span class="kw">group_by</span>(<span class="kw">mutate</span>(dativeSimplified, <span class="dt">long_theme =</span> <span class="kw">ifelse</span>(LengthOfTheme <span class="op">&gt;</span><span class="st"> </span><span class="fl">1.6</span>, <span class="st">&quot;long&quot;</span>, <span class="st">&quot;short&quot;</span>) ), long_theme),</span>
-<span id="cb59-2"><a href="working-with-data.html#cb59-2"></a>              <span class="dt">perc_NP =</span> <span class="kw">mean</span>(RealizationOfRec <span class="op">==</span><span class="st"> &quot;NP&quot;</span>)</span>
-<span id="cb59-3"><a href="working-with-data.html#cb59-3"></a>              )</span></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="working-with-data.html#cb61-1"></a>df &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">summarize</span>(<span class="kw">group_by</span>(<span class="kw">mutate</span>(dativeSimplified, <span class="dt">long_theme =</span> <span class="kw">ifelse</span>(LengthOfTheme <span class="op">&gt;</span><span class="st"> </span><span class="fl">1.6</span>, <span class="st">&quot;long&quot;</span>, <span class="st">&quot;short&quot;</span>) ), long_theme),</span>
+<span id="cb61-2"><a href="working-with-data.html#cb61-2"></a>              <span class="dt">perc_NP =</span> <span class="kw">mean</span>(RealizationOfRec <span class="op">==</span><span class="st"> &quot;NP&quot;</span>)</span>
+<span id="cb61-3"><a href="working-with-data.html#cb61-3"></a>              )</span></code></pre></div>
 <pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
 <ul>
 <li>Or consider this expression (<code>sqrt</code> is the square root.)</li>
 </ul>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="working-with-data.html#cb61-1"></a><span class="kw">sqrt</span>(<span class="kw">divide_by</span>(<span class="kw">sum</span>(<span class="kw">divide_by</span>(<span class="dv">2</span>,<span class="dv">3</span>), <span class="kw">multiply_by</span>(<span class="dv">2</span>,<span class="dv">3</span>)), <span class="kw">sum</span>(<span class="dv">3</span>,<span class="dv">4</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="working-with-data.html#cb63-1"></a><span class="kw">sqrt</span>(<span class="kw">divide_by</span>(<span class="kw">sum</span>(<span class="kw">divide_by</span>(<span class="dv">2</span>,<span class="dv">3</span>), <span class="kw">multiply_by</span>(<span class="dv">2</span>,<span class="dv">3</span>)), <span class="kw">sum</span>(<span class="dv">3</span>,<span class="dv">4</span>)))</span></code></pre></div>
 <pre><code>## Error in divide_by(sum(divide_by(2, 3), multiply_by(2, 3)), sum(3, 4)): could not find function &quot;divide_by&quot;</code></pre>
 <ul>
 <li>Luckily, there a better way to write this expression.</li>
@@ -652,27 +659,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>In natural language we avoid multiple embeddings of that sort by making shorter sentences, and using anaphors to refer to previous discourse.</li>
 <li>The packages <strong>dplyr</strong> and <strong>magrittr</strong> provide a limited version of such functionality, and we’ll need to use <strong>pipe</strong> operators (<code>%&gt;%</code> and <code>%&lt;&gt;%</code>) to link expressions with an ‘anaphoric dependency’.</li>
 </ul>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="working-with-data.html#cb63-1"></a><span class="co"># Typical notation. Read as &quot;Divide 10 by 2.&quot;</span></span>
-<span id="cb63-2"><a href="working-with-data.html#cb63-2"></a><span class="kw">divide_by</span>(<span class="dv">10</span>, <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="working-with-data.html#cb65-1"></a><span class="co"># Typical notation. Read as &quot;Divide 10 by 2.&quot;</span></span>
+<span id="cb65-2"><a href="working-with-data.html#cb65-2"></a><span class="kw">divide_by</span>(<span class="dv">10</span>, <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## Error in divide_by(10, 2): could not find function &quot;divide_by&quot;</code></pre>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="working-with-data.html#cb65-1"></a><span class="co"># Equivalent pipe notation. Read as &quot;Take 10, and divide it by 2.&quot;</span></span>
-<span id="cb65-2"><a href="working-with-data.html#cb65-2"></a><span class="dv">10</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">divide_by</span>(., <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="working-with-data.html#cb67-1"></a><span class="co"># Equivalent pipe notation. Read as &quot;Take 10, and divide it by 2.&quot;</span></span>
+<span id="cb67-2"><a href="working-with-data.html#cb67-2"></a><span class="dv">10</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">divide_by</span>(., <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## Error in divide_by(., 2): could not find function &quot;divide_by&quot;</code></pre>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="working-with-data.html#cb67-1"></a><span class="co"># Equivalent pipe notation. Read as &quot;Take 2, and divide 10 by it.&quot;</span></span>
-<span id="cb67-2"><a href="working-with-data.html#cb67-2"></a><span class="dv">2</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">divide_by</span>(<span class="dv">10</span>, .)</span></code></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="working-with-data.html#cb69-1"></a><span class="co"># Equivalent pipe notation. Read as &quot;Take 2, and divide 10 by it.&quot;</span></span>
+<span id="cb69-2"><a href="working-with-data.html#cb69-2"></a><span class="dv">2</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">divide_by</span>(<span class="dv">10</span>, .)</span></code></pre></div>
 <pre><code>## Error in divide_by(10, .): could not find function &quot;divide_by&quot;</code></pre>
 <ul>
 <li>If the dot operator occurs in the first argument slot, it can be omitted. (R has pro-drop.)</li>
 </ul>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="working-with-data.html#cb69-1"></a><span class="co"># pipe notation with omission of &#39;.&#39;</span></span>
-<span id="cb69-2"><a href="working-with-data.html#cb69-2"></a><span class="dv">10</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">divide_by</span>(<span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="working-with-data.html#cb71-1"></a><span class="co"># pipe notation with omission of &#39;.&#39;</span></span>
+<span id="cb71-2"><a href="working-with-data.html#cb71-2"></a><span class="dv">10</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">divide_by</span>(<span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## Error in divide_by(., 2): could not find function &quot;divide_by&quot;</code></pre>
 <ul>
 <li>Let’s see how it can resolve the mess below. (Repetition of previous example.)</li>
 </ul>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="working-with-data.html#cb71-1"></a>df &lt;-<span class="st"> </span><span class="kw">mutate</span>(<span class="kw">group_by</span>(dativeSimplified, AnimacyOfRec, AnimacyOfTheme), </span>
-<span id="cb71-2"><a href="working-with-data.html#cb71-2"></a>                  <span class="dt">perc_NP =</span> <span class="kw">mean</span>(RealizationOfRec <span class="op">==</span><span class="st"> &quot;NP&quot;</span>) )</span>
-<span id="cb71-3"><a href="working-with-data.html#cb71-3"></a>df</span></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="working-with-data.html#cb73-1"></a>df &lt;-<span class="st"> </span><span class="kw">mutate</span>(<span class="kw">group_by</span>(dativeSimplified, AnimacyOfRec, AnimacyOfTheme), </span>
+<span id="cb73-2"><a href="working-with-data.html#cb73-2"></a>                  <span class="dt">perc_NP =</span> <span class="kw">mean</span>(RealizationOfRec <span class="op">==</span><span class="st"> &quot;NP&quot;</span>) )</span>
+<span id="cb73-3"><a href="working-with-data.html#cb73-3"></a>df</span></code></pre></div>
 <pre class="r-output"><code>## # A tibble: 903 x 7
 ## # Groups:   AnimacyOfRec, AnimacyOfTheme [4]
 ##    RealizationOfRec Verb  AnimacyOfRec AnimacyOfTheme LengthOfTheme
@@ -692,34 +699,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>And here is the much more readable version of this code:</li>
 </ul>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="working-with-data.html#cb73-1"></a>df &lt;-<span class="st">  </span>dativeSimplified <span class="op">%&gt;%</span></span>
-<span id="cb73-2"><a href="working-with-data.html#cb73-2"></a><span class="st">          </span><span class="kw">mutate</span>(., <span class="dt">long_theme =</span> <span class="kw">ifelse</span>(LengthOfTheme <span class="op">&gt;</span><span class="st"> </span><span class="fl">1.6</span>, <span class="st">&quot;long&quot;</span>, <span class="st">&quot;short&quot;</span>) ) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb73-3"><a href="working-with-data.html#cb73-3"></a><span class="st">          </span><span class="kw">group_by</span>(., long_theme) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb73-4"><a href="working-with-data.html#cb73-4"></a><span class="st">          </span>dplyr<span class="op">::</span><span class="kw">summarize</span>(., <span class="dt">perc_NP =</span> <span class="kw">mean</span>(RealizationOfRec <span class="op">==</span><span class="st"> &quot;NP&quot;</span>) )</span></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="working-with-data.html#cb75-1"></a>df &lt;-<span class="st">  </span>dativeSimplified <span class="op">%&gt;%</span></span>
+<span id="cb75-2"><a href="working-with-data.html#cb75-2"></a><span class="st">          </span><span class="kw">mutate</span>(., <span class="dt">long_theme =</span> <span class="kw">ifelse</span>(LengthOfTheme <span class="op">&gt;</span><span class="st"> </span><span class="fl">1.6</span>, <span class="st">&quot;long&quot;</span>, <span class="st">&quot;short&quot;</span>) ) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb75-3"><a href="working-with-data.html#cb75-3"></a><span class="st">          </span><span class="kw">group_by</span>(., long_theme) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb75-4"><a href="working-with-data.html#cb75-4"></a><span class="st">          </span>dplyr<span class="op">::</span><span class="kw">summarize</span>(., <span class="dt">perc_NP =</span> <span class="kw">mean</span>(RealizationOfRec <span class="op">==</span><span class="st"> &quot;NP&quot;</span>) )</span></code></pre></div>
 <pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
 <ul>
 <li>We don’t actually need the dot:</li>
 </ul>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="working-with-data.html#cb75-1"></a>df &lt;-<span class="st">  </span>dativeSimplified <span class="op">%&gt;%</span></span>
-<span id="cb75-2"><a href="working-with-data.html#cb75-2"></a><span class="st">          </span><span class="kw">mutate</span>(<span class="dt">long_theme =</span> <span class="kw">ifelse</span>(LengthOfTheme <span class="op">&gt;</span><span class="st"> </span><span class="fl">1.6</span>, <span class="st">&quot;long&quot;</span>, <span class="st">&quot;short&quot;</span>) ) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb75-3"><a href="working-with-data.html#cb75-3"></a><span class="st">          </span><span class="kw">group_by</span>(long_theme) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb75-4"><a href="working-with-data.html#cb75-4"></a><span class="st">          </span>dplyr<span class="op">::</span><span class="kw">summarize</span>(<span class="dt">perc_NP =</span> <span class="kw">mean</span>(RealizationOfRec <span class="op">==</span><span class="st"> &quot;NP&quot;</span>) )</span></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="working-with-data.html#cb77-1"></a>df &lt;-<span class="st">  </span>dativeSimplified <span class="op">%&gt;%</span></span>
+<span id="cb77-2"><a href="working-with-data.html#cb77-2"></a><span class="st">          </span><span class="kw">mutate</span>(<span class="dt">long_theme =</span> <span class="kw">ifelse</span>(LengthOfTheme <span class="op">&gt;</span><span class="st"> </span><span class="fl">1.6</span>, <span class="st">&quot;long&quot;</span>, <span class="st">&quot;short&quot;</span>) ) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb77-3"><a href="working-with-data.html#cb77-3"></a><span class="st">          </span><span class="kw">group_by</span>(long_theme) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb77-4"><a href="working-with-data.html#cb77-4"></a><span class="st">          </span>dplyr<span class="op">::</span><span class="kw">summarize</span>(<span class="dt">perc_NP =</span> <span class="kw">mean</span>(RealizationOfRec <span class="op">==</span><span class="st"> &quot;NP&quot;</span>) )</span></code></pre></div>
 <pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
 <ul>
 <li>The <code>%&lt;&gt;%</code> operator is a convenient combination of <code>%&gt;%</code> and <code>&lt;-</code> which you can use to directly modify an object.</li>
 </ul>
-<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="working-with-data.html#cb77-1"></a><span class="co"># create a vector with numbers from 1 to 10</span></span>
-<span id="cb77-2"><a href="working-with-data.html#cb77-2"></a>x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span></span>
-<span id="cb77-3"><a href="working-with-data.html#cb77-3"></a><span class="co"># keep only numbers &lt; 5:</span></span>
-<span id="cb77-4"><a href="working-with-data.html#cb77-4"></a><span class="co">#   (i) without %&lt;&gt;%</span></span>
-<span id="cb77-5"><a href="working-with-data.html#cb77-5"></a>x &lt;-<span class="st"> </span>x[x<span class="op">&lt;</span><span class="dv">5</span>]</span>
-<span id="cb77-6"><a href="working-with-data.html#cb77-6"></a><span class="co">#   (i) with %&lt;&gt;%</span></span>
-<span id="cb77-7"><a href="working-with-data.html#cb77-7"></a>x <span class="op">%&lt;&gt;%</span><span class="st"> </span>.[.<span class="op">&lt;</span><span class="dv">5</span>]</span></code></pre></div>
-<pre><code>## Error in x %&lt;&gt;% .[. &lt; 5]: could not find function &quot;%&lt;&gt;%&quot;</code></pre>
-<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="working-with-data.html#cb79-1"></a><span class="co"># lets add several columns to &#39;dativeSimplified&#39;</span></span>
-<span id="cb79-2"><a href="working-with-data.html#cb79-2"></a>dativeSimplified <span class="op">%&lt;&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">A=</span><span class="dv">1</span>, <span class="dt">B=</span><span class="dv">2</span>, <span class="dt">C=</span><span class="dv">3</span>, <span class="dt">D=</span><span class="dv">4</span>)</span></code></pre></div>
-<pre><code>## Error in dativeSimplified %&lt;&gt;% mutate(A = 1, B = 2, C = 3, D = 4): could not find function &quot;%&lt;&gt;%&quot;</code></pre>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="working-with-data.html#cb81-1"></a><span class="kw">head</span>(dativeSimplified)</span></code></pre></div>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="working-with-data.html#cb79-1"></a><span class="co"># load the package magrittr in order to access the assignment pipe operator</span></span>
+<span id="cb79-2"><a href="working-with-data.html#cb79-2"></a><span class="kw">library</span>(magrittr)</span>
+<span id="cb79-3"><a href="working-with-data.html#cb79-3"></a></span>
+<span id="cb79-4"><a href="working-with-data.html#cb79-4"></a><span class="co"># create a vector with numbers from 1 to 10</span></span>
+<span id="cb79-5"><a href="working-with-data.html#cb79-5"></a>x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span></span>
+<span id="cb79-6"><a href="working-with-data.html#cb79-6"></a><span class="co"># keep only numbers &lt; 5:</span></span>
+<span id="cb79-7"><a href="working-with-data.html#cb79-7"></a><span class="co">#   (i) without %&lt;&gt;%</span></span>
+<span id="cb79-8"><a href="working-with-data.html#cb79-8"></a>x &lt;-<span class="st"> </span>x[x<span class="op">&lt;</span><span class="dv">5</span>]</span>
+<span id="cb79-9"><a href="working-with-data.html#cb79-9"></a><span class="co">#   (i) with %&lt;&gt;%</span></span>
+<span id="cb79-10"><a href="working-with-data.html#cb79-10"></a>x <span class="op">%&lt;&gt;%</span><span class="st"> </span>.[.<span class="op">&lt;</span><span class="dv">5</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="working-with-data.html#cb80-1"></a><span class="co"># lets add several columns to &#39;dativeSimplified&#39;</span></span>
+<span id="cb80-2"><a href="working-with-data.html#cb80-2"></a>dativeSimplified <span class="op">%&lt;&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">A=</span><span class="dv">1</span>, <span class="dt">B=</span><span class="dv">2</span>, <span class="dt">C=</span><span class="dv">3</span>, <span class="dt">D=</span><span class="dv">4</span>)</span>
+<span id="cb80-3"><a href="working-with-data.html#cb80-3"></a><span class="kw">head</span>(dativeSimplified)</span></code></pre></div>
 <pre class="r-output"><code>##   RealizationOfRec  Verb AnimacyOfRec AnimacyOfTheme LengthOfTheme
 ## 1               NP  feed      animate      inanimate      2.639057
 ## 2               NP  give      animate      inanimate      1.098612
@@ -727,13 +735,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4               NP  give      animate      inanimate      1.609438
 ## 5               NP offer      animate      inanimate      1.098612
 ## 6               NP  give      animate      inanimate      1.386294
-##   is_realization_NP
-## 1              TRUE
-## 2              TRUE
-## 3              TRUE
-## 4              TRUE
-## 5              TRUE
-## 6              TRUE</code></pre>
+##   is_realization_NP A B C D
+## 1              TRUE 1 2 3 4
+## 2              TRUE 1 2 3 4
+## 3              TRUE 1 2 3 4
+## 4              TRUE 1 2 3 4
+## 5              TRUE 1 2 3 4
+## 6              TRUE 1 2 3 4</code></pre>
 </div>
 </div>
 <div id="functions-used-in-this-section" class="section level2">
@@ -742,21 +750,143 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">4.4.1</span> Operators</h3>
 <div class="function">
 <p><code>%&gt;%</code></p>
-<p>Pronounced: ‘(forward) pipe’.</p>
+<p><em>(Forward) pipe:</em> Use the expression on the left as a part of the expression on the right.</p>
+<ul>
+<li>Read <code>x %&gt;% fn</code> as <em>‘use <code>x</code> as the <strong>only</strong> argument of function <code>fn</code>’.</em></li>
+<li>Read <code>x %&gt;% fn(1, 2)</code> as <em>‘use <code>x</code> as the <strong>first</strong> argument of function <code>fn</code>’.</em></li>
+<li>Read <code>x %&gt;% fn(1, ., 2)</code> as <em>‘use <code>x</code> as the <strong>second</strong> argument of function <code>fn</code>’.</em></li>
+</ul>
 </div>
 <br>
 <div class="function">
-<p><code>%&gt;%</code></p>
-<p>Pronounced: ‘assignment pipe’.</p>
+<p><code>%&lt;&gt;%</code></p>
+<p><em>Assignment pipe:</em> Use the expression on the left as a part of the expression on the right, <strong>and assign the result back to the left part of the expression</strong>.</p>
+<ul>
+<li><code>x %&lt;&gt;% ...</code> is equivalent to <code>x &lt;- x %&gt;% ...</code></li>
+<li>Read <code>x %&lt;&gt;% fn</code> as <em>‘use <code>x</code> as the <strong>only</strong> argument of function <code>fn</code>, <strong>and assign it the result to x</strong>’.</em></li>
+<li>Read <code>x %&lt;&gt;% fn(1, 2)</code> as <em>‘use <code>x</code> as the <strong>first</strong> argument of function <code>fn</code>, <strong>and assign it the result to x</strong>’.</em></li>
+<li>Read <code>x %&lt;&gt;% fn(1, ., 2)</code> as <em>‘use <code>x</code> as the <strong>second</strong> argument of function <code>fn</code>, <strong>and assign it the result to x</strong>’.</em></li>
+</ul>
+</div>
+<br>
+<div class="function">
+<p><code>df[selected_rows, indices_columns]</code></p>
+<p><em>Indexing operator:</em> Accesses specific rows and/or columns of a data frame.</p>
+<ul>
+<li><code>selected_rows</code> A vector of indices or names.</li>
+<li><code>selected_columns</code> A vector of indices or names.</li>
+</ul>
+</div>
+<br>
+<div class="function">
+<p><code>::</code></p>
+<p><em>Double colon operator:</em> Accesses functions and other objects from packages. Read <code>x::y</code> as <em>‘y from package x.’</em></p>
 </div>
 <p><br></p>
 </div>
 <div id="functions-1" class="section level3">
 <h3><span class="header-section-number">4.4.2</span> Functions</h3>
 <div class="function">
-<p><code>...</code></p>
+<p><code>help(name)</code></p>
+<p>Displays the documentation for an object, such as a function or data frame in R.</p>
+<ul>
+<li><code>object</code> Must be a function or data frame currently loaded in R. If the package in which the function or dataset are located is not currently loaded, the name must be specified using the double-colon operator, i.e., as <code>package::name</code>. For example, <code>help('dplyr::summarize')</code>.</li>
+</ul>
+</div>
+<br>
+<div class="function">
+<p><code>ifelse(condition, val_if_cond_true, val_if_cond_false)</code></p>
+<p>Replaces all occurrences of <code>TRUE</code> by <code>val_if_cond_true</code>, and all occurrences of <code>FALSE</code> by <code>val_if_cond_false</code> and returns the resulting vector.</p>
+<ul>
+<li>If <code>val_if_cond_true</code> and <code>val_if_cond_false</code> are vectors, the elements of condition at every index <span class="math inline">\(i\)</span> are replaces by <code>val_if_cond_true[i]</code> and <code>val_if_cond_false[i]</code>, respectively.</li>
+</ul>
+</div>
+<br>
+<div class="function">
+<p><code>unique(object)</code></p>
+<p>Return only the unique values in an object. That is, return each value that occurs in vector or data frame object exactly once. For vectors, this means <em>unique values</em>. For data frames, this means <em>unique rows</em>.</p>
+<ul>
+<li><code>object</code> A vector, matrix, or data frame.</li>
+</ul>
+</div>
+<br>
+<div class="function">
+<p><code>nrow(object)</code></p>
+<p>Return the number of rows in <code>object</code>.</p>
+<ul>
+<li><code>object</code> A data frame or matrix.</li>
+</ul>
+</div>
+<br>
+<div class="function">
+<p><code>ncol(object)</code></p>
+<p>Return the number of columns in <code>object</code>.</p>
+<ul>
+<li><code>object</code> A data frame or matrix.</li>
+</ul>
+</div>
+<br>
+<div class="function">
+<p><code>sample(vector, size = length(vector), replace = FALSE)</code></p>
+<p>Select a number of random elements from <code>vector</code>. If <code>size == length(vector)</code>, the vector is just returned in randomly permuted order.</p>
+<ul>
+<li><code>vector</code> The vector from which to sample.</li>
+<li><code>size</code> How many elements to sample. Must be smaller than or equal to the length of <code>vector</code>, which is the default.</li>
+<li><code>replace</code> Logical. Sample with replacement? (i.e., Can the same element be sampled several times?) Defaults to <code>FALSE</code>.</li>
+</ul>
 </div>
 <p><br></p>
+<div class="function">
+<p><code>group_by(df, grouping_var1, ...)</code></p>
+<p>Records the grouping of a data frame for future application of <code>summarize()</code> or <code>mutate()</code>.</p>
+<ul>
+<li><code>df</code> A data frame.</li>
+<li><code>grouping_var1</code> The first grouping variable.</li>
+<li><code>...</code> More grouping variables, if applicable.</li>
+</ul>
+</div>
+<p><br></p>
+<div class="function">
+<p><code>summarize(df, expression1, ...)</code></p>
+<p>Computes a series of summary statistics for each combination of values specified by the levels of the grouping variables, for example compute the average of a column.</p>
+<ul>
+<li><code>df</code> A data frame, typically previously grouped using <code>group_by</code>.</li>
+<li><code>expression1</code> An expression computing a summary statistics.</li>
+<li><code>...</code> An expression computing summary statistics.</li>
+</ul>
+</div>
+<p><br></p>
+<div class="function">
+<p><code>mutate(df, expression1, ...)</code></p>
+<p>Modify and old column, or create a new one for each combination of grouping variable levels.</p>
+<ul>
+<li><code>df</code> A data frame, typically previously grouped using <code>group_by</code>.</li>
+<li><code>expression1</code> An expression creating a new column, or modifying an old one.</li>
+<li><code>...</code> More expressions creating new columns, or modifying an old ones.</li>
+</ul>
+</div>
+<br>
+<div class="function">
+<p><code>n()</code></p>
+<p>Within a call to <code>summarize()</code> or <code>mutate()</code>, <code>n()</code> computes the number of rows at each combination of grouping variable levels.</p>
+</div>
+<p><br></p>
+<div class="function">
+<p><code>arrange()</code></p>
+</div>
+<br>
+<div class="function">
+<p><code>select()</code></p>
+</div>
+<br>
+<div class="function">
+<p><code>sample_n()</code></p>
+</div>
+<p><br></p>
+<!-- to-do:
+- Explain what the point of the group_by/mutate combo is.
+- Introduce the $ operator together with data frames
+-->
 
 </div>
 </div>

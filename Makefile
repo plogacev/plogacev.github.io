@@ -1,5 +1,6 @@
 
-all: update_r
+all:
+	make update_r
 	git add *
 	git commit -a -m update
 	git push
