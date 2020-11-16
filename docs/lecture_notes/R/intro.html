@@ -24,7 +24,7 @@
 <meta name="author" content="Pavel Logacev" />
 
 
-<meta name="date" content="2020-11-14" />
+<meta name="date" content="2020-11-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -186,8 +186,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.3.1" data-path="working-with-data.html"><a href="working-with-data.html#the-problem"><i class="fa fa-check"></i><b>4.3.1</b> The problem</a></li>
 <li class="chapter" data-level="4.3.2" data-path="working-with-data.html"><a href="working-with-data.html#pipes-1"><i class="fa fa-check"></i><b>4.3.2</b> Pipes</a></li>
 </ul></li>
+<li class="chapter" data-level="4.4" data-path="working-with-data.html"><a href="working-with-data.html#functions-used-in-this-section"><i class="fa fa-check"></i><b>4.4</b> Functions used in this section</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="working-with-data.html"><a href="working-with-data.html#operators-2"><i class="fa fa-check"></i><b>4.4.1</b> Operators</a></li>
+<li class="chapter" data-level="4.4.2" data-path="working-with-data.html"><a href="working-with-data.html#functions-1"><i class="fa fa-check"></i><b>4.4.2</b> Functions</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="functions-1.html"><a href="functions-1.html"><i class="fa fa-check"></i><b>5</b> Functions</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="plottting-with-ggplot2.html"><a href="plottting-with-ggplot2.html"><i class="fa fa-check"></i><b>5</b> Plottting with ggplot2</a></li>
+<li class="chapter" data-level="6" data-path="functions-2.html"><a href="functions-2.html"><i class="fa fa-check"></i><b>6</b> Functions</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -434,7 +439,7 @@ Let’s take a look at the function <code>recode</code> in the package <code>dpl
 <span id="cb55-15"><a href="intro.html#cb55-15"></a><span class="kw">ggplot</span>(<span class="dt">data=</span><span class="ot">NULL</span>, <span class="kw">aes</span>(x, y)) <span class="op">+</span><span class="st"> </span></span>
 <span id="cb55-16"><a href="intro.html#cb55-16"></a><span class="st">      </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span></span>
 <span id="cb55-17"><a href="intro.html#cb55-17"></a><span class="st">      </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">formula =</span> y<span class="op">~</span>x <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(x<span class="op">^</span><span class="dv">2</span>) )</span></code></pre></div>
-<p><img src="LectureNotes_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
+<p><img src="LectureNotes_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
 </div>
 <div id="example-putting-it-all-and-some-more-together" class="section level2">
 <h2><span class="header-section-number">2.11</span> Example: Putting it all (and some more) together</h2>
@@ -462,13 +467,13 @@ Let’s take a look at the function <code>recode</code> in the package <code>dpl
 <span id="cb58-3"><a href="intro.html#cb58-3"></a><span class="co"># plot cup size by size category, use a bar plot;</span></span>
 <span id="cb58-4"><a href="intro.html#cb58-4"></a><span class="kw">ggplot</span>(df_starbucks_coffee, <span class="kw">aes</span>(label, size_oz)) <span class="op">+</span><span class="st"> </span></span>
 <span id="cb58-5"><a href="intro.html#cb58-5"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>)</span></code></pre></div>
-<p><img src="LectureNotes_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
+<p><img src="LectureNotes_files/figure-html/unnamed-chunk-38-1.png" width="672" /></p>
 <div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="intro.html#cb59-1"></a><span class="co"># plot cup size by price, use a scatterplot;  draw a line through the points</span></span>
 <span id="cb59-2"><a href="intro.html#cb59-2"></a><span class="kw">ggplot</span>(df_starbucks_coffee, <span class="kw">aes</span>(price_tl, size_oz)) <span class="op">+</span><span class="st"> </span></span>
 <span id="cb59-3"><a href="intro.html#cb59-3"></a><span class="st">  </span><span class="kw">geom_point</span>()  <span class="op">+</span><span class="st"> </span></span>
 <span id="cb59-4"><a href="intro.html#cb59-4"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>)</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="LectureNotes_files/figure-html/unnamed-chunk-38-1.png" width="672" /></p>
+<p><img src="LectureNotes_files/figure-html/unnamed-chunk-39-1.png" width="672" /></p>
 <div id="how-much-would-other-coffee-sizes-cost-if-starbucks-introduced-them" class="section level3">
 <h3><span class="header-section-number">2.11.1</span> How much would other coffee sizes cost if Starbucks introduced them?</h3>
 <div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="intro.html#cb61-1"></a><span class="co"># plot cup size by price, use a scatterplot;  draw a line through the points</span></span>
@@ -479,7 +484,7 @@ Let’s take a look at the function <code>recode</code> in the package <code>dpl
 <span id="cb61-6"><a href="intro.html#cb61-6"></a><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">3</span>, <span class="dv">25</span>))</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <pre><code>## Warning: Removed 23 rows containing missing values (geom_smooth).</code></pre>
-<p><img src="LectureNotes_files/figure-html/unnamed-chunk-39-1.png" width="672" /></p>
+<p><img src="LectureNotes_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
 <ul>
 <li>Does this plot even make sense? Why not?</li>
 </ul>
@@ -501,7 +506,7 @@ Let’s take a look at the function <code>recode</code> in the package <code>dpl
 <span id="cb64-5"><a href="intro.html#cb64-5"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">25</span>))  <span class="op">+</span><span class="st"> </span></span>
 <span id="cb64-6"><a href="intro.html#cb64-6"></a><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">15</span>))</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="LectureNotes_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
+<p><img src="LectureNotes_files/figure-html/unnamed-chunk-41-1.png" width="672" /></p>
 </div>
 </div>
 <div id="operators-and-functions-in-this-section" class="section level2">
