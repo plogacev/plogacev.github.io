@@ -55,3 +55,4 @@ plotting-with-ggplot2
 using-lines-in-plots
 grouping-and-facets
 color-and-fill
+a-first-plot
