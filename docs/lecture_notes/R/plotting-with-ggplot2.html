@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 5 Plottting with ggplot2 | Data Processing in R, Lecture Notes</title>
+  <title>Chapter 5 Plotting with ggplot2 | Data Processing in R, Lecture Notes</title>
   <meta name="description" content="Lecture notes on data processing in R." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 5 Plottting with ggplot2 | Data Processing in R, Lecture Notes" />
+  <meta property="og:title" content="Chapter 5 Plotting with ggplot2 | Data Processing in R, Lecture Notes" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 5 Plottting with ggplot2 | Data Processing in R, Lecture Notes" />
+  <meta name="twitter:title" content="Chapter 5 Plotting with ggplot2 | Data Processing in R, Lecture Notes" />
   
   <meta name="twitter:description" content="Lecture notes on data processing in R." />
   
@@ -192,10 +192,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.4.2" data-path="working-with-data.html"><a href="working-with-data.html#functions-1"><i class="fa fa-check"></i><b>4.4.2</b> Functions</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="plottting-with-ggplot2.html"><a href="plottting-with-ggplot2.html"><i class="fa fa-check"></i><b>5</b> Plottting with ggplot2</a><ul>
-<li class="chapter" data-level="5.1" data-path="plottting-with-ggplot2.html"><a href="plottting-with-ggplot2.html#the-basics-of-ggplot2"><i class="fa fa-check"></i><b>5.1</b> The basics of ggplot2</a></li>
-<li class="chapter" data-level="5.2" data-path="plottting-with-ggplot2.html"><a href="plottting-with-ggplot2.html#the-basics-of-ggplot2-1"><i class="fa fa-check"></i><b>5.2</b> The basics of ggplot2</a></li>
-<li class="chapter" data-level="5.3" data-path="plottting-with-ggplot2.html"><a href="plottting-with-ggplot2.html#grouping-and-lines-in-plots"><i class="fa fa-check"></i><b>5.3</b> Grouping and lines in plots</a></li>
+<li class="chapter" data-level="5" data-path="plotting-with-ggplot2.html"><a href="plotting-with-ggplot2.html"><i class="fa fa-check"></i><b>5</b> Plotting with ggplot2</a><ul>
+<li class="chapter" data-level="5.1" data-path="plotting-with-ggplot2.html"><a href="plotting-with-ggplot2.html#the-basics-of-ggplot2"><i class="fa fa-check"></i><b>5.1</b> The basics of ggplot2</a></li>
+<li class="chapter" data-level="5.2" data-path="plotting-with-ggplot2.html"><a href="plotting-with-ggplot2.html#the-basics-of-ggplot2-1"><i class="fa fa-check"></i><b>5.2</b> The basics of ggplot2</a></li>
+<li class="chapter" data-level="5.3" data-path="plotting-with-ggplot2.html"><a href="plotting-with-ggplot2.html#using-lines-in-plots"><i class="fa fa-check"></i><b>5.3</b> Using lines in plots</a></li>
+<li class="chapter" data-level="5.4" data-path="plotting-with-ggplot2.html"><a href="plotting-with-ggplot2.html#grouping-and-facets"><i class="fa fa-check"></i><b>5.4</b> Grouping and facets</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="functions-2.html"><a href="functions-2.html"><i class="fa fa-check"></i><b>6</b> Functions</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -219,9 +220,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="plottting-with-ggplot2" class="section level1">
-<h1><span class="header-section-number">Chapter 5</span> Plottting with ggplot2</h1>
-<p>(17 November, 2020, 13:57)</p>
+<div id="plotting-with-ggplot2" class="section level1">
+<h1><span class="header-section-number">Chapter 5</span> Plotting with ggplot2</h1>
+<p>(17 November, 2020, 14:48)</p>
 <style type="text/css">
 .r-output {
   font-weight: bold;
@@ -238,27 +239,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Let’s first take a look at some example plots.</li>
 <li>Create a synthetic data set and load the <code>ggplot2</code> package to access the plotting functionality.</li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="plottting-with-ggplot2.html#cb1-1"></a><span class="kw">library</span>(ggplot2)</span>
-<span id="cb1-2"><a href="plottting-with-ggplot2.html#cb1-2"></a>df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">a=</span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">a_sq=</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)<span class="op">^</span><span class="dv">2</span>, <span class="dt">group =</span> <span class="kw">c</span>(<span class="st">&quot;a&quot;</span>,<span class="st">&quot;b&quot;</span>))</span>
-<span id="cb1-3"><a href="plottting-with-ggplot2.html#cb1-3"></a>df</span></code></pre></div>
-<pre class="r-output"><code>##     a a_sq group
-## 1   1    1     a
-## 2   2    4     b
-## 3   3    9     a
-## 4   4   16     b
-## 5   5   25     a
-## 6   6   36     b
-## 7   7   49     a
-## 8   8   64     b
-## 9   9   81     a
-## 10 10  100     b</code></pre>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="plottting-with-ggplot2.html#cb3-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> df, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> a, <span class="dt">y =</span> a_sq)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="plotting-with-ggplot2.html#cb1-1"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb1-2"><a href="plotting-with-ggplot2.html#cb1-2"></a>df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">a=</span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">a_sq=</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)<span class="op">^</span><span class="dv">2</span>, <span class="dt">my_group =</span> <span class="kw">c</span>(<span class="st">&quot;a&quot;</span>,<span class="st">&quot;b&quot;</span>))</span>
+<span id="cb1-3"><a href="plotting-with-ggplot2.html#cb1-3"></a>df</span></code></pre></div>
+<pre class="r-output"><code>##     a a_sq my_group
+## 1   1    1        a
+## 2   2    4        b
+## 3   3    9        a
+## 4   4   16        b
+## 5   5   25        a
+## 6   6   36        b
+## 7   7   49        a
+## 8   8   64        b
+## 9   9   81        a
+## 10 10  100        b</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="plotting-with-ggplot2.html#cb3-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> df, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> a, <span class="dt">y =</span> a_sq)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</span></code></pre></div>
 <p><img src="LectureNotes_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="plottting-with-ggplot2.html#cb4-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> df, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> a, <span class="dt">y =</span> a_sq)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="plotting-with-ggplot2.html#cb4-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> df, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> a, <span class="dt">y =</span> a_sq)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>)</span></code></pre></div>
 <p><img src="LectureNotes_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="plottting-with-ggplot2.html#cb5-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> df, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> a_sq, <span class="dt">y =</span> a)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="plotting-with-ggplot2.html#cb5-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> df, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> a_sq, <span class="dt">y =</span> a)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</span></code></pre></div>
 <p><img src="LectureNotes_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="plottting-with-ggplot2.html#cb6-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> df, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> a_sq, <span class="dt">y =</span> a)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="plotting-with-ggplot2.html#cb6-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> df, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> a_sq, <span class="dt">y =</span> a)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>)</span></code></pre></div>
 <p><img src="LectureNotes_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 </div>
 <div id="the-basics-of-ggplot2-1" class="section level2">
@@ -267,7 +268,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>So what do those function calls mean?</p></li>
 <li><p>Let’s take a look at it again: This is pretty much the minimal useful plotting command in R.</p></li>
 </ul>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="plottting-with-ggplot2.html#cb7-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> df, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> a, <span class="dt">y =</span> a_sq)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="plotting-with-ggplot2.html#cb7-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> df, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> a, <span class="dt">y =</span> a_sq)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</span></code></pre></div>
 <ul>
 <li>Each ggplot2 plot specification consists, at a minimum, of three parts:
 <ol style="list-style-type: decimal">
@@ -281,19 +282,74 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><span style="color:red"><strong>‘aesthetic’:</strong> <code>mapping = aes(x, y)</code></span></li>
 <li><span style="color:green"><strong>‘geoms’:</strong> <code>+ geom_point()</code></span></li>
 </ol></li>
-<li>You can read the instruction below as <em>“Create a plot <span style="color:blue">using the data in data frame df</span>, <span style="color:red">placing <code>a</code> on the x-axis and <code>a_sq</code> on the y-axis</span>, <span style="color:green">and visualize the points using</span>”</em>.</li>
+<li>You can read the instruction below as <em>“Create a plot <span style="color:blue">using the data in data frame df</span>, <span style="color:red">placing <code>a</code> on the x-axis and <code>a_sq</code> on the y-axis</span>, <span style="color:green">and visualize the data using points</span>”</em>.</li>
 </ul>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="plottting-with-ggplot2.html#cb8-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> df, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> a, <span class="dt">y =</span> a_sq)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="plotting-with-ggplot2.html#cb8-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> df, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> a, <span class="dt">y =</span> a_sq)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</span></code></pre></div>
 <ul>
-<li>As an aside: A shorter way to write the same is the code below, and I’ll mostly use some mixed form.</li>
+<li>As an aside: A shorter way to write the same code is below, and I’ll mostly use some mixed form.</li>
 </ul>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="plottting-with-ggplot2.html#cb9-1"></a><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(a, a_sq)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="plotting-with-ggplot2.html#cb9-1"></a><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(a, a_sq)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</span></code></pre></div>
 </div>
-<div id="grouping-and-lines-in-plots" class="section level2">
-<h2><span class="header-section-number">5.3</span> Grouping and lines in plots</h2>
-<!-- - color / fill -->
+<div id="using-lines-in-plots" class="section level2">
+<h2><span class="header-section-number">5.3</span> Using lines in plots</h2>
+<ul>
+<li><p>We already know <code>geom_point</code> and <code>geom_bar</code>. Let’s take a look at some other <em>geoms</em>:.</p></li>
+<li><p><code>geom_line</code> connects the (invisible, in this case) points in the plot.</p></li>
+</ul>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="plotting-with-ggplot2.html#cb10-1"></a><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(a, a_sq)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>()</span></code></pre></div>
+<p><img src="LectureNotes_files/figure-html/unnamed-chunk-10-1.png" width="672" />
+- We can even combine geoms:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="plotting-with-ggplot2.html#cb11-1"></a><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(a, a_sq)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>()</span></code></pre></div>
+<p><img src="LectureNotes_files/figure-html/unnamed-chunk-11-1.png" width="672" />
+- … in fact, as many as we want. But there is no guarantee that the result will look good, or even make sense.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="plotting-with-ggplot2.html#cb12-1"></a><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(a, a_sq)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>)</span></code></pre></div>
+<p><img src="LectureNotes_files/figure-html/unnamed-chunk-12-1.png" width="672" />
+- The order of their specification matter a little bit. Here, the line is plotted over the bars, in contrast to the previous plot.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="plotting-with-ggplot2.html#cb13-1"></a><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(a, a_sq)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>()</span></code></pre></div>
+<p><img src="LectureNotes_files/figure-html/unnamed-chunk-13-1.png" width="672" />
+## Color and fill
+- Relationships between two variables are usually easy to visualize, but often there is a third variable.
+- There are various ways for dealing with it.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="plotting-with-ggplot2.html#cb14-1"></a><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(a, a_sq, <span class="dt">color =</span> my_group)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>)</span></code></pre></div>
+<p><img src="LectureNotes_files/figure-html/unnamed-chunk-14-1.png" width="672" />
+- Let’s try this with bar plots. Not at all what you expected, is it?</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="plotting-with-ggplot2.html#cb15-1"></a><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(a, a_sq, <span class="dt">color =</span> my_group)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>)</span></code></pre></div>
+<p><img src="LectureNotes_files/figure-html/unnamed-chunk-15-1.png" width="672" />
+- This is what we wanted. The right argument for bar plots is <code>fill</code>.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="plotting-with-ggplot2.html#cb16-1"></a><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(a, a_sq, <span class="dt">fill =</span> my_group)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>)</span></code></pre></div>
+<p><img src="LectureNotes_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<ul>
+<li><p>So why isn’t the aesthetic argument for bar plots not also <code>color</code>?</p></li>
+<li><p>Because geoms in ggplot2 have <code>fill</code> (the color of the inner part of the object), and a <code>color</code> (the color of the line with which they are drawn).</p></li>
+<li><p>Points don’t have a fill. (Don’t ask me why.)</p></li>
+</ul>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="plotting-with-ggplot2.html#cb17-1"></a><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(a, a_sq, <span class="dt">color =</span> my_group)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">size=</span><span class="dv">10</span>, <span class="dt">fill =</span> <span class="st">&quot;black&quot;</span>)</span></code></pre></div>
+<p><img src="LectureNotes_files/figure-html/unnamed-chunk-17-1.png" width="672" />
+- Bars have both.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="plotting-with-ggplot2.html#cb18-1"></a><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(a, a_sq, <span class="dt">fill =</span> my_group)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>)</span></code></pre></div>
+<p><img src="LectureNotes_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="plotting-with-ggplot2.html#cb19-1"></a><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(a, a_sq, <span class="dt">color =</span> my_group)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;black&quot;</span>)</span></code></pre></div>
+<p><img src="LectureNotes_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+</div>
+<div id="grouping-and-facets" class="section level2">
+<h2><span class="header-section-number">5.4</span> Grouping and facets</h2>
+<ul>
+<li>Color, fill, etc. implicitly group the data set into different subgroups.</li>
+<li>You can see that better if you connect the points by lines.</li>
+</ul>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="plotting-with-ggplot2.html#cb20-1"></a><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(a, a_sq, <span class="dt">color =</span> my_group)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()  <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>()</span></code></pre></div>
+<p><img src="LectureNotes_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<ul>
+<li>This can be done explicitly as well.</li>
+</ul>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="plotting-with-ggplot2.html#cb21-1"></a><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(a, a_sq, <span class="dt">group =</span> my_group)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()  <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>()</span></code></pre></div>
+<p><img src="LectureNotes_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<ul>
+<li>Now it’s very hard to see which line is which, so let’s at least separate it into different <strong>facets</strong> (aka <em>‘panels’</em>).</li>
+</ul>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="plotting-with-ggplot2.html#cb22-1"></a><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(a, a_sq, <span class="dt">group =</span> my_group)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()  <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>() <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(<span class="op">~</span>my_group)</span></code></pre></div>
+<p><img src="LectureNotes_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
 <!-- - error bars? -->
-<!-- - facets -->
 <!-- - scales -->
 
 </div>

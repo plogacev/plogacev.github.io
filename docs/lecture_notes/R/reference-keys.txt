@@ -46,3 +46,11 @@ operators-2
 functions-2
 functions-3
 plottting-with-ggplot2
+specific-useful-cheat-sheets-and-primers
+data-structures-in-r-1
+the-basics-of-ggplot2
+the-basics-of-ggplot2-1
+grouping-and-lines-in-plots
+plotting-with-ggplot2
+using-lines-in-plots
+grouping-and-facets
