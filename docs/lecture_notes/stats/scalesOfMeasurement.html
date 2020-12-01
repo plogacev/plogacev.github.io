@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 Scales of Measurement | Statistics in R</title>
+  <meta name="description" content="Chapter 2 Scales of Measurement | Statistics in R" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 Scales of Measurement | Statistics in R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 Scales of Measurement | Statistics in R" />
+  
+  
+  
+
+<meta name="author" content="Pavel Logacev" />
+
+
+<meta name="date" content="2020-11-30" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="descriptives.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Initial Remarks</a></li>
+<li class="chapter" data-level="2" data-path="scalesOfMeasurement.html"><a href="scalesOfMeasurement.html"><i class="fa fa-check"></i><b>2</b> Scales of Measurement</a><ul>
+<li class="chapter" data-level="2.1" data-path="scalesOfMeasurement.html"><a href="scalesOfMeasurement.html#nominal-scale"><i class="fa fa-check"></i><b>2.1</b> Nominal scale</a></li>
+<li class="chapter" data-level="2.2" data-path="scalesOfMeasurement.html"><a href="scalesOfMeasurement.html#ordinal-scale"><i class="fa fa-check"></i><b>2.2</b> Ordinal scale</a></li>
+<li class="chapter" data-level="2.3" data-path="scalesOfMeasurement.html"><a href="scalesOfMeasurement.html#interval-scale"><i class="fa fa-check"></i><b>2.3</b> Interval scale</a></li>
+<li class="chapter" data-level="2.4" data-path="scalesOfMeasurement.html"><a href="scalesOfMeasurement.html#ratio-scale"><i class="fa fa-check"></i><b>2.4</b> Ratio scale</a></li>
+<li class="chapter" data-level="2.5" data-path="scalesOfMeasurement.html"><a href="scalesOfMeasurement.html#continuous-versus-discrete-variables"><i class="fa fa-check"></i><b>2.5</b> Continuous versus discrete variables</a></li>
+<li class="chapter" data-level="2.6" data-path="scalesOfMeasurement.html"><a href="scalesOfMeasurement.html#some-complexities"><i class="fa fa-check"></i><b>2.6</b> Some complexities</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="descriptives.html"><a href="descriptives.html"><i class="fa fa-check"></i><b>3</b> Descriptive statistics</a><ul>
+<li class="chapter" data-level="3.1" data-path="descriptives.html"><a href="descriptives.html#centraltendency"><i class="fa fa-check"></i><b>3.1</b> Measures of central tendency</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="descriptives.html"><a href="descriptives.html#mean"><i class="fa fa-check"></i><b>3.1.1</b> The mean</a></li>
+<li class="chapter" data-level="3.1.2" data-path="descriptives.html"><a href="descriptives.html#calculating-the-mean-in-r"><i class="fa fa-check"></i><b>3.1.2</b> Calculating the mean in R</a></li>
+<li class="chapter" data-level="3.1.3" data-path="descriptives.html"><a href="descriptives.html#median"><i class="fa fa-check"></i><b>3.1.3</b> The median</a></li>
+<li class="chapter" data-level="3.1.4" data-path="descriptives.html"><a href="descriptives.html#mean-or-median-whats-the-difference"><i class="fa fa-check"></i><b>3.1.4</b> Mean or median? What’s the difference?</a></li>
+<li class="chapter" data-level="3.1.5" data-path="descriptives.html"><a href="descriptives.html#trimmedmean"><i class="fa fa-check"></i><b>3.1.5</b> Trimmed mean</a></li>
+<li class="chapter" data-level="3.1.6" data-path="descriptives.html"><a href="descriptives.html#mode"><i class="fa fa-check"></i><b>3.1.6</b> Mode</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="descriptives.html"><a href="descriptives.html#summary"><i class="fa fa-check"></i><b>3.2</b> Summary</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Statistics in R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="scalesOfMeasurement" class="section level1">
+<h1><span class="header-section-number">Chapter 2</span> Scales of Measurement</h1>
+<p><em>(an adapted version of Danielle Navarro’s <a href="https://learningstatisticswithr.com/">chapter 2</a>.)</em></p>
+<p>As might recall, the outcome of a measurement is what we call a <strong><em>variable</em></strong>. But not all variables are of the same qualitative type, and it’s very useful to understand what types there are.
+A very useful concept for distinguishing between different types of variables is what’s known as scales of measurement.</p>
+<div id="nominal-scale" class="section level2">
+<h2><span class="header-section-number">2.1</span> Nominal scale</h2>
+<ul>
+<li>A <strong><em>nominal scale</em></strong> variable (also referred to as a <strong><em>categorical variable</em></strong>) is one in which there is no particular
+relationship between the different possibilities.</li>
+<li><em>No ordering</em>: For these kinds of variables it doesn’t make any sense to say that one of them is “bigger’ or “better” than any other one, and it doesn’t make any sense to average them.</li>
+</ul>
+<p>Examples:</p>
+<ul>
+<li><p>The classic example for this is <em>“eye color”</em>. Eyes can be <em>blue, green</em> and <em>brown</em>, among other possibilities, but none of them is any “better” than any other one. As a result, it would feel really odd to talk about an “average eye color”.</p></li>
+<li><p>Similarly, gender is nominal too: male isn’t better or worse than female, neither does it make sense to try to talk about an “average gender”.</p></li>
+<li><p>In short, nominal scale variables are those for which the only thing you can say about the different possibilities is that they are different. That’s it.</p></li>
+<li><p>Let’s take a slightly closer look at this. Suppose I was doing research on how people commute to and from work. One variable I would have to measure would be what kind of transportation people use to get to work. This “transport type” variable could have quite a few possible values, including: “train”, “bus”, “car”, “bicycle”, etc. For now, let’s suppose that these four are the only possibilities, and suppose that when I ask 100 people how they got to work today, and I get this:</p></li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Transportation</th>
+<th align="left">Number of people</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">(1) Train</td>
+<td align="left">12</td>
+</tr>
+<tr class="even">
+<td align="left">(2) Bus</td>
+<td align="left">30</td>
+</tr>
+<tr class="odd">
+<td align="left">(3) Car</td>
+<td align="left">48</td>
+</tr>
+<tr class="even">
+<td align="left">(4) Bicycle</td>
+<td align="left">10</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>So, what’s the average transportation type? Obviously, the answer here is that there isn’t one. It’s a silly question to ask. You can say that travel by car is the most popular method, and travel by train is the least popular method, but that’s about all.</li>
+</ul>
+<!--
+Similarly, notice that the order in which I list the options isn’t very interesting. I could have chosen to display the data like this
+
+
+|Transportation |Number of people |
+|:--------------|:----------------|
+|(3) Car        |48               |
+|(1) Train      |12               |
+|(4) Bicycle    |10               |
+|(2) Bus        |30               |
+
+and nothing really changes.
+-->
+</div>
+<div id="ordinal-scale" class="section level2">
+<h2><span class="header-section-number">2.2</span> Ordinal scale</h2>
+<ul>
+<li><strong><em>Ordinal scale</em></strong> variables have a bit more structure than nominal scale variables, but not by a lot. An
+ordinal scale variable is one in which there is a natural, meaningful way to <em>order</em> the different possibilities, but you can’t do anything else.</li>
+</ul>
+<p>Examples:</p>
+<ul>
+<li>The usual example given of an ordinal variable is “finishing position in a race”. You can say that the person who finished first was faster than the person who finished second, but you don’t know how much faster. As a consequence we know that 1st &lt; 2nd, and we know that 2nd &lt; 3rd, but the difference between 1st and 2nd might be much larger than the difference between 2nd and 3rd.</li>
+<li>Here’s an more interesting example. Suppose I’m interested in people’s attitudes to climate change, and I ask them to pick one of these four statements that most closely matches their beliefs:</li>
+</ul>
+<ol style="list-style-type: decimal">
+<li>Temperatures are rising, because of human activity</li>
+<li>Temperatures are rising, but we don’t know why</li>
+<li>Temperatures are rising, but not because of humans</li>
+<li>Temperatures are not rising</li>
+</ol>
+<ul>
+<li><p>These four statements actually do have a natural ordering, in terms of <em>“the extent to which they agree with the current science”</em>.</p>
+<ul>
+<li>Statement 1 is a close match,</li>
+<li>Statement 2 is a reasonable match,</li>
+<li>Statement 3 isn’t a very good match,</li>
+<li>Statement 4 is in strong opposition to the science.</li>
+</ul></li>
+<li><p>So, in terms of the thing I’m interested in (the extent to which people endorse the science), I can order the items as <span class="math inline">\(1 &gt; 2 &gt; 3 &gt; 4\)</span>.</p></li>
+<li><p>So, let’s suppose I asked 100 people these questions, and got the following answers:</p></li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Response</th>
+<th align="left">Number</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">(1) Temperatures are rising, because of human activity</td>
+<td align="left">51</td>
+</tr>
+<tr class="even">
+<td align="left">(2) Temperatures are rising, but we don’t know why</td>
+<td align="left">20</td>
+</tr>
+<tr class="odd">
+<td align="left">(3) Temperatures are rising, but not because of humans</td>
+<td align="left">10</td>
+</tr>
+<tr class="even">
+<td align="left">(4) Temperatures are not rising</td>
+<td align="left">19</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>When analysing these data, it seems quite reasonable to try to group (1), (2) and (3) together, and say that 81 of 100 people were willing to at least partially endorse the science.</li>
+<li>And it’s also quite reasonable to group (2), (3) and (4) together and say that 49 of 100 people registered at least some disagreement with the dominant scientific view.</li>
+<li>However, it would be entirely bizarre to try to group (1), (2) and (4) together and say that 90 of 100 people said what? There’s nothing sensible that allows you to group those responses together at all.</li>
+</ul>
+<!--
+- Notice that while we can use the natural ordering of these items to construct sensible
+groupings, what we can’t do is average them. For instance, in my simple example here, the “average”
+response to the question is 1.97. If you can tell me what that means, I’d love to know. Because that
+sounds like gibberish to me!
+-->
+</div>
+<div id="interval-scale" class="section level2">
+<h2><span class="header-section-number">2.3</span> Interval scale</h2>
+<ul>
+<li>In contrast to nominal and ordinal scale variables, <strong><em>interval scale</em></strong> and ratio scale variables are variables for which the numerical value is genuinely meaningful. In the case of interval scale variables, the differences between the numbers are interpretable, but the variable doesn’t have a “natural” zero value.</li>
+</ul>
+<p>Examples:</p>
+<ul>
+<li>A good example of an interval scale variable is measuring temperature in degrees celsius. For instance, if it was 15° yesterday and 18° today, then the 3° difference between the two is genuinely meaningful.
+Moreover, that 3° difference is exactly the same as the 3° difference between 7° and 10°. In short, addition and subtraction are meaningful for interval scale variables. <em>(Nevermind that a change of 10° will feel different at 20° compared to 30°.)</em>
+<ul>
+<li>However, notice that the 0° does not mean “no temperature at all”: it actually means “the temperature
+at which water freezes”, which is pretty arbitrary. As a consequence, it becomes pointless to try to
+multiply and divide temperatures. It is wrong to say that 20° is twice as hot as 10°, just as it is weird and meaningless to try to claim that 20° is negative two times as hot as 10°.</li>
+</ul></li>
+<li>Or suppose I’m interested in looking at how the attitudes of first-year university students have changed over time. Obviously, I’m going to want to record the year in which each student started. This is an interval scale variable. A student who started in 2003 did arrive 5 years before a student who started in 2008. However, it would be completely insane for me to divide 2008 by 2003 and say that the second student started “1.0024 times later” than the first one.
+That doesn’t make any sense at all.</li>
+</ul>
+</div>
+<div id="ratio-scale" class="section level2">
+<h2><span class="header-section-number">2.4</span> Ratio scale</h2>
+<ul>
+<li>The final type of variable to consider is a <strong><em>ratio scale variable</em></strong>, in which zero really means zero, and it’s okay to multiply and divide.</li>
+</ul>
+<p>Example:</p>
+<ul>
+<li>A good example of a ratio scale variable is <em>response time (RT)</em>. In a lot of tasks it’s very common to record the amount of time somebody takes to solve a problem or answer a question, because it’s an indicator of how difficult the task is.
+<ul>
+<li>Suppose that Alan takes 2.3 seconds to respond to a question, whereas Ben takes 3.1 seconds.</li>
+<li>As with an interval scale variable, addition and subtraction are both meaningful here.</li>
+<li>Ben really did take <span class="math inline">\(3.1 - 2.3 = 0.8\)</span> seconds longer than Alan did.</li>
+<li>Notice that multiplication and division also make sense here too: Ben took <span class="math inline">\(3.1/2.3 = 1.35\)</span> times as long as Alan did to answer the question.</li>
+<li>The reason why you can do this is that, for a ratio scale variable such as RT, “zero seconds” really does mean “no time at all”.</li>
+</ul></li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Scale</th>
+<th align="left">Meaningful order</th>
+<th align="left">Meaningful differences</th>
+<th align="left">Meaningful ratio</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Nominal scale</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Ordinal scale</td>
+<td align="left">x</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Interval scale</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Ratio scale</td>
+<td align="left">x</td>
+<td align="left">x</td>
+<td align="left">x</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="continuous-versus-discrete-variables" class="section level2">
+<h2><span class="header-section-number">2.5</span> Continuous versus discrete variables</h2>
+<ul>
+<li><p>There’s a second kind of distinction that you need to be aware of, regarding what types of variables you
+can run into. This is the distinction between continuous variables and discrete variables. The difference
+between these is as follows:</p>
+<ul>
+<li>A <strong><em>continuous variable</em></strong> is one in which, for any two values that you can think of, it’s always
+logically possible to have another value in between.</li>
+<li>A <strong><em>discrete variable</em></strong> is, in effect, a variable that isn’t continuous. For a discrete variable, it’s
+sometimes the case that there’s nothing in the middle.</li>
+</ul></li>
+<li><p>For exampl, response time is continuous. If Alan takes 3.1 seconds and Ben takes 2.3 seconds to respond
+to a question, then it’s possible for Cameron’s response time to lie in between, by taking 3.0 seconds.
+And of course it would also be possible for David to take 3.031 seconds to respond, meaning that his RT
+would lie in between Cameron’s and Alan’s. And while in practice it might be impossible to measure
+RT that precisely, it’s certainly possible in principle. <em>Because we can always find a new value for RT in
+between any two other ones, we say that RT is continuous.</em></p></li>
+<li><p>Discrete variables occur when this rule is violated. For example, nominal scale variables are always
+discrete: there isn’t a type of transportation that falls “in between” trains and bicycles, not in the strict
+mathematical way that 2.3 falls in between 2 and 3. So transportation type is discrete.</p></li>
+<li><p>Similarly, ordinal scale variables are always discrete: although “2nd place” does fall between “1st place” and “3rd place”, there’s nothing that can logically fall in between “1st place” and “2nd place”.</p></li>
+<li><p>Interval scale and ratio scale variables can go either way. As we saw above, response time (a ratio scale variable) is continuous.</p></li>
+<li><p><em>Temperature</em> in degrees celsius (an interval scale variable) is also continuous.</p></li>
+<li><p>However, the <em>year you went to school</em> (an interval scale variable) is discrete. There’s no year in between 2002 and 2003.</p></li>
+<li><p>The <em>number of questions you get right</em> on a true-or-false test (a ratio scale variable) is also discrete: since a true-or-false question doesn’t allow you to be “partially correct”, there’s nothing in between 5/10 and 6/10.</p></li>
+</ul>
+</div>
+<div id="some-complexities" class="section level2">
+<h2><span class="header-section-number">2.6</span> Some complexities</h2>
+<ul>
+<li><p>Okay, I know you’re going to be shocked to hear this, but the real world is much messier than
+this little classification scheme suggests. Very few variables in real life actually fall into these nice neat
+categories, so you need to be kind of careful not to treat the scales of measurement as if they were
+hard and fast rules. It doesn’t work like that: they’re guidelines, intended to help you think about the
+situations in which you should treat different variables differently. Nothing more.</p></li>
+<li><p>So let’s take a classic example, maybe the classic example, of a psychological measurement tool: the
+Likert scale. The humble Likert scale is the bread and butter tool of all survey design. You yourself
+have filled out hundreds, maybe thousands of them, and odds are you’ve even used one yourself. Suppose
+we have a survey question that looks like this:</p></li>
+</ul>
+<p>Which of the following best describes your opinion of the statement that “all pirates are
+freaking awesome” </p>
+<p>and then the options presented to the participant are these:</p>
+<ol style="list-style-type: decimal">
+<li>Strongly disagree</li>
+<li>Disagree</li>
+<li>Neither agree nor disagree</li>
+<li>Agree</li>
+<li>Strongly agree</li>
+</ol>
+<p>This set of items is an example of a 5-point <strong><em>Likert scale</em></strong>: people are asked to choose among one of
+several (in this case 5) clearly ordered possibilities, generally with a verbal descriptor given in each case.
+However, it’s not necessary that all items be explicitly described. This is a perfectly good example of a
+5-point Likert scale too:</p>
+<ol style="list-style-type: decimal">
+<li>Strongly disagree</li>
+<li></li>
+<li></li>
+<li></li>
+<li>Strongly agree</li>
+</ol>
+<p>Likert scales are very handy, if somewhat limited, tools. The question is, what kind of variable are
+they? They’re obviously discrete, since you can’t give a response of 2.5. They’re obviously not nominal
+scale, since the items are ordered; and they’re not ratio scale either, since there’s no natural zero.
+But are they ordinal scale or interval scale? One argument says that we can’t really prove that the
+difference between “strongly agree” and “agree” is of the same size as the difference between “agree”
+and “neither agree nor disagree”. In fact, in everyday life it’s pretty obvious that they’re not the same
+at all. So this suggests that we ought to treat Likert scales as ordinal variables. On the other hand, in
+practice most participants do seem to take the whole “on a scale from 1 to 5” part fairly seriously, and
+they tend to act as if the differences between the five response options were fairly similar to one another.
+As a consequence, a lot of researchers treat Likert scale data as if it were interval scale. It’s not interval
+scale, but in practice it’s close enough that we usually think of it as being <strong><em>quasi-interval scale</em></strong>.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="descriptives.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["LectureNotes.pdf", "LectureNotes.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
