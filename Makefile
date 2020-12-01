@@ -1,4 +1,3 @@
-
 all:
 	make update_r
 	make update_stats
