@@ -50,15 +50,14 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -67,16 +66,14 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
 }
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
+    border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -85,9 +82,9 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  {  }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+a.sourceLine::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -188,7 +185,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="scalesOfMeasurement" class="section level1">
 <h1><span class="header-section-number">Chapter 2</span> Scales of Measurement</h1>
 <p><em>(an adapted version of Danielle Navarro’s <a href="https://learningstatisticswithr.com/">chapter 2</a>.)</em></p>
-<p>(07 December, 2020, 22:41)</p>
+<p>(07 December, 2020, 22:52)</p>
 <p>As might recall, the outcome of a measurement is what we call a <strong><em>variable</em></strong>. But not all variables are of the same qualitative type, and it’s very useful to understand what types there are.
 A very useful concept for distinguishing between different types of variables is what’s known as scales of measurement.</p>
 <div id="nominal-scale" class="section level2">
@@ -200,8 +197,8 @@ relationship between the different possibilities.</li>
 </ul>
 <p>Examples:</p>
 <ul>
-<li><p>The classic example for this is <em>“eye color”</em>. Eyes can be <em>blue, green</em> and <em>brown</em>, among other possibilities, but none of them is any “better” than any other one. As a result, it would feel really odd to talk about an “average eye color”.</p></li>
-<li><p>Similarly, gender is nominal too: male isn’t better or worse than female, neither does it make sense to try to talk about an “average gender”.</p></li>
+<li>The classic example for this is <em>“eye color”</em>. Eyes can be <em>blue, green</em> and <em>brown</em>, among other possibilities, but none of them is any “better” than any other one. As a result, it would feel really odd to talk about an “average eye color”.</li>
+<li>Similarly, gender is nominal too: male isn’t better or worse than female, neither does it make sense to try to talk about an “average gender”.</li>
 <li><p>In short, nominal scale variables are those for which the only thing you can say about the different possibilities is that they are different. That’s it.</p></li>
 <li><p>Let’s take a slightly closer look at this. Suppose I was doing research on how people commute to and from work. One variable I would have to measure would be what kind of transportation people use to get to work. This “transport type” variable could have quite a few possible values, including: “train”, “bus”, “car”, “bicycle”, etc. For now, let’s suppose that these four are the only possibilities, and suppose that when I ask 100 people how they got to work today, and I get this:</p></li>
 </ul>
@@ -266,7 +263,7 @@ ordinal scale variable is one in which there is a natural, meaningful way to <em
 <li>Temperatures are not rising</li>
 </ol>
 <ul>
-<li><p>These four statements actually do have a natural ordering, in terms of <em>“the extent to which they agree with the current science”</em>.</p>
+<li>These four statements actually do have a natural ordering, in terms of <em>“the extent to which they agree with the current science”</em>.
 <ul>
 <li>Statement 1 is a close match,</li>
 <li>Statement 2 is a reasonable match,</li>
@@ -388,9 +385,9 @@ That doesn’t make any sense at all.</li>
 <div id="continuous-versus-discrete-variables" class="section level2">
 <h2><span class="header-section-number">2.5</span> Continuous versus discrete variables</h2>
 <ul>
-<li><p>There’s a second kind of distinction that you need to be aware of, regarding what types of variables you
+<li>There’s a second kind of distinction that you need to be aware of, regarding what types of variables you
 can run into. This is the distinction between continuous variables and discrete variables. The difference
-between these is as follows:</p>
+between these is as follows:
 <ul>
 <li>A <strong><em>continuous variable</em></strong> is one in which, for any two values that you can think of, it’s always
 logically possible to have another value in between.</li>
@@ -403,13 +400,13 @@ And of course it would also be possible for David to take 3.031 seconds to respo
 would lie in between Cameron’s and Alan’s. And while in practice it might be impossible to measure
 RT that precisely, it’s certainly possible in principle. <em>Because we can always find a new value for RT in
 between any two other ones, we say that RT is continuous.</em></p></li>
-<li><p>Discrete variables occur when this rule is violated. For example, nominal scale variables are always
+<li>Discrete variables occur when this rule is violated. For example, nominal scale variables are always
 discrete: there isn’t a type of transportation that falls “in between” trains and bicycles, not in the strict
-mathematical way that 2.3 falls in between 2 and 3. So transportation type is discrete.</p></li>
-<li><p>Similarly, ordinal scale variables are always discrete: although “2nd place” does fall between “1st place” and “3rd place”, there’s nothing that can logically fall in between “1st place” and “2nd place”.</p></li>
-<li><p>Interval scale and ratio scale variables can go either way. As we saw above, response time (a ratio scale variable) is continuous.</p></li>
-<li><p><em>Temperature</em> in degrees celsius (an interval scale variable) is also continuous.</p></li>
-<li><p>However, the <em>year you went to school</em> (an interval scale variable) is discrete. There’s no year in between 2002 and 2003.</p></li>
+mathematical way that 2.3 falls in between 2 and 3. So transportation type is discrete.</li>
+<li>Similarly, ordinal scale variables are always discrete: although “2nd place” does fall between “1st place” and “3rd place”, there’s nothing that can logically fall in between “1st place” and “2nd place”.</li>
+<li>Interval scale and ratio scale variables can go either way. As we saw above, response time (a ratio scale variable) is continuous.</li>
+<li><em>Temperature</em> in degrees celsius (an interval scale variable) is also continuous.</li>
+<li>However, the <em>year you went to school</em> (an interval scale variable) is discrete. There’s no year in between 2002 and 2003.</li>
 <li><p>The <em>number of questions you get right</em> on a true-or-false test (a ratio scale variable) is also discrete: since a true-or-false question doesn’t allow you to be “partially correct”, there’s nothing in between 5/10 and 6/10.</p></li>
 </ul>
 </div>
@@ -458,6 +455,7 @@ practice most participants do seem to take the whole “on a scale from 1 to 5�
 they tend to act as if the differences between the five response options were fairly similar to one another.
 As a consequence, a lot of researchers treat Likert scale data as if it were interval scale. It’s not interval
 scale, but in practice it’s close enough that we usually think of it as being <strong><em>quasi-interval scale</em></strong>.</p>
+
 </div>
 </div>
             </section>
