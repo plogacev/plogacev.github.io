@@ -26,3 +26,5 @@ aad
 variance
 sd
 which-measure-to-use
+housingpriceexample
+mad
