@@ -1,0 +1,472 @@
+```{r include = FALSE}
+# Seed for random number generation
+set.seed(42)
+knitr::opts_chunk$set(cache.extra = knitr::rand_seed, class.output="r-output")
+source("./source/r_functions.R")
+```
+
+
+# Working with data
+
+(`r format(Sys.time(), '%d %B, %Y, %H:%M')`)
+
+```{css echo=FALSE}
+.r-output {
+  font-weight: bold;
+}
+.function {
+  background-color: lightgrey;
+  padding: 0.5em 0.5em 0.5em 4em;
+  border: 1px solid black;
+}
+```
+
+- Today, let's work with realistic data. In order to access it, we'll need to load the R package `languageR`. It provides a number of interesting data sets related to language. 
+
+- You may need to install it, if it's not already installed:
+
+```{r, eval=F, error=T}
+install.packages("languageR")
+```
+
+- Let's load the package and take a look at the data set.  
+
+```{r, error=T}
+library(languageR)
+
+head(dativeSimplified)
+
+```
+
+- This data set happens to be documented. Let's take a look at its description. (You can also see it [here](https://rdrr.io/cran/languageR/man/dativeSimplified.html). )
+
+```{r, eval=F, error=T}
+help("dativeSimplified")
+# or we can use: ?dativeSimplified
+```
+
+- The dative alternation in English is the alternation between (1) and (2). Both are grammatical and have the same truth conditions.
+- Bresnan et al. (2007) used this data to determine which factors affect the choice between (1) and (2). 
+
+(1) Peter gave Mary the book.
+(2) Peter gave the book to Mary.
+
+- Let's take a look at a few rows chosen at random to get a look at a more representative sample ...  
+
+```{r, error=T}
+# store all possible row indices in a vector
+indices_all <- 1:nrow(dativeSimplified)
+
+# set the random seed to make the results reproducible
+set.seed(123)
+
+# choose 10 such numbers at random without replacement
+indices_random <- sample(indices_all, size = 10)
+
+# use them to index the data frame to get the corresponding rows
+dativeSimplified[indices_random,]
+```
+
+- The above code works because rows and columns of data frames can be selected (*'indexed'*) 
+  * `df[row_indices, ]` selects rows $-$ ``df[, col_indices]`` selects columns
+  * `df[row_indices, col_indices]` selectes rows and columns
+  * This works with row and column names, as well as indices.
+
+
+## Summarizing data
+
+- Let's take a look at the percentages of NP realizations of the recipient by animacy of theme.
+
+```{r, error=T}
+# load the package dplyr to access the group_by/summarize functions
+library(dplyr)
+
+# let's take a look at the key dependent variable 
+unique(dativeSimplified$RealizationOfRec)
+
+# now, compute the percentages (perc_NP) and the number of observations in each subset
+dativeSimplified %>% 
+  group_by(AnimacyOfRec) %>% 
+  dplyr::summarize(perc_NP = mean(RealizationOfRec == "NP"), 
+                   N = n()
+                  )
+```
+
+- What does this result say? 
+- We can translate the first row of the data frame to English as the following: "The percentage of NP realizations when the recipient is animate is 63.4% and there are 822 rows where the recipient is animate." 
+
+### Now, step by step
+
+- Wow, that was easy. ...
+- But let's break down the computations into their elementary parts and take look at the logic.
+
+- First, we'll need to add a column which we can later use to compute the percentage of NP realizations.
+```{r, error=T}
+# first, let's create a new column encoding whether RealizationOfRec is 'NP'
+# When the recipient is realized as an NP, this function will put a 1 in our new column, and 0 otherwise.
+dativeSimplified$is_realization_NP <- as.integer( dativeSimplified$RealizationOfRec == "NP" )
+```
+
+- Take a subset of the data frame where AnimacyOfRec equals "animate" (note the `==`!).
+- For this, we can use `subset()` function. It takes a data frame and a condition for subsetting.
+
+```{r, error=T}
+# take a look at the values that can occur in this columns
+unique(dativeSimplified$AnimacyOfRec)
+
+# take two subsets corresponding to the values we determined above
+df_animate <- subset(dativeSimplified, AnimacyOfRec == "animate")
+df_inanimate <- subset(dativeSimplified, AnimacyOfRec == "inanimate")
+```
+
+- Compute the average of the column `is_realization_NP` in each data frame, as well as the number of rows in it.
+- Then, merge them together into a single data frame.
+```{r, error=T}
+# compute the percentage of NP realizations 
+perc_NP_animate = mean(df_animate$is_realization_NP)
+
+# compute the percentage of NP realizations 
+N_animate = nrow(df_animate)
+
+# bind to data frame
+(res_animate <- data.frame(AnimacyOfRec = "animate", perc_NP = perc_NP_animate, N=N_inanimate))
+```
+
+- Now, do the same for inanimates.
+
+```{r, error=T}
+perc_NP_inanimate = mean(df_inanimate$is_realization_NP)
+N_inanimate = nrow(df_inanimate)
+(res_inanimate <- data.frame(AnimacyOfRec = "inanimate", perc_NP = perc_NP_animate, N=N_animate))
+```
+
+- Now, bind the results into a single data frame, which we can use for plotting, creating tables, etc. 
+
+```{r, error=T}
+res <- rbind(res_animate, res_inanimate)
+res
+```
+
+- Puuuuuh. That was tedious.
+- The disadvantages of the `subset`-approach are:
+  * Values of 'game' need to be known, and so the code needs to be adjusted to the contents of the dataset
+  * Much less tractable for more grouping variables
+  * Better options are available
+
+
+## Working with dplyr
+- The package *dplyr* ([cheat sheet](http://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf)) provides a set of functions for working with data frames.
+- Some of functions don't perform a noticeable action, while others reshape data frames or create new ones (the latter are called 'verbs')
+```{r, error=T}
+library(dplyr)
+```
+
+- `arrange()` sorts the data frame by one or several columns
+- By default, it does so in ascending order.
+```{r, error=T}
+arrange(dative[1:10,], LengthOfTheme)
+```
+- The modifier `desc()` switches `arrange()` to an decending order. 
+```{r, error=T}
+arrange(dative[1:10,], desc(LengthOfTheme))
+```
+
+- `select()` keeps *only* the pre-specified columns from the data frame 
+```{r, error=T}
+# Let's assume we do not care about everything within the dative data frame.
+# What is important for us is Modality, AnimacyOfTheme, LengthOfTheme, and RealizationOfRecipient. Let's say we won't use any other columns and don't want all the
+# clutter that comes with those other columns. 
+
+df <- select(dative, Modality, AnimacyOfTheme, LengthOfTheme, RealizationOfRecipient)
+head(df)
+```
+
+- `select()` can also *drop* columns. Let's assume that we changed our mind and do not want to work with the Modality column. 
+- Similar to the indices, minus symbol `-` omits the specified column(s).
+
+```{r, error=T}
+
+df <- select(df, -Modality)
+head(df)
+```
+
+- `left_join()` merges two data frames by common columns. This is very useful when data comes from two different sources. 
+
+```{r, error=T}
+df1 <- data.frame(name = c("Peter", "Mary", "Susy", "John"), n_apples = c(2,3,4,1))
+df2 <- data.frame(name = c("Peter", "Mary", "Susy"), n_oranges = c(1,20,0))
+df <- dplyr::left_join(df1, df2)
+df$n_fruit <- df$n_apples + df$n_oranges
+
+```
+
+- `sample_n()` shows a few random rows from the data frame
+```{r, error=T}
+sample_n(dativeSimplified, 10)
+```
+
+- `group_by()` and `ungroup()` add and remove information about grouping variables  
+```{r, error=T}
+# let's 'group' a small subset of the gambling data frame by game
+group_by(dativeSimplified[1:2,], RealizationOfRec) 
+
+# let's compare to the original data frame
+dativeSimplified[1:2,]
+```
+
+- Data frames need to be grouped for use with `summarize()` and `mutate()`.
+
+```{r, error=T}
+# let's group the dativeSimplified data frame 
+dativeSimplified_grouped <- group_by(dativeSimplified, Verb)
+```
+
+- `summarize()` is a complex function that does multiple things in a single instance. 
+	1. It divides a grouped data frame into subsets, with *each* subset corresponding to one value of the grouping variable (or a combination of values for several grouping variables). 
+	2. It computes one or several values we specify on each such subset.
+	3. It creates a new data frame and puts everything together. The first column of this new data frame consists of levels of our grouping variable. In the following columns, the `summarize()` function prints the results of the computations we have specified.
+- Try to guess the result of the following code. What will you see as an output? What will be the name of the columns? 
+
+```{r, error=T}
+# summarize several variables
+summarize(dativeSimplified_grouped, 
+          prop_NP = mean(is_realization_NP),
+          prop_animate_rec = mean( AnimacyOfRec == "animate" ),
+          prop_animate_theme = mean( AnimacyOfTheme == "animate" ),
+          N = n()
+          )
+```
+- `summarize()` can use the results of previous computations specified within the same `summarize()` function.
+- In the code below, we first create a column named `prop_NP`. Then, we use it to compute two other values named `prop_PP` and `how_many_NP_realizations`.
+
+```{r, error=T}
+# compute the averages of profit
+summarize(dativeSimplified_grouped, 
+          prop_NP = mean(is_realization_NP),
+          prop_PP = 1-prop_NP,
+          how_many_NP_realizations = ifelse(prop_NP > 0.5, "a lot", "few")
+          )
+```
+- The last line uses the function `ifelse(condition, value1, value2)`, which, for each element of the condition vector returns the corresponding element of the `value1` vector if the condition is true at that element, or an element of `vector2` otherwise.
+
+
+- `mutate()` proceeds similarly to `summarize()` in dividing a grouped dataset into subsets, but instead of computing one or several values for each subset, it creates or modifies a column.
+- The main difference between `mutate()` and `summarize()` is the output. While `mutate()` modifies the original and returns a modified version of it, `summarize()` creates a brand new data frame with one row for every combination of the the grouping variable values. 
+- A very simple application of `mutate()` is to simply create a new column. In this case, we don't even need to group.
+
+```{r, error=T}
+# these two lines performs exactly the same action, 
+# except the latter stores the result in df 
+dativeSimplified$is_realization_NP <- (dativeSimplified$RealizationOfRec == "NP" ) 
+df <- mutate(dativeSimplified, is_realization_NP = (RealizationOfRec == "NP") )
+
+head(df, 2)
+head(dativeSimplified, 2)
+```
+
+
+## Pipes
+
+### The problem
+
+- The code below is really hard to read, even harder to maintain, and `dativeSimplified_grouped_by_AnimacyOfRec_and_AnimacyOfTheme` is a terribly long variable name.
+```{r, error=T}
+dativeSimplified_grouped_by_AnimacyOfRec_and_AnimacyOfTheme <-
+      group_by(dativeSimplified, AnimacyOfRec, AnimacyOfTheme)
+df <- summarize(dativeSimplified_grouped_by_AnimacyOfRec_and_AnimacyOfTheme, 
+                  perc_NP = mean(RealizationOfRec == "NP") )
+df
+```
+
+- This alternative is also quite bad. To read this code, you need to know which bracket matches which other bracket.
+```{r, error=T}
+df <- summarize(group_by(dativeSimplified, AnimacyOfRec, AnimacyOfTheme), 
+                  perc_NP = mean(RealizationOfRec == "NP") )
+df
+```
+
+- One nested function call may be OK. But try to read this.
+```{r, error=T}
+df <- dplyr::summarize(group_by(mutate(dativeSimplified, long_theme = ifelse(LengthOfTheme > 1.6, "long", "short") ), long_theme),
+              perc_NP = mean(RealizationOfRec == "NP")
+              )
+```
+
+- Or consider this expression (`sqrt` is the square root.)
+```{r, error=T}
+sqrt(divide_by(sum(divide_by(2,3), multiply_by(2,3)), sum(3,4)))
+```
+
+- Luckily, there a better way to write this expression.
+
+### Pipes
+- The problem is that we have too many levels of embedding.
+- In natural language we avoid multiple embeddings of that sort by making shorter sentences, and using anaphors to refer to previous discourse.
+- The packages **dplyr** and **magrittr** provide a limited version of such functionality, and we'll need to use **pipe** operators (`%>%` and `%<>%`) to link expressions with an 'anaphoric dependency'.
+- Whenever you see `%>%`, you can think about it as the following: "Take whatever is on the left side, and use it in the function that is on the right side."
+```{r, error=T}
+library(dplyr)
+library(magrittr)
+# Typical notation. Read as "Divide 10 by 2."
+divide_by(10, 2)
+
+# Equivalent pipe notation. Read as "Take 10, and divide it by 2."
+10 %>% divide_by(., 2)
+
+# Equivalent pipe notation. Read as "Take 2, and divide 10 by it."
+2 %>% divide_by(10, .)
+```
+
+- If the dot operator occurs in the first argument slot, it can be omitted. (R has pro-drop.)
+```{r, error=T}
+# pipe notation with omission of '.'
+10 %>% divide_by(2)
+```
+
+- Let's see how it can resolve the mess below. (Repetition of previous example.)
+```{r, error=T}
+df <- mutate(group_by(dativeSimplified, AnimacyOfRec, AnimacyOfTheme), 
+                  perc_NP = mean(RealizationOfRec == "NP") )
+df
+```
+
+- And here is the much more readable version of this code:
+```{r, error=T}
+df <-  dativeSimplified %>%
+          mutate(., long_theme = ifelse(LengthOfTheme > 1.6, "long", "short") ) %>% 
+          group_by(., long_theme) %>% 
+          dplyr::summarize(., perc_NP = mean(RealizationOfRec == "NP") )
+```
+- We don't actually need the dot:
+```{r, error=T}
+df <-  dativeSimplified %>%
+          mutate(long_theme = ifelse(LengthOfTheme > 1.6, "long", "short") ) %>% 
+          group_by(long_theme) %>% 
+          dplyr::summarize(perc_NP = mean(RealizationOfRec == "NP") )
+```
+
+
+- The `%<>%` operator is a convenient combination of `%>%` and `<-` which you can use to directly modify an object.
+
+```{r, error=T}
+# load the package magrittr in order to access the assignment pipe operator
+library(magrittr)
+
+# create a vector with numbers from 1 to 10
+x <- 1:10
+# keep only numbers < 5:
+#   (i) without %<>%
+x <- x[x<5]
+#   (i) with %<>%
+x %<>% .[.<5]
+```
+
+```{r, error=T}
+# lets add several columns to 'dativeSimplified'
+dativeSimplified %<>% mutate(A=1, B=2, C=3, D=4)
+head(dativeSimplified)
+```
+## Functions used in this section
+
+### Operators
+```{r results='asis', echo=F}  
+function_definition_cat("%>%", "*(Forward) pipe:* Use the expression on the left as a part of the expression on the right.\n
+- Read `x %>% fn` as *'use `x` as the **only** argument of function `fn`'.*
+- Read `x %>% fn(1, 2)` as *'use `x` as the **first** argument of function `fn`'.*
+- Read `x %>% fn(1, ., 2)` as *'use `x` as the **second** argument of function `fn`'.*")
+```
+<br>
+```{r results='asis', echo=F}  
+function_definition_cat("%<>%", "*Assignment pipe:* Use the expression on the left as a part of the expression on the right, **and assign the result back to the left part of the expression**.\n
+- `x %<>% ...` is equivalent to `x <- x %>% ...`
+- Read `x %<>% fn` as *'use `x` as the **only** argument of function `fn`, **and assign it the result to x**'.*
+- Read `x %<>% fn(1, 2)` as *'use `x` as the **first** argument of function `fn`,  **and assign it the result to x**'.*
+- Read `x %<>% fn(1, ., 2)` as *'use `x` as the **second** argument of function `fn`, **and assign it the result to x**'.*")
+```
+<br>
+```{r results='asis', echo=F}  
+function_definition_cat("df[selected_rows, indices_columns]", "*Indexing operator:* Accesses specific rows and/or columns of a data frame.", c("selected_rows"="A vector of indices or names.", "selected_columns"="A vector of indices or names."))
+```
+<br>
+```{r results='asis', echo=F}  
+function_definition_cat("::", "*Double colon operator:* Accesses functions and other objects from packages.  Read `x::y` as *'y from package x.'*")
+```
+<br>
+
+### Functions
+
+```{r results='asis', echo=F}  
+function_definition_cat("help(name)", "Displays the documentation for an object, such as a function or data frame in R.", c(object="Must be a function or data frame currently loaded in R. If the package in which the function or dataset are located is not currently loaded, the name must be specified using the double-colon operator, i.e., as `package::name`. For example, `help('dplyr::summarize')`.") )
+```
+<br>
+```{r results='asis', echo=F}  
+function_definition_cat("ifelse(condition, val_if_cond_true, val_if_cond_false)", 
+"Replaces all occurrences of `TRUE` by `val_if_cond_true`, and all occurrences of `FALSE` by `val_if_cond_false` and returns the resulting vector.\n
+- If `val_if_cond_true` and `val_if_cond_false` are vectors, the elements of condition at every index $i$ are replaces by `val_if_cond_true[i]` and `val_if_cond_false[i]`, respectively.")
+```
+<br>
+```{r results='asis', echo=F}  
+function_definition_cat("unique(object)", 
+"Return only the unique values in an object. That is, return each value that occurs in vector or data frame object exactly once. For vectors, this means *unique values*. For data frames, this means *unique rows*.", c(object="A vector, matrix, or data frame."))
+```
+<br>
+```{r results='asis', echo=F}  
+function_definition_cat("nrow(object)", 
+"Return the number of rows in `object`.", c(object="A data frame or matrix."))
+```
+<br>
+```{r results='asis', echo=F}  
+function_definition_cat("ncol(object)", 
+"Return the number of columns in `object`.", c(object="A data frame or matrix."))
+```
+<br>
+```{r results='asis', echo=F}  
+function_definition_cat("sample(vector, size = length(vector), replace = FALSE)", 
+"Select a number of random elements from `vector`. If `size == length(vector)`, the vector is just returned in randomly permuted order.", 
+c(vector="The vector from which to sample.",
+  size="How many elements to sample. Must be smaller than or equal to the length of `vector`, which is the default.",
+  replace="Logical. Sample with replacement? (i.e., Can the same element be sampled several times?) Defaults to `FALSE`."))
+```
+<br>
+
+```{r results='asis', echo=F}  
+function_definition_cat("group_by(df, grouping_var1, ...)", 
+"Records the grouping of a data frame for future application of `summarize()` or `mutate()`.", c(df="A data frame.", grouping_var1="The first grouping variable.", "..."="More grouping variables, if applicable."))
+```
+<br>
+
+```{r results='asis', echo=F}  
+function_definition_cat("summarize(df, expression1, ...)", 
+"Computes a series of summary statistics for each combination of values specified by the levels of the grouping variables, for example compute the average of a column.", c(df="A data frame, typically previously grouped using `group_by`.", expression1="An expression computing a summary statistics.", "..."="An expression computing summary statistics."))
+```
+<br>
+
+```{r results='asis', echo=F}  
+function_definition_cat("mutate(df, expression1, ...)", 
+"Modify and old column, or create a new one for each combination of grouping variable levels.", c(df="A data frame, typically previously grouped using `group_by`.", expression1="An expression creating a new column, or modifying an old one.", "..."="More expressions creating new columns, or modifying an old ones."))
+```
+<br>
+```{r results='asis', echo=F}  
+function_definition_cat("n()", 
+"Within a call to `summarize()` or `mutate()`, `n()` computes the number of rows at each combination of grouping variable levels.")
+```
+<br>
+
+```{r results='asis', echo=F}  
+function_definition_cat("arrange()", "")
+```
+<br>
+```{r results='asis', echo=F}  
+function_definition_cat("select()", "")
+```
+<br>
+```{r results='asis', echo=F}  
+function_definition_cat("sample_n()", "")
+```
+<br>
+
+
+<!-- to-do:
+- Explain what the point of the group_by/mutate combo is.
+- Introduce the $ operator together with data frames
+-->

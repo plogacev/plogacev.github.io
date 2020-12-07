@@ -1,0 +1,18 @@
+# Deterministic Linear Models {#lmDeterministic}
+(`r format(Sys.time(), '%d %B, %Y, %H:%M')`)
+
+-- to-do --
+
+<!-- - modeling in general -->
+
+<!-- - single pred -->
+<!-- - multiple pred  -->
+
+<!-- We have finished a nice book. -->
+
+
+<!--
+Contrast coding:
+https://stats.idre.ucla.edu/r/library/r-library-contrast-coding-systems-for-categorical-variables
+- Shravan et al.'s paper on it
+-->

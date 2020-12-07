@@ -1,0 +1,14 @@
+# Linear Models and Maximum Likelihood (ML) {#lmML}
+(`r format(Sys.time(), '%d %B, %Y, %H:%M')`)
+
+-- to-do --
+
+
+<!-- - maximum likelihood estimation -->
+<!-- - samples estimates -->
+<!-- - very indirect inference for population parameters -->
+<!-- - null-hypothesis significance tests: bootstap (only mention t-tests, F-tests, and all that, and how to read them) -->
+
+<!-- - not sure if here, or the probability section is the right place to mention sampling distributions and do a little simulation with shows how much spread there should be between items in an acceptability experiment if all items were actually underlyingly equal  -->
+
+<!-- - squeeze in repeated mentions of sample-population distinction -->

@@ -1,0 +1,16 @@
+# Nondeterministic Linear Models {#lmNondeterministic}
+(`r format(Sys.time(), '%d %B, %Y, %H:%M')`)
+
+-- to-do --
+
+
+<!-- - fitting by R^2 or RMSE -->
+<!-- - tells us how big effects are in the sample, on average, under certain assumptions -->
+<!-- - no information about population -->
+
+<!-- - Missing predictors are also a good context for introducing Simpson's paradox? -->
+
+<!-- Separate subsection: -->
+<!-- - "Why the non-determinism anyway?" -->
+
+<!-- - Shortly after presenting data with a certain spread, ask something like "So how *does* the price depend on distance?" -> The answer is that we can't tell, because of all that uncertainty. But we *can* tell how the average price depends on it. -> But this is importantly, a different statement. (Though the first statement will be used as a short form.) -->

@@ -1,0 +1,7 @@
+# Intermezzo: Link Functions and Transformations {#links}
+(`r format(Sys.time(), '%d %B, %Y, %H:%M')`)
+
+-- to-do --
+
+
+<!-- - direct inference for population parameters -->

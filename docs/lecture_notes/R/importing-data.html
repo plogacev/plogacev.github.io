@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 1 Importing Data | 06-functions_and_packages.utf8</title>
+  <meta name="description" content="" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 1 Importing Data | 06-functions_and_packages.utf8" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 1 Importing Data | 06-functions_and_packages.utf8" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path=""><a href="#importing-data"><i class="fa fa-check"></i><b>1</b> Importing Data</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<!--bookdown:title:end-->
+<!--bookdown:title:start-->
+<div id="importing-data" class="section level1">
+<h1><span class="header-section-number">Chapter 1</span> Importing Data</h1>
+<p>(04 December, 2020, 23:50)</p>
+<style type="text/css">
+.r-output {
+  font-weight: bold;
+}
+.function {
+  background-color: lightgrey;
+  padding: 0.5em 0.5em 0.5em 4em;
+  border: 1px solid black;
+}
+</style>
+<ul>
+<li>R can deal with most reasonable formats</li>
+</ul>
+<p><!--
+- read data
+- left_join
+- wide / long
+- for/while loops
+- 
+ --></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="op">&gt;</span><span class="st"> </span>df &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;http://plogacev.github.io/datasets/VOT/english.csv&quot;</span>)</a></code></pre></div>
+<pre><code>## 
+## ── Column specification ─────────────────────────────────────────────────────────────────────────
+## cols(
+##   `utt   subject gender  StartTime   EndTime Item    WorldBet    TargetConsonant TargetVowel Burst   VOT VowelEnd    Notes   msVOT   msVowel logVOT  logVowel    vOff    vOn` = col_character()
+## )</code></pre>
+<pre><code>## Warning: 4 parsing failures.
+## row col  expected    actual                                                 file
+##  73  -- 1 columns 2 columns &#39;http://plogacev.github.io/datasets/VOT/english.csv&#39;
+##  75  -- 1 columns 2 columns &#39;http://plogacev.github.io/datasets/VOT/english.csv&#39;
+##  84  -- 1 columns 3 columns &#39;http://plogacev.github.io/datasets/VOT/english.csv&#39;
+##  88  -- 1 columns 2 columns &#39;http://plogacev.github.io/datasets/VOT/english.csv&#39;</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="op">&gt;</span><span class="st"> </span><span class="kw">head</span>(df)</a></code></pre></div>
+<pre><code>## # A tibble: 6 x 1
+##   `utt\tsubject\tgender\tStartTime\tEndTime\tItem\tWorldBet\tTargetConsonant\tT…
+##   &lt;chr&gt;                                                                         
+## 1 &quot;e9gt01mw_enrw121\te9gt01mw\tm\t31.6894510791265\t32.5315131070223\tdnky4\tdA…
+## 2 &quot;e9gt01mw_enrw121\te9gt01mw\tm\t34.6515353402511\t35.587680443602\tdoor5\tdo9…
+## 3 &quot;e9gt01mw_enrw121\te9gt01mw\tm\t49.6203805025016\t50.4797564203889\ttnge5\tth…
+## 4 &quot;e9gt01mw_enrw121\te9gt01mw\tm\t56.293205892732\t56.9052793882057\tqwil4\tkwh…
+## 5 &quot;e9gt01mw_enrw121\te9gt01mw\tm\t59.7443353745124\t60.5418856867964\tcave3n\tk…
+## 6 &quot;e9gt01mw_enrw121\te9gt01mw\tm\t69.5893960885827\t70.4611371275908\tqwtn5\tkw…</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="op">&gt;</span><span class="st"> </span>readr<span class="op">::</span><span class="kw">write_csv</span>(df, <span class="dt">file =</span> <span class="st">&quot;~/Academia/website/docs/datasets/VOT/english.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb6-2" title="2"><span class="op">&gt;</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb6-3" title="3"><span class="er">&gt;</span><span class="st"> </span>df &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_tsv</span>(<span class="st">&quot;http://plogacev.github.io/datasets/VOT/english.csv&quot;</span>)</a></code></pre></div>
+<pre><code>## 
+## ── Column specification ─────────────────────────────────────────────────────────────────────────
+## cols(
+##   utt = col_character(),
+##   subject = col_character(),
+##   gender = col_character(),
+##   StartTime = col_double(),
+##   EndTime = col_double(),
+##   Item = col_character(),
+##   WorldBet = col_character(),
+##   TargetConsonant = col_character(),
+##   TargetVowel = col_character(),
+##   Burst = col_double(),
+##   VOT = col_double(),
+##   VowelEnd = col_double(),
+##   Notes = col_character(),
+##   msVOT = col_double(),
+##   msVowel = col_double(),
+##   logVOT = col_double(),
+##   logVowel = col_double(),
+##   vOff = col_double(),
+##   vOn = col_double()
+## )</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="op">&gt;</span><span class="st"> </span><span class="kw">head</span>(df)</a></code></pre></div>
+<pre><code>## # A tibble: 6 x 19
+##   utt   subject gender StartTime EndTime Item  WorldBet TargetConsonant
+##   &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt;          
+## 1 e9gt… e9gt01… m           31.7    32.5 dnky4 dAn.ki   d              
+## 2 e9gt… e9gt01… m           34.7    35.6 door5 do9      d              
+## 3 e9gt… e9gt01… m           49.6    50.5 tnge5 th^N     th             
+## 4 e9gt… e9gt01… m           56.3    56.9 qwil4 kwhIl    kwh            
+## 5 e9gt… e9gt01… m           59.7    60.5 cave… khev     kh             
+## 6 e9gt… e9gt01… m           69.6    70.5 qwtn5 kwhEs.t… kwh            
+## # … with 11 more variables: TargetVowel &lt;chr&gt;, Burst &lt;dbl&gt;, VOT &lt;dbl&gt;,
+## #   VowelEnd &lt;dbl&gt;, Notes &lt;chr&gt;, msVOT &lt;dbl&gt;, msVowel &lt;dbl&gt;, logVOT &lt;dbl&gt;,
+## #   logVowel &lt;dbl&gt;, vOff &lt;dbl&gt;, vOn &lt;dbl&gt;</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="op">&gt;</span><span class="st"> </span><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb10-2" title="2"><span class="op">&gt;</span><span class="st"> </span>df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">a=</span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">a_sq=</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)<span class="op">^</span><span class="dv">2</span>, <span class="dt">my_group =</span> <span class="kw">c</span>(<span class="st">&quot;a&quot;</span>,<span class="st">&quot;b&quot;</span>))</a>
+<a class="sourceLine" id="cb10-3" title="3"><span class="op">&gt;</span><span class="st"> </span>df</a></code></pre></div>
+<pre><code>##     a a_sq my_group
+## 1   1    1        a
+## 2   2    4        b
+## 3   3    9        a
+## 4   4   16        b
+## 5   5   25        a
+## 6   6   36        b
+## 7   7   49        a
+## 8   8   64        b
+## 9   9   81        a
+## 10 10  100        b</code></pre>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+},
+"search": false
+});
+});
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,7 @@
+# Bayesian GLMs {#bayesGLMs}
+(`r format(Sys.time(), '%d %B, %Y, %H:%M')`)
+
+-- to-do --
+
+
+<!-- - reasonably valid inference for population parameters, albeit on a transformed scale -->

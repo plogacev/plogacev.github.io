@@ -1,0 +1,136 @@
+--- 
+title: "Data Processing in R, Lecture Notes"
+author: "Pavel Logacev"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+description: "Lecture notes on data processing in R."
+output:
+  html_document:
+    css: "css/custom_styles.css"
+---
+
+<!--
+Markdown basics: https://rmarkdown.rstudio.com/authoring_basics.html
+-->
+
+
+```{r include = T}
+# Seed for random number generation
+set.seed(42)
+knitr::opts_chunk$set(cache.extra = knitr::rand_seed, class.output="r-output")
+source("./source/r_functions.R")
+```
+
+
+
+# Getting Started
+(`r format(Sys.time(), '%d %B, %Y, %H:%M')`)
+
+```{css echo=FALSE}
+.r-output {
+  font-weight: bold;
+}
+.function {
+  background-color: lightgrey;
+  padding: 0.5em 0.5em 0.5em 4em;
+  border: 1px solid black;
+}
+```
+
+## Initial Remarks
+
+- The purpose of these lecture notes is to allow you to quickly revisit concepts covered in class. On their own, they likely won't form a sufficient introduction to R.
+- In the following, I will draw on the following resources.
+  - The great introduction materials developed at the University of Glasgow: <https://psyteachr.github.io/>, in particular ['Data Skills for Reproducible Science'](https://psyteachr.github.io/msc-data-skills/).
+  - The also pretty great introduction to R and statistics by Danielle Navarro available [here](https://learningstatisticswithr.com).
+  - Matt Crump's ['Answering Questions with Data'](https://crumplab.github.io/statistics/).
+  - Primers on a variety of topics: https://rstudio.cloud/learn/primers
+  - Cheat sheets on a variety of topics: https://rstudio.cloud/learn/cheat-sheets
+  
+
+<!--
+- the O'Reiley book
+- 
+-->
+
+## Specific useful cheat sheets and primers
+
+- [RStudio IDE](https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf)
+- [Base R](http://github.com/rstudio/cheatsheets/raw/master/base-r.pdf) ([Turkish](https://github.com/rstudio/cheatsheets/raw/master/translations/turkish/baseR_translate_tr.pdf))
+- [Data transformation](https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf) ([Turkish](https://github.com/rstudio/cheatsheets/raw/master/translations/turkish/data-transformation_turkish.pdf))
+- [Data visualization](https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf)
+([Turkish](https://github.com/rstudio/cheatsheets/raw/master/translations/turkish/ggplot2_2.0_Turkish.pdf))
+- [Data import](https://github.com/rstudio/cheatsheets/raw/master/data-import.pdf) ([Turkish](https://github.com/rstudio/cheatsheets/raw/master/translations/turkish/data_import_tr.pdf))
+
+
+
+## Installing and Setting up RStudio
+Currently, the most convenient interface to R is the RStudio GUI. You can either install it locally, or use it online on [RStudio Cloud](https://rstudio.cloud/).
+
+### Local RStudio installation
+- Typically, *RStudio* is run on a local computer. 
+
+Please download R and RStudio separately from:
+
+  - R: https://cran.r-project.org/
+  - R studio: https://rstudio.com/products/rstudio/download/ (download 'RStudio Desktop')
+  
+### RStudio Cloud
+You can use the RStudio cloud service for free after getting an account on [RStudio Cloud](https://rstudio.cloud/).
+
+<!--
+## RStudio Interface 
+- Let's take a look at the RStudio interface.
+- Let's take a look at the [RStudio Cloud](https://rstudio.cloud) interface.
+-->
+
+## Basics of the RStudio environment
+Please take a look at the following [thorough introduction to the RStudio environment](https://github.com/hbctraining/Intro-to-R/blob/master/lessons/01_introR-R-and-RStudio.md).
+
+Please watch the following video by Lisa DeBruine:
+
+- ['RStudio Setup'](https://www.youtube.com/watch?v=CbA6ZVlJE78&list=PLA2iRWVwbpTIweEBHD2dOKjZHK1atRmXt&index=2&ab_channel=LisaDeBruine)
+
+<!--
+This is a _sample_ book written in **Markdown**. You can use anything that Pandoc's Markdown supports, e.g., a math equation $a^2 + b^2 = c^2$.
+
+The **bookdown** package can be installed from CRAN or Github:
+
+```{r eval=FALSE}
+install.packages("bookdown")
+# or the development version
+# devtools::install_github("rstudio/bookdown")
+```
+
+Remember each Rmd file contains one and only one chapter, and a chapter is defined by the first-level heading `#`.
+
+To compile this example to PDF, you need XeLaTeX. You are recommended to install TinyTeX (which includes XeLaTeX): <https://yihui.org/tinytex/>.
+
+```{r include=FALSE}
+# automatically create a bib database for R packages
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown'
+), 'packages.bib')
+```
+-->
+
+## Special blocks in the following 
+
+- In the following, R code blocks will appear as follows. The first block shows the R code, the second block the second block (with text in bold), the R output. 
+
+
+```{r }
+mtcars[1:5, "mpg"]
+```
+
+- Grey boxes of this type introduce new functions (at least sometimes).  
+
+`r function_definition("mean(x)", "Computes the average of a vector of numbers.", c(x="The vector to average over."))`
+
+
+## Lecture Notes Source Code
+- You can always download the most up-to-date version of these lecture notes from github at this URL: https://github.com/plogacev/ling411_lecture_notes_R

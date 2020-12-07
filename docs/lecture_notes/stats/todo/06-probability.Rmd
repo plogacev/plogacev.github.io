@@ -1,0 +1,24 @@
+# Intermezzo: Probability and probability distributions
+(`r format(Sys.time(), '%d %B, %Y, %H:%M')`)
+
+-- to-do --
+
+
+<!-- - Interpretation of probability -->
+<!-- - Laws of probability -->
+<!-- - Probability distributions -->
+<!-- - Probability distributions and their interpretation in connection with non-determinism. -->
+
+<!-- - Bernoulli distribution: -->
+<!--   PMF for an 'unbiased coin': For x element {0,1}, p(x) = (1/2)^x * (1/2)^(1-x) -->
+<!--   PMF for a 'biased coin': For x element {0,1}, p(x) = (\theta)^x * (1-\theta)^(1-x) -->
+
+<!-- - Use Galton board for normal (and binomial) distribution   -->
+
+<!-- - Point out and keep reminding that (a) we need distributions to compute probabilites of continuous variables, or sets of outcomed, and that  -->
+<!--   (b) we need know which distribution is the right one for the job, but that (c) we don't need to worry about the math itself, because all of them are implemented, and can simply be called. -->
+
+<!-- (- develop a standard template for presenting distributions -->
+<!-- - develop a standard template for presenting hypothesis tests?) -->
+
+<!-- - Show the bean maching by Galton for the normal, and the other machine for the log-normal. -->
