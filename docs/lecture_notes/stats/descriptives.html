@@ -24,7 +24,7 @@
 <meta name="author" content="Pavel Logacev" />
 
 
-<meta name="date" content="2020-12-07" />
+<meta name="date" content="2020-12-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -150,16 +150,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.1.4" data-path="descriptives.html"><a href="descriptives.html#mean-or-median-whats-the-difference"><i class="fa fa-check"></i><b>3.1.4</b> Mean or median? What’s the difference?</a></li>
 <li class="chapter" data-level="3.1.5" data-path="descriptives.html"><a href="descriptives.html#trimmedmean"><i class="fa fa-check"></i><b>3.1.5</b> Trimmed mean</a></li>
 <li class="chapter" data-level="3.1.6" data-path="descriptives.html"><a href="descriptives.html#mode"><i class="fa fa-check"></i><b>3.1.6</b> Mode</a></li>
+<li class="chapter" data-level="3.1.7" data-path="descriptives.html"><a href="descriptives.html#summary"><i class="fa fa-check"></i><b>3.1.7</b> Summary</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="descriptives.html"><a href="descriptives.html#summary"><i class="fa fa-check"></i><b>3.2</b> Summary</a></li>
-<li class="chapter" data-level="3.3" data-path="descriptives.html"><a href="descriptives.html#var"><i class="fa fa-check"></i><b>3.3</b> Measures of variability</a><ul>
-<li class="chapter" data-level="3.3.1" data-path="descriptives.html"><a href="descriptives.html#range"><i class="fa fa-check"></i><b>3.3.1</b> Range</a></li>
-<li class="chapter" data-level="3.3.2" data-path="descriptives.html"><a href="descriptives.html#quantiles-and-percentile"><i class="fa fa-check"></i><b>3.3.2</b> Quantiles and percentile</a></li>
-<li class="chapter" data-level="3.3.3" data-path="descriptives.html"><a href="descriptives.html#interquartile-range"><i class="fa fa-check"></i><b>3.3.3</b> Interquartile range</a></li>
-<li class="chapter" data-level="3.3.4" data-path="descriptives.html"><a href="descriptives.html#aad"><i class="fa fa-check"></i><b>3.3.4</b> Mean absolute deviation</a></li>
-<li class="chapter" data-level="3.3.5" data-path="descriptives.html"><a href="descriptives.html#variance"><i class="fa fa-check"></i><b>3.3.5</b> Variance</a></li>
-<li class="chapter" data-level="3.3.6" data-path="descriptives.html"><a href="descriptives.html#sd"><i class="fa fa-check"></i><b>3.3.6</b> Standard deviation</a></li>
-<li class="chapter" data-level="3.3.7" data-path="descriptives.html"><a href="descriptives.html#which-measure-to-use"><i class="fa fa-check"></i><b>3.3.7</b> Which measure to use?</a></li>
+<li class="chapter" data-level="3.2" data-path="descriptives.html"><a href="descriptives.html#var"><i class="fa fa-check"></i><b>3.2</b> Measures of variability</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="descriptives.html"><a href="descriptives.html#range"><i class="fa fa-check"></i><b>3.2.1</b> Range</a></li>
+<li class="chapter" data-level="3.2.2" data-path="descriptives.html"><a href="descriptives.html#quantiles-and-percentile"><i class="fa fa-check"></i><b>3.2.2</b> Quantiles and percentile</a></li>
+<li class="chapter" data-level="3.2.3" data-path="descriptives.html"><a href="descriptives.html#interquartile-range"><i class="fa fa-check"></i><b>3.2.3</b> Interquartile range</a></li>
+<li class="chapter" data-level="3.2.4" data-path="descriptives.html"><a href="descriptives.html#aad"><i class="fa fa-check"></i><b>3.2.4</b> Mean absolute deviation</a></li>
+<li class="chapter" data-level="3.2.5" data-path="descriptives.html"><a href="descriptives.html#variance"><i class="fa fa-check"></i><b>3.2.5</b> Variance</a></li>
+<li class="chapter" data-level="3.2.6" data-path="descriptives.html"><a href="descriptives.html#sd"><i class="fa fa-check"></i><b>3.2.6</b> Standard deviation</a></li>
+<li class="chapter" data-level="3.2.7" data-path="descriptives.html"><a href="descriptives.html#which-measure-to-use"><i class="fa fa-check"></i><b>3.2.7</b> Which measure to use?</a></li>
 </ul></li>
 </ul></li>
 <li class="divider"></li>
@@ -185,22 +185,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="descriptives" class="section level1">
 <h1><span class="header-section-number">Chapter 3</span> Descriptive statistics</h1>
 <p><em>(an adapted version of Danielle Navarro’s <a href="https://learningstatisticswithr.com/book/">chapter 3/5</a> on descriptive statistics.)</em></p>
-<p>(07 December, 2020, 23:12)</p>
+<p>(08 December, 2020, 14:42)</p>
 <ul>
 <li><p>Any time that you get a new data set to look at, one of the first tasks that you have to do is find ways of summarising the data in a compact, easily understood fashion. This is what <strong><em>descriptive statistics</em></strong> (as opposed to <strong><em>inferential statistics</em></strong>) is all about. In fact, to many people the term “statistics” is synonymous with descriptive statistics.</p></li>
 <li><p>Before going into any details, let’s take a moment to get a sense of why we need descriptive statistics. To do this, let’s load a dataset on sleep in mammals.</p></li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="co">#load( &quot;./data_navarro/aflsmall.Rdata&quot; )</span></a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="co">#library(lsr)</span></a>
-<a class="sourceLine" id="cb1-3" title="3"><span class="co">#who()</span></a>
-<a class="sourceLine" id="cb1-4" title="4"></a>
-<a class="sourceLine" id="cb1-5" title="5">mammalian_sleep &lt;-<span class="st"> </span></a>
-<a class="sourceLine" id="cb1-6" title="6"><span class="st">      </span><span class="kw">read.csv</span>(<span class="st">&quot;./data/msleep_ggplot2.csv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb1-7" title="7"><span class="st">      </span>dplyr<span class="op">::</span><span class="kw">select</span>(name, sleep_total, bodywt) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb1-8" title="8"><span class="st">      </span>dplyr<span class="op">::</span><span class="kw">rename</span>(<span class="dt">sleep_total_h =</span> sleep_total, <span class="dt">bodywt_kg =</span> bodywt) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb1-9" title="9"><span class="st">      </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">sleep_total_h =</span> <span class="kw">round</span>(sleep_total_h) )</a>
-<a class="sourceLine" id="cb1-10" title="10"></a>
-<a class="sourceLine" id="cb1-11" title="11"><span class="kw">head</span>(mammalian_sleep)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1">mammalian_sleep &lt;-<span class="st"> </span></a>
+<a class="sourceLine" id="cb1-2" title="2"><span class="st">      </span><span class="kw">read.csv</span>(<span class="st">&quot;./data/msleep_ggplot2.csv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb1-3" title="3"><span class="st">      </span>dplyr<span class="op">::</span><span class="kw">select</span>(name, sleep_total, bodywt) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb1-4" title="4"><span class="st">      </span>dplyr<span class="op">::</span><span class="kw">rename</span>(<span class="dt">sleep_total_h =</span> sleep_total, <span class="dt">bodywt_kg =</span> bodywt) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb1-5" title="5"><span class="st">      </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">sleep_total_h =</span> <span class="kw">round</span>(sleep_total_h) )</a>
+<a class="sourceLine" id="cb1-6" title="6"></a>
+<a class="sourceLine" id="cb1-7" title="7"><span class="kw">head</span>(mammalian_sleep)</a></code></pre></div>
 <pre><code>##                         name sleep_total_h bodywt_kg
 ## 1                    Cheetah            12    50.000
 ## 2                 Owl monkey            17     0.480
@@ -213,8 +209,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>There are three variables here, <code>name</code>, <code>sleep_total_h</code> and <code>bodywt_kg</code>. For each animal named in <code>name</code>, the <code>sleep_total_h</code> variable contains the average number of hours animals of this kind sleep per day. The variable <code>bodywt_kg</code> contains the average weight of that animal in kg.</p></li>
 <li><p>Let’s have a look at the <code>sleep_total_h</code> variable:</p></li>
 </ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="co">#print(afl.margins)</span></a>
-<a class="sourceLine" id="cb3-2" title="2"><span class="kw">print</span>(mammalian_sleep<span class="op">$</span>sleep_total_h)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">print</span>(mammalian_sleep<span class="op">$</span>sleep_total_h)</a></code></pre></div>
 <pre><code>##  [1] 12 17 14 15  4 14  9  7 10  3  5  9 10 12 10  8  9 17  5 18  4 20  3  3 10
 ## [26] 11 15 12 10  2  3  6  6  8 10  3 19 10 14 14 13 12 20 15 11  8 14  8  4 10
 ## [51] 16 10 14  9 10 11 12 14  4  6 11 18  5 13  9 10  8 11 11 17 14 16 13  9  9
@@ -459,13 +454,22 @@ Let's expand on that last part a little.
 <pre><code>## [1] 3</code></pre>
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1"><span class="kw">modeOf</span>(champs<span class="op">$</span>total_goals)</a></code></pre></div>
 <pre><code>## [1] 2</code></pre>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1"><span class="kw">ggplot</span>(champs, <span class="kw">aes</span>(total_goals)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1">mean_goals &lt;-<span class="st"> </span><span class="kw">mean</span>(champs<span class="op">$</span>total_goals)</a>
+<a class="sourceLine" id="cb32-2" title="2">median_goals &lt;-<span class="st"> </span><span class="kw">median</span>(champs<span class="op">$</span>total_goals)</a>
+<a class="sourceLine" id="cb32-3" title="3">mode_goals &lt;-<span class="st"> </span><span class="kw">modeOf</span>(champs<span class="op">$</span>total_goals)</a>
+<a class="sourceLine" id="cb32-4" title="4"></a>
+<a class="sourceLine" id="cb32-5" title="5"><span class="kw">ggplot</span>(champs, <span class="kw">aes</span>(total_goals)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb32-6" title="6"><span class="st">    </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> mean_goals, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb32-7" title="7"><span class="st">    </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> median_goals, <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb32-8" title="8"><span class="st">    </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> mode_goals, <span class="dt">color =</span> <span class="st">&quot;green&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb32-9" title="9"><span class="st">    </span><span class="kw">geom_text</span>(<span class="dt">data=</span><span class="ot">NULL</span>, <span class="dt">x =</span> mean_goals<span class="fl">-.6</span>, <span class="dt">y=</span><span class="dv">1470</span>, <span class="dt">label =</span> <span class="st">&quot;mean&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb32-10" title="10"><span class="st">    </span><span class="kw">geom_text</span>(<span class="dt">data=</span><span class="ot">NULL</span>, <span class="dt">x =</span> median_goals<span class="fl">+.75</span>, <span class="dt">y=</span><span class="dv">1500</span>, <span class="dt">label =</span> <span class="st">&quot;median&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb32-11" title="11"><span class="st">    </span><span class="kw">geom_text</span>(<span class="dt">data=</span><span class="ot">NULL</span>, <span class="dt">x =</span> mode_goals<span class="fl">-.6</span>, <span class="dt">y=</span><span class="dv">1530</span>, <span class="dt">label =</span> <span class="st">&quot;mode&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;green&quot;</span>)</a></code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <p><img src="LectureNotes_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
 </div>
-</div>
-<div id="summary" class="section level2">
-<h2><span class="header-section-number">3.2</span> Summary</h2>
+<div id="summary" class="section level3">
+<h3><span class="header-section-number">3.1.7</span> Summary</h3>
 <ul>
 <li>There are multiple measures of central tendency that can be used to summarize an aspect of a distribution: <strong>_ (arithmetic) mean, median, and mode_</strong>.</li>
 <li>They answer different questions about distribution. For example, in the distribution of number of goals per game in the previous section
@@ -482,8 +486,9 @@ trimmed mean: "What is the mean income of those who have work? (i.e., how much *
 </ul></li>
 </ul>
 </div>
+</div>
 <div id="var" class="section level2">
-<h2><span class="header-section-number">3.3</span> Measures of variability</h2>
+<h2><span class="header-section-number">3.2</span> Measures of variability</h2>
 <ul>
 <li>The statistics that we’ve discussed so far all relate to <em>central tendency</em>. That is, they all talk about which values are “in the middle” or “popular” in the data.</li>
 <li>The second thing that we really want is a measure of the <strong><em>variability</em></strong> of the data.
@@ -494,7 +499,7 @@ trimmed mean: "What is the mean income of those who have work? (i.e., how much *
 <li>Let’s consider interval and ratio scale data.</li>
 </ul>
 <div id="range" class="section level3">
-<h3><span class="header-section-number">3.3.1</span> Range</h3>
+<h3><span class="header-section-number">3.2.1</span> Range</h3>
 <ul>
 <li>The <strong><em>range</em></strong> of a variable is very simple: it’s the biggest value minus the smallest value. For the sleep data, the maximum value is 20, and the minimum value is 2. We can calculate these values in R using the <code>max()</code> and <code>min()</code> functions:</li>
 </ul>
@@ -517,7 +522,7 @@ trimmed mean: "What is the mean income of those who have work? (i.e., how much *
 </ul>
 </div>
 <div id="quantiles-and-percentile" class="section level3">
-<h3><span class="header-section-number">3.3.2</span> Quantiles and percentile</h3>
+<h3><span class="header-section-number">3.2.2</span> Quantiles and percentile</h3>
 <ul>
 <li>A key concept we will need to build on to conceptualize several other measures of variability are <strong><em>quantiles</em></strong> or <strong><em>percentiles</em></strong>.</li>
 <li>A <strong><em>percentile</em></strong> is the smallest value in a dataset such that a set percentage is smaller than it. (A <strong><em>quantile</em></strong> does pretty much the same but is more generic.)</li>
@@ -528,7 +533,7 @@ trimmed mean: "What is the mean income of those who have work? (i.e., how much *
 <div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" title="1"><span class="kw">sort</span>(mammalian_sleep<span class="op">$</span>sleep_total_h)[<span class="dv">1</span><span class="op">:</span><span class="dv">20</span>]</a></code></pre></div>
 <pre><code>##  [1] 2 3 3 3 3 3 4 4 4 4 4 5 5 5 5 6 6 6 6 7</code></pre>
 <ul>
-<li>And here is a sorted plot:</li>
+<li>And here is a sorted plot of the 20 smallest values:</li>
 </ul>
 <div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" title="1">quantile &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">0.1</span>,<span class="fl">0.3</span>,<span class="fl">0.5</span>,<span class="fl">0.9</span>)</a>
 <a class="sourceLine" id="cb42-2" title="2">quantile_points &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">0.1</span>,<span class="fl">0.3</span>,<span class="fl">0.5</span>,<span class="fl">0.9</span>)<span class="op">*</span><span class="dv">20</span></a>
@@ -536,21 +541,22 @@ trimmed mean: "What is the mean income of those who have work? (i.e., how much *
 <a class="sourceLine" id="cb42-4" title="4"><span class="kw">ggplot</span>(<span class="dt">data=</span><span class="ot">NULL</span>, <span class="kw">aes</span>(<span class="dt">x=</span><span class="dv">1</span><span class="op">:</span><span class="dv">20</span>, <span class="dt">y=</span><span class="kw">sort</span>(mammalian_sleep<span class="op">$</span>sleep_total_h)[<span class="dv">1</span><span class="op">:</span><span class="dv">20</span>])) <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb42-5" title="5"><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb42-6" title="6"><span class="st">    </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> quantile_points) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb42-7" title="7"><span class="st">    </span><span class="kw">geom_label</span>(<span class="kw">aes</span>(<span class="dt">x=</span>quantile_points, <span class="dt">y=</span><span class="fl">6.5</span>, <span class="dt">label=</span>quantile_labels ))</a></code></pre></div>
+<a class="sourceLine" id="cb42-7" title="7"><span class="st">    </span><span class="kw">geom_label</span>(<span class="kw">aes</span>(<span class="dt">x=</span>quantile_points, <span class="dt">y=</span><span class="fl">6.5</span>, <span class="dt">label=</span>quantile_labels )) <span class="op">+</span></a>
+<a class="sourceLine" id="cb42-8" title="8"><span class="st">    </span><span class="kw">scale_x_continuous</span>(<span class="dt">breaks =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">20</span>) <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;Position in ordered vector&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Sleep (hours)&quot;</span>)</a></code></pre></div>
 <p><img src="LectureNotes_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
 <ul>
 <li>As you can see:
 <ul>
-<li>10-th percentile (<span class="math inline">\(0.1\)</span> quantile): 3</li>
-<li>30-th percentile (<span class="math inline">\(0.3\)</span> quantile): 3</li>
-<li>50-th percentile (<span class="math inline">\(0.5\)</span> quantile): 4</li>
-<li>90-th percentile (<span class="math inline">\(0.9\)</span> quantile): 6</li>
+<li>10-th percentile (<span class="math inline">\(0.1\)</span> quantile): 3 [to be found at position 2, since 2 data points constitute 10 percent of the data]</li>
+<li>30-th percentile (<span class="math inline">\(0.3\)</span> quantile): 3 [to be found at position 6, since 6 data points constitute 30 percent of the data]</li>
+<li>50-th percentile (<span class="math inline">\(0.5\)</span> quantile): 4 [to be found at position 10, since 10 data points constitute 50 percent of the data]</li>
+<li>90-th percentile (<span class="math inline">\(0.9\)</span> quantile): 6 [to be found at position 18, since 18 data points constitute 90 percent of the data]</li>
 </ul></li>
 <li>The 50-th percentile is the median.</li>
 </ul>
 </div>
 <div id="interquartile-range" class="section level3">
-<h3><span class="header-section-number">3.3.3</span> Interquartile range</h3>
+<h3><span class="header-section-number">3.2.3</span> Interquartile range</h3>
 <ul>
 <li>The <strong><em>interquartile range</em></strong> (IQR) is like the range, but instead of calculating the difference between the biggest and smallest value, it calculates the difference between the 25th quantile and the 75th quantile.</li>
 <li>R provides you with a way of calculating quantiles, using the (surprise, surprise) <code>quantile()</code> function. Let’s use it to calculate the median sleep durations:</li>
@@ -574,7 +580,7 @@ trimmed mean: "What is the mean income of those who have work? (i.e., how much *
 </ul>
 </div>
 <div id="aad" class="section level3">
-<h3><span class="header-section-number">3.3.4</span> Mean absolute deviation</h3>
+<h3><span class="header-section-number">3.2.4</span> Mean absolute deviation</h3>
 <ul>
 <li>The range and the interquartile range, both rely on the idea that we can measure the spread of the data by looking at the quantiles of the data.</li>
 <li><p>However, this isn’t the only way to think about the problem. A different approach is to select a meaningful reference point (usually the mean or the median) and then report the <strong><em>“typical” deviations</em></strong> from that reference point.
@@ -598,16 +604,18 @@ AAD(X) = \frac{1}{N} \sum_{i = 1}^N |X_i - \bar{X}|
 <span class="math display">\[
 0.4, 4.6, 1.6, 2.6, 8.4
 \]</span></li>
-<li><p>The sum of the absolute deviations <span class="math inline">\(\sum_{i = 1}^N |X_i - \bar{X}|\)</span> is 17.6.
-<span class="math display">\[
-0.4, 4.6, 1.6, 2.6, 8.4
-\]</span></p></li>
-<li><p>And <span class="math inline">\(N=5\)</span>, which means, that <span class="math inline">\(AAD(X) = \frac{1}{N} \sum_{i = 1}^N |X_i - \bar{X}| = 3.52\)</span>, in our case.</p></li>
+<li><p>The sum of the absolute deviations <span class="math inline">\(\sum_{i = 1}^N |X_i - \bar{X}|\)</span> is 17.6.</p></li>
+<li><p>And <span class="math inline">\(N=5\)</span>, which means, that, in our case: <span class="math inline">\(AAD(X) = \frac{1}{N} \sum_{i = 1}^N |X_i - \bar{X}| = 3.52\)</span></p></li>
 <li><p>In R, we can compute it for the entire vector.</p></li>
 </ul>
 <div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" title="1">mean_sleep &lt;-<span class="st"> </span><span class="kw">mean</span>(mammalian_sleep<span class="op">$</span>sleep_total_h)</a>
-<a class="sourceLine" id="cb49-2" title="2">dev_sleep &lt;-<span class="st"> </span>mean_sleep <span class="op">-</span><span class="st"> </span>mammalian_sleep<span class="op">$</span>sleep_total_h</a>
-<a class="sourceLine" id="cb49-3" title="3"><span class="kw">mean</span>( <span class="kw">abs</span>(dev_sleep) )</a></code></pre></div>
+<a class="sourceLine" id="cb49-2" title="2">deviation_sleep &lt;-<span class="st"> </span>mean_sleep <span class="op">-</span><span class="st"> </span>mammalian_sleep<span class="op">$</span>sleep_total_h</a>
+<a class="sourceLine" id="cb49-3" title="3"><span class="kw">mean</span>( <span class="kw">abs</span>(deviation_sleep) )</a></code></pre></div>
+<pre><code>## [1] 3.576717</code></pre>
+<ul>
+<li>An alternative, more compact way to write it is using (lots) pipes:</li>
+</ul>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" title="1">mammalian_sleep<span class="op">$</span>sleep_total_h <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">subtract</span>(., <span class="kw">mean</span>(.)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">abs</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mean</span>()</a></code></pre></div>
 <pre><code>## [1] 3.576717</code></pre>
 <ul>
 <li>The interpretation of the AAD is quite straightforward: It is the average distance from the average. When it’s big, the values are quite spread out. When it’s small, they are close. The units are the same (hours in our case).</li>
@@ -667,27 +675,35 @@ No suprises there.
 -->
 </div>
 <div id="variance" class="section level3">
-<h3><span class="header-section-number">3.3.5</span> Variance</h3>
+<h3><span class="header-section-number">3.2.5</span> Variance</h3>
 <ul>
-<li>Although the mean absolute deviation measure has its uses, it’s not the best measure of variability to use.</li>
-<li>From a purely mathematical perspective, there are some solid reasons to prefer squared deviations rather than absolute deviations.</li>
-<li>If we do that, we obtain a measure is called the <strong><em>variance</em></strong>, which has a lot of really nice statistical properties that I’m going to ignore,<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>(X)$ and <span class="math inline">\(\mbox{Var}(Y)\)</span> respectively. Now imagine I want to define a new variable <span class="math inline">\(Z\)</span> that is the sum of the two, <span class="math inline">\(Z = X+Y\)</span>. As it turns out, the variance of <span class="math inline">\(Z\)</span> is equal to <span class="math inline">\(\mbox{Var}(X) + \mbox{Var}(Y)\)</span>. This is a <em>very</em> useful property, but it’s not true of the other measures that I talk about in this section.] and one massive psychological flaw that I’m going to make a big deal out of in a moment. The variance of a data set <span class="math inline">\(X\)</span> is sometimes written as <span class="math inline">\(\mbox{Var}(X)\)</span>, but it’s more commonly denoted <span class="math inline">\(s^2\)</span> (the reason for this will become clearer shortly). The formula that we use to calculate the variance of a set of observations is as follows:
+<li><p>Although the mean absolute deviation measure has its uses, it’s not the best measure of variability to use.</p></li>
+<li><p>For a number of practical reasons, there are some solid reasons to prefer squared deviations rather than absolute deviations. A measure of variability based on <em>squared deviations</em> has a number of useful properties in <em>inferential statistics</em> and <em>statistical modeling</em>.<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a></p></li>
+<li><p>If we do that, we obtain a measure is called the <strong><em>variance</em></strong>, which for a specific set of observations <span class="math inline">\(X\)</span> is written <span class="math inline">\(\mbox{s}_X^2\)</span>. It is the most wide-spread measure of variability because it is a key concept in <em>inferential statistics</em>.</p></li>
+<li><p>The formula that we use to calculate the variance of a set of observations is as follows:
 <span class="math display">\[
-\mbox{Var}(X) = \frac{1}{N} \sum_{i=1}^N \left( X_i - \bar{X} \right)^2
-\]</span>
-<span class="math display">\[\mbox{Var}(X) = \frac{\sum_{i=1}^N \left( X_i - \bar{X} \right)^2}{N}\]</span></li>
-<li>As you can see, it’s basically the same formula that we used to calculate the mean absolute deviation, except that instead of using “absolute deviations” we use “squared deviations”. It is for this reason that the variance is sometimes referred to as the “mean square deviation”.</li>
+\mbox{s}_X^2 = \frac{1}{N-1} \sum_{i=1}^N \left( X_i - \bar{X} \right)^2
+\]</span></p></li>
+<li>As you can see, it’s basically the same formula that we used to calculate the mean absolute deviation, except that:
+<ol style="list-style-type: decimal">
+<li>Instead of using “absolute deviations” we use “squared deviations”.</li>
+<li>Instead of dividing by <span class="math inline">\(N\)</span> (which gives us the average deviation), we divide by <span class="math inline">\(N-1\)</span> (which gives us <em>‘sort-of-the-average’</em>). [We will talk about this in a little while.]</li>
+</ol></li>
 </ul>
-<p>Now that we’ve got the basic idea, let’s have a look at a concrete example. Once again, let’s use the first five AFL games as our data. If we follow the same approach that we took last time, we end up with the following table:</p>
+<!--
+  . It is for this reason that the variance is sometimes referred to as the "mean square deviation".
+-->
+<ul>
+<li>Now that we’ve got the basic idea, let’s have a look at a concrete example. Once again, let’s use the first five sleep durations. If we follow the same approach that we took last time, we end up with the following table:</li>
+</ul>
 <table>
-<caption><span id="tab:unnamed-chunk-35">Table 3.1: </span>Regular, abssolute, and squared deviations</caption>
+<caption><span id="tab:unnamed-chunk-36">Table 3.1: </span>Regular, abssolute, and squared deviations</caption>
 <colgroup>
+<col width="15%" />
 <col width="10%" />
-<col width="7%" />
-<col width="7%" />
-<col width="20%" />
+<col width="11%" />
+<col width="30%" />
 <col width="32%" />
-<col width="22%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -695,8 +711,7 @@ No suprises there.
 <th align="left"><span class="math inline">\(i\)</span> [animal]</th>
 <th align="left"><span class="math inline">\(X_i\)</span> [value]</th>
 <th align="left"><span class="math inline">\(X_i - \bar{X}\)</span> [deviation from mean]</th>
-<th align="left"><span class="math inline">\(&amp;#124;X_i - \bar{X}&amp;#124;\)</span> [absolute deviation from mean]</th>
-<th align="left"><span class="math inline">\((X_i - \bar{X})^2\)</span> [absolute deviation]</th>
+<th align="left"><span class="math inline">\((X_i - \bar{X})^2\)</span> [squared deviation]</th>
 </tr>
 </thead>
 <tbody>
@@ -705,14 +720,12 @@ No suprises there.
 <td align="left">1</td>
 <td align="left">12</td>
 <td align="left">-0.4</td>
-<td align="left">0.4</td>
 <td align="left">0.16</td>
 </tr>
 <tr class="even">
 <td align="left"></td>
 <td align="left">2</td>
 <td align="left">17</td>
-<td align="left">4.6</td>
 <td align="left">4.6</td>
 <td align="left">21.16</td>
 </tr>
@@ -721,14 +734,12 @@ No suprises there.
 <td align="left">3</td>
 <td align="left">14</td>
 <td align="left">1.6</td>
-<td align="left">1.6</td>
 <td align="left">2.56</td>
 </tr>
 <tr class="even">
 <td align="left"></td>
 <td align="left">4</td>
 <td align="left">15</td>
-<td align="left">2.6</td>
 <td align="left">2.6</td>
 <td align="left">6.76</td>
 </tr>
@@ -737,7 +748,6 @@ No suprises there.
 <td align="left">5</td>
 <td align="left">4</td>
 <td align="left">-8.4</td>
-<td align="left">8.4</td>
 <td align="left">70.56</td>
 </tr>
 </tbody>
@@ -745,59 +755,34 @@ No suprises there.
 <ul>
 <li>That last column contains all of our squared deviations, so all we have to do is average them. If we do that by typing all the numbers into R by hand…</li>
 </ul>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" title="1">( <span class="fl">0.16+21.16+2.56+6.76+70.56</span> ) <span class="op">/</span><span class="st"> </span><span class="dv">5</span></a></code></pre></div>
-<pre><code>## [1] 20.24</code></pre>
-<p>… we end up with a variance of 20.24. Exciting, isn’t it? For the moment, let’s ignore the burning question that you’re all probably thinking (i.e., what the heck does a variance of 20.24 actually mean?) and instead talk a bit more about how to do the calculations in R, because this will reveal something very weird.</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" title="1">( <span class="fl">0.16+21.16+2.56+6.76+70.56</span> ) <span class="op">/</span><span class="st"> </span>(<span class="dv">5-1</span>)</a></code></pre></div>
+<pre><code>## [1] 25.3</code></pre>
 <ul>
-<li>As always, we want to avoid having to type in a whole lot of numbers ourselves. And as it happens, we have the vector <code>X</code> lying around, which we created in the previous section. With this in mind, we can calculate the variance of <code>X</code> by using the following command,</li>
+<li><p>We end up with a variance of 25.3. Exciting, isn’t it? For the moment, let’s ignore the burning question that you’re all probably thinking (i.e., what the heck does a variance of 25.3 actually mean?) and instead talk a bit more about how to do the calculations in R.</p></li>
+<li><p>As always, we want to avoid having to type in a whole lot of numbers ourselves. And as it happens, we have the vector <code>X</code> lying around, which we created in the previous section. With this in mind, we can calculate the variance of <code>X</code> by using the following command,</p></li>
 </ul>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" title="1">X &lt;-<span class="st"> </span>mammalian_sleep<span class="op">$</span>sleep_total_h[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a>
-<a class="sourceLine" id="cb53-2" title="2"><span class="kw">mean</span>( (X <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(X) )<span class="op">^</span><span class="dv">2</span>)</a></code></pre></div>
-<pre><code>## [1] 20.24</code></pre>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" title="1">X &lt;-<span class="st"> </span>mammalian_sleep<span class="op">$</span>sleep_total_h[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a>
+<a class="sourceLine" id="cb55-2" title="2">(X <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(X) )<span class="op">^</span><span class="dv">2</span> <span class="op">/</span><span class="st"> </span>(<span class="kw">length</span>(X) <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)</a></code></pre></div>
+<pre><code>## [1]  0.04  5.29  0.64  1.69 17.64</code></pre>
 <p>and as usual we get the same answer as the one that we got when we did everything by hand. However, I <em>still</em> think that this is too much typing. Fortunately, R has a built in function called <code>var()</code> which does calculate variances. So we could also do this…</p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" title="1"><span class="kw">var</span>(X)</a></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" title="1"><span class="kw">var</span>(X)</a></code></pre></div>
 <pre><code>## [1] 25.3</code></pre>
-<p>and you get the same… no, wait… you get a completely <em>different</em> answer. That’s just weird. Is R broken?</p>
-<ul>
-<li>As it happens, the answer is no. It’s not a typo, and R is not making a mistake. To get a feel for what’s happening, let’s stop using the tiny data set containing only 5 data points, and switch to the full set of data points we’ve got stored in our <code>mammalian_sleep$sleep_total_h</code> vector. First, let’s calculate the variance by using the formula that I described above:</li>
-</ul>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" title="1">X &lt;-<span class="st"> </span>mammalian_sleep<span class="op">$</span>sleep_total_h</a>
-<a class="sourceLine" id="cb57-2" title="2"><span class="kw">mean</span>( (X <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(X) )<span class="op">^</span><span class="dv">2</span>)</a></code></pre></div>
-<pre><code>## [1] 19.71171</code></pre>
-<p>Now let’s use the <code>var()</code> function:</p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" title="1"><span class="kw">var</span>( X )</a></code></pre></div>
-<pre><code>## [1] 19.9521</code></pre>
-<ul>
-<li>Hm. These two numbers are very similar this time. That seems like too much of a coincidence to be a mistake. And of course it isn’t a mistake. In fact, it’s very simple to explain what R is doing here, but slightly trickier to explain <em>why</em> R is doing it. So let’s start with the “what”. What R is doing is evaluating a slightly different formula to the one I showed you above. Instead of averaging the squared deviations, which requires you to divide by the number of data points <span class="math inline">\(N\)</span>, R has chosen to divide by <span class="math inline">\(N-1\)</span>. In other words, the formula that R is using is this one<br />
-<span class="math display">\[
-\frac{1}{N-1} \sum_{i=1}^N \left( X_i - \bar{X} \right)^2
-\]</span>
-It’s easy enough to verify that this is what’s happening, as the following command illustrates:</li>
-</ul>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" title="1">X &lt;-<span class="st"> </span>mammalian_sleep<span class="op">$</span>sleep_total_h[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a>
-<a class="sourceLine" id="cb61-2" title="2"><span class="kw">sum</span>( (X<span class="op">-</span><span class="kw">mean</span>(X))<span class="op">^</span><span class="dv">2</span> ) <span class="op">/</span><span class="st"> </span><span class="dv">4</span></a></code></pre></div>
-<pre><code>## [1] 25.3</code></pre>
-<ul>
-<li>This is the same answer that R gave us originally when we calculated <code>var(X)</code> originally. So that’s the <em>what</em>.</li>
-<li>The real question is <em>why</em> R is dividing by <span class="math inline">\(N-1\)</span> and not by <span class="math inline">\(N\)</span>. After all, the variance is supposed to be the <em>mean</em> squared deviation, right? So shouldn’t we be dividing by <span class="math inline">\(N\)</span>, the actual number of observations in the sample? Well, yes, we should. However, there’s a subtle distinction between “describing a sample” and “making guesses about the population from which the sample came”. Up to this point, it’s been a distinction without a difference. Regardless of whether you’re describing a sample or drawing inferences about the population, the mean is calculated exactly the same way. Not so for the variance, or the standard deviation, or for many other measures besides. What I outlined to you initially (i.e., take the actual average, and thus divide by <span class="math inline">\(N\)</span>) assumes that you literally intend to calculate the variance of the sample. Most of the time, however, you’re not terribly interested in the sample <em>in and of itself</em>. Rather, the sample exists to tell you something about the world. If so, you’re actually starting to move away from calculating a “sample statistic”, and towards the idea of estimating a “population parameter”.</li>
-</ul>
-<!--
-Okay, one last thing. This section so far has read a bit like a mystery novel. I've shown you how to calculate the variance, described the weird "$N-1$" thing that R does and hinted at the reason why it's there, but I haven't mentioned the single most important thing... how do you *interpret* the variance? Descriptive statistics are supposed to describe things, after all, and right now the variance is really just a gibberish number. Unfortunately, the reason why I haven't given you the human-friendly interpretation of the variance is that there really isn't one. This is the most serious problem with the variance. Although it has some elegant mathematical properties that suggest that it really is a fundamental quantity for expressing variation, it's completely useless if you want to communicate with an actual human... variances are completely uninterpretable in terms of the original variable! All the numbers have been squared, and they don't mean anything anymore. This is a huge issue. For instance, according to the table I presented earlier, the margin in game 1 was "376.36 points-squared higher than the average margin". This is *exactly* as stupid as it sounds; and so when we calculate a variance of 324.64, we're in the same situation. I've watched a lot of footy games, and never has anyone referred to "points squared". It's *not* a real unit of measurement, and since the variance is expressed in terms of this gibberish unit, it is totally meaningless to a human.
--->
+<p>and you get the same answer. Great.</p>
 </div>
 <div id="sd" class="section level3">
-<h3><span class="header-section-number">3.3.6</span> Standard deviation</h3>
+<h3><span class="header-section-number">3.2.6</span> Standard deviation</h3>
 <ul>
 <li>One problem with the variance is that it is expressed in odd units. In the case above it’s <span class="math inline">\(h^2\)</span> (<em>hours squared</em>). I know what <span class="math inline">\(m^2\)</span>, but what are <span class="math inline">\(h^2\)</span>? No idea.</li>
 <li>Suppose that you’d like to have a measure that is expressed in the same units as the data itself (i.e., points, not points-squared). What should you do?</li>
 <li>The solution to the problem is obvious: take the square root of the variance, known as the <strong><em>standard deviation</em></strong>, also called the “root mean squared deviation”, or RMSD. This solves out problem fairly neatly.</li>
 <li>While nobody has a clue what <em>“a variance of 19.95 hours-squared”</em> really means, it’s much easier to understand <em>“a standard deviation of 4.5 hours”</em>, since it’s expressed in the original units.</li>
-<li>It is traditional to refer to the standard deviation of a sample of data as <span class="math inline">\(s\)</span>, though “sd” and “std dev.” are also used at times. Because the standard deviation is equal to the square root of the variance, you probably won’t be surprised to see that the formula is:
+<li>It is traditional to refer to the standard deviation of a sample of data as <span class="math inline">\(s_x\)</span>, though “sd” and “std dev.” are also used at times. Because the standard deviation is equal to the square root of the variance, you probably won’t be surprised to see that the formula is:
 <span class="math display">\[
-s = \sqrt{ \frac{1}{N} \sum_{i=1}^N \left( X_i - \bar{X} \right)^2 }
+s_x = \sqrt{ \frac{1}{N-1} \sum_{i=1}^N \left( X_i - \bar{X} \right)^2 }
 \]</span>
-and the R function that we use to calculate it is <code>sd()</code>. However, as you might have guessed from our discussion of the variance, what R actually calculates is slightly different to the formula given above. Just like the we saw with the variance, what R calculates is a version that divides by <span class="math inline">\(N-1\)</span> rather than <span class="math inline">\(N\)</span>.
 <!--
+and the R function that we use to calculate it is `sd()`. 
+However, as you might have guessed from our discussion of the variance, what R actually calculates is slightly different to the formula given above. Just like the we saw with the variance, what R calculates is a version that divides by $N-1$ rather than $N$. 
 For reasons that will make sense when we return to this topic in Chapter@refch:estimation I'll refer to this new quantity as $\hat\sigma$ (read as: "sigma hat"), and the formula for this is
 -->
 <span class="math display">\[
@@ -805,13 +790,97 @@ For reasons that will make sense when we return to this topic in Chapter@refch:e
 \]</span>
 With that in mind, calculating standard deviations in R is simple:</li>
 </ul>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" title="1"><span class="kw">sd</span>( mammalian_sleep<span class="op">$</span>sleep_total_h ) </a></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" title="1"><span class="kw">sd</span>( mammalian_sleep<span class="op">$</span>sleep_total_h ) </a></code></pre></div>
 <pre><code>## [1] 4.466777</code></pre>
 <ul>
 <li>Interpreting standard deviations is slightly more complex. Because the standard deviation is derived from the variance, and the variance is a quantity that has little to no meaning that makes sense to us humans, the standard deviation doesn’t have a simple interpretation.</li>
-<li>As a consequence, most of us just rely on a simple rule of thumb: in general, you should expect 68% of the data to fall within 1 standard deviation of the mean, 95% of the data to fall within 2 standard deviation of the mean, and 99.7% of the data to fall within 3 standard deviations of the mean. This rule tends to work pretty well most of the time, but it’s not exact: it’s actually calculated based on an <em>assumption</em> that the histogram is symmetric and “bell shaped”. (Strictly, the assumption is that the data are <em>normally</em> distributed, which is an important concept that we’ll discuss more later).</li>
+<li>As a consequence, most of us just rely on a <strong>simple rule of thumb</strong>: <strong>“in general, you should expect 68% of the data to fall within 1 standard deviation of the mean, 95% of the data to fall within 2 standard deviation of the mean, and 99.7% of the data to fall within 3 standard deviations of the mean”</strong>. This rule tends to work pretty well most of the time, but it’s not exact: it’s actually calculated based on an <em>assumption</em> that the histogram is symmetric and “bell shaped”. (Strictly, the assumption is that the data are <em>normally</em> distributed, which is an important concept that we’ll discuss more later).</li>
 </ul>
+<!-- , applied to the AFL winning margins data. The shaded bars in the histogram show how much of the data fall within one standard deviation of the mean. In this case, 65.3% of the data set lies within this range, which is pretty consistent with the \"approximately 68% rule\" discussed in the main text -->
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" title="1">  p &lt;-<span class="st"> </span>mammalian_sleep <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb61-2" title="2"><span class="st">        </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(sleep_total_h)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb61-3" title="3"><span class="st">        </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">1</span>, </a>
+<a class="sourceLine" id="cb61-4" title="4">                       <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>, </a>
+<a class="sourceLine" id="cb61-5" title="5">                       <span class="dt">fill =</span> <span class="st">&quot;lightgrey&quot;</span>)</a>
+<a class="sourceLine" id="cb61-6" title="6"></a>
+<a class="sourceLine" id="cb61-7" title="7">  sleep_sd &lt;-<span class="st"> </span><span class="kw">sd</span>(mammalian_sleep<span class="op">$</span>sleep_total_h)</a>
+<a class="sourceLine" id="cb61-8" title="8">  sleep_mean &lt;-<span class="st"> </span><span class="kw">mean</span>(mammalian_sleep<span class="op">$</span>sleep_total_h)</a>
+<a class="sourceLine" id="cb61-9" title="9">  bars &lt;-<span class="st"> </span><span class="kw">c</span>(sleep_mean<span class="op">-</span>sleep_sd, sleep_mean, sleep_mean<span class="op">+</span>sleep_sd)</a>
+<a class="sourceLine" id="cb61-10" title="10">  bar_labels &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;mean-1*sd&quot;</span>, <span class="st">&quot;mean&quot;</span>, <span class="st">&quot;mean+1*sd&quot;</span>)</a>
+<a class="sourceLine" id="cb61-11" title="11">  p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> bars, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb61-12" title="12"><span class="st">      </span><span class="kw">geom_label</span>(<span class="dt">data=</span><span class="ot">NULL</span>, <span class="kw">aes</span>(<span class="dt">x=</span>bars[<span class="dv">1</span>], <span class="dt">y=</span> <span class="dv">10</span>, <span class="dt">label =</span> bar_labels[<span class="dv">1</span>])) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb61-13" title="13"><span class="st">      </span><span class="kw">geom_label</span>(<span class="dt">data=</span><span class="ot">NULL</span>, <span class="kw">aes</span>(<span class="dt">x=</span>bars[<span class="dv">2</span>], <span class="dt">y=</span> <span class="dv">10</span>, <span class="dt">label =</span> bar_labels[<span class="dv">2</span>])) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb61-14" title="14"><span class="st">      </span><span class="kw">geom_label</span>(<span class="dt">data=</span><span class="ot">NULL</span>, <span class="kw">aes</span>(<span class="dt">x=</span>bars[<span class="dv">3</span>], <span class="dt">y=</span> <span class="dv">10</span>, <span class="dt">label =</span> bar_labels[<span class="dv">3</span>]))</a>
+<a class="sourceLine" id="cb61-15" title="15">  p</a></code></pre></div>
+<div class="figure"><span id="fig:aflsd"></span>
+<img src="LectureNotes_files/figure-html/aflsd-1.png" alt="An illustration of the standard deviation." width="672" />
+<p class="caption">
+Figure 3.3: An illustration of the standard deviation.
+</p>
+</div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" title="1">  <span class="kw">with</span>(mammalian_sleep, <span class="kw">mean</span>(sleep_total_h<span class="op">&gt;</span>(sleep_mean<span class="op">-</span>sleep_sd) <span class="op">&amp;</span><span class="st"> </span>sleep_total_h<span class="op">&lt;</span>(sleep_mean<span class="op">+</span>sleep_sd) ))</a></code></pre></div>
 <pre><code>## [1] 0.6385542</code></pre>
+<div id="bessels-correction-whats-up-with-all-those-n-1s-in-the-denominator" class="section level4">
+<h4><span class="header-section-number">3.2.6.1</span> Bessel’s correction: What’s up with all those <span class="math inline">\(N-1\)</span>s in the denominator?</h4>
+<ul>
+<li><p>Now, what’s going on with that <span class="math inline">\(N-1\)</span>, and why do I still call the sample variance a <em>‘sort-of-the-average’</em> of the squared deviations? Let’s address these questions in turn.</p></li>
+<li><p>The important thing to note about variance and standard deviation is they serve <em>two</em> purposes: They are used to (i) describe a <strong>sample</strong>, but also to (ii) tentatively characterize the larger population from which the sample is.</p></li>
+<li><p>You are <em>usually</em> not really interested in the variance of a particular set of numbers, but rather in what they represent. So function number (ii) is the far more dominant use.</p></li>
+<li><p>In our case, when I want to quantify the variability of the sleep durations dataset, it is not these 83 specific mammals I am interested in – I want to get a sense of the variability among mammals in general. That is, I want to know – how much do mammals vary <em>in general</em>. These just happen to be a <strong><em>sample</em></strong> (83 mammals) from the <strong><em>population</em></strong> (all mammals).</p></li>
+<li><p>What I actually want to compute are not the (squared) deviations from the <strong>sample mean</strong> (<span class="math inline">\(\bar{X}\)</span>; the average sleep duration of <strong>these</strong> mammals), but from the actual <strong>population mean</strong> (<span class="math inline">\(\mu\)</span>; the average sleep duration of <strong>all</strong> mammals). That is, I don’t want <span class="math inline">\(( X_i - \bar{X})^2\)</span>, I want <span class="math inline">\(( X_i - \mu)^2\)</span>.</p></li>
+<li><p>But I don’t know <span class="math inline">\(\mu\)</span>, and the <em>best guess</em> I have about it is <span class="math inline">\(\bar{X}\)</span>. And this has consequences: <span class="math inline">\(( X_i - \bar{X})^2\)</span> underestimates the distance between <span class="math inline">\(X_i\)</span> and <span class="math inline">\(\mu\)</span> because we use the same data points (<span class="math inline">\(X_i\)</span>) to compute the mean (<span class="math inline">\(\bar{X}\)</span>) and then determine the distance to them.</p></li>
+<li>Consider what happens to <span class="math inline">\(( X_i - \bar{X})^2\)</span> in the rather extreme cases of
+<ul>
+<li><span class="math inline">\(N=1\)</span>? – The distance is zero.</li>
+<li><span class="math inline">\(N=2\)</span>? – If both points happen to be</li>
+</ul></li>
+<li><p>The problem becomes smaller as <span class="math inline">\(N\)</span> increases, because it becomes less and less likely that all <span class="math inline">\(N\)</span> points are squarely on one side of the mean.</p></li>
+<li>Dividing by <span class="math inline">\(N-1\)</span> <em>‘corrects’</em> this underestimation problem:
+<ul>
+<li>Dividing by a smaller number makes the estimate of the variance bigger.</li>
+<li>As <span class="math inline">\(N\)</span> increases the difference between dividing by <span class="math inline">\(N\)</span> and <span class="math inline">\(N-1\)</span> becomes less and less important, and ultimately negligible.</li>
+</ul></li>
+</ul>
+<div id="summary-1" class="section level5">
+<h5><span class="header-section-number">3.2.6.1.1</span> Summary</h5>
+<ul>
+<li>To recap, these are the two estimators of the variance, but the second one requires knowledge of the true population mean <span class="math inline">\(\mu\)</span>, which we don’t know.</li>
+<li>Therefore, we use the first one (<span class="math inline">\(s_X^2\)</span>), and divide by <span class="math inline">\(N-1\)</span> to avoid underestimating the ‘true variance’.</li>
+</ul>
+<p><span class="math display">\[
+\mbox{s}_X^2 = \frac{1}{N-1} \sum_{i=1}^N \left( X_i - \bar{X} \right)^2
+\]</span></p>
+<p><span class="math display">\[
+\mbox{Var}_X = \frac{1}{N} \sum_{i=1}^N \left( X_i - \mu \right)^2
+\]</span></p>
+<hr />
+<ul>
+<li>Let’s simulate this with the sleep data:</li>
+</ul>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" title="1">n =<span class="st"> </span><span class="dv">5</span> <span class="co"># sample size</span></a>
+<a class="sourceLine" id="cb64-2" title="2">k =<span class="st"> </span><span class="dv">10</span> <span class="co"># number of samples</span></a>
+<a class="sourceLine" id="cb64-3" title="3"></a>
+<a class="sourceLine" id="cb64-4" title="4">draw_one_sample &lt;-<span class="st"> </span><span class="cf">function</span>(idx) {</a>
+<a class="sourceLine" id="cb64-5" title="5">  current_sample &lt;-<span class="st"> </span><span class="kw">sample</span>(mammalian_sleep<span class="op">$</span>sleep_total_h, <span class="dt">size =</span> n)</a>
+<a class="sourceLine" id="cb64-6" title="6">  <span class="kw">data.frame</span>(<span class="dt">sample_index=</span>idx, <span class="dt">sleep_total_h =</span> current_sample, <span class="dt">sample_mean =</span> <span class="kw">mean</span>(current_sample))</a>
+<a class="sourceLine" id="cb64-7" title="7">}</a>
+<a class="sourceLine" id="cb64-8" title="8"></a>
+<a class="sourceLine" id="cb64-9" title="9"><span class="kw">set.seed</span>(<span class="dv">1234</span>)</a>
+<a class="sourceLine" id="cb64-10" title="10">samples_of_<span class="dv">5</span> &lt;-<span class="st"> </span>plyr<span class="op">::</span><span class="kw">ldply</span>(<span class="dv">1</span><span class="op">:</span>k, draw_one_sample)</a>
+<a class="sourceLine" id="cb64-11" title="11"></a>
+<a class="sourceLine" id="cb64-12" title="12">p_all_<span class="dv">83</span>_mammals &lt;-<span class="st"> </span><span class="kw">ggplot</span>(mammalian_sleep, <span class="kw">aes</span>(sleep_total_h)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">2</span>, <span class="dt">color=</span><span class="st">&quot;black&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> <span class="kw">mean</span>(sleep_total_h) ), <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>)</a>
+<a class="sourceLine" id="cb64-13" title="13"></a>
+<a class="sourceLine" id="cb64-14" title="14">p_samples &lt;-<span class="st"> </span><span class="kw">ggplot</span>(samples_of_<span class="dv">5</span>, <span class="kw">aes</span>(sleep_total_h)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">2</span>, <span class="dt">color=</span><span class="st">&quot;black&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="kw">paste</span>(<span class="st">&quot;sample&quot;</span>, sample_index), <span class="dt">nrow=</span><span class="dv">1</span>) <span class="op">+</span><span class="st"> </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> sample_mean ), <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="kw">mean</span>(mammalian_sleep<span class="op">$</span>sleep_total_h), <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">scale_x_continuous</span>(<span class="dt">breaks=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">10</span>,<span class="dv">20</span>))</a>
+<a class="sourceLine" id="cb64-15" title="15"></a>
+<a class="sourceLine" id="cb64-16" title="16"><span class="kw">library</span>(ggpubr)</a>
+<a class="sourceLine" id="cb64-17" title="17"><span class="kw">ggarrange</span>(p_all_<span class="dv">83</span>_mammals, p_samples, <span class="dt">ncol=</span><span class="dv">1</span>, <span class="dt">nrow=</span><span class="dv">2</span>, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;&#39;Population&#39;&quot;</span>, <span class="st">&quot;Samples&quot;</span>))</a></code></pre></div>
+<p><img src="LectureNotes_files/figure-html/unnamed-chunk-42-1.png" width="672" /></p>
+<!--
+
+- The real question is *why* R is dividing by $N-1$ and not by $N$. After all, the variance is supposed to be the *mean* squared deviation, right? So shouldn't we be dividing by $N$, the actual number of observations in the sample? Well, yes, we should. However, there's a subtle distinction between "describing a sample" and "making guesses about the population from which the sample came". Up to this point, it's been a distinction without a difference. Regardless of whether you're describing a sample or drawing inferences about the population, the mean is calculated exactly the same way. Not so for the variance, or the standard deviation, or for many other measures besides. What I outlined to you initially (i.e., take the actual average, and thus divide by $N$) assumes that you literally intend to calculate the variance of the sample. Most of the time, however, you're not terribly interested in the sample *in and of itself*. Rather, the sample exists to tell you something about the world. If so, you're actually starting to move away from calculating a "sample statistic", and towards the idea of estimating a "population parameter". 
+
+Okay, one last thing. This section so far has read a bit like a mystery novel. I've shown you how to calculate the variance, described the weird "$N-1$" thing that R does and hinted at the reason why it's there, but I haven't mentioned the single most important thing... how do you *interpret* the variance? Descriptive statistics are supposed to describe things, after all, and right now the variance is really just a gibberish number. Unfortunately, the reason why I haven't given you the human-friendly interpretation of the variance is that there really isn't one. This is the most serious problem with the variance. Although it has some elegant mathematical properties that suggest that it really is a fundamental quantity for expressing variation, it's completely useless if you want to communicate with an actual human... variances are completely uninterpretable in terms of the original variable! All the numbers have been squared, and they don't mean anything anymore. This is a huge issue. For instance, according to the table I presented earlier, the margin in game 1 was "376.36 points-squared higher than the average margin". This is *exactly* as stupid as it sounds; and so when we calculate a variance of 324.64, we're in the same situation. I've watched a lot of footy games, and never has anyone referred to "points squared". It's *not* a real unit of measurement, and since the variance is expressed in terms of this gibberish unit, it is totally meaningless to a human.
+-->
 <!--
 ### Median absolute deviation{#mad}
 
@@ -845,8 +914,10 @@ Okay, so what exactly is this `constant = 1` argument? I won't go into all the d
 I should point out, though, that if you want to use this "corrected" MAD value as a robust version of the standard deviation, you really are relying on the assumption that the data are (or at least, are "supposed to be" in some sense) symmetric and basically shaped like a bell curve. That's really *not* true for our `afl.margins` data, so in this case I wouldn't try to use the MAD value this way.
 -->
 </div>
+</div>
+</div>
 <div id="which-measure-to-use" class="section level3">
-<h3><span class="header-section-number">3.3.7</span> Which measure to use?</h3>
+<h3><span class="header-section-number">3.2.7</span> Which measure to use?</h3>
 <p>We’ve discussed quite a few measures of spread (range, IQR, AAD, variance and standard deviation), and hinted at their strengths and weaknesses. Here’s a quick summary:</p>
 <ul>
 <li><em>Range</em>. Gives you the full spread of the data. It’s very vulnerable to outliers, and as a consequence it isn’t often used unless you have good reasons to care about the extremes in the data.</li>
@@ -876,7 +947,7 @@ I should point out, though, that if you want to use this "corrected" MAD value a
 <ol start="1">
 <li id="fn1"><p>The choice to use <span class="math inline">\(\Sigma\)</span> to denote summation isn’t arbitrary: it’s the Greek upper case letter sigma, which is the analogue of the letter S in that alphabet. Similarly, there’s an equivalent symbol used to denote the multiplication of lots of numbers: because multiplications are also called “products”, we use the <span class="math inline">\(\Pi\)</span> symbol for this; the Greek upper case pi, which is the analogue of the letter P.<a href="descriptives.html#fnref1" class="footnote-back">↩</a></p></li>
 <li id="fn2"><p>Or at least, the basic statistical theory – these days there is a whole subfield of statistics called <em>robust statistics</em> that tries to grapple with the messiness of real data and develop theory that can cope with it.<a href="descriptives.html#fnref2" class="footnote-back">↩</a></p></li>
-<li id="fn3"><p>Well, I will very briefly mention the one that I think is coolest, for a very particular definition of “cool”, that is. Variances are <em>additive</em>. Here’s what that means: suppose I have two variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, whose variances are $<a href="descriptives.html#fnref3" class="footnote-back">↩</a></p></li>
+<li id="fn3"><p>I will very briefly mention the one that I think is coolest, for a very particular definition of “cool”, that is. Variances are <em>additive</em>. Here’s what that means: suppose I have two variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, whose variances are <span class="math inline">\(\mbox{Var}(X)\)</span> and <span class="math inline">\(\mbox{Var}(Y)\)</span> respectively. Now imagine I want to define a new variable <span class="math inline">\(Z\)</span> that is the sum of the two, <span class="math inline">\(Z = X+Y\)</span>. As it turns out, the variance of <span class="math inline">\(Z\)</span> is equal to <span class="math inline">\(\mbox{Var}(X) + \mbox{Var}(Y)\)</span>. This is a <em>very</em> useful property, but it’s not true of the other measures that I talk about in this section.<a href="descriptives.html#fnref3" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
             </section>

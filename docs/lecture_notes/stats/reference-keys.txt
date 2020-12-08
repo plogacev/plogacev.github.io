@@ -1,6 +1,7 @@
 fig:histogram1
 fig:meanmedian
-tab:unnamed-chunk-35
+tab:unnamed-chunk-36
+fig:aflsd
 initial-remarks
 scalesOfMeasurement
 nominal-scale
@@ -25,6 +26,6 @@ interquartile-range
 aad
 variance
 sd
+bessels-correction-whats-up-with-all-those-n-1s-in-the-denominator
+summary-1
 which-measure-to-use
-housingpriceexample
-mad
