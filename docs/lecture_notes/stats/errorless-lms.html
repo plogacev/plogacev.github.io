@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 Error-less Linear Models | Statistics in R</title>
+  <meta name="description" content="Chapter 4 Error-less Linear Models | Statistics in R" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 Error-less Linear Models | Statistics in R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 Error-less Linear Models | Statistics in R" />
+  
+  
+  
+
+<meta name="author" content="Pavel Logacev" />
+
+
+<meta name="date" content="2020-12-14" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="descriptives.html"/>
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.16/datatables.js"></script>
+<link href="libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script>
+<link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Initial Remarks</a></li>
+<li class="chapter" data-level="2" data-path="scalesOfMeasurement.html"><a href="scalesOfMeasurement.html"><i class="fa fa-check"></i><b>2</b> Scales of Measurement</a><ul>
+<li class="chapter" data-level="2.1" data-path="scalesOfMeasurement.html"><a href="scalesOfMeasurement.html#nominal-scale"><i class="fa fa-check"></i><b>2.1</b> Nominal scale</a></li>
+<li class="chapter" data-level="2.2" data-path="scalesOfMeasurement.html"><a href="scalesOfMeasurement.html#ordinal-scale"><i class="fa fa-check"></i><b>2.2</b> Ordinal scale</a></li>
+<li class="chapter" data-level="2.3" data-path="scalesOfMeasurement.html"><a href="scalesOfMeasurement.html#interval-scale"><i class="fa fa-check"></i><b>2.3</b> Interval scale</a></li>
+<li class="chapter" data-level="2.4" data-path="scalesOfMeasurement.html"><a href="scalesOfMeasurement.html#ratio-scale"><i class="fa fa-check"></i><b>2.4</b> Ratio scale</a></li>
+<li class="chapter" data-level="2.5" data-path="scalesOfMeasurement.html"><a href="scalesOfMeasurement.html#continuous-versus-discrete-variables"><i class="fa fa-check"></i><b>2.5</b> Continuous versus discrete variables</a></li>
+<li class="chapter" data-level="2.6" data-path="scalesOfMeasurement.html"><a href="scalesOfMeasurement.html#some-complexities"><i class="fa fa-check"></i><b>2.6</b> Some complexities</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="descriptives.html"><a href="descriptives.html"><i class="fa fa-check"></i><b>3</b> Deterministic LMs</a><ul>
+<li class="chapter" data-level="3.1" data-path="descriptives.html"><a href="descriptives.html#centraltendency"><i class="fa fa-check"></i><b>3.1</b> Measures of central tendency</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="descriptives.html"><a href="descriptives.html#mean"><i class="fa fa-check"></i><b>3.1.1</b> The mean</a></li>
+<li class="chapter" data-level="3.1.2" data-path="descriptives.html"><a href="descriptives.html#calculating-the-mean-in-r"><i class="fa fa-check"></i><b>3.1.2</b> Calculating the mean in R</a></li>
+<li class="chapter" data-level="3.1.3" data-path="descriptives.html"><a href="descriptives.html#median"><i class="fa fa-check"></i><b>3.1.3</b> The median</a></li>
+<li class="chapter" data-level="3.1.4" data-path="descriptives.html"><a href="descriptives.html#mean-or-median-whats-the-difference"><i class="fa fa-check"></i><b>3.1.4</b> Mean or median? What’s the difference?</a></li>
+<li class="chapter" data-level="3.1.5" data-path="descriptives.html"><a href="descriptives.html#trimmedmean"><i class="fa fa-check"></i><b>3.1.5</b> Trimmed mean</a></li>
+<li class="chapter" data-level="3.1.6" data-path="descriptives.html"><a href="descriptives.html#mode"><i class="fa fa-check"></i><b>3.1.6</b> Mode</a></li>
+<li class="chapter" data-level="3.1.7" data-path="descriptives.html"><a href="descriptives.html#summary"><i class="fa fa-check"></i><b>3.1.7</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="descriptives.html"><a href="descriptives.html#var"><i class="fa fa-check"></i><b>3.2</b> Measures of variability</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="descriptives.html"><a href="descriptives.html#range"><i class="fa fa-check"></i><b>3.2.1</b> Range</a></li>
+<li class="chapter" data-level="3.2.2" data-path="descriptives.html"><a href="descriptives.html#quantiles-and-percentile"><i class="fa fa-check"></i><b>3.2.2</b> Quantiles and percentile</a></li>
+<li class="chapter" data-level="3.2.3" data-path="descriptives.html"><a href="descriptives.html#interquartile-range"><i class="fa fa-check"></i><b>3.2.3</b> Interquartile range</a></li>
+<li class="chapter" data-level="3.2.4" data-path="descriptives.html"><a href="descriptives.html#aad"><i class="fa fa-check"></i><b>3.2.4</b> Mean absolute deviation</a></li>
+<li class="chapter" data-level="3.2.5" data-path="descriptives.html"><a href="descriptives.html#variance"><i class="fa fa-check"></i><b>3.2.5</b> Variance</a></li>
+<li class="chapter" data-level="3.2.6" data-path="descriptives.html"><a href="descriptives.html#sd"><i class="fa fa-check"></i><b>3.2.6</b> Standard deviation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="errorless-lms.html"><a href="errorless-lms.html"><i class="fa fa-check"></i><b>4</b> Error-less Linear Models</a><ul>
+<li class="chapter" data-level="4.1" data-path="errorless-lms.html"><a href="errorless-lms.html#single-variable-models"><i class="fa fa-check"></i><b>4.1</b> Single-variable models</a></li>
+<li class="chapter" data-level="4.2" data-path="errorless-lms.html"><a href="errorless-lms.html#multi-variable-models"><i class="fa fa-check"></i><b>4.2</b> Multi-variable models</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Statistics in R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="errorless_lms" class="section level1">
+<h1><span class="header-section-number">Chapter 4</span> Error-less Linear Models</h1>
+<ul>
+<li><p>What I am going to call <em>‘error-less linear models’</em> are actually <em>systems of linear equations</em> like those you might recall from school (of the <em>‘2=a+3x; 1=a+x; solve for a and x’</em>-variety). I’ll call them <em>error-less linear models</em>, because in many important ways they resemble the class of statistical models we will use in this course: (Generalized) Linear Models.</p></li>
+<li><p>In this section we are going to explore <strong>error-less</strong> linear models, i.e. linear models that work on <strong>idealized</strong> data, when there is no measurement error, and when the <em>‘correct’</em> model describing the data is known.</p></li>
+<li><p>The basic form of a linear regression model, in a form that works for <em>idealized</em> data (i.e., data perfectly follow some hypothesized function):
+<!-- 
+- What is regression?
+- What is linear about this model?
+--></p></li>
+</ul>
+<p><span class="math display">\[ \underbrace{Y}_{\text{dependent variable}} =
+            \overbrace{\underbrace{a}_{\text{intercept}}}^{\text{additive term}} + 
+            \overbrace{\underbrace{b_1}_{\text{slope}} * \underbrace{X_{1}}_{\text{predictor}}}^{\text{additive term}} + 
+            \overbrace{\underbrace{b_2}_{\text{slope}} * \underbrace{X_{2} }_{\text{predictor}}}^{\text{additive term}} +  
+            \ldots\]</span>
+<!--  \overbrace{\ldots}^{\text{more additive terms}} --></p>
+<ul>
+<li>The typical dataset we will be working with has a structure similar to the one below:</li>
+</ul>
+<table>
+<colgroup>
+<col width="21%" />
+<col width="21%" />
+<col width="26%" />
+<col width="30%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>dependent variable<br>(<span class="math inline">\(Y\)</span>)</th>
+<th align="left">predictor 1<br>(<span class="math inline">\(X_1\)</span>)</th>
+<th align="left">predictor 2<br>(<span class="math inline">\(X_2\)</span>)</th>
+<th align="left">(further predictors)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>2.95</td>
+<td align="left">1.1</td>
+<td align="left">2.2</td>
+<td align="left">(…)</td>
+</tr>
+<tr class="even">
+<td>9.1</td>
+<td align="left">2.9</td>
+<td align="left">-4.0</td>
+<td align="left">(…)</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td align="left">3.1</td>
+<td align="left">-1.4</td>
+<td align="left">(…)</td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td align="left">…</td>
+<td align="left">…</td>
+<td align="left">(…)</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>What the variables represent will depend on the problem you’re studying and the question you’re asking
+<ul>
+<li>dependent variable (e.g., hours of sleep/day)</li>
+<li>predictor 1 (e.g., daily food intake in kg)</li>
+<li>predictor 2 (e.g., deviation from average weight)</li>
+</ul></li>
+</ul>
+<!--
+ 
+-->
+<!--  \overbrace{\ldots}^{\text{more additive terms}} -->
+<ul>
+<li>The <strong>dependent variable</strong> <span class="math inline">\(y\)</span> is assumed to depend on the predictors <span class="math inline">\(x_1, x_2, \ldots\)</span>.</li>
+<li>The <strong>predictors</strong> <span class="math inline">\(x_1, x_2, \ldots\)</span> can be <strong>independent variables</strong> (i.e., under experimental control), or other types of covariates (i.e., simply observed).</li>
+<li><p>The model is called <em>linear</em> because <span class="math inline">\(y\)</span> is assumed to be a linear function of the <span class="math inline">\(x_1, x_2, \ldots\)</span>. That <span class="math inline">\(y\)</span> increases by some fixed amount <span class="math inline">\(\Delta y\)</span> for every increase of <span class="math inline">\(\Delta x_i\)</span> in <span class="math inline">\(x_i\)</span>.</p></li>
+<li><p>Two types are usually distinguished: <em>single-variable</em>, and <em>multi-variable</em> (also: <em>simple linear regression</em>, <em>multiple linear regression</em>).
+<!-- 'univariate', and 'multivariate' stand for the number of dependent variables, *not* the number of predictors  --></p></li>
+<li><p>The above equation is about vectors of observations. Let’s see how it translates to statements about specific observations. Please note that <span class="math inline">\(Y\)</span>, <span class="math inline">\(X_1\)</span>, <span class="math inline">\(X_2\)</span> in the equation above are all vectors, while <span class="math inline">\(y_i\)</span>, <span class="math inline">\(x_{1,i}\)</span>, <span class="math inline">\(x_{2,i}\)</span> are all specific numbers (from the <span class="math inline">\(i\)</span>-th row).</p></li>
+</ul>
+<p><span class="math display">\[ \underbrace{y_i}_{\text{dependent variable}} =
+            \overbrace{\underbrace{a}_{\text{intercept}}}^{\text{additive term}} + 
+            \overbrace{\underbrace{b_1}_{\text{slope}} * \underbrace{x_{1,i}}_{\text{predictor}}}^{\text{additive term}} +
+            \overbrace{\underbrace{b_2}_{\text{slope}} * \underbrace{x_{2,i} }_{\text{predictor}}}^{\text{additive term}} +  
+            \ldots\]</span></p>
+<ul>
+<li><p>For two predictors <span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span>, and three observerations like in the table above, this equation translates to the following equation system
+<span class="math display">\[ y_1 = a + b_1\cdot x_{1,1} + b_2\cdot x_{2,1} \\
+y_2 = a + b_1\cdot x_{1,2} + b_2\cdot x_{2,3} \\
+y_3 = a + b_1\cdot x_{1,3} + b_2\cdot x_{2,3}\]</span></p></li>
+<li><p>That is,
+<span class="math display">\[ 2.95 = a + b_1\cdot 1.1 + b_2\cdot 2.2 \\
+9.1 = a + b_1\cdot 2.9 + b_2\cdot (-4) \\
+5 = a + b_1\cdot 3.1 + b_2\cdot (-1.4)\]</span></p></li>
+<li><p>In this case, there is a perfect solution: <span class="math inline">\(a \approx 7.90\)</span>, <span class="math inline">\(b_1 \approx -1.60\)</span>, <span class="math inline">\(b_2 \approx -1.45\)</span> (rounded to two decimal places).
+<span class="math display">\[ \underbrace{y}_{\text{dependent variable}} =
+          \overbrace{\underbrace{7.9}_{\text{intercept}}}^{\text{additive term}} +
+          \overbrace{\underbrace{(-1.60)}_{\text{slope}} * \underbrace{x_1}_{\text{predictor}}}^{\text{additive term}} + 
+          \overbrace{\underbrace{(-1.45)}_{\text{slope}} * \underbrace{x_2}_{\text{predictor}}}^{\text{additive term}} +  
+          \ldots\]</span></p></li>
+</ul>
+<table>
+<colgroup>
+<col width="40%" />
+<col width="15%" />
+<col width="12%" />
+<col width="15%" />
+<col width="17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>model prediction</th>
+<th align="left">dependent variable</th>
+<th align="left">predictor 1</th>
+<th align="left">predictor 2</th>
+<th align="left">(further predictors)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(7.9-1.6\cdot 1.1-1.45\cdot 2.2\)</span></td>
+<td align="left">2.95</td>
+<td align="left">1.1</td>
+<td align="left">2.2</td>
+<td align="left">(…)</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(7.9-1.6\cdot 2.9-1.45\cdot (-4)\)</span></td>
+<td align="left">9.1</td>
+<td align="left">2.9</td>
+<td align="left">-4.0</td>
+<td align="left">(…)</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(7.9-1.6\cdot 3.1-1.45\cdot (-1.4)\)</span></td>
+<td align="left">5</td>
+<td align="left">3.1</td>
+<td align="left">-1.4</td>
+<td align="left">(…)</td>
+</tr>
+<tr class="even">
+<td></td>
+<td align="left">…</td>
+<td align="left">…</td>
+<td align="left">…</td>
+<td align="left">(…)</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Throughout this course, we will make use of the (Generalized) Linear Model as the main statistical model because it is:
+<ul>
+<li>fairly easy to use (implemented in most programming languages)</li>
+<li>sufficiently versatile for most practical purposes (can handle most problems you would want to solve at this point)</li>
+<li>well-studied (all mistakes you will make have already been made, and written about)</li>
+</ul></li>
+</ul>
+<div id="single-variable-models" class="section level2">
+<h2><span class="header-section-number">4.1</span> Single-variable models</h2>
+<ul>
+<li>Let’s take a look at a dataset of taxi rides in a country far far away. Imagine that I don’t speak the local language, but I need to go places, and in the process, I would like to understand how the cab fare system works.</li>
+<li>I have taken 18 taxi rides, and recorded the travel distance, as well as the taxi fare for reach ride.</li>
+<li>The following plot shows each of these measurements as a point with the distances (in km) on the x-axis, and the fare (money units, MU) on the y-axis.</li>
+<li>This dataset is interesting, because you probably understand the typical relationships between ride distance and fare fairly well – it is linear. So it is an ideal example for illustrating linear models.</li>
+</ul>
+<p><img src="LectureNotes_files/figure-html/carsPerfect1-1.png" width="672" /></p>
+<ul>
+<li>Unsurprisingly, we can see clearly that the fare increases with distance. In other words, <em>distance</em> and <em>fare</em> have a positive relationship (if one increases, so does the other).</li>
+<li><p>The relationship between the two variables is so strong that if we know the value of one of the two variables for a particular data point, we can predict the value of the other with a high degree of confidence. (You might want to say that I can predict if with <em>absolute certainty</em>, but that presupposes precise knowledge of the cab fare system in that city, <em>and</em> an extreme degree of trust towards the local taxi drivers. Let’s assume that we don’t have either.)</p></li>
+<li><p>We can make that prediction with such a high degree of certainty because all the points seem to lie on a line. If we learned the function that describes this line, we could learn much more from this dataset than the simple fact that the two variables a positive related.</p></li>
+<li><p>That is unsurprising to begin with, but we may want to know <strong>how exactly</strong> they are related. A simple way to capture this relationship is to try and describe it with this function:</p></li>
+</ul>
+<p><span class="math display">\[ \text{fare} = a + b \cdot \text{distance} \]</span></p>
+<ul>
+<li>What this equation says is that if we take a value for distance, multiply it by <em>some number</em> called <span class="math inline">\(b\)</span>, and then add <em>another number</em> called <span class="math inline">\(a\)</span>, we will know the fare that corresponds to this distance. (In other words, this equation posits that the relationship between <em>distance</em> and <em>fare</em> is linear.<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>)</li>
+<li>In this particular case the relationship is <span class="math inline">\(\text{fare} = 4 + 2.5 \cdot \text{distance}\)</span>, which means that <span class="math inline">\(a=4\)</span>, and <span class="math inline">\(b=2.5\)</span>. We can verify that this equation is indeed the correct generalization by visualizing this function as a line in the plot below: As you can see, it accurately describes all the points in the graph.</li>
+</ul>
+<p><img src="LectureNotes_files/figure-html/carsPerfect2-1.png" width="672" /></p>
+<ul>
+<li>Importantly, if we conceptualize <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> as just some numbers that we need to add and multiply by, we will miss an important insight: Both numbers have useful interpretations. In this case, <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> can be interpreted as follows:
+<ul>
+<li><span class="math inline">\(a\)</span> is called the <strong>intercept</strong>: It can be interpreted as the value of <em>fare</em> when <em>distance</em> is 0. In this case, the intercept is <span class="math inline">\(4~MU\)</span>, which is the amount you have to pay if you get in and change your mind after the taxometer has been switched on (if the taxi driver is a real stickler for rules).</li>
+<li><span class="math inline">\(b\)</span> is called the <strong>slope</strong> for distance: It can be interpreted as the additional amount of money you have to pay for every additional kilometer traveled. A slope of <span class="math inline">\(2.5\)</span> means that a distance increase of <span class="math inline">\(1~km\)</span> increases the fare by <span class="math inline">\(2.5~MU\)</span>.</li>
+</ul></li>
+<li>The plot below illustrates these interpretations:</li>
+</ul>
+<p><img src="LectureNotes_files/figure-html/unnamed-chunk-75-1.png" width="672" /></p>
+<!-- TODO: Take-away message. -->
+</div>
+<div id="multi-variable-models" class="section level2">
+<h2><span class="header-section-number">4.2</span> Multi-variable models</h2>
+<ul>
+<li><p>Let’s imagine that this imaginary city also has many bridges. Since I wasn’t sure whether bridge tolls apply, I also recorded the number of bridges crossed on each trip. In the previous section, we’ve looked at the subset of data where no bridges were crossed. Let’s see how the fare depends not only on distance travelled, but also on the number of bridges crossed.</p></li>
+<li><p>Now, we are looking at the relationship between three variables, and the data frame looks as follows:</p></li>
+</ul>
+<div id="htmlwidget-e98ac0809a4d0adef7d4" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-e98ac0809a4d0adef7d4">{"x":{"filter":"none","data":[[64,54,61.5,69,26.5,66.5,61.5,19,56.5,51.5,21.5,26.5,74,56.5,101.5,86.5,89,94,81.5,36.5,71.5,31.5,84,21.5,59,49,71.5,96.5,41.5,44,71.5,56.5,89,21.5,41.5,46.5,24,54,51.5,69,41.5,64,39,69,51.5,74,74,36.5,26.5,36.5,66.5,49,24,49,51.5,76.5,76.5,79,61.5,66.5,44,74,91.5,81.5,79,44,89,66.5,61.5,31.5,99,51.5,86.5,46.5,76.5,71.5,56.5,84,71.5,59,61.5,69,94,54,59,41.5,19,36.5,74,81.5,61.5,34,54,49,59,36.5,39,29,64,46.5,54,59,61.5,79,91.5,46.5,84,66.5,84,26.5,69,16.5,86.5,66.5,56.5,46.5,59,69,54,54,29,61.5,71.5,51.5,39,84,41.5,49,56.5,99,79,104,24,34,46.5,69,16.5,64,39,56.5,96.5,64,34,34,59,29,66.5,49,71.5,29,51.5,51.5,11.5,34,69,94,31.5,39,76.5,44,59,46.5,79,86.5,59,56.5,49,81.5,36.5,74,31.5,89,61.5,46.5,56.5,64,44,14,39,74,44,54,49,31.5,41.5,44,41.5,79,66.5,81.5,91.5,64,76.5,64,51.5,54,64,76.5],[12,14,5,20,5,13,9,4,9,11,5,3,20,5,19,17,16,20,19,13,7,7,18,3,8,14,11,17,5,12,15,3,18,7,15,7,6,6,19,12,7,14,14,6,7,10,14,11,7,7,11,4,4,8,15,13,15,12,15,9,14,12,17,11,16,16,20,15,17,11,18,17,19,9,9,13,15,20,19,16,19,8,18,10,4,3,6,9,16,15,11,4,12,12,14,3,10,10,20,13,8,10,13,18,19,17,16,7,12,9,16,5,15,19,11,5,6,10,16,18,6,3,9,5,12,14,13,6,17,20,14,20,8,12,15,14,3,4,4,19,19,16,8,6,12,4,17,18,17,8,13,3,3,10,18,16,9,6,19,10,20,11,10,13,18,7,16,17,5,8,3,14,7,3,13,8,6,4,8,18,4,4,10,5,11,8,9,20,5,13,15,10,11,18,9,20,6,17],[6,3,9,3,2,6,7,1,6,4,1,3,4,8,10,8,9,8,6,0,10,2,7,2,7,2,8,10,5,2,6,9,8,0,0,5,1,7,-0,7,4,5,-0,10,6,9,7,1,1,3,7,7,2,5,2,8,7,9,4,8,1,8,9,10,7,0,7,5,3,-0,10,1,7,4,10,7,3,6,4,3,2,9,9,5,9,6,-0,2,6,8,6,4,4,3,4,5,2,0,2,2,6,6,5,6,8,-0,8,9,10,0,5,-0,9,3,5,6,8,8,2,1,2,10,9,7,1,9,1,6,2,9,8,10,0,-0,1,6,1,10,5,1,9,4,2,3,5,3,4,0,5,1,3,8,-0,1,4,10,1,4,5,3,1,3,10,10,2,7,1,7,4,10,4,10,8,7,4,8,5,0,3,5,6,8,4,3,2,4,3,5,10,9,10,7,9,3,5,-0,9,6]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>fare_mu<\/th>\n      <th>distance_km<\/th>\n      <th>n_bridges<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"searching":false,"columnDefs":[{"className":"dt-right","targets":[0,1,2]}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<ul>
+<li>Let’s see if there even is a relationship. Let’s look at the effect of bridges at distance=<span class="math inline">\(3\,km\)</span>.</li>
+</ul>
+<p><img src="LectureNotes_files/figure-html/carsPerfect2A-1.png" width="672" /></p>
+<ul>
+<li><p>Yup, it looks like there is a positive effect. Let’s model it in additive fashion:</p></li>
+<li>We will again assume that the relationships between fare and distance, as well as between fare and number of bridges crossed is linear, and that they contribute to the fare independently. We can now describe the relationship with the following equation:
+<span class="math display">\[ fare = a + b_1 \cdot distance + b_2  \cdot N_{bridges} \]</span></li>
+<li><p>The correct parameter values for this equation are <span class="math inline">\(a=4\)</span>, <span class="math inline">\(b_1 = 2.5\)</span> (as previously), and <span class="math inline">\(b_2=5\)</span>. The interpretation of the coefficients is similar to the previous section:</p></li>
+<li><p><span class="math inline">\(a\)</span> (the <strong>intercept</strong>) is the fare when no bridges have been crossed, and the travel distance is zero.<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a></p></li>
+<li><p><span class="math inline">\(b_1\)</span> (the <strong>slope</strong> for <strong>distance</strong>) is the additional fare for every additional kilometer.</p></li>
+<li><p><span class="math inline">\(b_2\)</span> (the <strong>slope</strong> for <strong><span class="math inline">\(N_{bridges}\)</span></strong>) is the additional fare for every additional bridge.</p></li>
+</ul>
+<!-- Consider 
+- integrating how the intercept wouldn't make any sense with number of passengers. 
+- use day/night for an interaction. 
+-->
+<ul>
+<li><p>The following plot shows the data vis-à-vis the linear model fits. Because we are dealing with a relationship between three variables, every datapoint is a point in three-dimensional space (x-axis: distance, y-axis: number of bridges, z-axis: fare). The multi-variable model fit is illustrated by the black plane which rises with increasing distance and/or number of bridges crossed.</p></li>
+<li><p>If you enable the display of the single-variable model from the last section, you’ll see that it also describes a plane: However, the plane corresponding to the single-variable model does not rise with the number of bridges crossed. This is because it is not used as a predictor in that model.</p></li>
+<li><p>You will also notice that the red plane and the black plane intersect in a line at <span class="math inline">\(N_{bridges} = 0\)</span>. This is because the two model equations <span class="math inline">\(a + b_1 * distance\)</span> and <span class="math inline">\(a + b_1 * distance + b_2 * N_{bridges}\)</span> are equivalent for <span class="math inline">\(N_{bridges} = 0\)</span>.</p></li>
+</ul>
+
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<div class="footnotes">
+<hr />
+<ol start="4">
+<li id="fn4"><p>Please note that we don’t neeed to assume that the <em>‘true relationship’</em> between the two variables is actually linear. Most interesting relationships are not linear. However, we can still learn a lot about them from a linear model as you will see in the following, especially if we are willing to assume that they are <strong>approximately linear</strong>.
+<!-- to-do: In the following, sprinkle in sections about what we can still learn even if the relationship is not actually linear. --><a href="errorless-lms.html#fnref4" class="footnote-back">↩</a></p></li>
+<li id="fn5"><p>While the number of bridges depends on distance, it is in principle possible to cross a bridge while keeping the travel distance below a kilometer, in which case it would count as zero.<a href="errorless-lms.html#fnref5" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="descriptives.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["LectureNotes.pdf", "LectureNotes.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -28,4 +28,6 @@ variance
 sd
 bessels-correction-whats-up-with-all-those-n-1s-in-the-denominator
 summary-1
-which-measure-to-use
+errorless_lms
+single-variable-models
+multi-variable-models

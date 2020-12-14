@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 3 Descriptive statistics | Statistics in R</title>
-  <meta name="description" content="Chapter 3 Descriptive statistics | Statistics in R" />
+  <title>Chapter 3 Deterministic LMs | Statistics in R</title>
+  <meta name="description" content="Chapter 3 Deterministic LMs | Statistics in R" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 3 Descriptive statistics | Statistics in R" />
+  <meta property="og:title" content="Chapter 3 Deterministic LMs | Statistics in R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 3 Descriptive statistics | Statistics in R" />
+  <meta name="twitter:title" content="Chapter 3 Deterministic LMs | Statistics in R" />
   
   
   
@@ -24,7 +24,7 @@
 <meta name="author" content="Pavel Logacev" />
 
 
-<meta name="date" content="2020-12-08" />
+<meta name="date" content="2020-12-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="scalesOfMeasurement.html"/>
-
+<link rel="next" href="errorless-lms.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -52,6 +52,14 @@
 
 <link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.16/datatables.js"></script>
+<link href="libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script>
+<link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
 
 
 <style type="text/css">
@@ -142,7 +150,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.5" data-path="scalesOfMeasurement.html"><a href="scalesOfMeasurement.html#continuous-versus-discrete-variables"><i class="fa fa-check"></i><b>2.5</b> Continuous versus discrete variables</a></li>
 <li class="chapter" data-level="2.6" data-path="scalesOfMeasurement.html"><a href="scalesOfMeasurement.html#some-complexities"><i class="fa fa-check"></i><b>2.6</b> Some complexities</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="descriptives.html"><a href="descriptives.html"><i class="fa fa-check"></i><b>3</b> Descriptive statistics</a><ul>
+<li class="chapter" data-level="3" data-path="descriptives.html"><a href="descriptives.html"><i class="fa fa-check"></i><b>3</b> Deterministic LMs</a><ul>
 <li class="chapter" data-level="3.1" data-path="descriptives.html"><a href="descriptives.html#centraltendency"><i class="fa fa-check"></i><b>3.1</b> Measures of central tendency</a><ul>
 <li class="chapter" data-level="3.1.1" data-path="descriptives.html"><a href="descriptives.html#mean"><i class="fa fa-check"></i><b>3.1.1</b> The mean</a></li>
 <li class="chapter" data-level="3.1.2" data-path="descriptives.html"><a href="descriptives.html#calculating-the-mean-in-r"><i class="fa fa-check"></i><b>3.1.2</b> Calculating the mean in R</a></li>
@@ -159,8 +167,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.2.4" data-path="descriptives.html"><a href="descriptives.html#aad"><i class="fa fa-check"></i><b>3.2.4</b> Mean absolute deviation</a></li>
 <li class="chapter" data-level="3.2.5" data-path="descriptives.html"><a href="descriptives.html#variance"><i class="fa fa-check"></i><b>3.2.5</b> Variance</a></li>
 <li class="chapter" data-level="3.2.6" data-path="descriptives.html"><a href="descriptives.html#sd"><i class="fa fa-check"></i><b>3.2.6</b> Standard deviation</a></li>
-<li class="chapter" data-level="3.2.7" data-path="descriptives.html"><a href="descriptives.html#which-measure-to-use"><i class="fa fa-check"></i><b>3.2.7</b> Which measure to use?</a></li>
 </ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="errorless-lms.html"><a href="errorless-lms.html"><i class="fa fa-check"></i><b>4</b> Error-less Linear Models</a><ul>
+<li class="chapter" data-level="4.1" data-path="errorless-lms.html"><a href="errorless-lms.html#single-variable-models"><i class="fa fa-check"></i><b>4.1</b> Single-variable models</a></li>
+<li class="chapter" data-level="4.2" data-path="errorless-lms.html"><a href="errorless-lms.html#multi-variable-models"><i class="fa fa-check"></i><b>4.2</b> Multi-variable models</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -183,9 +194,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="descriptives" class="section level1">
-<h1><span class="header-section-number">Chapter 3</span> Descriptive statistics</h1>
+<h1><span class="header-section-number">Chapter 3</span> Deterministic LMs</h1>
 <p><em>(an adapted version of Danielle Navarro’s <a href="https://learningstatisticswithr.com/book/">chapter 3/5</a> on descriptive statistics.)</em></p>
-<p>(08 December, 2020, 14:42)</p>
+<p>(14 December, 2020, 15:59)</p>
 <ul>
 <li><p>Any time that you get a new data set to look at, one of the first tasks that you have to do is find ways of summarising the data in a compact, easily understood fashion. This is what <strong><em>descriptive statistics</em></strong> (as opposed to <strong><em>inferential statistics</em></strong>) is all about. In fact, to many people the term “statistics” is synonymous with descriptive statistics.</p></li>
 <li><p>Before going into any details, let’s take a moment to get a sense of why we need descriptive statistics. To do this, let’s load a dataset on sleep in mammals.</p></li>
@@ -853,95 +864,17 @@ Figure 3.3: An illustration of the standard deviation.
 <p><span class="math display">\[
 \mbox{Var}_X = \frac{1}{N} \sum_{i=1}^N \left( X_i - \mu \right)^2
 \]</span></p>
-<hr />
-<ul>
-<li>Let’s simulate this with the sleep data:</li>
-</ul>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" title="1">n =<span class="st"> </span><span class="dv">5</span> <span class="co"># sample size</span></a>
-<a class="sourceLine" id="cb64-2" title="2">k =<span class="st"> </span><span class="dv">10</span> <span class="co"># number of samples</span></a>
-<a class="sourceLine" id="cb64-3" title="3"></a>
-<a class="sourceLine" id="cb64-4" title="4">draw_one_sample &lt;-<span class="st"> </span><span class="cf">function</span>(idx) {</a>
-<a class="sourceLine" id="cb64-5" title="5">  current_sample &lt;-<span class="st"> </span><span class="kw">sample</span>(mammalian_sleep<span class="op">$</span>sleep_total_h, <span class="dt">size =</span> n)</a>
-<a class="sourceLine" id="cb64-6" title="6">  <span class="kw">data.frame</span>(<span class="dt">sample_index=</span>idx, <span class="dt">sleep_total_h =</span> current_sample, <span class="dt">sample_mean =</span> <span class="kw">mean</span>(current_sample))</a>
-<a class="sourceLine" id="cb64-7" title="7">}</a>
-<a class="sourceLine" id="cb64-8" title="8"></a>
-<a class="sourceLine" id="cb64-9" title="9"><span class="kw">set.seed</span>(<span class="dv">1234</span>)</a>
-<a class="sourceLine" id="cb64-10" title="10">samples_of_<span class="dv">5</span> &lt;-<span class="st"> </span>plyr<span class="op">::</span><span class="kw">ldply</span>(<span class="dv">1</span><span class="op">:</span>k, draw_one_sample)</a>
-<a class="sourceLine" id="cb64-11" title="11"></a>
-<a class="sourceLine" id="cb64-12" title="12">p_all_<span class="dv">83</span>_mammals &lt;-<span class="st"> </span><span class="kw">ggplot</span>(mammalian_sleep, <span class="kw">aes</span>(sleep_total_h)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">2</span>, <span class="dt">color=</span><span class="st">&quot;black&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> <span class="kw">mean</span>(sleep_total_h) ), <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>)</a>
-<a class="sourceLine" id="cb64-13" title="13"></a>
-<a class="sourceLine" id="cb64-14" title="14">p_samples &lt;-<span class="st"> </span><span class="kw">ggplot</span>(samples_of_<span class="dv">5</span>, <span class="kw">aes</span>(sleep_total_h)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">2</span>, <span class="dt">color=</span><span class="st">&quot;black&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="kw">paste</span>(<span class="st">&quot;sample&quot;</span>, sample_index), <span class="dt">nrow=</span><span class="dv">1</span>) <span class="op">+</span><span class="st"> </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> sample_mean ), <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="kw">mean</span>(mammalian_sleep<span class="op">$</span>sleep_total_h), <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">scale_x_continuous</span>(<span class="dt">breaks=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">10</span>,<span class="dv">20</span>))</a>
-<a class="sourceLine" id="cb64-15" title="15"></a>
-<a class="sourceLine" id="cb64-16" title="16"><span class="kw">library</span>(ggpubr)</a>
-<a class="sourceLine" id="cb64-17" title="17"><span class="kw">ggarrange</span>(p_all_<span class="dv">83</span>_mammals, p_samples, <span class="dt">ncol=</span><span class="dv">1</span>, <span class="dt">nrow=</span><span class="dv">2</span>, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;&#39;Population&#39;&quot;</span>, <span class="st">&quot;Samples&quot;</span>))</a></code></pre></div>
-<p><img src="LectureNotes_files/figure-html/unnamed-chunk-42-1.png" width="672" /></p>
-<!--
-
-- The real question is *why* R is dividing by $N-1$ and not by $N$. After all, the variance is supposed to be the *mean* squared deviation, right? So shouldn't we be dividing by $N$, the actual number of observations in the sample? Well, yes, we should. However, there's a subtle distinction between "describing a sample" and "making guesses about the population from which the sample came". Up to this point, it's been a distinction without a difference. Regardless of whether you're describing a sample or drawing inferences about the population, the mean is calculated exactly the same way. Not so for the variance, or the standard deviation, or for many other measures besides. What I outlined to you initially (i.e., take the actual average, and thus divide by $N$) assumes that you literally intend to calculate the variance of the sample. Most of the time, however, you're not terribly interested in the sample *in and of itself*. Rather, the sample exists to tell you something about the world. If so, you're actually starting to move away from calculating a "sample statistic", and towards the idea of estimating a "population parameter". 
-
-Okay, one last thing. This section so far has read a bit like a mystery novel. I've shown you how to calculate the variance, described the weird "$N-1$" thing that R does and hinted at the reason why it's there, but I haven't mentioned the single most important thing... how do you *interpret* the variance? Descriptive statistics are supposed to describe things, after all, and right now the variance is really just a gibberish number. Unfortunately, the reason why I haven't given you the human-friendly interpretation of the variance is that there really isn't one. This is the most serious problem with the variance. Although it has some elegant mathematical properties that suggest that it really is a fundamental quantity for expressing variation, it's completely useless if you want to communicate with an actual human... variances are completely uninterpretable in terms of the original variable! All the numbers have been squared, and they don't mean anything anymore. This is a huge issue. For instance, according to the table I presented earlier, the margin in game 1 was "376.36 points-squared higher than the average margin". This is *exactly* as stupid as it sounds; and so when we calculate a variance of 324.64, we're in the same situation. I've watched a lot of footy games, and never has anyone referred to "points squared". It's *not* a real unit of measurement, and since the variance is expressed in terms of this gibberish unit, it is totally meaningless to a human.
--->
-<!--
-### Median absolute deviation{#mad}
-
-The last measure of variability that I want to talk about is the **_median absolute deviation_** (MAD). The basic idea behind MAD is very simple, and is pretty much identical to the idea behind the mean absolute deviation (Section \@ref(aad)). The difference is that you use the median everywhere. If we were to frame this idea as a pair of R commands, they would look like this:
-
-
-```r
-# mean absolute deviation from the mean:
-#mean( abs(afl.margins - mean(afl.margins)) )
-
-
-# *median* absolute deviation from the *median*:
-#median( abs(afl.margins - median(afl.margins)) )
-```
-This has a straightforward interpretation: every observation in the data set lies some distance away from the typical value (the median). So the MAD is an attempt to describe a *typical deviation from a typical value* in the data set. It wouldn't be unreasonable to interpret the MAD value of 19.5 for our AFL data by saying something like this:
-
->The median winning margin in 2010 was 30.5, indicating that a typical game involved a winning margin of about 30 points. However, there was a fair amount of variation from game to game: the MAD value was 19.5, indicating that a typical winning margin would differ from this median value by about 19-20 points.
-
-As you'd expect, R has a built in function for calculating MAD, and you will be shocked no doubt to hear that it's called `mad()`. However, it's a little bit more complicated than the functions that we've been using previously. If you want to use it to calculate MAD in the exact same way that I have described it above, the command that you need to use specifies two arguments: the data set itself `x`, and a `constant` that I'll explain in a moment. For our purposes, the constant is 1, so our command becomes
-
-```r
-#mad( x = afl.margins, constant = 1 )
-```
-Apart from the weirdness of having to type that `constant = 1` part, this is pretty straightforward.
-
-Okay, so what exactly is this `constant = 1` argument? I won't go into all the details here, but here's the gist. Although the "raw" MAD value that I've described above is completely interpretable on its own terms, that's not actually how it's used in a lot of real world contexts. Instead, what happens a lot is that the researcher *actually* wants to calculate the standard deviation. However, in the same way that the mean is very sensitive to extreme values, the standard deviation is vulnerable to the exact same issue. So, in much the same way that people sometimes use the median as a "robust" way of calculating "something that is like the mean", it's not uncommon to use MAD as a method for calculating "something that is like the standard deviation". Unfortunately, the *raw* MAD value doesn't do this. Our raw MAD value is 19.5, and our standard deviation was 26.07. However, what some clever person has shown is that, under certain assumptions^[The assumption again being that the data are normally-distributed!], you can multiply the raw MAD value by 1.4826 and obtain a number that is directly comparable to the standard deviation. As a consequence, the default value of `constant` is 1.4826, and so when you use the `mad()` command without manually setting a value, here's what you get:
-
-```r
-#mad( afl.margins )
-```
-I should point out, though, that if you want to use this "corrected" MAD value as a robust version of the standard deviation, you really are relying on the assumption that the data are (or at least, are "supposed to be" in some sense) symmetric and basically shaped like a bell curve. That's really *not* true for our `afl.margins` data, so in this case I wouldn't try to use the MAD value this way.
--->
+<p>output:
+pdf_document: default
+html_document: default
+editor_options:
+chunk_output_type: inline
+—</p>
 </div>
 </div>
 </div>
-<div id="which-measure-to-use" class="section level3">
-<h3><span class="header-section-number">3.2.7</span> Which measure to use?</h3>
-<p>We’ve discussed quite a few measures of spread (range, IQR, AAD, variance and standard deviation), and hinted at their strengths and weaknesses. Here’s a quick summary:</p>
-<ul>
-<li><em>Range</em>. Gives you the full spread of the data. It’s very vulnerable to outliers, and as a consequence it isn’t often used unless you have good reasons to care about the extremes in the data.</li>
-<li><em>Interquartile range</em>. Tells you where the “middle half” of the data sits. It’s pretty robust, and complements the median nicely. This is used a lot.</li>
-<li><em>Mean absolute deviation</em>. Tells you how far “on average” the observations are from the mean. It’s very interpretable, but has a few minor issues (not discussed here) that make it less attractive to statisticians than the standard deviation. Used sometimes, but not often.</li>
-<li><em>Variance</em>. Tells you the average squared deviation from the mean. It’s mathematically elegant, and is probably the “right” way to describe variation around the mean, but it’s completely uninterpretable because it doesn’t use the same units as the data. Almost never used except as a mathematical tool; but it’s buried “under the hood” of a very large number of statistical tools.</li>
-<li><em>Standard deviation</em>. This is the square root of the variance. It’s fairly elegant mathematically, and it’s expressed in the same units as the data so it can be interpreted pretty well. In situations where the mean is the measure of central tendency, this is the default. This is by far the most popular measure of variation.
-<!--
-- *Median absolute deviation*. The typical (i.e., median) deviation from the median value. In the raw form it's simple and interpretable; in the corrected form it's a robust way to estimate the standard deviation, for some kinds of data sets. Not used very often, but it does get reported sometimes.
---></li>
-</ul>
-<p>In short, the IQR and the standard deviation are easily the two most common measures used to report the variability of the data; but there are situations in which the others are used. I’ve described all of them in this book because there’s a fair chance you’ll run into most of these somewhere.</p>
-
 </div>
 </div>
-</div>
-
-
-
-
-
-
-
-
 <div class="footnotes">
 <hr />
 <ol start="1">
@@ -955,8 +888,8 @@ I should point out, though, that if you want to use this "corrected" MAD value a
           </div>
         </div>
       </div>
-<a href="scalesOfMeasurement.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="scalesOfMeasurement.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="errorless-lms.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
