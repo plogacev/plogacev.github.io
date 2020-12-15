@@ -2,6 +2,9 @@ fig:histogram1
 fig:meanmedian
 tab:unnamed-chunk-36
 fig:aflsd
+eq:justcolor
+eq:interactions1
+eq:interactions2
 initial-remarks
 scalesOfMeasurement
 nominal-scale
@@ -31,3 +34,7 @@ summary-1
 errorless_lms
 single-variable-models
 multi-variable-models
+models-with-categorical-predictors
+centered-predictors
+main-effects-and-interactions
+centered-predictors-and-their-effect-on-main-effect-and-interaction-coefficients
