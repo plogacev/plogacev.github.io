@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Statistics in R</title>
-  <meta name="description" content="Statistics in R" />
+  <title>Chapter 5 Linear Models With Error | Statistics in R</title>
+  <meta name="description" content="Chapter 5 Linear Models With Error | Statistics in R" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Statistics in R" />
+  <meta property="og:title" content="Chapter 5 Linear Models With Error | Statistics in R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Statistics in R" />
+  <meta name="twitter:title" content="Chapter 5 Linear Models With Error | Statistics in R" />
   
   
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="scalesOfMeasurement.html"/>
+<link rel="prev" href="errorless-lms.html"/>
+<link rel="next" href="examples.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -221,50 +221,141 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Statistics in R</h1>
-<p class="author"><em>Pavel Logacev</em></p>
-<p class="date"><em>2020-12-21</em></p>
-</div>
-<div id="initial-remarks" class="section level1">
-<h1><span class="header-section-number">Chapter 1</span> Initial Remarks</h1>
-<p>(21 December, 2020, 14:57)</p>
-<ul>
-<li><p>The purpose of these lecture notes is to allow you to revisit concepts covered in class.</p></li>
-<li>In the following, I will draw on the following resources.
-<ul>
-<li>The pretty great introduction to R and statistics by Danielle Navarro available <a href="https://learningstatisticswithr.com">here</a>.</li>
-<li>Matt Crump’s <a href="https://crumplab.github.io/statistics/">‘Answering Questions with Data’</a>.</li>
-<li>Bodo Winter’s <em>‘Statistics of Linguists: An Introduction Using R’</em></li>
-</ul></li>
-</ul>
-<!--
-This is a _sample_ book written in **Markdown**. You can use anything that Pandoc's Markdown supports, e.g., a math equation $a^2 + b^2 = c^2$.
-
-The **bookdown** package can be installed from CRAN or Github:
-
-
-```r
-install.packages("bookdown")
-# or the development version
-# devtools::install_github("rstudio/bookdown")
-```
-
-Remember each Rmd file contains one and only one chapter, and a chapter is defined by the first-level heading `#`.
-
-To compile this example to PDF, you need XeLaTeX. You are recommended to install TinyTeX (which includes XeLaTeX): <https://yihui.org/tinytex/>.
-
-
+<div id="lms_with_error" class="section level1">
+<h1><span class="header-section-number">Chapter 5</span> Linear Models With Error</h1>
+<!-- TODO: 
+  - Rewrite part below: Define linear models without the error term. (Why change the definition later, if I can start with the more useful one to begin with?)
+  - Start non-determinism with a one-parameter model: How much does it cost to take 
 -->
-
+<ul>
+<li>So far, we have been working with specific subsets of the data which kept all variables that were irrelevant for our present purposes constant (e.g., <span class="math inline">\(distance=10~km\)</span>, <span class="math inline">\(N_{bridges} = 0\)</span>).</li>
+<li>We were able to do that because we knew which variables are relevant since the dataset was created artificially.</li>
+<li>In real-life scenarios this is not always possible - not even when describing a deterministic system such as the cab fare pricing scheme. This is because:
+<ol style="list-style-type: decimal">
+<li>We often don’t know all the relevant variables.</li>
+<li>We don’t know in which ways they may interact.</li>
+<li>Even if we knew all that, we may be left with very little data if we keep taking subsets with specific characteristics all the time. (For example, a dataset with <span class="math inline">\(N_{bridges} = 0\)</span> may not have a lot of rides with <span class="math inline">\(distance &gt; 1~km\)</span> if the city has many bridges.)</li>
+</ol></li>
+<li>The bottom line is that in any realistic situation, we will omit relevant predictors from the model specification, because we don’t know what they are, or couldn’t (afford to them) record them.</li>
+<li>Let’s look at how this would affect our analysis by applying a single-variable model to the data from section 4.2, which varies in distance an number of bridges.</li>
+<li>We will apply the single-variable model in equation <a href="lms-with-error.html#eq:lmerrEq1">(5.1)</a> to a random(-ish) sample from the data from section 4.2 (<em>i.e., only yellow cabs, one passenger</em>).</li>
+<li>In a real-world scenario, we could use a model with missing predictors because because we did not consider those predictors relevant, or because we may not have information on them (<em>i.e., we didn’t record the number of bridges on our taxi rides through town</em>).</li>
+</ul>
+<p><span class="math display" id="eq:lmerrEq1">\[\begin{equation} 
+\text{fare} = a + b * \text{distance}
+\tag{5.1}
+\end{equation}\]</span></p>
+<ul>
+<li>The plot below is not as clean as the previous plots - and it doesn’t seem to be possible to perfectly describe all the points by one line. While the average fare seems to increase with distance, there is also some variability in the fare at most distances. This is because the number of bridge crossings is unaccounted for. It is as if we were looking at a photo of a three-dimensional plot which was taken from the side.</li>
+</ul>
+<p><img src="LectureNotes_files/figure-html/unnamed-chunk-90-1.png" width="480" /></p>
+<div id="a-whole-zoo-of-models" class="section level2">
+<h2><span class="header-section-number">5.1</span> A Whole Zoo of Models</h2>
+<ul>
+<li>There is a whole range of models we can use to describe these data. (The numbers next to the data points denote the <strong>‘errors’</strong>, i.e., the deviations from the line.)</li>
+<li>Which would you choose?</li>
+</ul>
+<p><img src="LectureNotes_files/figure-html/unnamed-chunk-92-1.png" width="960" style="display: block; margin: auto 0 auto auto;" /></p>
+<ul>
+<li>One way to think about it is – which model has the largest ‘error’?</li>
+<li>… And how shall we measure the error anyway? – Well, we could use the individual <strong>‘errors’</strong>, also called the <strong>‘residuals’</strong>.</li>
+<li>The table below summarizes the sum of absolute errors and the sum of squared errors.</li>
+<li>As you see, the sum of absolute errors is the same for models 2,3, and 4. And that makes sense, because the sum of 4 errors of magnitude 5, and 4 errors of magnitude 0 is the same as the sum of 8 errors of magnitude 2.5.</li>
+<li>The sum of squared errors on the other hand is the lowest for model 4. This is because the sum of squared errors tends to be bigger for combinations of one big error and one small error (<span class="math inline">\(5^2+0^2=25\)</span>), than for two medium-sized errors (<span class="math inline">\(2.5^2+2.5^2 = 12.5\)</span>).</li>
+<li>The sum of squared errors seems to match our intuition about model quality. Let’s use it for now.</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="left">Sum of absolute errors</th>
+<th align="left">Sum of squared errors</th>
+<th align="left"></th>
+<th align="left"></th>
+<th align="left"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">model 1</td>
+<td align="left">25</td>
+<td align="left">112.5</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">model 2</td>
+<td align="left">20</td>
+<td align="left">100</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">model 3</td>
+<td align="left">20</td>
+<td align="left">100</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">model 4</td>
+<td align="left">20</td>
+<td align="left">50</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Interesting, so different sets of parameters result in different sums of squared errors. If we could only create some sort of map of it in order to look at all the other options and find the best parameters (those that minimize that error).</li>
+<li>It turns out, we can. What you see below is a plot of the sum of squared errors (y-axis), as a function of the values for the intercept <span class="math inline">\(a\)</span> (x-axis) and slope (z-axis). The red point marks parameter combination with the lowest error (50).</li>
+<li>The key insight the plot should provide is that having a function which allows us to compare different models (also known as <strong>the objective function</strong>) allows us to select the best model, because all we have to do is find its minimum (i.e., the combination of intercept and slope with the smallest sum of squared errors).</li>
+</ul>
+<!-- find a good way to present this without the intercept-slope correlation  -->
+<div id="rgl22733" style="width:960px;height:960px;" class="rglWebGL html-widget"></div>
+<script type="application/json" data-for="rgl22733">{"x":{"material":{"color":"#000000","alpha":1,"lit":true,"ambient":"#000000","specular":"#FFFFFF","emission":"#000000","shininess":50,"smooth":true,"front":"filled","back":"filled","size":3,"lwd":1,"fog":true,"point_antialias":false,"line_antialias":false,"texture":null,"textype":"rgb","texmipmap":false,"texminfilter":"linear","texmagfilter":"linear","texenvmap":false,"depth_mask":true,"depth_test":"less","isTransparent":false,"polygon_offset":[0,0]},"rootSubscene":46,"objects":{"52":{"id":52,"type":"points","material":{"lit":false,"size":10},"vertices":[[6.5,2.5,50]],"colors":[[1,0,0,1]],"centers":[[6.5,2.5,50]],"ignoreExtent":false,"flags":34816},"50":{"id":50,"type":"light","vertices":[[0,0,1]],"colors":[[1,1,1,1],[1,1,1,1],[1,1,1,1]],"viewpoint":true,"finite":false},"49":{"id":49,"type":"background","material":{},"colors":[[0.298039227724075,0.298039227724075,0.298039227724075,1]],"centers":[[0,0,0]],"sphere":false,"fogtype":"none","fogscale":[[1]],"flags":32768},"51":{"id":51,"type":"background","material":{"lit":false,"back":"lines"},"colors":[[1,1,1,1]],"centers":[[0,0,0]],"sphere":false,"fogtype":"none","fogscale":[[1]],"flags":32768},"46":{"id":46,"type":"subscene","par3d":{"antialias":8,"FOV":30,"ignoreExtent":false,"listeners":46,"mouseMode":{"left":"trackball","right":"zoom","middle":"fov","wheel":"pull"},"observer":[0,0,3.86370325088501],"modelMatrix":[[1,0,0,-6.5],[0,0.342020153999329,0.939692616462708,-47.8396797180176],[0,-0.939692616462708,0.342020153999329,-18.615478515625],[0,0,0,1]],"projMatrix":[[3.73205089569092,0,0,0],[0,3.73205089569092,0,0],[0,0,-3.86370325088501,-13.9282026290894],[0,0,-1,0]],"skipRedraw":false,"userMatrix":[[1,0,0,0],[0,0.342020143325668,0.939692620785909,0],[0,-0.939692620785909,0.342020143325668,0],[0,0,0,1]],"userProjection":[[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1]],"scale":[1,1,1],"viewport":{"x":0,"y":0,"width":1,"height":1},"zoom":1,"bbox":[6.5,6.5,2.5,2.5,50,50],"windowRect":[1176,1316,1432,1572],"family":"sans","font":1,"cex":1,"useFreeType":true,"fontname":"/home/pavel3/R/x86_64-pc-linux-gnu-library/4.0/rgl/fonts/FreeSans.ttf","maxClipPlanes":8,"glVersion":4.59999990463257,"activeSubscene":0},"embeddings":{"viewport":"replace","projection":"replace","model":"replace","mouse":"replace"},"objects":[51,52,50],"subscenes":[],"flags":35072},"59":{"id":59,"type":"linestrip","material":{"alpha":0.498039215803146,"lit":false,"depth_test":"always","isTransparent":true},"vertices":[[0,0,-0.999000012874603],[1,0,-0.999000012874603],[1,1,-0.999000012874603],[0,1,-0.999000012874603],[0,0,-0.999000012874603]],"colors":[[0,0,0,0.498039215803146]],"centers":[[0,0,-0.999000012874603],[1,0,-0.999000012874603],[1,1,-0.999000012874603],[0,1,-0.999000012874603],[0,0,-0.999000012874603]],"ignoreExtent":false,"flags":49248}},"crosstalk":{"key":[null],"group":"","id":0,"options":[null]},"width":960,"height":960,"brushId":59,"sphereVerts":{"reuse":"rgl3283"},"context":{"shiny":false,"rmarkdown":null},"players":[],"webGLoptions":{"preserveDrawingBuffer":true}},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="an-updated-linear-model" class="section level2">
+<h2><span class="header-section-number">5.2</span> An Updated Linear Model</h2>
+<ul>
+<li><p>In the previous chapter, our system was deterministic since we knew every every variable that mattered and how it was to be included into the linear model equation. Once we fail to account for some predictors that matter, the system becomes non-deterministic - we can’t predict the fare exactly. In this case, this means that we can’t predict the exact fare, if we don’t know how many bridges were crossed on that taxi ride.</p></li>
+<li><p>Unlike previously, we can’t solve a set of equations to arrive at coefficients that describe the data perfectly. But what we can do, is choose the coefficients such that the fare is predicted as well as possible. While we can’t account for all variation in the fare, we can at least account for some of the structure in it - and all the plots show that there is <em>some</em> structure.</p></li>
+<li><p>In order to account for omitted variables (or possibly true randomness in the data), we need to modify the linear model equation to the form below.</p></li>
+</ul>
+<p><span class="math display">\[ \underbrace{y_i}_{\text{Observed value}} =
+  \overbrace{\underbrace{a}_{\text{Intercept}}}^{\text{additive term}} + 
+  \overbrace{\underbrace{b_1}_{\text{Slope}} * \underbrace{{x_1}_i}_{Predictor}}^{\text{additive term}} + 
+  \overbrace{\underbrace{b_2}_{\text{Slope}} * \underbrace{{x_2}_i}_{Predictor}}^{\text{additive term}} +  
+  \ldots +
+  \underbrace{\epsilon_i}_{Error}\]</span></p>
+<ul>
+<li>The new element here is the <em>error term</em> <span class="math inline">\(\epsilon\)</span>, while the rest of the equation is as previously. You can think of the equation as consisting of <em>three components</em>.
+<ol style="list-style-type: decimal">
+<li>The intercept accounts for all <em>constants</em>, as well as the <em>average effect</em> of the omitted (and possibly even unknown predictors).</li>
+</ol>
+<!-- (Importantly, the same would happen if those variables were not omitted, but their predictors were centered.) -->
+<!-- Improve the phrasing above. -->
+<!-- There is a lot to expand upon in that above statment. -->
+<ol start="2" style="list-style-type: decimal">
+<li><p>The slopes account for all <em>variable effects</em> due to known predictors.</p></li>
+<li><p>Meanwhile, the error <span class="math inline">\(\epsilon\)</span> term accounts for all <em>variable effects</em> due to omitted predictors. All errors need to sum to zero. (If they didn’t, that part should go to the intercept.)</p></li>
+</ol>
+<!-- In regular linear models, we assume that $\epsilon$ follows a **normal distribution** with mean 0, and some unknown standard deviation $\sigma$. Assuming that it has a mean of 0 simply means that all deviations from the value predicted by the linear model sum to zero, which usually has the implication that *the line that the linear model describes is supposed to go through the point cloud*. --></li>
+</ul>
+<!-- This is where the motivation for using the normal distribution goes. -->
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="scalesOfMeasurement.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="errorless-lms.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="examples.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

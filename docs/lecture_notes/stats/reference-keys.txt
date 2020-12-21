@@ -5,6 +5,7 @@ fig:aflsd
 eq:justcolor
 eq:interactions1
 eq:interactions2
+eq:lmerrEq1
 initial-remarks
 scalesOfMeasurement
 nominal-scale
@@ -38,3 +39,9 @@ models-with-categorical-predictors
 centered-predictors
 main-effects-and-interactions
 centered-predictors-and-their-effect-on-main-effect-and-interaction-coefficients
+lms_with_error
+a-whole-zoo-of-models
+an-updated-linear-model
+examples
+the-dative-verbs-data
+the-sleep-data
