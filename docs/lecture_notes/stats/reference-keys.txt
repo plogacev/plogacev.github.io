@@ -39,6 +39,8 @@ models-with-categorical-predictors
 centered-predictors
 main-effects-and-interactions
 centered-predictors-and-their-effect-on-main-effect-and-interaction-coefficients
+treatment-contrasts
+centered-contrasts-aka-sum-contrasts
 lms_with_error
 a-whole-zoo-of-models
 an-updated-linear-model
