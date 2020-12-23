@@ -24,7 +24,7 @@
 <meta name="author" content="Pavel Logacev" />
 
 
-<meta name="date" content="2020-12-23" />
+<meta name="date" content="2020-12-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -201,8 +201,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.2" data-path="lms-with-error.html"><a href="lms-with-error.html#an-updated-linear-model"><i class="fa fa-check"></i><b>5.2</b> An Updated Linear Model</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="examples.html"><a href="examples.html"><i class="fa fa-check"></i><b>6</b> Examples</a><ul>
-<li class="chapter" data-level="6.0.1" data-path="examples.html"><a href="examples.html#the-dative-verbs-data"><i class="fa fa-check"></i><b>6.0.1</b> The Dative Verbs data</a></li>
-<li class="chapter" data-level="6.0.2" data-path="examples.html"><a href="examples.html#the-sleep-data"><i class="fa fa-check"></i><b>6.0.2</b> The Sleep Data</a></li>
+<li class="chapter" data-level="6.1" data-path="examples.html"><a href="examples.html#the-dative-verbs-data"><i class="fa fa-check"></i><b>6.1</b> The Dative Verbs Data</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="examples.html"><a href="examples.html#by-length-of-recipient"><i class="fa fa-check"></i><b>6.1.1</b> By Length of Recipient</a></li>
+<li class="chapter" data-level="6.1.2" data-path="examples.html"><a href="examples.html#by-length-of-theme"><i class="fa fa-check"></i><b>6.1.2</b> By Length of Theme</a></li>
+<li class="chapter" data-level="6.1.3" data-path="examples.html"><a href="examples.html#by-length-of-recipient-and-length-of-theme"><i class="fa fa-check"></i><b>6.1.3</b> By Length of Recipient and Length of Theme</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="examples.html"><a href="examples.html#the-sleep-data"><i class="fa fa-check"></i><b>6.2</b> The Sleep Data</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -226,25 +230,208 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="examples" class="section level1">
 <h1><span class="header-section-number">Chapter 6</span> Examples</h1>
-<div id="the-dative-verbs-data" class="section level3">
-<h3><span class="header-section-number">6.0.1</span> The Dative Verbs data</h3>
+<div id="the-dative-verbs-data" class="section level2">
+<h2><span class="header-section-number">6.1</span> The Dative Verbs Data</h2>
 <ul>
-<li>I want to know if the length of the theme and the recipient influence the proportion of recipient-theme word orders, and by how much. (In this sample.)</li>
-<li></li>
+<li><p>I want to know if the length of the theme and the recipient influence the proportion of recipient-theme word orders, and by how much. (In this sample!)</p></li>
+<li><p>Let’s prepare the data.</p></li>
+</ul>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" title="1"><span class="co"># load all packages that will be required</span></a>
+<a class="sourceLine" id="cb66-2" title="2"><span class="kw">library</span>(dplyr)</a>
+<a class="sourceLine" id="cb66-3" title="3"><span class="kw">library</span>(magrittr)</a>
+<a class="sourceLine" id="cb66-4" title="4"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb66-5" title="5"><span class="kw">library</span>(languageR)</a>
+<a class="sourceLine" id="cb66-6" title="6"></a>
+<a class="sourceLine" id="cb66-7" title="7"><span class="co"># create a data frame with the required columns </span></a>
+<a class="sourceLine" id="cb66-8" title="8">dative_relevant &lt;-<span class="st"> </span>dative <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(RealizationOfRecipient, LengthOfRecipient, LengthOfTheme)</a>
+<a class="sourceLine" id="cb66-9" title="9"></a>
+<a class="sourceLine" id="cb66-10" title="10"><span class="co"># take a look</span></a>
+<a class="sourceLine" id="cb66-11" title="11"><span class="kw">head</span>(dative_relevant, <span class="dv">3</span>)</a></code></pre></div>
+<pre><code>##   RealizationOfRecipient LengthOfRecipient LengthOfTheme
+## 1                     NP                 1            14
+## 2                     NP                 2             3
+## 3                     NP                 1            13</code></pre>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" title="1"><span class="co"># discretize length of recipient </span></a>
+<a class="sourceLine" id="cb68-2" title="2">dative_relevant <span class="op">%&lt;&gt;%</span><span class="st"> </span><span class="kw">mutate</span>( <span class="dt">cat_LengthOfRecipient =</span> <span class="kw">ifelse</span>(LengthOfRecipient <span class="op">&gt;</span><span class="st"> </span><span class="kw">median</span>(LengthOfRecipient) , <span class="st">&quot;long&quot;</span>, <span class="st">&quot;short&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.factor</span>() )</a>
+<a class="sourceLine" id="cb68-3" title="3">dative_relevant <span class="op">%&lt;&gt;%</span><span class="st"> </span><span class="kw">mutate</span>( <span class="dt">cat_LengthOfTheme =</span> <span class="kw">ifelse</span>(LengthOfTheme <span class="op">&gt;</span><span class="st"> </span><span class="kw">median</span>(LengthOfTheme) , <span class="st">&quot;long&quot;</span>, <span class="st">&quot;short&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.factor</span>() )</a></code></pre></div>
+<div id="by-length-of-recipient" class="section level3">
+<h3><span class="header-section-number">6.1.1</span> By Length of Recipient</h3>
+<ul>
+<li>Now, let’s summarize and plot it</li>
+</ul>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" title="1"><span class="co"># compute percentage of default word orders by categorical recipient length</span></a>
+<a class="sourceLine" id="cb69-2" title="2">(dative_summary1 &lt;-<span class="st"> </span>dative_relevant <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb69-3" title="3"><span class="st">  </span><span class="kw">group_by</span>(cat_LengthOfRecipient) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb69-4" title="4"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">perc_def =</span> <span class="kw">mean</span>(RealizationOfRecipient <span class="op">==</span><span class="st"> &quot;NP&quot;</span>), </a>
+<a class="sourceLine" id="cb69-5" title="5">            <span class="dt">N =</span> <span class="kw">n</span>()))</a></code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<pre><code>## # A tibble: 2 x 3
+##   cat_LengthOfRecipient perc_def     N
+##   &lt;fct&gt;                    &lt;dbl&gt; &lt;int&gt;
+## 1 long                     0.448  1035
+## 2 short                    0.875  2228</code></pre>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" title="1"><span class="co"># plot averages</span></a>
+<a class="sourceLine" id="cb72-2" title="2"><span class="kw">ggplot</span>(dative_summary1, <span class="kw">aes</span>(<span class="dt">x=</span> cat_LengthOfRecipient, perc_def)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</a></code></pre></div>
+<p><img src="LectureNotes_files/figure-html/unnamed-chunk-97-1.png" width="672" /></p>
+<ul>
+<li>Now, let’s fit a mode with treatment contrasts and look at its coefficients.</li>
+</ul>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" title="1"><span class="co"># Fit model 1A (treatment contrasts):</span></a>
+<a class="sourceLine" id="cb73-2" title="2"><span class="co"># Fit a linear model with treatment contrasts according to the following specification:</span></a>
+<a class="sourceLine" id="cb73-3" title="3"><span class="co">#  perc_def = a + b*length of recipient </span></a>
+<a class="sourceLine" id="cb73-4" title="4"></a>
+<a class="sourceLine" id="cb73-5" title="5"><span class="co"># create a treatment contrast for (categorical) length (&#39;ct&#39; is for &#39;contrast, treatment&#39;)</span></a>
+<a class="sourceLine" id="cb73-6" title="6">dative_summary1 <span class="op">%&lt;&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">ct_LR =</span> dplyr<span class="op">::</span><span class="kw">recode</span>(cat_LengthOfRecipient, <span class="st">&quot;short&quot;</span>=<span class="dv">0</span>, <span class="st">&quot;long&quot;</span>=<span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb73-7" title="7"></a>
+<a class="sourceLine" id="cb73-8" title="8"><span class="co"># use coef(lm(...)) to fit the linear model described above and extract its coefficients</span></a>
+<a class="sourceLine" id="cb73-9" title="9"><span class="kw">coef</span>(<span class="kw">lm</span>( perc_def <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>ct_LR, <span class="dt">data =</span> dative_summary1))</a></code></pre></div>
+<pre><code>## (Intercept)       ct_LR 
+##   0.8752244  -0.4269152</code></pre>
+<ul>
+<li>Now, let’s fit a mode with sum contrasts and look at its coefficients.</li>
+</ul>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb75-1" title="1"><span class="co"># Fit model 1B (sum contrasts):</span></a>
+<a class="sourceLine" id="cb75-2" title="2"><span class="co"># Fit a linear model with sum contrasts according to the following specification:</span></a>
+<a class="sourceLine" id="cb75-3" title="3"><span class="co">#  perc_def = a + b*length of recipient </span></a>
+<a class="sourceLine" id="cb75-4" title="4"></a>
+<a class="sourceLine" id="cb75-5" title="5"><span class="co"># create a treatment contrast for (categorical) length (&#39;cs&#39; is for &#39;contrast, sum&#39;)</span></a>
+<a class="sourceLine" id="cb75-6" title="6">dative_summary1 <span class="op">%&lt;&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">cs_LR =</span> dplyr<span class="op">::</span><span class="kw">recode</span>(cat_LengthOfRecipient, <span class="st">&quot;short&quot;</span>=<span class="op">-</span>.<span class="dv">5</span>, <span class="st">&quot;long&quot;</span>=.<span class="dv">5</span>))</a>
+<a class="sourceLine" id="cb75-7" title="7"></a>
+<a class="sourceLine" id="cb75-8" title="8"><span class="co"># use coef(lm(...)) to fit the linear model described above and extract its coefficients</span></a>
+<a class="sourceLine" id="cb75-9" title="9"><span class="kw">coef</span>(<span class="kw">lm</span>( perc_def <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>cs_LR, <span class="dt">data =</span> dative_summary1))</a></code></pre></div>
+<pre><code>## (Intercept)       cs_LR 
+##   0.6617668  -0.4269152</code></pre>
+</div>
+<div id="by-length-of-theme" class="section level3">
+<h3><span class="header-section-number">6.1.2</span> By Length of Theme</h3>
+<ul>
+<li>Now, let’s summarize and plot the averages.</li>
+</ul>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb77-1" title="1"><span class="co"># compute percentage of default word orders by categorical theme length</span></a>
+<a class="sourceLine" id="cb77-2" title="2">(dative_summary2 &lt;-<span class="st"> </span>dative_relevant <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb77-3" title="3"><span class="st">                      </span><span class="kw">group_by</span>(cat_LengthOfTheme) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb77-4" title="4"><span class="st">                      </span><span class="kw">summarize</span>(<span class="dt">perc_def =</span> <span class="kw">mean</span>(RealizationOfRecipient <span class="op">==</span><span class="st"> &quot;NP&quot;</span>), </a>
+<a class="sourceLine" id="cb77-5" title="5">                                <span class="dt">N =</span> <span class="kw">n</span>()))</a></code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<pre><code>## # A tibble: 2 x 3
+##   cat_LengthOfTheme perc_def     N
+##   &lt;fct&gt;                &lt;dbl&gt; &lt;int&gt;
+## 1 long                 0.826  1309
+## 2 short                0.682  1954</code></pre>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb80-1" title="1"><span class="co"># plot averages</span></a>
+<a class="sourceLine" id="cb80-2" title="2"><span class="kw">ggplot</span>(dative_summary2, <span class="kw">aes</span>(<span class="dt">x=</span> cat_LengthOfTheme, perc_def)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</a></code></pre></div>
+<p><img src="LectureNotes_files/figure-html/unnamed-chunk-100-1.png" width="672" /></p>
+<ul>
+<li>Now, let’s fit a mode with treatment contrasts and look at its coefficients.</li>
+</ul>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb81-1" title="1"><span class="co"># Fit model 2A (treatment contrasts):</span></a>
+<a class="sourceLine" id="cb81-2" title="2"><span class="co"># Fit a linear model with treatment contrasts according to the following specification:</span></a>
+<a class="sourceLine" id="cb81-3" title="3"><span class="co">#  perc_def = a + b*length of theme </span></a>
+<a class="sourceLine" id="cb81-4" title="4"></a>
+<a class="sourceLine" id="cb81-5" title="5"><span class="co"># create a treatment contrast for (categorical) length (&#39;ct&#39; is for &#39;contrast, treatment&#39;)</span></a>
+<a class="sourceLine" id="cb81-6" title="6">dative_summary2 <span class="op">%&lt;&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">ct_LT =</span> dplyr<span class="op">::</span><span class="kw">recode</span>(cat_LengthOfTheme, <span class="st">&quot;short&quot;</span>=<span class="dv">0</span>, <span class="st">&quot;long&quot;</span>=<span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb81-7" title="7"></a>
+<a class="sourceLine" id="cb81-8" title="8"><span class="co"># use coef(lm(...)) to fit the linear model described above and extract its coefficients</span></a>
+<a class="sourceLine" id="cb81-9" title="9"><span class="kw">coef</span>(<span class="kw">lm</span>( perc_def <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>ct_LT, <span class="dt">data =</span> dative_summary2))</a></code></pre></div>
+<pre><code>## (Intercept)       ct_LT 
+##   0.6821904   0.1436309</code></pre>
+<ul>
+<li>Now, let’s fit a mode with sum contrasts and look at its coefficients.</li>
+</ul>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb83-1" title="1"><span class="co"># Fit model 1B (sum contrasts):</span></a>
+<a class="sourceLine" id="cb83-2" title="2"><span class="co"># Fit a linear model with sum contrasts according to the following specification:</span></a>
+<a class="sourceLine" id="cb83-3" title="3"><span class="co">#  perc_def = a + b*length of recipient </span></a>
+<a class="sourceLine" id="cb83-4" title="4"></a>
+<a class="sourceLine" id="cb83-5" title="5"><span class="co"># create a treatment contrast for (categorical) length (&#39;ct&#39; is for &#39;contrast, treatment&#39;)</span></a>
+<a class="sourceLine" id="cb83-6" title="6">dative_summary2 <span class="op">%&lt;&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">cs_LR =</span> dplyr<span class="op">::</span><span class="kw">recode</span>(cat_LengthOfTheme, <span class="st">&quot;short&quot;</span>=<span class="op">-</span>.<span class="dv">5</span>, <span class="st">&quot;long&quot;</span>=.<span class="dv">5</span>))</a>
+<a class="sourceLine" id="cb83-7" title="7"></a>
+<a class="sourceLine" id="cb83-8" title="8"><span class="co"># use coef(lm(...)) to fit the linear model described above and extract its coefficients</span></a>
+<a class="sourceLine" id="cb83-9" title="9"><span class="kw">coef</span>(<span class="kw">lm</span>( perc_def <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>cs_LR, <span class="dt">data =</span> dative_summary1))</a></code></pre></div>
+<pre><code>## (Intercept)       cs_LR 
+##   0.6617668  -0.4269152</code></pre>
+</div>
+<div id="by-length-of-recipient-and-length-of-theme" class="section level3">
+<h3><span class="header-section-number">6.1.3</span> By Length of Recipient and Length of Theme</h3>
+<ul>
+<li>Now, let’s summarize and plot the averages.</li>
+</ul>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb85-1" title="1"><span class="co"># compute percentage of default word orders by categorical theme and recipient length</span></a>
+<a class="sourceLine" id="cb85-2" title="2">(dative_summary3 &lt;-</a>
+<a class="sourceLine" id="cb85-3" title="3"><span class="st">  </span>dative_relevant <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(cat_LengthOfTheme, cat_LengthOfRecipient) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb85-4" title="4"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">perc_def =</span> <span class="kw">mean</span>(RealizationOfRecipient <span class="op">==</span><span class="st"> &quot;NP&quot;</span>), </a>
+<a class="sourceLine" id="cb85-5" title="5">            <span class="dt">N =</span> <span class="kw">n</span>() ))</a></code></pre></div>
+<pre><code>## `summarise()` regrouping output by &#39;cat_LengthOfTheme&#39; (override with `.groups` argument)</code></pre>
+<pre><code>## # A tibble: 4 x 4
+## # Groups:   cat_LengthOfTheme [2]
+##   cat_LengthOfTheme cat_LengthOfRecipient perc_def     N
+##   &lt;fct&gt;             &lt;fct&gt;                    &lt;dbl&gt; &lt;int&gt;
+## 1 long              long                     0.616   469
+## 2 long              short                    0.943   840
+## 3 short             long                     0.309   566
+## 4 short             short                    0.834  1388</code></pre>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb88-1" title="1"><span class="co"># plot averages</span></a>
+<a class="sourceLine" id="cb88-2" title="2">dative_summary3 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>( cat_LengthOfRecipient, perc_def, <span class="dt">color =</span> cat_LengthOfTheme, <span class="dt">group =</span> cat_LengthOfTheme)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>()</a></code></pre></div>
+<p><img src="LectureNotes_files/figure-html/unnamed-chunk-103-1.png" width="672" /></p>
+<ul>
+<li>Now, let’s fit a mode with treatment contrasts and look at its coefficients.</li>
+</ul>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb89-1" title="1"><span class="co"># Fit model 2A (treatment contrasts):</span></a>
+<a class="sourceLine" id="cb89-2" title="2"><span class="co"># Fit a linear model with treatment contrasts according to the following specification:</span></a>
+<a class="sourceLine" id="cb89-3" title="3"><span class="co">#  perc_def = a + b1*length of theme + b2*length of recipient + b3*length of theme*length of recipient</span></a>
+<a class="sourceLine" id="cb89-4" title="4"></a>
+<a class="sourceLine" id="cb89-5" title="5"><span class="co"># create a treatment contrast for (categorical) length (&#39;ct&#39; is for &#39;contrast, treatment&#39;)</span></a>
+<a class="sourceLine" id="cb89-6" title="6">dative_summary3 <span class="op">%&lt;&gt;%</span><span class="st"> </span><span class="kw">mutate</span>( <span class="dt">ct_LR =</span> dplyr<span class="op">::</span><span class="kw">recode</span>(cat_LengthOfRecipient, <span class="st">&quot;short&quot;</span>=<span class="dv">0</span>, <span class="st">&quot;long&quot;</span>=<span class="dv">1</span>),</a>
+<a class="sourceLine" id="cb89-7" title="7">                             <span class="dt">ct_LT =</span> dplyr<span class="op">::</span><span class="kw">recode</span>(cat_LengthOfTheme,     <span class="st">&quot;short&quot;</span>=<span class="dv">0</span>, <span class="st">&quot;long&quot;</span>=<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb89-8" title="8">                            )</a>
+<a class="sourceLine" id="cb89-9" title="9"></a>
+<a class="sourceLine" id="cb89-10" title="10"><span class="co"># use coef(lm(...)) to fit the linear model described above and extract its coefficients</span></a>
+<a class="sourceLine" id="cb89-11" title="11"><span class="kw">coef</span>(<span class="kw">lm</span>( perc_def <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>ct_LT <span class="op">+</span><span class="st"> </span>ct_LR <span class="op">+</span><span class="st"> </span>ct_LT<span class="op">:</span>ct_LR, <span class="dt">data =</span> dative_summary3))</a></code></pre></div>
+<pre><code>## (Intercept)       ct_LT       ct_LR ct_LT:ct_LR 
+##   0.8342939   0.1085632  -0.5251067   0.1984542</code></pre>
+<ul>
+<li>Please verify the meaning of the coefficients in the above plots, data frames and other models
+<ul>
+<li><strong>Intercept:</strong> The <code>perc_def</code> value for the baseline value (i.e., short theme and short recipient).</li>
+<li><strong>Main effect</strong>, coefficient for <code>ct_LT</code>: The effect of theme length when the recipient is short.</li>
+<li><strong>Main effect</strong>, coefficient for <code>ct_LR</code>: The effect of recipient length when the theme is short.</li>
+<li><strong>Interaction</strong>, coefficient for <code>ct_LT:ct_LR</code>: The <em>additional</em> effect of theme length when the the recipient is long. (<em>or:</em> The <em>additional</em> effect of <strong>recipient</strong> length when the the <strong>theme</strong> is long.)</li>
+</ul></li>
+<li>Now, let’s fit a mode with sum contrasts and look at its coefficients.</li>
+</ul>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb91-1" title="1"><span class="co"># Fit model 1B (sum contrasts):</span></a>
+<a class="sourceLine" id="cb91-2" title="2"><span class="co"># Fit a linear model with sum contrasts according to the following specification:</span></a>
+<a class="sourceLine" id="cb91-3" title="3"><span class="co">#  perc_def = a + b1*length of theme + b2*length of recipient + b3*length of theme*length of recipient</span></a>
+<a class="sourceLine" id="cb91-4" title="4"></a>
+<a class="sourceLine" id="cb91-5" title="5"><span class="co"># create a sum contrast for (categorical) length (&#39;cs&#39; is for &#39;contrast, sum&#39;)</span></a>
+<a class="sourceLine" id="cb91-6" title="6">dative_summary3 <span class="op">%&lt;&gt;%</span><span class="st"> </span><span class="kw">mutate</span>( <span class="dt">cs_LR =</span> dplyr<span class="op">::</span><span class="kw">recode</span>(cat_LengthOfRecipient, <span class="st">&quot;short&quot;</span>=<span class="op">-</span>.<span class="dv">5</span>, <span class="st">&quot;long&quot;</span>=.<span class="dv">5</span>),</a>
+<a class="sourceLine" id="cb91-7" title="7">                             <span class="dt">cs_LT =</span> dplyr<span class="op">::</span><span class="kw">recode</span>(cat_LengthOfTheme, <span class="st">&quot;short&quot;</span>=<span class="op">-</span>.<span class="dv">5</span>, <span class="st">&quot;long&quot;</span>=.<span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb91-8" title="8">)</a>
+<a class="sourceLine" id="cb91-9" title="9"></a>
+<a class="sourceLine" id="cb91-10" title="10"><span class="co"># use coef(lm(...)) to fit the linear model described above and extract its coefficients</span></a>
+<a class="sourceLine" id="cb91-11" title="11"><span class="kw">coef</span>(<span class="kw">lm</span>( perc_def <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>ct_LT <span class="op">+</span><span class="st"> </span>ct_LR <span class="op">+</span><span class="st"> </span>ct_LT<span class="op">:</span>ct_LR, <span class="dt">data =</span> dative_summary3))</a></code></pre></div>
+<pre><code>## (Intercept)       ct_LT       ct_LR ct_LT:ct_LR 
+##   0.8342939   0.1085632  -0.5251067   0.1984542</code></pre>
+<ul>
+<li>Please verify the meaning of the coefficients in the above plots, data frames and other models:
+<ul>
+<li><strong>Intercept:</strong> Average percentage of default word orders.</li>
+<li><strong>Main effect</strong>, coefficient for <code>ct_LT</code>: Average effect of length of the theme.</li>
+<li><strong>Main effect</strong>, coefficient for <code>ct_LR</code>: Average effect of length of the recipient.</li>
+<li><strong>Interaction</strong>, coefficient for <code>ct_LT:ct_LR</code>: Change in the effect of <code>ct_LR</code> due to one unit of change in <code>ct_LT</code>. (<em>or:</em> Change in the effect of <code>ct_LT</code> due to one unit of change in <code>ct_LR</code>.)</li>
+</ul></li>
 </ul>
 </div>
-<div id="the-sleep-data" class="section level3">
-<h3><span class="header-section-number">6.0.2</span> The Sleep Data</h3>
-<ul>
-<li>I want to know if</li>
-</ul>
-<pre><code>##                         name sleep_total_h bodywt_kg
-## 1                    Cheetah            12    50.000
-## 2                 Owl monkey            17     0.480
-## 3            Mountain beaver            14     1.350
-## 4 Greater short-tailed shrew            15     0.019
-## 5                        Cow             4   600.000
-## 6           Three-toed sloth            14     3.850</code></pre>
+</div>
+<div id="the-sleep-data" class="section level2">
+<h2><span class="header-section-number">6.2</span> The Sleep Data</h2>
+<p><!-- - I want to know if --></p>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb93-1" title="1">mammalian_sleep &lt;-<span class="st"> </span></a>
+<a class="sourceLine" id="cb93-2" title="2"><span class="st">  </span><span class="kw">read.csv</span>(<span class="st">&quot;./data/msleep_ggplot2.csv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb93-3" title="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(name, sleep_total, bodywt) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb93-4" title="4"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">rename</span>(<span class="dt">sleep_total_h =</span> sleep_total, <span class="dt">bodywt_kg =</span> bodywt) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb93-5" title="5"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">sleep_total_h =</span> <span class="kw">round</span>(sleep_total_h) )</a>
+<a class="sourceLine" id="cb93-6" title="6"></a>
+<a class="sourceLine" id="cb93-7" title="7"><span class="kw">head</span>(mammalian_sleep)</a></code></pre></div>
 
 </div>
 </div>
