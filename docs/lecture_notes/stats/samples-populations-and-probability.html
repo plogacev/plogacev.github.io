@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 7 Samples, Populations and Probability | Statistics in R</title>
+  <meta name="description" content="Chapter 7 Samples, Populations and Probability | Statistics in R" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 7 Samples, Populations and Probability | Statistics in R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 7 Samples, Populations and Probability | Statistics in R" />
+  
+  
+  
+
+<meta name="author" content="Pavel Logacev" />
+
+
+<meta name="date" content="2020-12-28" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="examples.html"/>
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.16/datatables.js"></script>
+<link href="libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script>
+<link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
+<script src="libs/rglWebGL-binding-0.103.5/rglWebGL.js"></script>
+<link href="libs/rglwidgetClass-0.103.5/rgl.css" rel="stylesheet" />
+<script src="libs/rglwidgetClass-0.103.5/rglClass.src.js"></script>
+<script src="libs/rglwidgetClass-0.103.5/utils.src.js"></script>
+<script src="libs/rglwidgetClass-0.103.5/subscenes.src.js"></script>
+<script src="libs/rglwidgetClass-0.103.5/shaders.src.js"></script>
+<script src="libs/rglwidgetClass-0.103.5/textures.src.js"></script>
+<script src="libs/rglwidgetClass-0.103.5/projection.src.js"></script>
+<script src="libs/rglwidgetClass-0.103.5/mouse.src.js"></script>
+<script src="libs/rglwidgetClass-0.103.5/init.src.js"></script>
+<script src="libs/rglwidgetClass-0.103.5/pieces.src.js"></script>
+<script src="libs/rglwidgetClass-0.103.5/draw.src.js"></script>
+<script src="libs/rglwidgetClass-0.103.5/controls.src.js"></script>
+<script src="libs/rglwidgetClass-0.103.5/selection.src.js"></script>
+<script src="libs/rglwidgetClass-0.103.5/rglTimer.src.js"></script>
+<script src="libs/CanvasMatrix4-0.103.5/CanvasMatrix.src.js"></script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Initial Remarks</a></li>
+<li class="chapter" data-level="2" data-path="scalesOfMeasurement.html"><a href="scalesOfMeasurement.html"><i class="fa fa-check"></i><b>2</b> Scales of Measurement</a><ul>
+<li class="chapter" data-level="2.1" data-path="scalesOfMeasurement.html"><a href="scalesOfMeasurement.html#nominal-scale"><i class="fa fa-check"></i><b>2.1</b> Nominal scale</a></li>
+<li class="chapter" data-level="2.2" data-path="scalesOfMeasurement.html"><a href="scalesOfMeasurement.html#ordinal-scale"><i class="fa fa-check"></i><b>2.2</b> Ordinal scale</a></li>
+<li class="chapter" data-level="2.3" data-path="scalesOfMeasurement.html"><a href="scalesOfMeasurement.html#interval-scale"><i class="fa fa-check"></i><b>2.3</b> Interval scale</a></li>
+<li class="chapter" data-level="2.4" data-path="scalesOfMeasurement.html"><a href="scalesOfMeasurement.html#ratio-scale"><i class="fa fa-check"></i><b>2.4</b> Ratio scale</a></li>
+<li class="chapter" data-level="2.5" data-path="scalesOfMeasurement.html"><a href="scalesOfMeasurement.html#continuous-versus-discrete-variables"><i class="fa fa-check"></i><b>2.5</b> Continuous versus discrete variables</a></li>
+<li class="chapter" data-level="2.6" data-path="scalesOfMeasurement.html"><a href="scalesOfMeasurement.html#some-complexities"><i class="fa fa-check"></i><b>2.6</b> Some complexities</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="descriptives.html"><a href="descriptives.html"><i class="fa fa-check"></i><b>3</b> Descriptive Statistics</a><ul>
+<li class="chapter" data-level="3.1" data-path="descriptives.html"><a href="descriptives.html#centraltendency"><i class="fa fa-check"></i><b>3.1</b> Measures of central tendency</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="descriptives.html"><a href="descriptives.html#mean"><i class="fa fa-check"></i><b>3.1.1</b> The mean</a></li>
+<li class="chapter" data-level="3.1.2" data-path="descriptives.html"><a href="descriptives.html#calculating-the-mean-in-r"><i class="fa fa-check"></i><b>3.1.2</b> Calculating the mean in R</a></li>
+<li class="chapter" data-level="3.1.3" data-path="descriptives.html"><a href="descriptives.html#median"><i class="fa fa-check"></i><b>3.1.3</b> The median</a></li>
+<li class="chapter" data-level="3.1.4" data-path="descriptives.html"><a href="descriptives.html#mean-or-median-whats-the-difference"><i class="fa fa-check"></i><b>3.1.4</b> Mean or median? What’s the difference?</a></li>
+<li class="chapter" data-level="3.1.5" data-path="descriptives.html"><a href="descriptives.html#trimmedmean"><i class="fa fa-check"></i><b>3.1.5</b> Trimmed mean</a></li>
+<li class="chapter" data-level="3.1.6" data-path="descriptives.html"><a href="descriptives.html#mode"><i class="fa fa-check"></i><b>3.1.6</b> Mode</a></li>
+<li class="chapter" data-level="3.1.7" data-path="descriptives.html"><a href="descriptives.html#summary"><i class="fa fa-check"></i><b>3.1.7</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="descriptives.html"><a href="descriptives.html#var"><i class="fa fa-check"></i><b>3.2</b> Measures of variability</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="descriptives.html"><a href="descriptives.html#range"><i class="fa fa-check"></i><b>3.2.1</b> Range</a></li>
+<li class="chapter" data-level="3.2.2" data-path="descriptives.html"><a href="descriptives.html#quantiles-and-percentile"><i class="fa fa-check"></i><b>3.2.2</b> Quantiles and percentile</a></li>
+<li class="chapter" data-level="3.2.3" data-path="descriptives.html"><a href="descriptives.html#interquartile-range"><i class="fa fa-check"></i><b>3.2.3</b> Interquartile range</a></li>
+<li class="chapter" data-level="3.2.4" data-path="descriptives.html"><a href="descriptives.html#aad"><i class="fa fa-check"></i><b>3.2.4</b> Mean absolute deviation</a></li>
+<li class="chapter" data-level="3.2.5" data-path="descriptives.html"><a href="descriptives.html#variance"><i class="fa fa-check"></i><b>3.2.5</b> Variance</a></li>
+<li class="chapter" data-level="3.2.6" data-path="descriptives.html"><a href="descriptives.html#sd"><i class="fa fa-check"></i><b>3.2.6</b> Standard deviation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="errorless-lms.html"><a href="errorless-lms.html"><i class="fa fa-check"></i><b>4</b> Error-less Linear Models</a><ul>
+<li class="chapter" data-level="4.1" data-path="errorless-lms.html"><a href="errorless-lms.html#single-variable-models"><i class="fa fa-check"></i><b>4.1</b> Single-variable models</a></li>
+<li class="chapter" data-level="4.2" data-path="errorless-lms.html"><a href="errorless-lms.html#multi-variable-models"><i class="fa fa-check"></i><b>4.2</b> Multi-variable models</a></li>
+<li class="chapter" data-level="4.3" data-path="errorless-lms.html"><a href="errorless-lms.html#models-with-categorical-predictors"><i class="fa fa-check"></i><b>4.3</b> Models with categorical predictors</a></li>
+<li class="chapter" data-level="4.4" data-path="errorless-lms.html"><a href="errorless-lms.html#centered-predictors"><i class="fa fa-check"></i><b>4.4</b> Centered predictors</a></li>
+<li class="chapter" data-level="4.5" data-path="errorless-lms.html"><a href="errorless-lms.html#main-effects-and-interactions"><i class="fa fa-check"></i><b>4.5</b> Main effects and interactions</a></li>
+<li class="chapter" data-level="4.6" data-path="errorless-lms.html"><a href="errorless-lms.html#centered-predictors-and-their-effect-on-main-effect-and-interaction-coefficients"><i class="fa fa-check"></i><b>4.6</b> Centered predictors and their effect on main effect and interaction coefficients</a><ul>
+<li class="chapter" data-level="4.6.1" data-path="errorless-lms.html"><a href="errorless-lms.html#treatment-contrasts"><i class="fa fa-check"></i><b>4.6.1</b> Treatment Contrasts</a></li>
+<li class="chapter" data-level="4.6.2" data-path="errorless-lms.html"><a href="errorless-lms.html#centered-contrasts-aka-sum-contrasts"><i class="fa fa-check"></i><b>4.6.2</b> Centered Contrasts (aka Sum Contrasts)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="lms-with-error.html"><a href="lms-with-error.html"><i class="fa fa-check"></i><b>5</b> Linear Models With Error</a><ul>
+<li class="chapter" data-level="5.1" data-path="lms-with-error.html"><a href="lms-with-error.html#a-whole-zoo-of-models"><i class="fa fa-check"></i><b>5.1</b> A Whole Zoo of Models</a></li>
+<li class="chapter" data-level="5.2" data-path="lms-with-error.html"><a href="lms-with-error.html#an-updated-linear-model"><i class="fa fa-check"></i><b>5.2</b> An Updated Linear Model</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="examples.html"><a href="examples.html"><i class="fa fa-check"></i><b>6</b> Examples</a><ul>
+<li class="chapter" data-level="6.1" data-path="examples.html"><a href="examples.html#the-dative-verbs-data"><i class="fa fa-check"></i><b>6.1</b> The Dative Verbs Data</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="examples.html"><a href="examples.html#by-length-of-recipient"><i class="fa fa-check"></i><b>6.1.1</b> By Length of Recipient</a></li>
+<li class="chapter" data-level="6.1.2" data-path="examples.html"><a href="examples.html#by-length-of-theme"><i class="fa fa-check"></i><b>6.1.2</b> By Length of Theme</a></li>
+<li class="chapter" data-level="6.1.3" data-path="examples.html"><a href="examples.html#by-length-of-recipient-and-length-of-theme"><i class="fa fa-check"></i><b>6.1.3</b> By Length of Recipient and Length of Theme</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="samples-populations-and-probability.html"><a href="samples-populations-and-probability.html"><i class="fa fa-check"></i><b>7</b> Samples, Populations and Probability</a><ul>
+<li class="chapter" data-level="7.1" data-path="samples-populations-and-probability.html"><a href="samples-populations-and-probability.html#the-dative-verbs-data-revisited"><i class="fa fa-check"></i><b>7.1</b> The Dative Verbs Data Revisited</a></li>
+<li class="chapter" data-level="7.2" data-path="samples-populations-and-probability.html"><a href="samples-populations-and-probability.html#populations-and-samples"><i class="fa fa-check"></i><b>7.2</b> Populations and Samples</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="samples-populations-and-probability.html"><a href="samples-populations-and-probability.html#examples-1"><i class="fa fa-check"></i><b>7.2.1</b> Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="samples-populations-and-probability.html"><a href="samples-populations-and-probability.html#the-role-of-statistical-models"><i class="fa fa-check"></i><b>7.3</b> The Role of Statistical Models</a></li>
+<li class="chapter" data-level="7.4" data-path="samples-populations-and-probability.html"><a href="samples-populations-and-probability.html#probability"><i class="fa fa-check"></i><b>7.4</b> Probability</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="samples-populations-and-probability.html"><a href="samples-populations-and-probability.html#examples-of-probabilistic-statments"><i class="fa fa-check"></i><b>7.4.1</b> Examples of Probabilistic Statments</a></li>
+<li class="chapter" data-level="7.4.2" data-path="samples-populations-and-probability.html"><a href="samples-populations-and-probability.html#the-notion-of-probability"><i class="fa fa-check"></i><b>7.4.2</b> The Notion of Probability</a></li>
+<li class="chapter" data-level="7.4.3" data-path="samples-populations-and-probability.html"><a href="samples-populations-and-probability.html#the-laws-of-probability"><i class="fa fa-check"></i><b>7.4.3</b> The Laws of Probability</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Statistics in R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="samples-populations-and-probability" class="section level1">
+<h1><span class="header-section-number">Chapter 7</span> Samples, Populations and Probability</h1>
+<div id="the-dative-verbs-data-revisited" class="section level2">
+<h2><span class="header-section-number">7.1</span> The Dative Verbs Data Revisited</h2>
+<ul>
+<li><p>Remember our friend below?
+<span class="math display">\[ \underbrace{y_i}_{\text{Observed value}} =
+\overbrace{\underbrace{a}_{\text{Intercept}}}^{\text{additive term}} + 
+\overbrace{\underbrace{b_1}_{\text{Slope}} * \underbrace{{x_1}_i}_{Predictor}}^{\text{additive term}} + 
+\overbrace{\underbrace{b_2}_{\text{Slope}} * \underbrace{{x_2}_i}_{Predictor}}^{\text{additive term}} +  
+\ldots +
+\underbrace{\epsilon_i}_{Error}\]</span></p></li>
+<li>In the last few weeks we talked about linear models and how we can use ther coefficients (intercept and slopes) to characterize our findings in a particular <strong>sample</strong>.</li>
+<li>We also discussed the presence of errors.
+<ol style="list-style-type: decimal">
+<li>When a linear model can describe the data perfectly, such as in the dative data set, or the taxi data when all predictors are known, we can can find coefficients that reduce the error term to 0.<br />
+</li>
+</ol>
+<ul>
+<li>We can interpret the result as an <strong>exact characterization</strong> of the dependent variable for any combination of predictor values.</li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li>When a linear model <strong>cannot</strong> describe the data perfectly because some predictors aren’t known, we can find coefficients that <strong>minimize the error term (but don’t make it zero)</strong>.</li>
+</ol>
+<ul>
+<li>We can interpret the result as an <strong>characterization of the average</strong> of the dependent variable for any combination of predictor values.</li>
+</ul></li>
+<li><p>This is all nice. But what do all those fancy numbers like averages and coefficients mean beyond a characterization of the sample?</p></li>
+<li><p>Let’s compare the difference between animate and inanimate in the full data set to the effect in the 10, 50, 100, 500 first rows corresponding to each class (animate and inanimate; i.e., 20, 100, 200, 1000 rows in total).</p></li>
+</ul>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb93-1" title="1"><span class="kw">library</span>(languageR)</a>
+<a class="sourceLine" id="cb93-2" title="2"></a>
+<a class="sourceLine" id="cb93-3" title="3"><span class="co"># average over all instances</span></a>
+<a class="sourceLine" id="cb93-4" title="4">df1 &lt;-<span class="st"> </span>dative <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(AnimacyOfRec) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarize</span>(<span class="dt">perc_def =</span> <span class="kw">mean</span>(RealizationOfRecipient<span class="op">==</span><span class="st">&quot;NP&quot;</span>))</a>
+<a class="sourceLine" id="cb93-5" title="5">p1 &lt;-<span class="st"> </span>df1 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(AnimacyOfRec, perc_def)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>)</a>
+<a class="sourceLine" id="cb93-6" title="6"></a>
+<a class="sourceLine" id="cb93-7" title="7"><span class="co"># average over the first N instances</span></a>
+<a class="sourceLine" id="cb93-8" title="8">df2 &lt;-<span class="st"> </span>dative <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(AnimacyOfRec) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarize</span>(<span class="dt">perc_def =</span> <span class="kw">mean</span>(RealizationOfRecipient[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]<span class="op">==</span><span class="st">&quot;NP&quot;</span>))</a>
+<a class="sourceLine" id="cb93-9" title="9">p2 &lt;-<span class="st"> </span>df2 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(AnimacyOfRec, perc_def)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>)</a>
+<a class="sourceLine" id="cb93-10" title="10"></a>
+<a class="sourceLine" id="cb93-11" title="11">df3 &lt;-<span class="st"> </span>dative <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(AnimacyOfRec) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarize</span>(<span class="dt">perc_def =</span> <span class="kw">mean</span>(RealizationOfRecipient[<span class="dv">1</span><span class="op">:</span><span class="dv">50</span>]<span class="op">==</span><span class="st">&quot;NP&quot;</span>))</a>
+<a class="sourceLine" id="cb93-12" title="12">p3 &lt;-<span class="st"> </span>df3 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(AnimacyOfRec, perc_def)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>)</a>
+<a class="sourceLine" id="cb93-13" title="13"></a>
+<a class="sourceLine" id="cb93-14" title="14">df4 &lt;-<span class="st"> </span>dative <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(AnimacyOfRec) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarize</span>(<span class="dt">perc_def =</span> <span class="kw">mean</span>(RealizationOfRecipient[<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>]<span class="op">==</span><span class="st">&quot;NP&quot;</span>))</a>
+<a class="sourceLine" id="cb93-15" title="15">p4 &lt;-<span class="st"> </span>df4 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(AnimacyOfRec, perc_def)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>)</a>
+<a class="sourceLine" id="cb93-16" title="16"></a>
+<a class="sourceLine" id="cb93-17" title="17"></a>
+<a class="sourceLine" id="cb93-18" title="18"><span class="kw">ggarrange</span>(<span class="ot">NULL</span>, p1<span class="op">+</span><span class="kw">ggtitle</span>(<span class="st">&quot;all observations&quot;</span>), <span class="ot">NULL</span>, p2<span class="op">+</span><span class="kw">ggtitle</span>(<span class="st">&quot;N=10/group&quot;</span>), p3<span class="op">+</span><span class="kw">ggtitle</span>(<span class="st">&quot;N=50/group&quot;</span>), p4<span class="op">+</span><span class="kw">ggtitle</span>(<span class="st">&quot;N=100/group&quot;</span>), <span class="dt">ncol =</span> <span class="dv">3</span>, <span class="dt">nrow =</span><span class="dv">2</span>)</a></code></pre></div>
+<p><img src="LectureNotes_files/figure-html/unnamed-chunk-109-1.png" width="672" /></p>
+<ul>
+<li><p>The differences between 0.28 (all), 0 (N=10), 0.32 (N=50), 0.53 (N=100). Which one is <em>‘right’</em>?</p></li>
+<li><p>The key to answering this question is in understanding what we mean by <em>‘right’</em>.</p></li>
+<li><p>The brief answer is that all of them are probably wrong, but the ones with bigger <span class="math inline">\(N\)</span>s are <strong>more likely</strong> to be <strong>closer</strong> to the ‘truth’.</p></li>
+</ul>
+</div>
+<div id="populations-and-samples" class="section level2">
+<h2><span class="header-section-number">7.2</span> Populations and Samples</h2>
+<ul>
+<li>In most research common in (psycho-)linguistics, we aren’t really interested in the particular sample as such.</li>
+<li><p>We are interested in using it to find out something more general.</p></li>
+<li><strong>Population</strong>: The group to which we wish to generalize.
+<ul>
+<li>We will refer to chracterizations of the <strong>population</strong> as <strong>parameters</strong> (<span class="math inline">\(\theta\)</span>, <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\beta\)</span>, …).</li>
+<li>The research question is typically about the population.</li>
+</ul></li>
+<li><strong>Sample</strong>: A subset of the population.
+<ul>
+<li>We will refer to chracterizations of a <strong>sample</strong> as <strong>statistics</strong> (<span class="math inline">\(\widehat{\theta}\)</span>, <span class="math inline">\(\widehat{\alpha}\)</span>, <span class="math inline">\(\widehat{\beta}\)</span>, …).</li>
+<li>Our data is usually a sample of that population.</li>
+<li>The expression popularized by Mark Twain <em>“There are three kinds of lies: lies, damned lies, and statistics.”</em> refers to exactly these kinds of statistics, not the scientific discipline of statistics.</li>
+</ul></li>
+<li><strong>Statistical Inference</strong>
+<ul>
+<li>Statistical inference is about making inferences about <strong>parameters</strong>, based on <strong>statistics</strong>.</li>
+</ul></li>
+<li>In our dative data set, our main interest is not in whether the animacy of the recipient is associated with …
+<ul>
+<li>… a change in the <strong>percentage</strong> of the realization of default word order <strong>in the sample</strong> (<span class="math inline">\(\widehat{P_{def,+anim}}\)</span>, <span class="math inline">\(\widehat{P_{def,-anim}}\)</span>) …</li>
+<li>… a change in the <strong>probability</strong> of the realization of default word order, <strong>in general</strong> (<span class="math inline">\(P_{def,+anim}\)</span>, <span class="math inline">\(P_{def,-anim}\)</span>)</li>
+<li>It is key to understand that they are not the same, but that they are related.</li>
+</ul></li>
+</ul>
+<div id="examples-1" class="section level3">
+<h3><span class="header-section-number">7.2.1</span> Examples</h3>
+<ul>
+<li>Let’s consider the following research questions, how we would go about solving them, and what would constitute the statistics and the population parameters in these cases.
+<ol style="list-style-type: decimal">
+<li>Does speed-reading work? (Note: It doesn’t. Not at all.)</li>
+<li>Is the buttered toast phenomenon really true?</li>
+<li>Does topicality of the object increase the likelihood of OVS word order in German?</li>
+<li>Do taller people have deeper voices?</li>
+</ol></li>
+</ul>
+</div>
+</div>
+<div id="the-role-of-statistical-models" class="section level2">
+<h2><span class="header-section-number">7.3</span> The Role of Statistical Models</h2>
+<ul>
+<li>So, we’ve seen that we’re actually interested in population parameters. Great. How do we find out what they are?</li>
+<li>In order to do that, we’ll first need to understand the relationship between statistics and population parameters, and this is exactly <strong>statistical models</strong> are for.</li>
+<li>But in order to understand statistical models, we will first need to talk about probability.</li>
+</ul>
+</div>
+<div id="probability" class="section level2">
+<h2><span class="header-section-number">7.4</span> Probability</h2>
+<div id="examples-of-probabilistic-statments" class="section level3">
+<h3><span class="header-section-number">7.4.1</span> Examples of Probabilistic Statments</h3>
+<ol style="list-style-type: decimal">
+<li>A fair coin will come up heads 50% of the time.</li>
+<li>The probability of rain tomorrow is 30%.</li>
+<li>It is very unlikely that I’ll fail that exam.</li>
+<li>The probability of throwing a 1 with a (fair) six-sided die is 1/6.</li>
+</ol>
+</div>
+<div id="the-notion-of-probability" class="section level3">
+<h3><span class="header-section-number">7.4.2</span> The Notion of Probability</h3>
+<ul>
+<li>It is difficult to exactly define probability without using synonyms, although most of us have some sort of intuition of what it is.</li>
+<li>It is a number that follows certain laws, which could be argued to encode common sense applied to numbers when the system producing them is not predictable, or doesn’t seem to be predictable with our current state of knowledge.</li>
+</ul>
+<div id="classical-probability" class="section level4">
+<h4><span class="header-section-number">7.4.2.1</span> 1. Classical Probability</h4>
+<ul>
+<li><p><strong>Equal probabilities assigned to <em>theoretically</em> equally likely events (e.g., heads or tails).</strong></p></li>
+<li>Probability of more complex events defined by ‘the number of ways’ that lead to their realization.
+<ul>
+<li>Example: What is the probability of a fair coin, tossed twice, will come up heads exactly once?
+<ul>
+<li>There are two equi-probable ways in which this can happen the total number of events that can occur is 4, and so the probability is 0.5.</li>
+</ul></li>
+</ul></li>
+</ul>
+<p><img src="LectureNotes_files/figure-html/unnamed-chunk-110-1.png" width="672" /></p>
+<ul>
+<li>Works well for simple examples (marbles, dice, cards, etc), where the set of all possible events can be decoposed into equally likely events. For example:
+<ol style="list-style-type: decimal">
+<li>‘probability of a coin coming up heads, then tails’</li>
+<li>‘probability of throwing a 1,2, and a 3 in succession with a six-sided die’</li>
+</ol></li>
+<li>Much more difficult to apply to more complex ones. For example:
+<ol style="list-style-type: decimal">
+<li>‘probability of rain on two successive days’ (what could the equally likely events be, and how do they change from day to day?)</li>
+</ol></li>
+</ul>
+</div>
+<div id="frequentist-probability" class="section level4">
+<h4><span class="header-section-number">7.4.2.2</span> 2. Frequentist Probability</h4>
+<ul>
+<li><p><strong>Probabilies are (relative) frequencies of events in hypothetical, infinite sequences of <em>experiments</em> (situations in which events may or may not occur).</strong></p></li>
+<li><p>P(A), the probability of an event A, is the proportion of times that A occurs in such a sequence. Importantly, it’s going to be the same proportion every time.</p></li>
+<li><p>In other words, an event’s <em>has</em> a probability of occuring impacts its long-term frequency.
+<!--
+Probabilities of events which depend on each other, are also dependent.
+--></p></li>
+<li><p>Example: <em>‘probability of a biased coin coming up heads (<span class="math inline">\(p_H=0.6\)</span>)’</em>, <em>‘probability of rain on two successive days’</em></p></li>
+<li><p>How do we deal with <em>‘the probability of rain tomorrow’</em>, or <em>‘probability that Donald Trump will be re-elected’</em>, or <em>‘the probability that this mushroom is poisonous’</em>?</p></li>
+</ul>
+</div>
+<div id="bayesian-probability" class="section level4">
+<h4><span class="header-section-number">7.4.2.3</span> 3. Bayesian Probability</h4>
+<ul>
+<li><p>Both of the previous conceptualizations of probability are <em>objective</em>: they are about <em>‘a true state of the world’</em>.</p></li>
+<li><p>The last examples do not really have a probability under those interpretations. (Unless you subscribe to a multiverse-interpretation.) They are either true or false. Yet these expressions somehow make sense to us.</p></li>
+<li><p><strong>We can also conceptualize probability as a degree of belief.</strong> Sounds silly? - We use it in that way all the time.</p></li>
+<li><p>For example, in 2004-2005, a group of experts estimated the probability of the deployment of a nuclear weapon in the next 10 years to be <span class="math inline">\(50\)</span>%. What did they mean?</p></li>
+<li><p>We may differ in the probabilities that we assign to an event, based on our state of knowledge about the problem.</p></li>
+</ul>
+</div>
+</div>
+<div id="the-laws-of-probability" class="section level3">
+<h3><span class="header-section-number">7.4.3</span> The Laws of Probability</h3>
+<ul>
+<li><p>Whatever interpretation we assign probabilities, they must follow certain laws in order to be useful. It could be argued that the laws essentially to encode common sense applied to numbers.</p>
+<ol style="list-style-type: decimal">
+<li><p>For any event A, the probability of A, written as P(A), is a number between 0 and 1.</p></li>
+<li><p>The probabilities of <em>all possible events</em> must sum to to 1. (<strong>Law of total probability</strong>)</p></li>
+<li><p>The probabilities of an event occuring and an event not occuring must sum 1. (<strong>Law of complements</strong>)</p></li>
+</ol></li>
+</ul>
+<div id="mutually-exclusive-events" class="section level4">
+<h4><span class="header-section-number">7.4.3.1</span> Mutually exclusive events</h4>
+<ul>
+<li><p><strong>Mutually exclusive events</strong>: Events that cannot happen at the same time. For example, a 6-sided die <strong>coming up with an even number</strong> (<span class="math inline">\(A_1\)</span>) and <strong>coming up ‘3’</strong> (<span class="math inline">\(A_2\)</span>). (<em>Please note: events are not complementary, but mutually exclusive.</em>)</p></li>
+<li><p>For two events <span class="math inline">\(A_1, A_2\)</span> which are mutually exclusive, the probability that one of the events occurs (<span class="math inline">\(P(A_1~or~A_2)\)</span>) is the sum of their probabilities <span class="math inline">\(P(A_1) + P(A_2)\)</span>.</p></li>
+<li><p>For two events <span class="math inline">\(A_1, A_2\)</span> which are <em>not</em> mutually exclusive, the probability that one of the events occurs (<span class="math inline">\(P(A_1~or~A_2)\)</span>) is <span class="math inline">\(P(A_1) + P(A_2) - P(A_1~and~A_2)\)</span>. (<strong>Additive law of probability</strong>)</p></li>
+</ul>
+</div>
+<div id="independent-events" class="section level4">
+<h4><span class="header-section-number">7.4.3.2</span> Independent events</h4>
+<ul>
+<li><p><strong>Independent events</strong>: Events for which the probability of the occurrence of one of them (say, <span class="math inline">\(A_1\)</span>) does <em>not depend</em> on whether or not the other one (say, <span class="math inline">\(A_2\)</span>) has occurred or will occur.</p></li>
+<li><p>For two independent events <span class="math inline">\(A_1, A_2\)</span>, the probability of both events occurring (<strong>the joint probability of <span class="math inline">\(A_1\)</span> and <span class="math inline">\(A_2\)</span></strong> <span class="math inline">\(P(A_1~and~A_2)\)</span> or <span class="math inline">\(P(A_1, A_2)\)</span>) is the product of their probabilities: <span class="math inline">\(P(A_1) \cdot P(A_2)\)</span>.</p></li>
+</ul>
+</div>
+<div id="conditional-probability" class="section level4">
+<h4><span class="header-section-number">7.4.3.3</span> Conditional probability</h4>
+<ul>
+<li><p><strong>Conditional probability</strong>: The conditional probability of event <span class="math inline">\(A_1\)</span> given event <span class="math inline">\(A_2\)</span> is the probability that event <span class="math inline">\(A_1\)</span> will occur (or has occured), given that <span class="math inline">\(A_2\)</span> has occured (or will occur).</p></li>
+<li><p>For two events, the conditional probability <span class="math inline">\(P(A_1|A_2)\)</span> is <span class="math inline">\(P(A_1,A_2) / P(A_2)\)</span>.</p></li>
+<li><p>For two independent events, the conditional probability <span class="math inline">\(P(A_1|A_2)\)</span> is just <span class="math inline">\(P(A_1)\)</span>.</p></li>
+<li><p>For mutually exclusive events, the conditional probability <span class="math inline">\(P(A_1|A_2)\)</span> is <span class="math inline">\(0\)</span>.</p></li>
+</ul>
+<!--
+to-do:
+- Spend one or two slides discussing the difference between P(A|B) and P(B|A).
+  Expand on this example: A medical test with P("yes, has disease"|"has disease") = 1 is not 
+  necessarily good test, because it could just always say "yes, has disease", even if the
+  patient does not have a disease, i.e., it could have the property of 
+  P("yes, has disease"|has disease) = P("yes, has disease"|doesn't have disease) = 1.
+  Instead, what we'd need is a test with a high P("has disease"|"yes, has disease").
+- Provide memorable examples for the other kinds of events, like mutually exclusive, 
+  and independent. 
+-->
+<!--
+## The Laws of Probability
+
+- Examples of other non-independent events: *'the probability of getting an A in a class, given that the first assignment was an F'*, *'the probability that it will rain in X tomorrow, given that it has not rained there in 5 years'*. ($A_2$ doesn't actually need to be true, we're reasoning with counterfactuals.)
+-->
+<!--
+- **Odds**: Probabilites can also be represented as the odds of something happening, where odds of of 4:3 mean that the event has a probability of $4/(4+3)$.
+-->
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="examples.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["LectureNotes.pdf", "LectureNotes.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

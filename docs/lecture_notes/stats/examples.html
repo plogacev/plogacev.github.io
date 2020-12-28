@@ -24,7 +24,7 @@
 <meta name="author" content="Pavel Logacev" />
 
 
-<meta name="date" content="2020-12-24" />
+<meta name="date" content="2020-12-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="lms-with-error.html"/>
-
+<link rel="next" href="samples-populations-and-probability.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -206,7 +206,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.1.2" data-path="examples.html"><a href="examples.html#by-length-of-theme"><i class="fa fa-check"></i><b>6.1.2</b> By Length of Theme</a></li>
 <li class="chapter" data-level="6.1.3" data-path="examples.html"><a href="examples.html#by-length-of-recipient-and-length-of-theme"><i class="fa fa-check"></i><b>6.1.3</b> By Length of Recipient and Length of Theme</a></li>
 </ul></li>
-<li class="chapter" data-level="6.2" data-path="examples.html"><a href="examples.html#the-sleep-data"><i class="fa fa-check"></i><b>6.2</b> The Sleep Data</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="samples-populations-and-probability.html"><a href="samples-populations-and-probability.html"><i class="fa fa-check"></i><b>7</b> Samples, Populations and Probability</a><ul>
+<li class="chapter" data-level="7.1" data-path="samples-populations-and-probability.html"><a href="samples-populations-and-probability.html#the-dative-verbs-data-revisited"><i class="fa fa-check"></i><b>7.1</b> The Dative Verbs Data Revisited</a></li>
+<li class="chapter" data-level="7.2" data-path="samples-populations-and-probability.html"><a href="samples-populations-and-probability.html#populations-and-samples"><i class="fa fa-check"></i><b>7.2</b> Populations and Samples</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="samples-populations-and-probability.html"><a href="samples-populations-and-probability.html#examples-1"><i class="fa fa-check"></i><b>7.2.1</b> Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="samples-populations-and-probability.html"><a href="samples-populations-and-probability.html#the-role-of-statistical-models"><i class="fa fa-check"></i><b>7.3</b> The Role of Statistical Models</a></li>
+<li class="chapter" data-level="7.4" data-path="samples-populations-and-probability.html"><a href="samples-populations-and-probability.html#probability"><i class="fa fa-check"></i><b>7.4</b> Probability</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="samples-populations-and-probability.html"><a href="samples-populations-and-probability.html#examples-of-probabilistic-statments"><i class="fa fa-check"></i><b>7.4.1</b> Examples of Probabilistic Statments</a></li>
+<li class="chapter" data-level="7.4.2" data-path="samples-populations-and-probability.html"><a href="samples-populations-and-probability.html#the-notion-of-probability"><i class="fa fa-check"></i><b>7.4.2</b> The Notion of Probability</a></li>
+<li class="chapter" data-level="7.4.3" data-path="samples-populations-and-probability.html"><a href="samples-populations-and-probability.html#the-laws-of-probability"><i class="fa fa-check"></i><b>7.4.3</b> The Laws of Probability</a></li>
+</ul></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -420,41 +431,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><strong>Interaction</strong>, coefficient for <code>ct_LT:ct_LR</code>: Change in the effect of <code>ct_LR</code> due to one unit of change in <code>ct_LT</code>. (<em>or:</em> Change in the effect of <code>ct_LT</code> due to one unit of change in <code>ct_LR</code>.)</li>
 </ul></li>
 </ul>
-</div>
-</div>
-<div id="the-sleep-data" class="section level2">
-<h2><span class="header-section-number">6.2</span> The Sleep Data</h2>
-<p><!-- - I want to know if --></p>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb93-1" title="1">mammalian_sleep &lt;-<span class="st"> </span></a>
-<a class="sourceLine" id="cb93-2" title="2"><span class="st">  </span><span class="kw">read.csv</span>(<span class="st">&quot;./data/msleep_ggplot2.csv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb93-3" title="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(name, sleep_total, bodywt) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb93-4" title="4"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">rename</span>(<span class="dt">sleep_total_h =</span> sleep_total, <span class="dt">bodywt_kg =</span> bodywt) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb93-5" title="5"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">sleep_total_h =</span> <span class="kw">round</span>(sleep_total_h) )</a>
-<a class="sourceLine" id="cb93-6" title="6"></a>
-<a class="sourceLine" id="cb93-7" title="7"><span class="kw">head</span>(mammalian_sleep)</a></code></pre></div>
+<!--
+## The Sleep Data
+  
+- I want to know if bigger animals sleep more.
+  
+
+```r
+mammalian_sleep <- 
+  read.csv("./data/msleep_ggplot2.csv") %>% 
+  dplyr::select(name, sleep_total, bodywt) %>%
+  dplyr::rename(sleep_total_h = sleep_total, bodywt_kg = bodywt) %>%
+  dplyr::mutate(sleep_total_h = round(sleep_total_h) )
+
+head(mammalian_sleep)
+
+ggplot(mammalian_sleep, aes(bodywt_kg, sleep_total_h)) + geom_point()
+```
+-->
 
 </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
+</div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="lms-with-error.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="lms-with-error.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="samples-populations-and-probability.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
