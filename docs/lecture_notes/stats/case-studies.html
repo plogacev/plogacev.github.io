@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 10 Case Studies | Statistics in R</title>
+  <meta name="description" content="Chapter 10 Case Studies | Statistics in R" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 10 Case Studies | Statistics in R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 10 Case Studies | Statistics in R" />
+  
+  
+  
+
+<meta name="author" content="Pavel Logacev" />
+
+
+<meta name="date" content="2021-01-25" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="statistical-models-ii.html"/>
+
+<script src="libs/jquery-3.5.1/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.17/datatables.js"></script>
+<link href="libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script>
+<link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script>
+<script src="libs/rglWebGL-binding-0.103.5/rglWebGL.js"></script>
+<link href="libs/rglwidgetClass-0.103.5/rgl.css" rel="stylesheet" />
+<script src="libs/rglwidgetClass-0.103.5/rglClass.src.js"></script>
+<script src="libs/rglwidgetClass-0.103.5/utils.src.js"></script>
+<script src="libs/rglwidgetClass-0.103.5/subscenes.src.js"></script>
+<script src="libs/rglwidgetClass-0.103.5/shaders.src.js"></script>
+<script src="libs/rglwidgetClass-0.103.5/textures.src.js"></script>
+<script src="libs/rglwidgetClass-0.103.5/projection.src.js"></script>
+<script src="libs/rglwidgetClass-0.103.5/mouse.src.js"></script>
+<script src="libs/rglwidgetClass-0.103.5/init.src.js"></script>
+<script src="libs/rglwidgetClass-0.103.5/pieces.src.js"></script>
+<script src="libs/rglwidgetClass-0.103.5/draw.src.js"></script>
+<script src="libs/rglwidgetClass-0.103.5/controls.src.js"></script>
+<script src="libs/rglwidgetClass-0.103.5/selection.src.js"></script>
+<script src="libs/rglwidgetClass-0.103.5/rglTimer.src.js"></script>
+<script src="libs/CanvasMatrix4-0.103.5/CanvasMatrix.src.js"></script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Initial Remarks</a></li>
+<li class="chapter" data-level="2" data-path="scalesOfMeasurement.html"><a href="scalesOfMeasurement.html"><i class="fa fa-check"></i><b>2</b> Scales of Measurement</a><ul>
+<li class="chapter" data-level="2.1" data-path="scalesOfMeasurement.html"><a href="scalesOfMeasurement.html#nominal-scale"><i class="fa fa-check"></i><b>2.1</b> Nominal scale</a></li>
+<li class="chapter" data-level="2.2" data-path="scalesOfMeasurement.html"><a href="scalesOfMeasurement.html#ordinal-scale"><i class="fa fa-check"></i><b>2.2</b> Ordinal scale</a></li>
+<li class="chapter" data-level="2.3" data-path="scalesOfMeasurement.html"><a href="scalesOfMeasurement.html#interval-scale"><i class="fa fa-check"></i><b>2.3</b> Interval scale</a></li>
+<li class="chapter" data-level="2.4" data-path="scalesOfMeasurement.html"><a href="scalesOfMeasurement.html#ratio-scale"><i class="fa fa-check"></i><b>2.4</b> Ratio scale</a></li>
+<li class="chapter" data-level="2.5" data-path="scalesOfMeasurement.html"><a href="scalesOfMeasurement.html#continuous-versus-discrete-variables"><i class="fa fa-check"></i><b>2.5</b> Continuous versus discrete variables</a></li>
+<li class="chapter" data-level="2.6" data-path="scalesOfMeasurement.html"><a href="scalesOfMeasurement.html#some-complexities"><i class="fa fa-check"></i><b>2.6</b> Some complexities</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="descriptives.html"><a href="descriptives.html"><i class="fa fa-check"></i><b>3</b> Descriptive Statistics</a><ul>
+<li class="chapter" data-level="3.1" data-path="descriptives.html"><a href="descriptives.html#centraltendency"><i class="fa fa-check"></i><b>3.1</b> Measures of central tendency</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="descriptives.html"><a href="descriptives.html#mean"><i class="fa fa-check"></i><b>3.1.1</b> The mean</a></li>
+<li class="chapter" data-level="3.1.2" data-path="descriptives.html"><a href="descriptives.html#calculating-the-mean-in-r"><i class="fa fa-check"></i><b>3.1.2</b> Calculating the mean in R</a></li>
+<li class="chapter" data-level="3.1.3" data-path="descriptives.html"><a href="descriptives.html#median"><i class="fa fa-check"></i><b>3.1.3</b> The median</a></li>
+<li class="chapter" data-level="3.1.4" data-path="descriptives.html"><a href="descriptives.html#mean-or-median-whats-the-difference"><i class="fa fa-check"></i><b>3.1.4</b> Mean or median? What’s the difference?</a></li>
+<li class="chapter" data-level="3.1.5" data-path="descriptives.html"><a href="descriptives.html#trimmedmean"><i class="fa fa-check"></i><b>3.1.5</b> Trimmed mean</a></li>
+<li class="chapter" data-level="3.1.6" data-path="descriptives.html"><a href="descriptives.html#mode"><i class="fa fa-check"></i><b>3.1.6</b> Mode</a></li>
+<li class="chapter" data-level="3.1.7" data-path="descriptives.html"><a href="descriptives.html#summary"><i class="fa fa-check"></i><b>3.1.7</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="descriptives.html"><a href="descriptives.html#var"><i class="fa fa-check"></i><b>3.2</b> Measures of variability</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="descriptives.html"><a href="descriptives.html#range"><i class="fa fa-check"></i><b>3.2.1</b> Range</a></li>
+<li class="chapter" data-level="3.2.2" data-path="descriptives.html"><a href="descriptives.html#quantiles-and-percentile"><i class="fa fa-check"></i><b>3.2.2</b> Quantiles and percentile</a></li>
+<li class="chapter" data-level="3.2.3" data-path="descriptives.html"><a href="descriptives.html#interquartile-range"><i class="fa fa-check"></i><b>3.2.3</b> Interquartile range</a></li>
+<li class="chapter" data-level="3.2.4" data-path="descriptives.html"><a href="descriptives.html#aad"><i class="fa fa-check"></i><b>3.2.4</b> Mean absolute deviation</a></li>
+<li class="chapter" data-level="3.2.5" data-path="descriptives.html"><a href="descriptives.html#variance"><i class="fa fa-check"></i><b>3.2.5</b> Variance</a></li>
+<li class="chapter" data-level="3.2.6" data-path="descriptives.html"><a href="descriptives.html#sd"><i class="fa fa-check"></i><b>3.2.6</b> Standard deviation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="errorless-lms.html"><a href="errorless-lms.html"><i class="fa fa-check"></i><b>4</b> Error-less Linear Models</a><ul>
+<li class="chapter" data-level="4.1" data-path="errorless-lms.html"><a href="errorless-lms.html#single-variable-models"><i class="fa fa-check"></i><b>4.1</b> Single-variable models</a></li>
+<li class="chapter" data-level="4.2" data-path="errorless-lms.html"><a href="errorless-lms.html#multi-variable-models"><i class="fa fa-check"></i><b>4.2</b> Multi-variable models</a></li>
+<li class="chapter" data-level="4.3" data-path="errorless-lms.html"><a href="errorless-lms.html#models-with-categorical-predictors"><i class="fa fa-check"></i><b>4.3</b> Models with categorical predictors</a></li>
+<li class="chapter" data-level="4.4" data-path="errorless-lms.html"><a href="errorless-lms.html#centered-predictors"><i class="fa fa-check"></i><b>4.4</b> Centered predictors</a></li>
+<li class="chapter" data-level="4.5" data-path="errorless-lms.html"><a href="errorless-lms.html#main-effects-and-interactions"><i class="fa fa-check"></i><b>4.5</b> Main effects and interactions</a></li>
+<li class="chapter" data-level="4.6" data-path="errorless-lms.html"><a href="errorless-lms.html#centered-predictors-and-their-effect-on-main-effect-and-interaction-coefficients"><i class="fa fa-check"></i><b>4.6</b> Centered predictors and their effect on main effect and interaction coefficients</a><ul>
+<li class="chapter" data-level="4.6.1" data-path="errorless-lms.html"><a href="errorless-lms.html#treatment-contrasts"><i class="fa fa-check"></i><b>4.6.1</b> Treatment Contrasts</a></li>
+<li class="chapter" data-level="4.6.2" data-path="errorless-lms.html"><a href="errorless-lms.html#centered-contrasts-aka-sum-contrasts"><i class="fa fa-check"></i><b>4.6.2</b> Centered Contrasts (aka Sum Contrasts)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="lms-with-error.html"><a href="lms-with-error.html"><i class="fa fa-check"></i><b>5</b> Linear Models With Error</a><ul>
+<li class="chapter" data-level="5.1" data-path="lms-with-error.html"><a href="lms-with-error.html#a-whole-zoo-of-models"><i class="fa fa-check"></i><b>5.1</b> A Whole Zoo of Models</a></li>
+<li class="chapter" data-level="5.2" data-path="lms-with-error.html"><a href="lms-with-error.html#an-updated-linear-model"><i class="fa fa-check"></i><b>5.2</b> An Updated Linear Model</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="examples.html"><a href="examples.html"><i class="fa fa-check"></i><b>6</b> Examples</a><ul>
+<li class="chapter" data-level="6.1" data-path="examples.html"><a href="examples.html#the-dative-verbs-data"><i class="fa fa-check"></i><b>6.1</b> The Dative Verbs Data</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="examples.html"><a href="examples.html#by-length-of-recipient"><i class="fa fa-check"></i><b>6.1.1</b> By Length of Recipient</a></li>
+<li class="chapter" data-level="6.1.2" data-path="examples.html"><a href="examples.html#by-length-of-theme"><i class="fa fa-check"></i><b>6.1.2</b> By Length of Theme</a></li>
+<li class="chapter" data-level="6.1.3" data-path="examples.html"><a href="examples.html#by-length-of-recipient-and-length-of-theme"><i class="fa fa-check"></i><b>6.1.3</b> By Length of Recipient and Length of Theme</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="samples-populations-and-probability.html"><a href="samples-populations-and-probability.html"><i class="fa fa-check"></i><b>7</b> Samples, Populations and Probability</a><ul>
+<li class="chapter" data-level="7.1" data-path="samples-populations-and-probability.html"><a href="samples-populations-and-probability.html#the-dative-verbs-data-revisited"><i class="fa fa-check"></i><b>7.1</b> The Dative Verbs Data Revisited</a></li>
+<li class="chapter" data-level="7.2" data-path="samples-populations-and-probability.html"><a href="samples-populations-and-probability.html#populations-and-samples"><i class="fa fa-check"></i><b>7.2</b> Populations and Samples</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="samples-populations-and-probability.html"><a href="samples-populations-and-probability.html#examples-1"><i class="fa fa-check"></i><b>7.2.1</b> Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="samples-populations-and-probability.html"><a href="samples-populations-and-probability.html#the-role-of-statistical-models"><i class="fa fa-check"></i><b>7.3</b> The Role of Statistical Models</a></li>
+<li class="chapter" data-level="7.4" data-path="samples-populations-and-probability.html"><a href="samples-populations-and-probability.html#probability"><i class="fa fa-check"></i><b>7.4</b> Probability</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="samples-populations-and-probability.html"><a href="samples-populations-and-probability.html#examples-of-probabilistic-statments"><i class="fa fa-check"></i><b>7.4.1</b> Examples of Probabilistic Statments</a></li>
+<li class="chapter" data-level="7.4.2" data-path="samples-populations-and-probability.html"><a href="samples-populations-and-probability.html#the-notion-of-probability"><i class="fa fa-check"></i><b>7.4.2</b> The Notion of Probability</a></li>
+<li class="chapter" data-level="7.4.3" data-path="samples-populations-and-probability.html"><a href="samples-populations-and-probability.html#the-laws-of-probability"><i class="fa fa-check"></i><b>7.4.3</b> The Laws of Probability</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="statistical-models.html"><a href="statistical-models.html"><i class="fa fa-check"></i><b>8</b> Statistical Models</a><ul>
+<li class="chapter" data-level="8.0.1" data-path="statistical-models.html"><a href="statistical-models.html#a-first-statistical-model"><i class="fa fa-check"></i><b>8.0.1</b> A First Statistical Model</a></li>
+<li class="chapter" data-level="8.1" data-path="statistical-models.html"><a href="statistical-models.html#log-likelihood-and-numerical-underflow"><i class="fa fa-check"></i><b>8.1</b> Log-likelihood and numerical underflow</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="statistical-models.html"><a href="statistical-models.html#logarithm"><i class="fa fa-check"></i><b>8.1.1</b> Logarithm</a></li>
+<li class="chapter" data-level="8.1.2" data-path="statistical-models.html"><a href="statistical-models.html#log-likelihood"><i class="fa fa-check"></i><b>8.1.2</b> Log-likelihood</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="statistical-models-ii.html"><a href="statistical-models-ii.html"><i class="fa fa-check"></i><b>9</b> Statistical Models II</a><ul>
+<li class="chapter" data-level="9.0.1" data-path="statistical-models-ii.html"><a href="statistical-models-ii.html#example-1"><i class="fa fa-check"></i><b>9.0.1</b> Example 1</a></li>
+<li class="chapter" data-level="9.0.2" data-path="statistical-models-ii.html"><a href="statistical-models-ii.html#example-2"><i class="fa fa-check"></i><b>9.0.2</b> Example 2</a></li>
+<li class="chapter" data-level="9.1" data-path="statistical-models-ii.html"><a href="statistical-models-ii.html#probability-distributions"><i class="fa fa-check"></i><b>9.1</b> Probability Distributions</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="statistical-models-ii.html"><a href="statistical-models-ii.html#bernoulli-distribution"><i class="fa fa-check"></i><b>9.1.1</b> Bernoulli Distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="statistical-models-ii.html"><a href="statistical-models-ii.html#binomial-distribution"><i class="fa fa-check"></i><b>9.2</b> Binomial Distribution</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="statistical-models-ii.html"><a href="statistical-models-ii.html#gaussian-distribution-normal-distribution"><i class="fa fa-check"></i><b>9.2.1</b> Gaussian Distribution (‘Normal Distribution’)</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="statistical-models-ii.html"><a href="statistical-models-ii.html#a-likelihood-function-for-the-vaccine-data"><i class="fa fa-check"></i><b>9.3</b> A likelihood function for the vaccine data</a></li>
+<li class="chapter" data-level="9.4" data-path="statistical-models-ii.html"><a href="statistical-models-ii.html#bayesian-inference-i"><i class="fa fa-check"></i><b>9.4</b> Bayesian Inference I</a></li>
+<li class="chapter" data-level="9.5" data-path="statistical-models-ii.html"><a href="statistical-models-ii.html#returning-to-example-1"><i class="fa fa-check"></i><b>9.5</b> Returning to Example 1</a><ul>
+<li class="chapter" data-level="9.5.1" data-path="statistical-models-ii.html"><a href="statistical-models-ii.html#likelihood"><i class="fa fa-check"></i><b>9.5.1</b> Likelihood</a></li>
+<li class="chapter" data-level="9.5.2" data-path="statistical-models-ii.html"><a href="statistical-models-ii.html#prior"><i class="fa fa-check"></i><b>9.5.2</b> Prior</a></li>
+<li class="chapter" data-level="9.5.3" data-path="statistical-models-ii.html"><a href="statistical-models-ii.html#marginal-probability-of-the-data"><i class="fa fa-check"></i><b>9.5.3</b> Marginal probability of the data</a></li>
+<li class="chapter" data-level="9.5.4" data-path="statistical-models-ii.html"><a href="statistical-models-ii.html#posterior-probability"><i class="fa fa-check"></i><b>9.5.4</b> Posterior probability</a></li>
+<li class="chapter" data-level="9.5.5" data-path="statistical-models-ii.html"><a href="statistical-models-ii.html#and-now-again-for"><i class="fa fa-check"></i><b>9.5.5</b> And now again, for</a></li>
+</ul></li>
+<li class="chapter" data-level="9.6" data-path="statistical-models-ii.html"><a href="statistical-models-ii.html#bayesian-inference-ii"><i class="fa fa-check"></i><b>9.6</b> Bayesian Inference II</a></li>
+<li class="chapter" data-level="9.7" data-path="statistical-models-ii.html"><a href="statistical-models-ii.html#back-to-our-incidence-rates"><i class="fa fa-check"></i><b>9.7</b> Back to our incidence rates</a><ul>
+<li class="chapter" data-level="9.7.1" data-path="statistical-models-ii.html"><a href="statistical-models-ii.html#brazil"><i class="fa fa-check"></i><b>9.7.1</b> Brazil</a></li>
+<li class="chapter" data-level="9.7.2" data-path="statistical-models-ii.html"><a href="statistical-models-ii.html#turkey"><i class="fa fa-check"></i><b>9.7.2</b> Turkey</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="case-studies.html"><a href="case-studies.html"><i class="fa fa-check"></i><b>10</b> Case Studies</a><ul>
+<li class="chapter" data-level="10.1" data-path="case-studies.html"><a href="case-studies.html#vot-data"><i class="fa fa-check"></i><b>10.1</b> VOT Data</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="case-studies.html"><a href="case-studies.html#loading-the-data"><i class="fa fa-check"></i><b>10.1.1</b> Loading the Data</a></li>
+<li class="chapter" data-level="10.1.2" data-path="case-studies.html"><a href="case-studies.html#explorotary-data-analysis-and-descriptive-statistics"><i class="fa fa-check"></i><b>10.1.2</b> Explorotary Data Analysis and Descriptive Statistics</a></li>
+<li class="chapter" data-level="10.1.3" data-path="case-studies.html"><a href="case-studies.html#how-long-is-the-difference-between-voiced-and-unvoiced-stops-in-english-and-in-korean"><i class="fa fa-check"></i><b>10.1.3</b> How long is the difference between voiced and unvoiced stops in English and in Korean?</a></li>
+<li class="chapter" data-level="10.1.4" data-path="case-studies.html"><a href="case-studies.html#conclusion"><i class="fa fa-check"></i><b>10.1.4</b> Conclusion</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Statistics in R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="case-studies" class="section level1">
+<h1><span class="header-section-number">Chapter 10</span> Case Studies</h1>
+<div id="vot-data" class="section level2">
+<h2><span class="header-section-number">10.1</span> VOT Data</h2>
+<ul>
+<li>Data on voicing in English and Korean.</li>
+</ul>
+<div id="loading-the-data" class="section level3">
+<h3><span class="header-section-number">10.1.1</span> Loading the Data</h3>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb143-1" title="1"><span class="co"># read English data and keep only relevant columns</span></a>
+<a class="sourceLine" id="cb143-2" title="2">vot_engl &lt;-<span class="st"> </span>readxl<span class="op">::</span><span class="kw">read_excel</span>(<span class="st">&quot;./data/VOT/english.xlsx&quot;</span>, <span class="dt">sheet =</span> <span class="dv">1</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb143-3" title="3"><span class="st">              </span>dplyr<span class="op">::</span><span class="kw">select</span>(subject, gender, Item, WorldBet, TargetConsonant, TargetVowel, msVOT) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb143-4" title="4"><span class="st">              </span><span class="kw">subset</span>(TargetConsonant <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;d&quot;</span>,<span class="st">&quot;g&quot;</span>,<span class="st">&quot;th&quot;</span>,<span class="st">&quot;kh&quot;</span>))</a></code></pre></div>
+<pre><code>## New names:
+## * `` -&gt; ...20
+## * `` -&gt; ...21</code></pre>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb145-1" title="1"><span class="co"># take a look</span></a>
+<a class="sourceLine" id="cb145-2" title="2"><span class="kw">head</span>(vot_engl)</a></code></pre></div>
+<pre><code>## # A tibble: 6 x 7
+##   subject  gender Item   WorldBet  TargetConsonant TargetVowel msVOT           
+##   &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;           &lt;chr&gt;       &lt;chr&gt;           
+## 1 e9gt01mw m      dnky4  dAn.ki    d               A           13.6250605772297
+## 2 e9gt01mw m      door5  do9       d               o           9.86782693455979
+## 3 e9gt01mw m      tnge5  th^N      th              ^           66.9408128957514
+## 4 e9gt01mw m      cave3n khev      kh              e           60.3012519920512
+## 5 e9gt01mw m      gmdp5  g^m.d9Aps g               ^           14.2080928800823
+## 6 e9gt01mw m      domz3  domz      d               o           10.724777403027</code></pre>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb147-1" title="1"><span class="co"># which consonants are we dealing with, anyway</span></a>
+<a class="sourceLine" id="cb147-2" title="2"><span class="kw">unique</span>(vot_engl<span class="op">$</span>TargetConsonant)</a></code></pre></div>
+<pre><code>## [1] &quot;d&quot;  &quot;th&quot; &quot;kh&quot; &quot;g&quot;</code></pre>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb149-1" title="1"><span class="co"># Worldbet documentation in the appendix:</span></a>
+<a class="sourceLine" id="cb149-2" title="2"><span class="co"># http://www.cs.toronto.edu/~frank/csc401/readings/worldbet.pdf</span></a></code></pre></div>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb150-1" title="1"><span class="co"># read Korean data and keep only relevant columns</span></a>
+<a class="sourceLine" id="cb150-2" title="2">vot_kor &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_tsv</span>(<span class="st">&quot;./data/VOT/songyuan.txt&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb150-3" title="3"><span class="st">              </span>dplyr<span class="op">::</span><span class="kw">select</span>(subject, gender, Item, WorldBet, TargetConsonant, TargetVowel, msVOT)</a></code></pre></div>
+<pre><code>## 
+## ── Column specification ────────────────────────────────────────────────────────
+## cols(
+##   utt = col_character(),
+##   subject = col_character(),
+##   gender = col_character(),
+##   StartTime = col_double(),
+##   EndTime = col_double(),
+##   Item = col_character(),
+##   WorldBet = col_character(),
+##   TargetConsonant = col_character(),
+##   TargetVowel = col_character(),
+##   Burst = col_double(),
+##   VOT = col_double(),
+##   VowelEnd = col_double(),
+##   Notes = col_character(),
+##   msVOT = col_double(),
+##   msVowel = col_double(),
+##   logVOT = col_double(),
+##   logVowel = col_double()
+## )</code></pre>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb152-1" title="1"><span class="co"># take a look</span></a>
+<a class="sourceLine" id="cb152-2" title="2"><span class="kw">head</span>(vot_kor)</a></code></pre></div>
+<pre><code>## # A tibble: 6 x 7
+##   subject  gender Item  WorldBet    TargetConsonant TargetVowel  msVOT
+##   &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;       &lt;chr&gt;           &lt;chr&gt;        &lt;dbl&gt;
+## 1 s9gt01fw f      tnka3 tang2.kuai4 t               a            82.3 
+## 2 s9gt01fw f      duzi4 du4.zi      d               u             9.72
+## 3 s9gt01fw f      dnzi3 ding1.zi    d               i            10.7 
+## 4 s9gt01fw f      tuzi5 tu4.zi      t               u           101.  
+## 5 s9gt01fw f      kuzi5 ku4.zi      k               u           119.  
+## 6 s9gt01fw f      guto3 gu3.tou     g               u            32.2</code></pre>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb154-1" title="1"><span class="co"># which consonants are we dealing with, anyway</span></a>
+<a class="sourceLine" id="cb154-2" title="2"><span class="kw">unique</span>(vot_kor<span class="op">$</span>TargetConsonant)</a></code></pre></div>
+<pre><code>## [1] &quot;t&quot; &quot;d&quot; &quot;k&quot; &quot;g&quot;</code></pre>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb156-1" title="1"><span class="kw">typeof</span>(vot_engl<span class="op">$</span>msVOT)</a></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb158-1" title="1"><span class="co"># let&#39;s see if all msVOT are convertible to doubles:</span></a>
+<a class="sourceLine" id="cb158-2" title="2"><span class="kw">subset</span>(vot_engl, <span class="kw">is.na</span>(<span class="kw">as.double</span>(msVOT)))</a></code></pre></div>
+<pre><code>## Warning in eval(e, x, parent.frame()): NAs introduced by coercion</code></pre>
+<pre><code>## # A tibble: 4 x 7
+##   subject  gender Item  WorldBet TargetConsonant TargetVowel msVOT              
+##   &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt;           &lt;chr&gt;       &lt;chr&gt;              
+## 1 e9gt02mw m      cuki4 khU.ki   kh              U           but is not steep a…
+## 2 e9gt02mw m      tail4 the.&amp;l   th              e           but less steep @ 8…
+## 3 e9gt02mw m      torn3 tho9n    th              o           visually small in …
+## 4 e9gt02mw m      dign5 dI.gIxN  d               I           high intensity and…</code></pre>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb161-1" title="1"><span class="co"># convert msVOT to a double</span></a>
+<a class="sourceLine" id="cb161-2" title="2">vot_engl<span class="op">$</span>msVOT <span class="op">%&lt;&gt;%</span><span class="st"> </span><span class="kw">as.double</span>()</a></code></pre></div>
+<pre><code>## Warning in vot_engl$msVOT %&lt;&gt;% as.double(): NAs introduced by coercion</code></pre>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb163-1" title="1">vot_kor<span class="op">$</span>msVOT <span class="op">%&lt;&gt;%</span><span class="st"> </span><span class="kw">as.double</span>()</a>
+<a class="sourceLine" id="cb163-2" title="2"></a>
+<a class="sourceLine" id="cb163-3" title="3"></a>
+<a class="sourceLine" id="cb163-4" title="4">vot_engl<span class="op">$</span>language &lt;-<span class="st"> &quot;English&quot;</span></a>
+<a class="sourceLine" id="cb163-5" title="5">vot_kor<span class="op">$</span>language &lt;-<span class="st"> &quot;Korean&quot;</span></a>
+<a class="sourceLine" id="cb163-6" title="6">vot &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">bind_rows</span>(vot_engl, vot_kor)</a></code></pre></div>
+</div>
+<div id="explorotary-data-analysis-and-descriptive-statistics" class="section level3">
+<h3><span class="header-section-number">10.1.2</span> Explorotary Data Analysis and Descriptive Statistics</h3>
+<ul>
+<li>Let’s try to understand our data better.</li>
+</ul>
+<div id="averages" class="section level4">
+<h4><span class="header-section-number">10.1.2.1</span> Averages</h4>
+<ul>
+<li>Let’s look a the average VOTs.</li>
+</ul>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb164-1" title="1">vot_avg &lt;-<span class="st"> </span>vot <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(language, TargetConsonant) <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">summarise</span>(<span class="dt">avg_VOT =</span> <span class="kw">mean</span>(msVOT, <span class="dt">na.rm=</span>T)) </a>
+<a class="sourceLine" id="cb164-2" title="2">vot_avg <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(TargetConsonant, avg_VOT)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>)<span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(<span class="op">~</span>language)</a></code></pre></div>
+<p><img src="LectureNotes_files/figure-html/unnamed-chunk-159-1.png" width="672" /></p>
+</div>
+<div id="histograms" class="section level4">
+<h4><span class="header-section-number">10.1.2.2</span> Histograms</h4>
+<ul>
+<li>Because we have relatively few target sounds, and relatively many data points per sound, we can take a look at histograms by sound.</li>
+</ul>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb165-1" title="1"><span class="kw">ggplot</span>(vot, <span class="kw">aes</span>(msVOT)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>() <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(language<span class="op">~</span>TargetConsonant, <span class="dt">scales =</span> <span class="st">&quot;free&quot;</span>)</a></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<pre><code>## Warning: Removed 4 rows containing non-finite values (stat_bin).</code></pre>
+<p><img src="LectureNotes_files/figure-html/unnamed-chunk-160-1.png" width="672" /></p>
+</div>
+<div id="boxplots" class="section level4">
+<h4><span class="header-section-number">10.1.2.3</span> Boxplots</h4>
+<ul>
+<li>Let’s look at them side-by-side, using <em>‘box-(and whiskers)-plots’</em>. Boxplots provide a <em>five-number summary</em> of a distribution:
+<ul>
+<li>The median, the 1st quartile (25th percentile), and the 3rd quartile (75th percentile) make up the box part.</li>
+<li>The upper whisker extends from the third quartile to the largest observed value no larger than <span class="math inline">\(1.5\cdot IQR\)</span> from it.</li>
+<li>The upper whisker extends from the first quartile to the smallerst observed value no smaller than <span class="math inline">\(1.5\cdot IQR\)</span> from it.</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb168-1" title="1"><span class="kw">ggplot</span>(vot, <span class="kw">aes</span>(TargetConsonant, msVOT)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplot</span>() <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(<span class="op">~</span>language, <span class="dt">scales =</span> <span class="st">&quot;free_x&quot;</span>)</a></code></pre></div>
+<pre><code>## Warning: Removed 4 rows containing non-finite values (stat_boxplot).</code></pre>
+<p><img src="LectureNotes_files/figure-html/unnamed-chunk-161-1.png" width="672" /></p>
+</div>
+<div id="summary-2" class="section level4">
+<h4><span class="header-section-number">10.1.2.4</span> Summary</h4>
+<ul>
+<li>Voiced stops clearly differ from voiceless stops in VOT. (<em>What a surprise! :)</em>)</li>
+<li>A lot of variation in the English dataset.</li>
+<li>Lower <em>average</em> VOTs in English. Picture is a bit more fuzzy for the median.</li>
+</ul>
+</div>
+</div>
+<div id="how-long-is-the-difference-between-voiced-and-unvoiced-stops-in-english-and-in-korean" class="section level3">
+<h3><span class="header-section-number">10.1.3</span> How long is the difference between voiced and unvoiced stops in English and in Korean?</h3>
+<ul>
+<li>Now is the time to fit a linear model to estimate the differences between mean VOTs.</li>
+<li>Let’s first create the right contrasts.</li>
+</ul>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb170-1" title="1"><span class="co"># let&#39;s set up the right contrasts</span></a>
+<a class="sourceLine" id="cb170-2" title="2"><span class="kw">unique</span>(vot<span class="op">$</span>TargetConsonant)</a></code></pre></div>
+<pre><code>## [1] &quot;d&quot;  &quot;th&quot; &quot;kh&quot; &quot;g&quot;  &quot;t&quot;  &quot;k&quot;</code></pre>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb172-1" title="1">df_contrasts &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">TargetConsonant =</span> <span class="kw">c</span>(<span class="st">&quot;d&quot;</span>, <span class="st">&quot;g&quot;</span>, <span class="st">&quot;th&quot;</span>, <span class="st">&quot;kh&quot;</span>, <span class="st">&quot;t&quot;</span>, <span class="st">&quot;k&quot;</span>),</a>
+<a class="sourceLine" id="cb172-2" title="2">                           <span class="dt">is_voiced       =</span> <span class="kw">c</span>(<span class="dv">1</span>,    <span class="dv">1</span>,     <span class="dv">0</span>,    <span class="dv">0</span>,   <span class="dv">0</span>,   <span class="dv">0</span>),</a>
+<a class="sourceLine" id="cb172-3" title="3">                           <span class="dt">is_velar        =</span> <span class="kw">c</span>(<span class="dv">0</span>,    <span class="dv">1</span>,     <span class="dv">0</span>,    <span class="dv">1</span>,   <span class="dv">0</span>,   <span class="dv">1</span>) </a>
+<a class="sourceLine" id="cb172-4" title="4">                           )</a>
+<a class="sourceLine" id="cb172-5" title="5"></a>
+<a class="sourceLine" id="cb172-6" title="6"><span class="co"># Create centered contrasts from dummy contrasts. That way, we&#39;ll be free to use whichever ones we like further down.</span></a>
+<a class="sourceLine" id="cb172-7" title="7">df_contrasts<span class="op">$</span>c_is_voiced &lt;-<span class="st"> </span>df_contrasts<span class="op">$</span>is_voiced <span class="op">-</span><span class="st"> </span><span class="fl">0.5</span></a>
+<a class="sourceLine" id="cb172-8" title="8">df_contrasts<span class="op">$</span>c_is_velar &lt;-<span class="st"> </span>df_contrasts<span class="op">$</span>is_velar <span class="op">-</span><span class="st"> </span><span class="fl">0.5</span></a>
+<a class="sourceLine" id="cb172-9" title="9"></a>
+<a class="sourceLine" id="cb172-10" title="10"><span class="co"># merge the contrasts into the current data frame</span></a>
+<a class="sourceLine" id="cb172-11" title="11"><span class="co"># see cheat sheet for left_join: https://rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf</span></a>
+<a class="sourceLine" id="cb172-12" title="12">vot <span class="op">%&lt;&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">left_join</span>(df_contrasts)</a></code></pre></div>
+<pre><code>## Joining, by = &quot;TargetConsonant&quot;</code></pre>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb174-1" title="1"><span class="co"># code the language too</span></a>
+<a class="sourceLine" id="cb174-2" title="2">vot<span class="op">$</span>is_english &lt;-<span class="st"> </span>vot<span class="op">$</span>language <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">recode</span>(<span class="st">&quot;English&quot;</span>=<span class="dv">1</span>, <span class="st">&quot;Korean&quot;</span>=<span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb174-3" title="3">vot<span class="op">$</span>c_is_english &lt;-<span class="st"> </span>vot<span class="op">$</span>is_english</a></code></pre></div>
+<ul>
+<li>Let’s start step-by-step and look at a range of models. In your term paper you will only need to present the one which is the most relevant.</li>
+</ul>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb175-1" title="1"><span class="kw">library</span>(brms)</a>
+<a class="sourceLine" id="cb175-2" title="2"></a>
+<a class="sourceLine" id="cb175-3" title="3">vot_english &lt;-<span class="st"> </span>vot <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">subset</span>(language <span class="op">==</span><span class="st"> &quot;English&quot;</span>)</a>
+<a class="sourceLine" id="cb175-4" title="4"></a>
+<a class="sourceLine" id="cb175-5" title="5"><span class="co"># An intercept-only model. We use it to check that all packages are properly installed</span></a>
+<a class="sourceLine" id="cb175-6" title="6">m1 &lt;-<span class="st"> </span><span class="kw">brm</span>(msVOT <span class="op">~</span><span class="st"> </span><span class="dv">1</span>, </a>
+<a class="sourceLine" id="cb175-7" title="7">          <span class="dt">family =</span> <span class="kw">gaussian</span>(),</a>
+<a class="sourceLine" id="cb175-8" title="8">          <span class="dt">data =</span> vot_english <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">subset</span>(<span class="op">!</span><span class="kw">is.na</span>(msVOT)), </a>
+<a class="sourceLine" id="cb175-9" title="9">          <span class="dt">file =</span> <span class="st">&quot;./models/vot_m1&quot;</span>, <span class="dt">cores =</span> <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb175-10" title="10"></a>
+<a class="sourceLine" id="cb175-11" title="11"><span class="kw">summary</span>(m1)</a></code></pre></div>
+<pre><code>##  Family: gaussian 
+##   Links: mu = identity; sigma = identity 
+## Formula: msVOT ~ 1 
+##    Data: vot_english (Number of observations: 1011) 
+## Samples: 4 chains, each with iter = 2000; warmup = 1000; thin = 1;
+##          total post-warmup samples = 4000
+## 
+## Population-Level Effects: 
+##           Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+## Intercept    41.19      1.68    37.97    44.49 1.00     3419     2829
+## 
+## Family Specific Parameters: 
+##       Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+## sigma    53.46      1.20    51.22    55.90 1.00     3152     2667
+## 
+## Samples were drawn using sampling(NUTS). For each parameter, Bulk_ESS
+## and Tail_ESS are effective sample size measures, and Rhat is the potential
+## scale reduction factor on split chains (at convergence, Rhat = 1).</code></pre>
+<ul>
+<li>Let’s look at model <code>m1</code> in more detail. Here is what that <code>brm</code> call does:
+<ul>
+<li>It says, <em>let’s assume that all our observations are from a normal distribution with mean <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma\)</span></em>, and that <em>= a</em> (the intercept).</li>
+<li><em>Assuming that this model is correct</em>, what can we say about the <em>posterior distribution of the parameters <span class="math inline">\(a\)</span> and <span class="math inline">\(\sigma\)</span> given the data?</em></li>
+<li>Well, it seems that we can say that with 95% probability <span class="math inline">\(a\)</span> is in the interval <span class="math inline">\([38; 44.5]\)</span>, and <span class="math inline">\(\sigma\)</span> <span class="math inline">\([51; 56]\)</span>.</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb177-1" title="1"><span class="co"># A model with voicing as a predictor. What do the coefs mean?</span></a>
+<a class="sourceLine" id="cb177-2" title="2">m2a &lt;-<span class="st"> </span><span class="kw">brm</span>(msVOT <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>is_voiced, </a>
+<a class="sourceLine" id="cb177-3" title="3">          <span class="dt">family =</span> <span class="kw">gaussian</span>(),</a>
+<a class="sourceLine" id="cb177-4" title="4">          <span class="dt">data =</span> vot_english <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">subset</span>(<span class="op">!</span><span class="kw">is.na</span>(msVOT)), </a>
+<a class="sourceLine" id="cb177-5" title="5">          <span class="dt">file =</span> <span class="st">&quot;./models/vot_m2a&quot;</span>, <span class="dt">cores =</span> <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb177-6" title="6"><span class="kw">summary</span>(m2a)</a></code></pre></div>
+<pre><code>##  Family: gaussian 
+##   Links: mu = identity; sigma = identity 
+## Formula: msVOT ~ 1 + is_voiced 
+##    Data: vot_english %&gt;% subset(!is.na(msVOT)) (Number of observations: 1011) 
+## Samples: 4 chains, each with iter = 2000; warmup = 1000; thin = 1;
+##          total post-warmup samples = 4000
+## 
+## Population-Level Effects: 
+##           Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+## Intercept    74.55      1.45    71.78    77.36 1.00     3910     2959
+## is_voiced   -81.02      2.32   -85.63   -76.60 1.00     3904     2838
+## 
+## Family Specific Parameters: 
+##       Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+## sigma    35.54      0.78    34.06    37.09 1.00     4024     2788
+## 
+## Samples were drawn using sampling(NUTS). For each parameter, Bulk_ESS
+## and Tail_ESS are effective sample size measures, and Rhat is the potential
+## scale reduction factor on split chains (at convergence, Rhat = 1).</code></pre>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb179-1" title="1"><span class="co"># A model with voicing as a predictor. What do the coefs mean?</span></a>
+<a class="sourceLine" id="cb179-2" title="2">m2b &lt;-<span class="st"> </span><span class="kw">brm</span>(msVOT <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>c_is_voiced, </a>
+<a class="sourceLine" id="cb179-3" title="3">          <span class="dt">family =</span> <span class="kw">gaussian</span>(),</a>
+<a class="sourceLine" id="cb179-4" title="4">          <span class="dt">data =</span> vot_english <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">subset</span>(<span class="op">!</span><span class="kw">is.na</span>(msVOT)), </a>
+<a class="sourceLine" id="cb179-5" title="5">          <span class="dt">file =</span> <span class="st">&quot;./models/vot_m2b&quot;</span>, <span class="dt">cores =</span> <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb179-6" title="6"><span class="kw">summary</span>(m2b)</a></code></pre></div>
+<pre><code>##  Family: gaussian 
+##   Links: mu = identity; sigma = identity 
+## Formula: msVOT ~ 1 + c_is_voiced 
+##    Data: vot_english %&gt;% subset(!is.na(msVOT)) (Number of observations: 1011) 
+## Samples: 4 chains, each with iter = 2000; warmup = 1000; thin = 1;
+##          total post-warmup samples = 4000
+## 
+## Population-Level Effects: 
+##             Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+## Intercept      34.04      1.17    31.74    36.30 1.00     3767     2618
+## c_is_voiced   -81.09      2.26   -85.63   -76.48 1.00     3973     2397
+## 
+## Family Specific Parameters: 
+##       Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+## sigma    35.52      0.77    34.06    37.05 1.00     3585     3008
+## 
+## Samples were drawn using sampling(NUTS). For each parameter, Bulk_ESS
+## and Tail_ESS are effective sample size measures, and Rhat is the potential
+## scale reduction factor on split chains (at convergence, Rhat = 1).</code></pre>
+<ul>
+<li><p>As you see, the slopes for voicing are the same, but the intercepts change if we change the predictor from dummy coding to a centered predictor.</p></li>
+<li><p>Let’s look a the language too:</p></li>
+</ul>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb181-1" title="1"><span class="co"># A model with voicing and language as predictors. What do the coefs mean?</span></a>
+<a class="sourceLine" id="cb181-2" title="2">m3 &lt;-<span class="st"> </span><span class="kw">brm</span>(msVOT <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>c_is_english <span class="op">+</span><span class="st"> </span>is_voiced <span class="op">+</span><span class="st"> </span>c_is_english<span class="op">:</span>is_voiced, </a>
+<a class="sourceLine" id="cb181-3" title="3">          <span class="dt">family =</span> <span class="kw">gaussian</span>(),</a>
+<a class="sourceLine" id="cb181-4" title="4">          <span class="dt">data =</span> vot <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">subset</span>(<span class="op">!</span><span class="kw">is.na</span>(msVOT)), </a>
+<a class="sourceLine" id="cb181-5" title="5">          <span class="dt">file =</span> <span class="st">&quot;./models/vot_m3&quot;</span>, <span class="dt">cores =</span> <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb181-6" title="6"><span class="kw">summary</span>(m3)</a></code></pre></div>
+<pre><code>##  Family: gaussian 
+##   Links: mu = identity; sigma = identity 
+## Formula: msVOT ~ 1 + c_is_english + is_voiced + c_is_english:is_voiced 
+##    Data: vot %&gt;% subset(!is.na(msVOT)) (Number of observations: 1410) 
+## Samples: 4 chains, each with iter = 2000; warmup = 1000; thin = 1;
+##          total post-warmup samples = 4000
+## 
+## Population-Level Effects: 
+##                        Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS
+## Intercept                 85.44      2.20    81.25    89.79 1.00     1938
+## c_is_english             -10.89      2.57   -15.99    -6.02 1.00     1813
+## is_voiced                -65.97      3.18   -72.33   -59.84 1.00     1589
+## c_is_english:is_voiced   -15.14      3.80   -22.49    -7.57 1.00     1456
+##                        Tail_ESS
+## Intercept                  2190
+## c_is_english               2419
+## is_voiced                  2133
+## c_is_english:is_voiced     1961
+## 
+## Family Specific Parameters: 
+##       Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+## sigma    31.11      0.58    30.01    32.24 1.00     3108     2758
+## 
+## Samples were drawn using sampling(NUTS). For each parameter, Bulk_ESS
+## and Tail_ESS are effective sample size measures, and Rhat is the potential
+## scale reduction factor on split chains (at convergence, Rhat = 1).</code></pre>
+<p>… And what happens if we remove all implausibly low VOT values? …</p>
+</div>
+<div id="conclusion" class="section level3">
+<h3><span class="header-section-number">10.1.4</span> Conclusion</h3>
+<p>… Let’s write it together …</p>
+
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="statistical-models-ii.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["LectureNotes.pdf", "LectureNotes.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

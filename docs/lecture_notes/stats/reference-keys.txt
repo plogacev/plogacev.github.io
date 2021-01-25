@@ -97,3 +97,13 @@ bayesian-inference-ii
 back-to-our-incidence-rates
 brazil
 turkey
+case-studies
+vot-data
+loading-the-data
+explorotary-data-analysis-and-descriptive-statistics
+averages
+histograms
+boxplots
+summary-2
+how-long-is-the-difference-between-voiced-and-unvoiced-stops-in-english-and-in-korean
+conclusion
