@@ -24,7 +24,7 @@
 <meta name="author" content="Pavel Logacev" />
 
 
-<meta name="date" content="2021-01-25" />
+<meta name="date" content="2021-02-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="statistical-models-ii.html"/>
-
+<link rel="next" href="your-term-paper.html"/>
 <script src="libs/jquery-3.5.1/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -253,9 +253,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.1.1" data-path="case-studies.html"><a href="case-studies.html#loading-the-data"><i class="fa fa-check"></i><b>10.1.1</b> Loading the Data</a></li>
 <li class="chapter" data-level="10.1.2" data-path="case-studies.html"><a href="case-studies.html#explorotary-data-analysis-and-descriptive-statistics"><i class="fa fa-check"></i><b>10.1.2</b> Explorotary Data Analysis and Descriptive Statistics</a></li>
 <li class="chapter" data-level="10.1.3" data-path="case-studies.html"><a href="case-studies.html#how-long-is-the-difference-between-voiced-and-unvoiced-stops-in-english-and-in-korean"><i class="fa fa-check"></i><b>10.1.3</b> How long is the difference between voiced and unvoiced stops in English and in Korean?</a></li>
-<li class="chapter" data-level="10.1.4" data-path="case-studies.html"><a href="case-studies.html#conclusion"><i class="fa fa-check"></i><b>10.1.4</b> Conclusion</a></li>
 </ul></li>
+<li class="chapter" data-level="10.2" data-path="case-studies.html"><a href="case-studies.html#priming-experiment"><i class="fa fa-check"></i><b>10.2</b> Priming Experiment</a></li>
 </ul></li>
+<li class="chapter" data-level="11" data-path="your-term-paper.html"><a href="your-term-paper.html"><i class="fa fa-check"></i><b>11</b> Your term paper</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -475,7 +476,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Let’s look at model <code>m1</code> in more detail. Here is what that <code>brm</code> call does:
 <ul>
-<li>It says, <em>let’s assume that all our observations are from a normal distribution with mean <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma\)</span></em>, and that <em>= a</em> (the intercept).</li>
+<li>It says, <em>let’s assume that all our observations are from a normal distribution with mean <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma\)</span></em>, and that <em><span class="math inline">\(\mu\)</span> = a</em> (the intercept).</li>
 <li><em>Assuming that this model is correct</em>, what can we say about the <em>posterior distribution of the parameters <span class="math inline">\(a\)</span> and <span class="math inline">\(\sigma\)</span> given the data?</em></li>
 <li>Well, it seems that we can say that with 95% probability <span class="math inline">\(a\)</span> is in the interval <span class="math inline">\([38; 44.5]\)</span>, and <span class="math inline">\(\sigma\)</span> <span class="math inline">\([51; 56]\)</span>.</li>
 </ul></li>
@@ -535,66 +536,154 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Let’s look a the language too:</p></li>
 </ul>
 <div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb181-1" title="1"><span class="co"># A model with voicing and language as predictors. What do the coefs mean?</span></a>
-<a class="sourceLine" id="cb181-2" title="2">m3 &lt;-<span class="st"> </span><span class="kw">brm</span>(msVOT <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>c_is_english <span class="op">+</span><span class="st"> </span>is_voiced <span class="op">+</span><span class="st"> </span>c_is_english<span class="op">:</span>is_voiced, </a>
+<a class="sourceLine" id="cb181-2" title="2">m3 &lt;-<span class="st"> </span><span class="kw">brm</span>(msVOT <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>c_is_english <span class="op">+</span><span class="st"> </span>c_is_voiced <span class="op">+</span><span class="st"> </span>c_is_english<span class="op">:</span>c_is_voiced, </a>
 <a class="sourceLine" id="cb181-3" title="3">          <span class="dt">family =</span> <span class="kw">gaussian</span>(),</a>
 <a class="sourceLine" id="cb181-4" title="4">          <span class="dt">data =</span> vot <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">subset</span>(<span class="op">!</span><span class="kw">is.na</span>(msVOT)), </a>
 <a class="sourceLine" id="cb181-5" title="5">          <span class="dt">file =</span> <span class="st">&quot;./models/vot_m3&quot;</span>, <span class="dt">cores =</span> <span class="dv">4</span>)</a>
 <a class="sourceLine" id="cb181-6" title="6"><span class="kw">summary</span>(m3)</a></code></pre></div>
 <pre><code>##  Family: gaussian 
 ##   Links: mu = identity; sigma = identity 
-## Formula: msVOT ~ 1 + c_is_english + is_voiced + c_is_english:is_voiced 
+## Formula: msVOT ~ 1 + c_is_english + c_is_voiced + c_is_english:c_is_voiced 
 ##    Data: vot %&gt;% subset(!is.na(msVOT)) (Number of observations: 1410) 
 ## Samples: 4 chains, each with iter = 2000; warmup = 1000; thin = 1;
 ##          total post-warmup samples = 4000
 ## 
 ## Population-Level Effects: 
-##                        Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS
-## Intercept                 85.44      2.20    81.25    89.79 1.00     1938
-## c_is_english             -10.89      2.57   -15.99    -6.02 1.00     1813
-## is_voiced                -65.97      3.18   -72.33   -59.84 1.00     1589
-## c_is_english:is_voiced   -15.14      3.80   -22.49    -7.57 1.00     1456
-##                        Tail_ESS
-## Intercept                  2190
-## c_is_english               2419
-## is_voiced                  2133
-## c_is_english:is_voiced     1961
+##                          Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS
+## Intercept                   52.49      1.58    49.39    55.55 1.00     3577
+## c_is_english               -18.48      1.90   -22.14   -14.72 1.00     3260
+## c_is_voiced                -65.92      3.12   -71.98   -59.93 1.00     2371
+## c_is_english:c_is_voiced   -15.14      3.73   -22.25    -7.81 1.00     2430
+##                          Tail_ESS
+## Intercept                    2738
+## c_is_english                 2420
+## c_is_voiced                  2645
+## c_is_english:c_is_voiced     2052
 ## 
 ## Family Specific Parameters: 
 ##       Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-## sigma    31.11      0.58    30.01    32.24 1.00     3108     2758
+## sigma    31.08      0.60    29.97    32.31 1.00     3546     2234
 ## 
 ## Samples were drawn using sampling(NUTS). For each parameter, Bulk_ESS
 ## and Tail_ESS are effective sample size measures, and Rhat is the potential
 ## scale reduction factor on split chains (at convergence, Rhat = 1).</code></pre>
-<p>… And what happens if we remove all implausibly low VOT values? …</p>
+<ul>
+<li>The average effect of language on VOT (for both, voiced and voiceless consonants), is <span class="math inline">\([-22; -15]\)</span>.</li>
+<li>The average effect of voicing on VOT (across languages), is <span class="math inline">\([-72; -60]\)</span>.</li>
+<li><p>The interaction between language and voicing for VOT (the difference in the effect of voicing between languages), is <span class="math inline">\([-22; -8]\)</span>.</p></li>
+<li><p>Here is what happens if we remove all those odd VOT values. (They are all smaller than 0.) But can we even interpret the result if we selectively exclude data?</p></li>
+</ul>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb183-1" title="1"><span class="co"># A model with voicing and language as predictors. What do the coefs mean?</span></a>
+<a class="sourceLine" id="cb183-2" title="2">m3b &lt;-<span class="st"> </span><span class="kw">brm</span>(msVOT <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>c_is_english <span class="op">+</span><span class="st"> </span>c_is_voiced <span class="op">+</span><span class="st"> </span>c_is_english<span class="op">:</span>c_is_voiced, </a>
+<a class="sourceLine" id="cb183-3" title="3">          <span class="dt">family =</span> <span class="kw">gaussian</span>(),</a>
+<a class="sourceLine" id="cb183-4" title="4">          <span class="dt">data =</span> vot <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">subset</span>(<span class="op">!</span><span class="kw">is.na</span>(msVOT)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">subset</span>(msVOT <span class="op">&gt;=</span><span class="st"> </span><span class="dv">0</span>),</a>
+<a class="sourceLine" id="cb183-5" title="5">          <span class="dt">cores =</span> <span class="dv">4</span>)</a></code></pre></div>
+<pre><code>## Compiling Stan program...</code></pre>
+<pre><code>## Start sampling</code></pre>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb186-1" title="1"><span class="kw">summary</span>(m3b) </a></code></pre></div>
+<pre><code>##  Family: gaussian 
+##   Links: mu = identity; sigma = identity 
+## Formula: msVOT ~ 1 + c_is_english + c_is_voiced + c_is_english:c_is_voiced 
+##    Data: vot %&gt;% subset(!is.na(msVOT)) %&gt;% subset(msVOT &gt;=  (Number of observations: 1333) 
+## Samples: 4 chains, each with iter = 2000; warmup = 1000; thin = 1;
+##          total post-warmup samples = 4000
+## 
+## Population-Level Effects: 
+##                          Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS
+## Intercept                   52.49      0.87    50.80    54.19 1.00     3777
+## c_is_english                -7.81      1.03    -9.83    -5.77 1.00     3809
+## c_is_voiced                -66.02      1.76   -69.45   -62.58 1.00     2435
+## c_is_english:c_is_voiced     6.24      2.16     1.97    10.40 1.00     2323
+##                          Tail_ESS
+## Intercept                    3244
+## c_is_english                 2994
+## c_is_voiced                  2784
+## c_is_english:c_is_voiced     2789
+## 
+## Family Specific Parameters: 
+##       Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+## sigma    17.65      0.34    17.01    18.33 1.00     4118     2913
+## 
+## Samples were drawn using sampling(NUTS). For each parameter, Bulk_ESS
+## and Tail_ESS are effective sample size measures, and Rhat is the potential
+## scale reduction factor on split chains (at convergence, Rhat = 1).</code></pre>
+<ul>
+<li>Certainly, some values should be excluded. For example, <span class="math inline">\(-150\,ms\)</span> seems like an absurdly low VOT value. But all of them? How about <span class="math inline">\(-30\,ms\)</span>. This is where <em>domain knowledge</em> is required (which I don’t have).</li>
+</ul>
+<!--
+### Conclusion
+...
+-->
 </div>
-<div id="conclusion" class="section level3">
-<h3><span class="header-section-number">10.1.4</span> Conclusion</h3>
-<p>… Let’s write it together …</p>
-
+</div>
+<div id="priming-experiment" class="section level2">
+<h2><span class="header-section-number">10.2</span> Priming Experiment</h2>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb188-1" title="1"><span class="co"># Load the &#39;primingHeid&#39; dataset</span></a>
+<a class="sourceLine" id="cb188-2" title="2"><span class="kw">library</span>(languageR)</a>
+<a class="sourceLine" id="cb188-3" title="3"></a>
+<a class="sourceLine" id="cb188-4" title="4">priming_data &lt;-<span class="st"> </span>languageR<span class="op">::</span>primingHeid <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="dt">subject=</span>Subject, <span class="dt">word=</span>Word, <span class="dt">condition=</span>Condition, <span class="dt">RT=</span>RT, <span class="dt">response_correct=</span>ResponseToPrime)</a>
+<a class="sourceLine" id="cb188-5" title="5">priming_data<span class="op">$</span>RT <span class="op">%&lt;&gt;%</span><span class="st"> </span><span class="kw">exp</span>()</a>
+<a class="sourceLine" id="cb188-6" title="6">priming_data<span class="op">$</span>condition <span class="op">%&lt;&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">recode</span>(<span class="st">&quot;heid&quot;</span>=<span class="st">&quot;related&quot;</span>, <span class="st">&quot;baseheid&quot;</span>=<span class="st">&quot;unrelated&quot;</span>)</a>
+<a class="sourceLine" id="cb188-7" title="7"><span class="kw">head</span>(priming_data)</a></code></pre></div>
+<pre><code>##   subject         word condition  RT response_correct
+## 1     pp1   basaalheid   related 807          correct
+## 2     pp1  markantheid unrelated 906          correct
+## 3     pp1 ontroerdheid unrelated 671          correct
+## 4     pp1  contentheid   related 718          correct
+## 5     pp1    riantheid   related 951          correct
+## 6     pp1  tembaarheid unrelated 572        incorrect</code></pre>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb190-1" title="1">priming_data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(condition, RT)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplot</span>()</a></code></pre></div>
+<p><img src="LectureNotes_files/figure-html/unnamed-chunk-169-1.png" width="672" /></p>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb191-1" title="1">priming_data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(condition) <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">summarise</span>(<span class="dt">accuracy =</span> <span class="kw">mean</span>(response_correct <span class="op">==</span><span class="st"> &quot;correct&quot;</span>))</a></code></pre></div>
+<pre><code>## # A tibble: 2 x 2
+##   condition accuracy
+##   &lt;fct&gt;        &lt;dbl&gt;
+## 1 unrelated    0.925
+## 2 related      0.805</code></pre>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb193-1" title="1">priming_correct &lt;-<span class="st"> </span>priming_data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">subset</span>(response_correct <span class="op">==</span><span class="st"> &quot;correct&quot;</span>)</a>
+<a class="sourceLine" id="cb193-2" title="2"></a>
+<a class="sourceLine" id="cb193-3" title="3">priming_correct <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(condition, RT)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplot</span>()</a></code></pre></div>
+<p><img src="LectureNotes_files/figure-html/unnamed-chunk-171-1.png" width="672" /></p>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb194-1" title="1">priming_correct <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(condition) <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">summarise</span>(<span class="dt">mean_RT =</span> <span class="kw">mean</span>(RT))</a></code></pre></div>
+<pre><code>## # A tibble: 2 x 2
+##   condition mean_RT
+##   &lt;fct&gt;       &lt;dbl&gt;
+## 1 unrelated    735.
+## 2 related      747.</code></pre>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb196-1" title="1"><span class="kw">library</span>(brms)</a>
+<a class="sourceLine" id="cb196-2" title="2"></a>
+<a class="sourceLine" id="cb196-3" title="3">priming_correct<span class="op">$</span>c_is_related &lt;-<span class="st"> </span>priming_correct<span class="op">$</span>condition <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">recode</span>(<span class="st">&quot;unrelated&quot;</span>=<span class="op">-</span>.<span class="dv">5</span>, <span class="st">&quot;related&quot;</span>=.<span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb196-4" title="4"></a>
+<a class="sourceLine" id="cb196-5" title="5">priming_m1 &lt;-<span class="st"> </span><span class="kw">brm</span>(RT <span class="op">~</span><span class="st"> </span>c_is_related, <span class="dt">data =</span> priming_correct, <span class="dt">file =</span> <span class="st">&quot;./models/priming_m1&quot;</span>)</a>
+<a class="sourceLine" id="cb196-6" title="6"><span class="kw">summary</span>(priming_m1)</a></code></pre></div>
+<pre><code>##  Family: gaussian 
+##   Links: mu = identity; sigma = identity 
+## Formula: RT ~ c_is_related 
+##    Data: priming_correct (Number of observations: 719) 
+## Samples: 4 chains, each with iter = 2000; warmup = 1000; thin = 1;
+##          total post-warmup samples = 4000
+## 
+## Population-Level Effects: 
+##              Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+## Intercept      741.05      8.84   723.39   758.75 1.00     3718     2777
+## c_is_related    12.21     17.93   -23.00    47.06 1.00     3595     2690
+## 
+## Family Specific Parameters: 
+##       Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+## sigma   237.42      6.26   225.47   250.33 1.00     4642     3162
+## 
+## Samples were drawn using sampling(NUTS). For each parameter, Bulk_ESS
+## and Tail_ESS are effective sample size measures, and Rhat is the potential
+## scale reduction factor on split chains (at convergence, Rhat = 1).</code></pre>
 </div>
 </div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
             </section>
 
           </div>
         </div>
       </div>
-<a href="statistical-models-ii.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="statistical-models-ii.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="your-term-paper.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

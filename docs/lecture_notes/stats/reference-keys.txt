@@ -106,4 +106,5 @@ histograms
 boxplots
 summary-2
 how-long-is-the-difference-between-voiced-and-unvoiced-stops-in-english-and-in-korean
-conclusion
+priming-experiment
+your-term-paper
