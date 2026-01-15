@@ -6,7 +6,7 @@ project:
   #   - "cp -rnv static/. _site" # source: https://github.com/quarto-dev/quarto-cli/discussions/4162#discussioncomment-4831352
 
 website:
-  title: "Pavel Logačev"
+  title: "Pavel Jose"
   site-url: https://sell-smart.github.io
   description: "Pricing & Revenue Optimization Data Scientist"
   #favicon: assets/silvia/img/logo_rounded.svg

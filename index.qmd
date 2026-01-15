@@ -1,12 +1,12 @@
 ---
-title: "Pavel Logačev, PhD"
-pagetitle: "Pavel Logačev, PhD"
+title: "Pavel Jose, PhD"
+pagetitle: "Pavel Jose, PhD"
 subtitle: "Senior Data Scientist with a Specialization in Pricing & Revenue Optimization"
 image: assets/images/pavel.png
 #image-alt: "Illustration of pricing"
 
 linkedin-card:
-    title: Pavel Logačev, PhD
+    title: Pavel Jose, PhD
     description: |
       Senior Data Scientist with a Specialization in Pricing & Revenue Optimization
     #image: assets/silvia/img/silvia-social.png

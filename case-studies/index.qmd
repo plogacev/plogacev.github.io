@@ -1,6 +1,6 @@
 ---
 title: "Case Studies"
-pagetitle: "Pavel Logačev - Case Studies"
+pagetitle: "Pavel Jose - Case Studies"
 subtitle: "Real-world pricing and revenue optimization projects"
 listing:
   contents:

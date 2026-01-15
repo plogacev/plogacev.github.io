@@ -1,6 +1,6 @@
 ---
 title: "Blog"
-pagetitle: "Pavel Logačev - Blog"
+pagetitle: "Pavel Jose - Blog"
 subtitle: "Thoughts on pricing, data science, and revenue optimization"
 listing:
   contents:

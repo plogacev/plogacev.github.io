@@ -1,5 +1,5 @@
 ---
-title: "Pavel Logačev"
+title: "Pavel Jose"
 subtitle: Pricing & Revenue Optimization Data Scientist
 image: ../assets/images/pavel.png
 #image-alt: "Smiling woman with a tan complexion, dark eyes, and dark long wavy hair styled to one side"
@@ -69,7 +69,7 @@ resources:
 ---
 
 ::: {#hero-heading}
-<div class="h1">Hi, I’m Pavel Logačev</div>
+<div class="h1">Hi, I'm Pavel Jose</div>
 
 I help businesses optimize prices and grow revenue with data. That means building models that make pricing decisions — not dashboards that sit unused.
 

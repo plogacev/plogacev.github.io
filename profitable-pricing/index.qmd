@@ -1,6 +1,6 @@
 ---
 title: "Profitable Pricing"
-pagetitle: "Pavel Logačev - Profitable Pricing"
+pagetitle: "Pavel Jose - Profitable Pricing"
 subtitle: "Practical insights on pricing strategy and optimization"
 page-layout: article
 ---

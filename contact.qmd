@@ -1,5 +1,5 @@
 ---
-pagetitle: Pavel Logačev - Contact
+pagetitle: Pavel Jose - Contact
 title: Get in touch
 name: Contact Form
 page-layout: article
