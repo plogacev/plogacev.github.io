@@ -1,0 +1,17 @@
+---
+title: "Blog"
+pagetitle: "Pavel Logačev - Blog"
+subtitle: "Thoughts on pricing, data science, and revenue optimization"
+listing:
+  contents:
+    - "*/index.qmd"
+    - "*/index.markdown"
+  sort: date desc
+  type: default
+  categories: true
+  sort-ui: true
+  filter-ui: true
+  fields: [date, title, subtitle, categories, reading-time]
+  feed: true
+page-layout: full
+---

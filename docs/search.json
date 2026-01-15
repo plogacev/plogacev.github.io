@@ -1,0 +1,93 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Pavel Logačev, PhD",
+    "section": "",
+    "text": "I help companies improve business decisions through statistical modeling — especially in settings where data is messy, opportunities for experimentation are limited, and off-the-shelf solutions fall short.\nMy focus areas include demand modeling, price elasticity estimation, and forecasting. I build bespoke models using Bayesian methods, tailored to the structure of the business problem — particularly when standard tools can’t capture the complexity of real-world decisions.\nI’ve worked across B2C and B2B contexts in close collaboration with various stakeholders — always aiming to understand how the business and sales processes actually work, so models reflect what matters and make the most of limited data.\nOpen to freelance and consulting opportunities involving challenging modeling problems, including pricing optimization and marketing mix modeling.\nLearn more about me →\n\n    \n    \n  \n\n\n\n\n\n\n\n Back to top"
+  },
+  {
+    "objectID": "blog/index.html",
+    "href": "blog/index.html",
+    "title": "Blog",
+    "section": "",
+    "text": "Order By\n      Default\n      \n        Title\n      \n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\nNo matching items\n Back to top"
+  },
+  {
+    "objectID": "about/index.html",
+    "href": "about/index.html",
+    "title": "Pavel Logačev",
+    "section": "",
+    "text": "Hi, I’m Pavel Logačev\n\nI help businesses optimize prices and grow revenue with data. That means building models that make pricing decisions — not dashboards that sit unused.\nWhether you’re a retailer, a B2B supplier, or a direct-to-consumer brand, I work with you (or your agency) to identify pricing opportunities, model demand, and implement pricing logic that scales.\nI don’t just hand you elasticities — I deliver working solutions.\nGet in touch if you’d like to work together."
+  },
+  {
+    "objectID": "about/index.html#what-i-do",
+    "href": "about/index.html#what-i-do",
+    "title": "Pavel Logačev",
+    "section": "What I do",
+    "text": "What I do\n\n\nFrom pricing guesswork to pricing strategy.\nI support clients with:\n\nPrice optimization (margin or revenue focused)\nWillingness-to-pay modeling — even without clean sales data\nDemand forecasting with uncertainty estimates\nStockout detection and adjustment\nCompetitor benchmarking from scraped or third-party data\nA/B test design and analysis\nCausal inference for pricing, marketing, and product decisions\n\nI help you go from messy historical data to a robust pricing process.\n\n\nBusiness-first. Technically fluent.\nI build models that are:\n\nCustom-fit to your context, not off-the-shelf\nDesigned for messy, real-world data\nDelivered as ready-to-use pricing logic, files, or API endpoints\n\nMy goal is always the same: help you charge the right price — confidently, repeatedly, and at scale.\nI’m based in Berlin and work with clients across Europe and North America.\nI speak English, German, and Russian."
+  },
+  {
+    "objectID": "about/index.html#experience",
+    "href": "about/index.html#experience",
+    "title": "Pavel Logačev",
+    "section": "Experience",
+    "text": "Experience\nI’ve worked with retailers, manufacturers, and global brands on pricing problems ranging from product launches to large-scale price realignments.\nPast projects have included:\n\nRolling out optimized prices across 300+ stores\nReplacing legacy price ladders with margin-based models\nEstimating price elasticity across thousands of SKUs\nDesigning experiments to test pricing thresholds\n\nMuch of my work is done through agencies — but I operate as a partner, not a hired hand."
+  },
+  {
+    "objectID": "about/index.html#lately",
+    "href": "about/index.html#lately",
+    "title": "Pavel Logačev",
+    "section": "Lately …",
+    "text": "Lately …\n\n\nBlog\n\n\n\n\nNo matching items\n\nSee all →\n\n\nCase Studies\n\n\n\n\nNo matching items\n\nSee all →"
+  },
+  {
+    "objectID": "contact.html",
+    "href": "contact.html",
+    "title": "Get in touch",
+    "section": "",
+    "text": "Drop me a note \nIf you’d like to discuss a potential project, collaboration, or just have a question about pricing optimization, demand modeling, forecasting, or bespoke models — feel free to drop me a note here.\nYou can also connect with me on other platforms:\n\n\n\n\n\n\n\n\nFull Name \nEmail Address \nMessage\n\n\n\nSend message\n\n\n\n\n\n\n\n\n\n Back to top"
+  },
+  {
+    "objectID": "case-studies/index.html",
+    "href": "case-studies/index.html",
+    "title": "Case Studies",
+    "section": "",
+    "text": "Selected examples of pricing and revenue optimization work. Details are anonymized to protect client confidentiality.\n\n\n\n\n\n\n\n\nNo matching items\n Back to top"
+  },
+  {
+    "objectID": "profitable-pricing/index.html",
+    "href": "profitable-pricing/index.html",
+    "title": "Profitable Pricing",
+    "section": "",
+    "text": "Pricing optimization uses data and statistical models to find prices that maximize revenue or profit. Instead of guessing or copying competitors, you let the data guide your decisions."
+  },
+  {
+    "objectID": "profitable-pricing/index.html#what-is-pricing-optimization",
+    "href": "profitable-pricing/index.html#what-is-pricing-optimization",
+    "title": "Profitable Pricing",
+    "section": "",
+    "text": "Pricing optimization uses data and statistical models to find prices that maximize revenue or profit. Instead of guessing or copying competitors, you let the data guide your decisions."
+  },
+  {
+    "objectID": "profitable-pricing/index.html#why-does-it-matter",
+    "href": "profitable-pricing/index.html#why-does-it-matter",
+    "title": "Profitable Pricing",
+    "section": "Why does it matter?",
+    "text": "Why does it matter?\nA 1% improvement in pricing typically has 2-4x the profit impact of a 1% improvement in volume. Yet most companies spend far more effort on sales and marketing than on getting their prices right."
+  },
+  {
+    "objectID": "profitable-pricing/index.html#common-pricing-challenges",
+    "href": "profitable-pricing/index.html#common-pricing-challenges",
+    "title": "Profitable Pricing",
+    "section": "Common pricing challenges",
+    "text": "Common pricing challenges\n\n“We don’t have enough data”\nYou often have more useful data than you think. Transaction histories, competitor prices, customer segments, and even failed quotes contain pricing signals. Bayesian methods can extract insights from limited data by incorporating business knowledge.\n\n\n“Our market is too complex”\nComplex markets often mean more pricing opportunity, not less. When you sell thousands of SKUs across different regions, customer segments, or channels, there’s usually significant variation in willingness-to-pay that uniform pricing leaves on the table.\n\n\n“We tried dynamic pricing and it didn’t work”\nMost failed pricing initiatives suffer from poor implementation, not bad math. Prices that don’t account for inventory, competition, or customer perception will underperform regardless of the underlying model."
+  },
+  {
+    "objectID": "profitable-pricing/index.html#how-i-approach-pricing-projects",
+    "href": "profitable-pricing/index.html#how-i-approach-pricing-projects",
+    "title": "Profitable Pricing",
+    "section": "How I approach pricing projects",
+    "text": "How I approach pricing projects\n\nUnderstand the business context - How do sales actually happen? What constraints exist? What does “success” look like?\nAssess the data - What pricing signals exist? What’s missing? How clean is it?\nBuild fit-for-purpose models - Custom models that match your specific situation, not off-the-shelf solutions forced to fit.\nDeliver actionable outputs - Price recommendations you can actually use, not just elasticity estimates in a spreadsheet.\nMeasure and iterate - Track results and refine the approach based on real outcomes.\n\n\nInterested in exploring what pricing optimization could do for your business? Get in touch."
+  }
+]

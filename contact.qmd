@@ -1,0 +1,113 @@
+---
+pagetitle: Pavel Logačev - Contact
+title: Get in touch
+name: Contact Form
+page-layout: article
+format: 
+  html: 
+    grid:
+      margin-width: 0px
+      sidebar-width: 0px
+
+header-includes: >
+  <link rel="stylesheet" href="assets/contact.css">
+resources:
+  - assets/contact.css
+---
+
+::: {.grid}
+
+::: {.g-col-5 #note}
+
+# Drop me a note {{< fa feather-pointed >}}
+
+If you’d like to discuss a potential project, collaboration, or just have a question about pricing optimization, demand modeling, forecasting, or bespoke models — feel free to drop me a note here.
+
+You can also connect with me on other platforms:
+
+:::
+<!-- source: https://github.com/mccarthy-m-g/tidytales/blob/main/about/index.qmd#L24-L46 -->
+
+::: {.g-col-1}
+:::
+
+::: {.g-col-6 #form}
+
+<form 
+style="margin-top: -5em;"
+action="https://formspree.io/f/mwkapgzw" method="POST" accept-charset="utf-8">
+
+
+<label for="full-name">Full Name</label>
+<input type="text" name="name" id="full-name" class="form-control" placeholder="First and Last" required>
+
+<label for="email-address">Email Address</label>
+<input type="email" name="_replyto" id="email-address" class="form-control" placeholder="your@email.here" required>
+
+<label for="message">Message</label>
+  <textarea rows="6" name="message" id="message" class="form-control" required></textarea>
+  <!--
+   placeholder="Aenean lacinia bibendum nulla sed consectetur. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Donec ullamcorper nulla non metus auctor fringilla nullam quis risus."
+  -->
+
+<button type="submit" class="btn btn-primary mt-4">Send message</button>
+</form>
+
+:::
+
+<!-- Newsletter block is currently disabled. Uncomment to enable. -->
+
+<!-- 
+::: {.g-col-5 #buttondown}
+
+# Sign up for my newsletter {{< fa envelope >}}
+
+You can use this form to sign up to receive a little e-mail note from me anytime I post something new on my website.
+
+:::
+
+::: {.g-col-1}
+:::
+
+::: {.g-col-5 #buttondown}
+
+# Sign up for my newsletter {{< fa envelope >}}
+
+You can use this form to sign up to receive occasional updates about my latest posts and work in pricing & revenue optimization.
+
+:::
+
+::: {.g-col-1}
+:::
+
+::: {.g-col-6 #buttondown-form}
+
+```{=html}
+<form
+  style="margin-top: 4em;"
+  action="https://buttondown.com/api/emails/embed-subscribe/YOUR-NEWSLETTER-ID"
+  method="post"
+  target="popupwindow"
+  onsubmit="window.open('https://buttondown.com/YOUR-NEWSLETTER-ID?tag=website', 'popupwindow')"
+  class="embeddable-buttondown-form"
+>
+  <label for="bd-email">Email Address</label>
+  <input 
+  class="form-control"
+  placeholder="your@email.com" 
+  type="email" name="email" id="bd-email" />
+  
+  <input 
+  class="btn btn-primary mt-1"
+  type="submit" value="Subscribe" />
+  <p>
+    <a href="https://buttondown.com/refer/YOUR-NEWSLETTER-ID" target="_blank">Powered by Buttondown.</a>
+  </p>
+</form>
+```
+
+:::
+
+
+:::
+<!-- end grid -->

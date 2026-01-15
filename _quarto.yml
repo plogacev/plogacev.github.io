@@ -1,0 +1,104 @@
+project:
+  type: website
+  output-dir: docs
+
+  # post-render:
+  #   - "cp -rnv static/. _site" # source: https://github.com/quarto-dev/quarto-cli/discussions/4162#discussioncomment-4831352
+
+website:
+  title: "Pavel Logačev"
+  site-url: https://sell-smart.github.io
+  description: "Pricing & Revenue Optimization Data Scientist"
+  #favicon: assets/silvia/img/logo_rounded.svg
+  page-navigation: true
+  back-to-top-navigation: true
+  #twitter-card:
+  #  creator: "@spcanelon"
+  #  site: "@spcanelon"
+  #  card-style: summary_large_image
+  #comments: 
+  #  utterances: 
+  #    repo: spcanelon/silvia 
+  #    label: utterances
+  #    theme: flatly
+  #    issue-term: title
+  # search:
+  #   algolia:
+  #     index-name: silviacanelon_com_2nwwu5566h_pages
+  #     application-id: 2NWWU5566H
+  #     search-only-api-key: 4fc205c04b677b0951348a8571b2d7d0
+  #     show-logo: false
+      # index-fields:
+      #   href: url
+      #   title: title
+      #   section: subtitle
+      #   text: body
+ 
+  navbar:
+    #logo: assets/silvia/img/logo_rounded.svg
+    # logo: assets/silvia/img/logo_noBg.svg
+    tools:
+    - icon: github
+      href: https://github.com/plogacev
+    right:
+      - text: About
+        aria-label: "About Me"
+        href: about/index.qmd
+      - text: Case Studies
+        aria-label: "Case Studies"
+        href: case-studies/index.qmd
+      - text: Blog
+        aria-label: "Blog"
+        href: blog/index.qmd
+      - text: Profitable Pricing
+        aria-label: "Profitable Pricing"
+        href: profitable-pricing/index.qmd
+  
+  page-footer:  
+    #left: >-
+    # &#169; 2024 Silvia Canelón &#8729; Made with [Quarto](https://quarto.org)
+    center: |
+      <a class="link-dark me-1" href="https://www.linkedin.com/in/pavel-logacev" title="LinkedIn" target="_blank" rel="noopener">{{< fa brands linkedin >}}</a>
+      <a class="link-dark me-1" href="https://github.com/plogacev" title="github" target="_blank" rel="noopener">{{< fa brands github >}}</a>
+    #<a class="link-dark me-1" href="/accessibility.html" title="Accessibility commitment" target="_blank" rel="noopener">{{< fa universal-access >}}</a>
+    #<a class="link-dark me-1" href="https://bsky.app/profile/silviacanelon.com" title="Bluesky" target="_blank" rel="noopener">{{< fa brands bluesky >}}</a>
+    #<a class="link-dark me-1" href="https://orcid.org/0000-0002-2837-2258" title="orcid" target="_blank" rel="noopener">{{< ai orcid >}}</a>
+    #<a class="link-dark me-1" href="https://scholar.google.com/citations?user=fhbdTJIAAAAJ" title="Google Scholar" target="_blank"rel="noopener">{{< ai google-scholar >}}</a>
+    #<a class="link-dark me-1" href="https://buttondown.com/spcanelon" title="Newsletter" target="_blank" rel="noopener">{{< fa envelope >}}</a>
+
+    right: 
+      #- text: "Accessibility"
+      #  aria-label: "Accessibility Commitment"
+      #  href: accessibility.qmd
+      - text: "Contact"
+        aria-label: "Contact Form"
+        href: "contact.qmd"
+      #- text: "License"
+      #  aria-label: "License Details"
+      #  href: license.qmd
+      - icon: rss
+        href: blog/index.xml
+
+format: 
+  html:
+    theme:
+      light:
+        - cosmo
+        - assets/silvia-theme-light.scss
+        - assets/silvia/colors-light.scss
+        - assets/silvia/fonts.scss
+      #dark: 
+      #  - cosmo
+      #  - assets/silvia-theme-dark.scss
+      #  - assets/silvia/colors-dark.scss
+    highlight-style:
+      light: assets/silvia/a11y-light.theme
+      dark: assets/silvia/a11y-dark.theme
+    code-link: true
+    pagetitle: "{{< meta title >}}"
+    lightbox: true
+
+execute: 
+  freeze: auto
+
+#include-in-header: assets/silvia/umami.html

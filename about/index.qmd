@@ -1,0 +1,157 @@
+---
+title: "Pavel Logačev"
+subtitle: Pricing & Revenue Optimization Data Scientist
+image: ../assets/images/pavel.png
+#image-alt: "Smiling woman with a tan complexion, dark eyes, and dark long wavy hair styled to one side"
+about:
+  template: trestles
+  image-width: 14em
+  image-shape: rounded
+  id: hero-heading
+  links:
+    #- text: "{{< fa universal-access >}}"
+    #  aria-label: "Accessibility statement"
+    #  href: accessibility.qmd
+    #- text: "{{< fa brands bluesky >}}"
+    #  aria-label: "Bluesky"
+    #  href: https://bsky.app/profile/silviacanelon.com
+    - icon: linkedin
+      aria-label: "LinkedIn"
+      href: https://www.linkedin.com/in/pavel-logacev
+    - icon: github
+      aria-label: GitHub
+      href: https://github.com/plogacev
+    # - icon: mastodon
+    #   href: https://hachyderm.io/@spcanelon
+    #- text: "{{< ai orcid >}}"
+    #  href: https://orcid.org/0000-0002-2837-2258
+    #- text: "{{< ai google-scholar >}}"
+    #  aria-label: "Google Scholar"
+    #  href: https://scholar.google.com/citations?user=fhbdTJIAAAAJ
+    #- text: "{{< fa envelope >}}"
+    #  aria-label: Newsletter
+    #  href: https://buttondown.com/spcanelon
+listing:
+- id: blog
+  contents:
+    - "../blog/*/index.qmd"
+    - "../blog/*/index.markdown"
+  sort: date desc
+  type: grid
+  grid-columns: 1
+  categories: false
+  sort-ui: false
+  filter-ui: false
+  fields: [title, subtitle, image]
+  max-items: 1
+  image-height: "200"
+- id: case-studies
+  contents:
+    - "../case-studies/*/index.qmd"
+    - "../case-studies/*/index.markdown"
+  sort: date desc
+  type: grid
+  grid-columns: 1
+  categories: false
+  sort-ui: false
+  filter-ui: false
+  fields: [title, subtitle, image]
+  max-items: 1
+  image-height: "200"
+format: 
+  html: 
+    page-layout: full
+
+header-includes: >
+  <link rel="stylesheet" href="../assets/about.css">
+resources:
+  - ../assets/about.css
+---
+
+::: {#hero-heading}
+<div class="h1">Hi, I’m Pavel Logačev</div>
+
+I help businesses optimize prices and grow revenue with data. That means building models that make pricing decisions — not dashboards that sit unused.
+
+Whether you're a retailer, a B2B supplier, or a direct-to-consumer brand, I work with you (or your agency) to identify pricing opportunities, model demand, and implement pricing logic that scales.  
+I don’t just hand you elasticities — I deliver working solutions.
+
+[Get in touch](/contact.qmd) if you’d like to work together.
+:::
+
+
+## What I do
+
+::: {.grid}
+
+::: {.g-col-6}
+
+**From pricing guesswork to pricing strategy.**
+
+I support clients with:
+
+- Price optimization (margin or revenue focused)
+- Willingness-to-pay modeling — even without clean sales data
+- Demand forecasting with uncertainty estimates
+- Stockout detection and adjustment
+- Competitor benchmarking from scraped or third-party data
+- A/B test design and analysis
+- Causal inference for pricing, marketing, and product decisions
+
+I help you go from messy historical data to a robust pricing process.
+
+:::
+
+::: {.g-col-6}
+
+**Business-first. Technically fluent.**
+
+I build models that are:
+
+- **Custom-fit to your context**, not off-the-shelf
+- Designed for **messy, real-world data**
+- Delivered as ready-to-use pricing logic, files, or API endpoints
+
+My goal is always the same: help you charge the right price — confidently, repeatedly, and at scale.
+
+I'm based in Berlin and work with clients across Europe and North America.  
+I speak English, German, and Russian.
+
+:::
+
+:::
+
+## Experience
+
+I've worked with retailers, manufacturers, and global brands on pricing problems ranging from product launches to large-scale price realignments.
+
+Past projects have included:
+
+- Rolling out optimized prices across 300+ stores
+- Replacing legacy price ladders with margin-based models
+- Estimating price elasticity across thousands of SKUs
+- Designing experiments to test pricing thresholds
+
+Much of my work is done through agencies — but I operate as a partner, not a hired hand.
+
+<!-- end grid -->
+
+## Lately ...
+
+:::: {.grid}
+
+::: {.g-col-6}
+#### Blog
+::: {#blog}
+:::
+[See all &rarr;](../blog){.about-links .subtitle}
+:::
+
+::: {.g-col-6}
+#### Case Studies
+::: {#case-studies}
+:::
+[See all &rarr;](../case-studies){.about-links .subtitle}
+:::
+
+::::

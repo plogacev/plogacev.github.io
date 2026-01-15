@@ -1,0 +1,19 @@
+---
+title: "Case Studies"
+pagetitle: "Pavel Logačev - Case Studies"
+subtitle: "Real-world pricing and revenue optimization projects"
+listing:
+  contents:
+    - "*/index.qmd"
+    - "*/index.markdown"
+  sort: date desc
+  type: grid
+  categories: false
+  sort-ui: false
+  filter-ui: false
+  fields: [title, subtitle, image]
+  image-height: "200"
+page-layout: full
+---
+
+Selected examples of pricing and revenue optimization work. Details are anonymized to protect client confidentiality.
