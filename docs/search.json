@@ -11,7 +11,14 @@
     "href": "contact.html",
     "title": "Get in touch",
     "section": "",
-    "text": "Drop me a note \nIf you’d like to discuss a potential project, collaboration, or just have a question about pricing optimization, demand modeling, forecasting, or bespoke models — feel free to drop me a note here.\nYou can also connect with me on other platforms:\n\n\n\n\n\n\n\n\nFull Name \nEmail Address \nMessage\n\n\n\nSend message\n\n\n\n\n\n\n\n\n\n Back to top"
+    "text": "If you’d like to discuss a potential project, collaboration, or have a question about statistical modeling, forecasting, or data science — feel free to reach out.\nYou can also find me on:\n\n\n\n\n\n\n\n\nFull Name \nEmail Address \nMessage\n\n\n\nSend message"
+  },
+  {
+    "objectID": "contact.html#drop-me-a-note",
+    "href": "contact.html#drop-me-a-note",
+    "title": "Get in touch",
+    "section": "",
+    "text": "If you’d like to discuss a potential project, collaboration, or have a question about statistical modeling, forecasting, or data science — feel free to reach out.\nYou can also find me on:"
   },
   {
     "objectID": "about/index.html",
@@ -25,7 +32,7 @@
     "href": "about/index.html#what-i-do",
     "title": "Pavel Logačev",
     "section": "What I Do",
-    "text": "What I Do\n\nDemand modeling and forecasting\nPrice elasticity estimation\nCausal inference (A/B tests, observational studies)\nBayesian methods for sparse data\nCustom models tailored to your domain"
+    "text": "What I Do\n\nPrice elasticity estimation and price optimization\nBayesian methods for sparse data\nDemand modeling and forecasting\nCausal inference (A/B tests, observational studies)\nCustom models tailored to your domain and problem"
   },
   {
     "objectID": "about/index.html#background",

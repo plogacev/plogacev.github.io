@@ -41,11 +41,11 @@ I help companies make better decisions through statistical modeling — especial
 
 ## What I Do
 
-- Demand modeling and forecasting
-- Price elasticity estimation
-- Causal inference (A/B tests, observational studies)
+- Price elasticity estimation and price optimization
 - Bayesian methods for sparse data
-- Custom models tailored to your domain
+- Demand modeling and forecasting
+- Causal inference (A/B tests, observational studies)
+- Custom models tailored to your domain and problem
 
 :::
 
