@@ -5,11 +5,11 @@
       xmlns:dc="http://purl.org/dc/elements/1.1/" 
       version="2.0">
 <channel>
-<title>Pavel Jose</title>
-<link>https://sell-smart.github.io/blog/</link>
-<atom:link href="https://sell-smart.github.io/blog/index.xml" rel="self" type="application/rss+xml"/>
-<description>Pricing &amp; Revenue Optimization Data Scientist</description>
+<title>Pavel Logačev</title>
+<link>https://plogacev.github.io/blog/</link>
+<atom:link href="https://plogacev.github.io/blog/index.xml" rel="self" type="application/rss+xml"/>
+<description>Freelance Data Scientist</description>
 <generator>quarto-1.7.33</generator>
-<lastBuildDate>Thu, 15 Jan 2026 21:35:14 GMT</lastBuildDate>
+<lastBuildDate>Sat, 17 Jan 2026 12:11:13 GMT</lastBuildDate>
 </channel>
 </rss>

@@ -1,157 +1,69 @@
 ---
-title: "Pavel Jose"
-subtitle: Pricing & Revenue Optimization Data Scientist
+title: "Pavel Logačev"
+subtitle: Freelance Data Scientist
 image: ../assets/images/pavel.png
-#image-alt: "Smiling woman with a tan complexion, dark eyes, and dark long wavy hair styled to one side"
 about:
   template: trestles
   image-width: 14em
   image-shape: rounded
   id: hero-heading
   links:
-    #- text: "{{< fa universal-access >}}"
-    #  aria-label: "Accessibility statement"
-    #  href: accessibility.qmd
-    #- text: "{{< fa brands bluesky >}}"
-    #  aria-label: "Bluesky"
-    #  href: https://bsky.app/profile/silviacanelon.com
     - icon: linkedin
       aria-label: "LinkedIn"
       href: https://www.linkedin.com/in/pavel-logacev
     - icon: github
       aria-label: GitHub
       href: https://github.com/plogacev
-    # - icon: mastodon
-    #   href: https://hachyderm.io/@spcanelon
-    #- text: "{{< ai orcid >}}"
-    #  href: https://orcid.org/0000-0002-2837-2258
-    #- text: "{{< ai google-scholar >}}"
-    #  aria-label: "Google Scholar"
-    #  href: https://scholar.google.com/citations?user=fhbdTJIAAAAJ
-    #- text: "{{< fa envelope >}}"
-    #  aria-label: Newsletter
-    #  href: https://buttondown.com/spcanelon
-listing:
-- id: blog
-  contents:
-    - "../blog/*/index.qmd"
-    - "../blog/*/index.markdown"
-  sort: date desc
-  type: grid
-  grid-columns: 1
-  categories: false
-  sort-ui: false
-  filter-ui: false
-  fields: [title, subtitle, image]
-  max-items: 1
-  image-height: "200"
-- id: case-studies
-  contents:
-    - "../case-studies/*/index.qmd"
-    - "../case-studies/*/index.markdown"
-  sort: date desc
-  type: grid
-  grid-columns: 1
-  categories: false
-  sort-ui: false
-  filter-ui: false
-  fields: [title, subtitle, image]
-  max-items: 1
-  image-height: "200"
-format: 
-  html: 
+format:
+  html:
     page-layout: full
-
-header-includes: >
-  <link rel="stylesheet" href="../assets/about.css">
-resources:
-  - ../assets/about.css
 ---
 
 ::: {#hero-heading}
-<div class="h1">Hi, I'm Pavel Jose</div>
 
-I help businesses optimize prices and grow revenue with data. That means building models that make pricing decisions — not dashboards that sit unused.
+I help companies make better decisions through statistical modeling — especially when data is limited, messy, or poorly understood.
 
-Whether you're a retailer, a B2B supplier, or a direct-to-consumer brand, I work with you (or your agency) to identify pricing opportunities, model demand, and implement pricing logic that scales.  
-I don’t just hand you elasticities — I deliver working solutions.
+[Get in touch](/contact.qmd) if you'd like to work together.
 
-[Get in touch](/contact.qmd) if you’d like to work together.
 :::
 
 
-## What I do
+## What I Do
 
 ::: {.grid}
 
 ::: {.g-col-6}
 
-**From pricing guesswork to pricing strategy.**
+**Statistical modeling for business problems**
 
-I support clients with:
-
-- Price optimization (margin or revenue focused)
-- Willingness-to-pay modeling — even without clean sales data
-- Demand forecasting with uncertainty estimates
-- Stockout detection and adjustment
-- Competitor benchmarking from scraped or third-party data
-- A/B test design and analysis
-- Causal inference for pricing, marketing, and product decisions
-
-I help you go from messy historical data to a robust pricing process.
+- Demand modeling and forecasting
+- Price elasticity estimation
+- Causal inference (A/B tests, observational studies)
+- Bayesian methods for sparse data
+- Custom models tailored to your domain
 
 :::
 
 ::: {.g-col-6}
 
-**Business-first. Technically fluent.**
+**How I work**
 
-I build models that are:
-
-- **Custom-fit to your context**, not off-the-shelf
-- Designed for **messy, real-world data**
-- Delivered as ready-to-use pricing logic, files, or API endpoints
-
-My goal is always the same: help you charge the right price — confidently, repeatedly, and at scale.
-
-I'm based in Berlin and work with clients across Europe and North America.  
-I speak English, German, and Russian.
+- I take time to understand your business context before modeling
+- I build interpretable models, not black boxes
+- I deliver working solutions — not just reports
+- I communicate clearly with technical and non-technical stakeholders
 
 :::
 
 :::
 
-## Experience
 
-I've worked with retailers, manufacturers, and global brands on pricing problems ranging from product launches to large-scale price realignments.
+## Background
 
-Past projects have included:
+PhD in Cognitive Science (University of Potsdam). Before freelancing, I worked in academic research and then transitioned to applied data science in industry.
 
-- Rolling out optimized prices across 300+ stores
-- Replacing legacy price ladders with margin-based models
-- Estimating price elasticity across thousands of SKUs
-- Designing experiments to test pricing thresholds
+I've worked with retailers, distributors, and restaurant chains on problems involving pricing, demand, and forecasting. Most of my work is done through agencies, but I also take on direct engagements.
 
-Much of my work is done through agencies — but I operate as a partner, not a hired hand.
+Based in Berlin. I work with clients across Europe and North America.
 
-<!-- end grid -->
-
-## Lately ...
-
-:::: {.grid}
-
-::: {.g-col-6}
-#### Blog
-::: {#blog}
-:::
-[See all &rarr;](../blog){.about-links .subtitle}
-:::
-
-::: {.g-col-6}
-#### Case Studies
-::: {#case-studies}
-:::
-[See all &rarr;](../case-studies){.about-links .subtitle}
-:::
-
-::::
+Languages: English, German, Russian.

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Pavel Jose – Pavel Jose</title>
+<title>Pavel Logačev – Pavel Logačev</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,18 +30,15 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-listing/list.min.js"></script>
-<script src="../site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-992ab5d242470fb2c9cdbf1274eec3f9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
-<link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-ffb562fc52a5b424926080d266db5e35.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -69,94 +66,7 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-blog .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-title','listing-subtitle','listing-image',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: [],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-blog'] = new List('listing-blog', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-case-studies .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-title','listing-subtitle','listing-image',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: [],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-case-studies'] = new List('listing-case-studies', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-<link rel="stylesheet" href="../assets/about.css">
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -168,7 +78,7 @@ window.Quarto = {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">Pavel Jose</span>
+    <span class="navbar-title">Pavel Logačev</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -182,21 +92,22 @@ window.Quarto = {
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../case-studies/index.html"> 
-<span class="menu-text">Case Studies</span></a>
+    <a class="nav-link" href="../projects/index.html"> 
+<span class="menu-text">Projects</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../blog/index.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../profitable-pricing/index.html"> 
-<span class="menu-text">Profitable Pricing</span></a>
+    <a class="nav-link" href="../contact.html"> 
+<span class="menu-text">Contact</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
     <a href="https://github.com/plogacev" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="https://www.linkedin.com/in/pavel-logacev" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-linkedin"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -218,8 +129,8 @@ window.Quarto = {
   rounded " style="width: 14em;">
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Pavel Jose</h1>
-<p class="subtitle lead">Pricing &amp; Revenue Optimization Data Scientist</p>
+<h1 class="title">Pavel Logačev</h1>
+<p class="subtitle lead">Freelance Data Scientist</p>
 </div>
 <div class="quarto-title-meta column-page">
   </div>
@@ -236,85 +147,41 @@ window.Quarto = {
 </div>
   </div>
   <div class="about-contents"><div id="hero-heading">
-<div class="h1">
-Hi, I’m Pavel Jose
-</div>
-<p>I help businesses optimize prices and grow revenue with data. That means building models that make pricing decisions — not dashboards that sit unused.</p>
-<p>Whether you’re a retailer, a B2B supplier, or a direct-to-consumer brand, I work with you (or your agency) to identify pricing opportunities, model demand, and implement pricing logic that scales.<br>
-I don’t just hand you elasticities — I deliver working solutions.</p>
+<p>I help companies make better decisions through statistical modeling — especially when data is limited, messy, or poorly understood.</p>
 <p><a href="../contact.html">Get in touch</a> if you’d like to work together.</p>
 </div></div>
 </div>
 
 <section id="what-i-do" class="level2">
-<h2 data-anchor-id="what-i-do">What I do</h2>
+<h2 data-anchor-id="what-i-do">What I Do</h2>
 <div class="grid">
 <div class="g-col-6">
-<p><strong>From pricing guesswork to pricing strategy.</strong></p>
-<p>I support clients with:</p>
+<p><strong>Statistical modeling for business problems</strong></p>
 <ul>
-<li>Price optimization (margin or revenue focused)</li>
-<li>Willingness-to-pay modeling — even without clean sales data</li>
-<li>Demand forecasting with uncertainty estimates</li>
-<li>Stockout detection and adjustment</li>
-<li>Competitor benchmarking from scraped or third-party data</li>
-<li>A/B test design and analysis</li>
-<li>Causal inference for pricing, marketing, and product decisions</li>
+<li>Demand modeling and forecasting</li>
+<li>Price elasticity estimation</li>
+<li>Causal inference (A/B tests, observational studies)</li>
+<li>Bayesian methods for sparse data</li>
+<li>Custom models tailored to your domain</li>
 </ul>
-<p>I help you go from messy historical data to a robust pricing process.</p>
 </div>
 <div class="g-col-6">
-<p><strong>Business-first. Technically fluent.</strong></p>
-<p>I build models that are:</p>
+<p><strong>How I work</strong></p>
 <ul>
-<li><strong>Custom-fit to your context</strong>, not off-the-shelf</li>
-<li>Designed for <strong>messy, real-world data</strong></li>
-<li>Delivered as ready-to-use pricing logic, files, or API endpoints</li>
+<li>I take time to understand your business context before modeling</li>
+<li>I build interpretable models, not black boxes</li>
+<li>I deliver working solutions — not just reports</li>
+<li>I communicate clearly with technical and non-technical stakeholders</li>
 </ul>
-<p>My goal is always the same: help you charge the right price — confidently, repeatedly, and at scale.</p>
-<p>I’m based in Berlin and work with clients across Europe and North America.<br>
-I speak English, German, and Russian.</p>
 </div>
 </div>
 </section>
-<section id="experience" class="level2">
-<h2 data-anchor-id="experience">Experience</h2>
-<p>I’ve worked with retailers, manufacturers, and global brands on pricing problems ranging from product launches to large-scale price realignments.</p>
-<p>Past projects have included:</p>
-<ul>
-<li>Rolling out optimized prices across 300+ stores</li>
-<li>Replacing legacy price ladders with margin-based models</li>
-<li>Estimating price elasticity across thousands of SKUs</li>
-<li>Designing experiments to test pricing thresholds</li>
-</ul>
-<p>Much of my work is done through agencies — but I operate as a partner, not a hired hand.</p>
-<!-- end grid -->
-</section>
-<section id="lately" class="level2">
-<h2 data-anchor-id="lately">Lately …</h2>
-<div class="grid">
-<section id="blog" class="level4 g-col-6">
-<h4 data-anchor-id="blog">Blog</h4>
-<div id="listing-blog" class="quarto-listing quarto-listing-container-grid">
-<div class="list grid quarto-listing-cols-1">
-
-</div>
-<div class="listing-no-matching d-none">No matching items</div>
-</div>
-<p><a href="../blog" class="about-links subtitle">See all →</a></p>
-</section>
-<section id="case-studies" class="level4 g-col-6">
-<h4 data-anchor-id="case-studies">Case Studies</h4>
-<div id="listing-case-studies" class="quarto-listing quarto-listing-container-grid">
-<div class="list grid quarto-listing-cols-1">
-
-</div>
-<div class="listing-no-matching d-none">No matching items</div>
-</div>
-<p><a href="../case-studies" class="about-links subtitle">See all →</a></p>
-</section>
-</div>
-
+<section id="background" class="level2">
+<h2 data-anchor-id="background">Background</h2>
+<p>PhD in Cognitive Science (University of Potsdam). Before freelancing, I worked in academic research and then transitioned to applied data science in industry.</p>
+<p>I’ve worked with retailers, distributors, and restaurant chains on problems involving pricing, demand, and forecasting. Most of my work is done through agencies, but I also take on direct engagements.</p>
+<p>Based in Berlin. I work with clients across Europe and North America.</p>
+<p>Languages: English, German, Russian.</p>
 
 
 
@@ -386,7 +253,7 @@ I speak English, German, and Russian.</p>
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/sell-smart\.github\.io");
+        var filterRegex = new RegExp("https:\/\/plogacev\.github\.io");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -714,31 +581,6 @@ I speak English, German, and Russian.</p>
   });
   </script>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
-    <div class="nav-footer-left">
-      &nbsp;
-    </div>   
-    <div class="nav-footer-center">
-<p><a class="link-dark me-1" href="https://www.linkedin.com/in/pavel-logacev" title="LinkedIn" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin" aria-label="linkedin"></i></a> <a class="link-dark me-1" href="https://github.com/plogacev" title="github" target="_blank" rel="noopener"><i class="fa-brands fa-github" aria-label="github"></i></a></p>
-</div>
-    <div class="nav-footer-right">
-      <ul class="footer-items list-unstyled">
-    <li class="nav-item">
-    <a class="nav-link" href="../contact.html">
-<p>Contact</p>
-</a>
-  </li>  
-    <li class="nav-item compact">
-    <a class="nav-link" href="../blog/index.xml">
-      <i class="bi bi-rss" role="img">
-</i> 
-    </a>
-  </li>  
-</ul>
-    </div>
-  </div>
-</footer>
 
 
 

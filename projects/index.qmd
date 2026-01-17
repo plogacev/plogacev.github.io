@@ -1,0 +1,19 @@
+---
+title: "Projects"
+pagetitle: "Pavel Logačev - Projects"
+subtitle: "Selected data science and modeling projects"
+listing:
+  contents:
+    - "*/index.qmd"
+    - "*/index.markdown"
+  sort: date desc
+  type: grid
+  categories: false
+  sort-ui: false
+  filter-ui: false
+  fields: [title, subtitle, image]
+  image-height: "200"
+page-layout: full
+---
+
+Selected examples of data science work. Details are anonymized to protect client confidentiality.
