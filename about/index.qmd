@@ -4,7 +4,7 @@ subtitle: Freelance Data Scientist
 image: ../assets/images/pavel.png
 about:
   template: trestles
-  image-width: 14em
+  image-width: 10em
   image-shape: rounded
   id: hero-heading
   links:
@@ -23,14 +23,15 @@ format:
 
 I help companies make better decisions through statistical modeling — especially when data is limited, messy, or poorly understood.
 
-[Get in touch](/contact.qmd) if you'd like to work together.
-
 **How I work**
 
 - I take time to understand your business context before modeling
 - I build interpretable models, not black boxes
 - I deliver working solutions — not just reports
 - I communicate clearly with technical and non-technical stakeholders
+
+
+[Get in touch](/contact.qmd) if you'd like to work together.
 
 :::
 
@@ -58,7 +59,7 @@ I've worked with retailers, distributors, and restaurant chains on problems invo
 
 Based in Berlin. I work with clients across Europe and North America.
 
-Languages: English, German, Russian.
+I speak English, German, Russian, and a little Turkish.
 
 :::
 
