@@ -25,16 +25,20 @@ I help companies make better decisions through statistical modeling — especial
 
 [Get in touch](/contact.qmd) if you'd like to work together.
 
+**How I work**
+
+- I take time to understand your business context before modeling
+- I build interpretable models, not black boxes
+- I deliver working solutions — not just reports
+- I communicate clearly with technical and non-technical stakeholders
+
 :::
-
-
-## What I Do
 
 ::: {.grid}
 
 ::: {.g-col-6}
 
-**Statistical modeling for business problems**
+## What I Do
 
 - Demand modeling and forecasting
 - Price elasticity estimation
@@ -46,18 +50,6 @@ I help companies make better decisions through statistical modeling — especial
 
 ::: {.g-col-6}
 
-**How I work**
-
-- I take time to understand your business context before modeling
-- I build interpretable models, not black boxes
-- I deliver working solutions — not just reports
-- I communicate clearly with technical and non-technical stakeholders
-
-:::
-
-:::
-
-
 ## Background
 
 PhD in Cognitive Science (University of Potsdam). Before freelancing, I worked in academic research and then transitioned to applied data science in industry.
@@ -67,3 +59,7 @@ I've worked with retailers, distributors, and restaurant chains on problems invo
 Based in Berlin. I work with clients across Europe and North America.
 
 Languages: English, German, Russian.
+
+:::
+
+:::
