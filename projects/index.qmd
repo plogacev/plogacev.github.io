@@ -1,6 +1,7 @@
 ---
 title: "Projects"
 pagetitle: "Pavel Logačev - Projects"
+description: "Selected data science projects including demand modeling, price optimization, forecasting, and causal inference. Details anonymized for client confidentiality."
 subtitle: "Selected data science and modeling projects"
 listing:
   contents:

@@ -1,6 +1,7 @@
 ---
 pagetitle: Pavel Logačev - Contact
 title: Get in touch
+description: "Contact Pavel Logačev for data science consulting, statistical modeling projects, or collaborations."
 name: Contact Form
 page-layout: article
 format:

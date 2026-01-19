@@ -1,7 +1,10 @@
 ---
 title: ""
 pagetitle: "Pavel Logačev - Freelance Data Scientist"
+title-prefix: ""
+description: "Freelance data scientist specializing in statistical modeling, Bayesian methods, demand modeling, price elasticity, and causal inference. Based in Berlin."
 image: assets/images/pavel.png
+image-alt: "Pavel Logačev - Freelance Data Scientist"
 
 about:
   template: solana

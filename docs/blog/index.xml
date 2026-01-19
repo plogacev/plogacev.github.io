@@ -8,8 +8,8 @@
 <title>Pavel Logačev</title>
 <link>https://plogacev.github.io/blog/</link>
 <atom:link href="https://plogacev.github.io/blog/index.xml" rel="self" type="application/rss+xml"/>
-<description>Freelance Data Scientist</description>
+<description>Blog posts on data science, statistical modeling, Bayesian methods, and practical applications of machine learning.</description>
 <generator>quarto-1.7.33</generator>
-<lastBuildDate>Sat, 17 Jan 2026 12:57:59 GMT</lastBuildDate>
+<lastBuildDate>Mon, 19 Jan 2026 00:42:25 GMT</lastBuildDate>
 </channel>
 </rss>

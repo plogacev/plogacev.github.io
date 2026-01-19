@@ -1,7 +1,9 @@
 ---
 title: "Pavel Logačev"
 subtitle: Freelance Data Scientist
+description: "About Pavel Logačev - Freelance data scientist specializing in price elasticity, Bayesian methods, demand modeling, and causal inference. PhD in Cognitive Science. Based in Berlin."
 image: ../assets/images/pavel.png
+image-alt: "Pavel Logačev - Freelance Data Scientist"
 about:
   template: trestles
   image-width: 10em

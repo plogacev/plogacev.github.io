@@ -1,6 +1,7 @@
 ---
 title: "Blog"
 pagetitle: "Pavel Logačev - Blog"
+description: "Blog posts on data science, statistical modeling, Bayesian methods, and practical applications of machine learning."
 subtitle: "Thoughts on data science, statistics, and modeling"
 listing:
   contents:

@@ -3,11 +3,15 @@ project:
   output-dir: docs
   render:
     - "**/*.qmd"
+  resources:
+    - google80633a22d46b507f.html
 
 website:
   title: "Pavel Logačev"
   site-url: https://plogacev.github.io
-  description: "Freelance Data Scientist"
+  description: "Freelance Data Scientist specializing in Bayesian methods, demand modeling, price elasticity, and causal inference."
+  open-graph: true
+  twitter-card: true
   page-navigation: true
   back-to-top-navigation: true
 
@@ -40,6 +44,8 @@ format:
     code-link: true
     pagetitle: "{{< meta title >}}"
     lightbox: true
+    include-in-header:
+      - _includes/structured-data.html
 
 execute:
   freeze: auto
