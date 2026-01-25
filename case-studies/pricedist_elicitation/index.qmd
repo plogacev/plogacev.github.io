@@ -402,7 +402,6 @@ product_prices <- py$product_prices$to_pandas() %>% filter(!is.na(typical))
 -   The plot below shows the actual product list prices in USD (x-axis), along with the elicited prices (y-axis). Both axes are on the log-scale. The vertical bars correspond to price range. Even though there are significant deviations, we can see that the model produces price estimates close to the observed list price.
 
 ```{r thumbnail-image, fig.width=6, fig.height=6}
-#| label: thumbnail-image
 product_prices %>% filter(!is.na(typical)) %>%
   ggplot(aes(x = price_usd, y = typical)) +
   geom_point(alpha=0.3) +
