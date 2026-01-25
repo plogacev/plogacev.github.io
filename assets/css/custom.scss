@@ -30,9 +30,11 @@ $link-color: #0077b5;
 /* Case studies card styling */
 .quarto-listing-default .listing-image,
 .quarto-grid-item .listing-item-img-placeholder,
-.quarto-grid-item .thumbnail {
+.quarto-grid-item .thumbnail,
+.quarto-grid-item .thumbnail-image {
   border-radius: 8px 8px 0 0;
-  object-fit: cover;
+  object-fit: contain;
+  background: #f8f9fa;
 }
 
 .quarto-grid-item {
