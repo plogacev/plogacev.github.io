@@ -30,6 +30,7 @@ library(reticulate)
 ```{python message=FALSE, warning=FALSE}
 import os
 import polars as pl
+import pandas as pd
 import re
 import ast
 from tqdm import tqdm
@@ -39,7 +40,6 @@ import openai
 import pickle
 
 from dotenv import load_dotenv
-
 from openai import OpenAI
 from joblib import Memory
 
@@ -100,6 +100,7 @@ products = (products
             .with_columns( pl.arange(0, products.height).alias('product_id') )
             .select([ 'product_id', 'product_title', 'product_description', 'price_usd', 'price_discounted_usd', 'product_url'])
            )
+products = pd.DataFrame(products)
 ```
 
 -   Let's take a look at the data frame with the product information.
