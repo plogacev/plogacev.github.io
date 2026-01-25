@@ -100,7 +100,6 @@ products = (products
             .with_columns( pl.arange(0, products.height).alias('product_id') )
             .select([ 'product_id', 'product_title', 'product_description', 'price_usd', 'price_discounted_usd', 'product_url'])
            )
-products = pd.DataFrame(products)
 ```
 
 -   Let's take a look at the data frame with the product information.
@@ -460,7 +459,7 @@ Of course, this model is a deliberate oversimplification. In practice, most prod
 product_prices %>% summarize(
   perc_list_price_lower = mean(price_usd < lower),
   perc_list_price_higher = mean(price_usd > upper) 
-
+)
 ```
 
 ### Simple Log-Normal Model
@@ -552,7 +551,7 @@ product_prices <-
   mutate(
     p2_delta = (log(upper) - log(lower)) / (z_upper - z_lower),
     p2_log_sigma = (log(upper) - log(lower)) / (z_upper - z_lower),
-    p2_log_mu = log(lower) - p1_log_sigma * z_lower
+    p2_log_mu = log(lower) - p2_log_sigma * z_lower
   )
 ```
 
@@ -572,13 +571,14 @@ If the calibration is good, the empirical and theoretical values should match cl
 
 -   Or there are systematic biases (e.g., skewed sampling, outliers, etc.)
 
+
 ```{r fig.width=6, fig.height=6}
 # Define theoretical cumulative probabilities to test calibration
 calibration_probs <- c(0.01, seq(0.05, 0.95, 0.05), 0.99)
 
 # For each quantile level, compute predicted price threshold and empirical coverage
 empirical_cdfs <- sapply(calibration_probs, function(p) {
-  predicted_threshold <- with(product_prices, exp(p1_log_mu + p1_log_sigma * qnorm(p)))
+  predicted_threshold <- with(product_prices, exp(p2_log_mu + p2_log_sigma * qnorm(p)))
   mean(product_prices$price_usd < predicted_threshold)
 })
 
