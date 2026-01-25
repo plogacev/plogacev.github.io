@@ -1,7 +1,8 @@
 ---
 title: "Price Distribution Elicitation from an LLM"
-subtitle: "Using GPT-4 to elicit calibrated price distributions"
-date: 2025-07-14
+subtitle: "Using GPT-4o to estimate plausible price ranges for products"
+author: "Pavel Logačev"
+date: 2025-07-10
 image: images/thumbnail.png
 format:
   html:
@@ -13,10 +14,593 @@ engine: knitr
 editor: visual
 ---
 
+```{r setup, eval=FALSE, include=FALSE}
+this_dir <- dirname(knitr::current_input())
+setwd(this_dir)
+```
+
+```{r message=FALSE, warning=FALSE}
+library(tidyverse)
+library(magrittr)
+library(ggplot2)
+library(scales)
+library(reticulate)
+```
+
+```{python message=FALSE, warning=FALSE}
+import os
+import polars as pl
+import re
+import ast
+from tqdm import tqdm
+import math
+import itertools
+import openai
+import pickle
+
+from dotenv import load_dotenv
+
+from openai import OpenAI
+from joblib import Memory
+
+# 
+tmp = load_dotenv()
+
+# save the results from the LLM model to a cache
+memory_summary = Memory(location="cache_summary", verbose=0)
+memory_pricing = Memory(location="cache_pricing", verbose=0)
+```
+
 ## Summary
 
 Demonstrates a two-stage pipeline that uses large language models (LLMs) to elicit reasonable price distributions for consumer products when competitor pricing data is insufficient or historical sales data is sparse. It extracts structured product attributes from free-text titles and descriptions (via GPT-3.5-turbo), then uses GPT-4o to elicit a retail price range (minimum, typical, maximum) based on those attributes and regional context. The elicited price ranges are used to reverse-engineer log-normal distribution parameters, which are validated against actual prices scraped from Mercado Libre. The result is a calibrated, probabilistic estimate of product pricing grounded in LLM-elicited knowledge.
 
-## 1. Implementation with ChatGPT
+## Motivation and Approach
 
-🔗 \[[Notebook](./price_distribution_elicitation.html)\]
+When pricing a new product for the first time, or re-evaluating an existing product's pricing, pricing analysts are often flying blind. In many cases, there is no information about competitor pricing, limited or no sales history, and little variability in past price points. As a result, prices can’t be based on competitive benchmarks or estimated elasticities. Yet a price still needs to be set.
+
+In these situations, the goal is not precision: it is to make a well-reasoned initial decision. The price should be high enough to protect margin, low enough to be competitive, and aligned with how a reasonably informed customer would perceive the product: what it does, what it's made of, who it's for, and how the brand signals quality or positioning.
+
+To support this task, the notebook demonstrates a two-stage pipeline using large language models (LLMs) for eliciting reasonable price ranges. The method is applied to consumer product data from Mercado Libre sourced from [here](https://github.com/pjstoc2/mercadolibre_analysis):
+
+1.  Product Attribute Extraction GPT-3.5-turbo is used to extract a structured set of pricing-relevant attributes — such as product type, components, materials, intended use, and product tier — from unstructured titles and descriptions. The output is a standardized schema of factual product properties.
+
+2.  Price Range Elicitation GPT-4o is then used on attributes to elicit a plausible retail price range — minimum, typical, and maximum — conditioned on regional market context (e.g., country, currency, and year).
+
+The two-step approach has several advantages over one-shot elicitation:
+
+1.  Explicit control over inputs: By decoupling attribute extraction from price judgment, we can precisely define which aspects of the product are considered — such as function, materials, target user, or technical features — rather than letting the model base its pricing on irrelevant or misleading text. This reduces hallucinations and improves consistency.
+
+2.  Cost efficiency: Structured product summaries can be generated using a much smaller model and inexpensive model than the one used for eliciting price points, such as a local *mt5-small* or *GPT-3.5-turbo*, with only the pricing step, which benefits from broader and more recent market knowledge, being handled by GPT-4o. This separation helps control token usage and reduces overall API costs.
+
+3.  Transparency and auditability: Having an explicit intermediate representation allows analysts to inspect what the model "saw" before making a pricing judgment. This makes the process easier to debug, validate, or even override with human input if needed.
+
+Both stages are implemented with batched processing, caching (joblib.Memory), and fallback logic to ensure reliability and scalability. The resulting price ranges can be used to support pricing diagnostics, detect potential over- or underpricing, and provide a structured starting point for analyst review.
+
+### Data
+
+The dataset (sourced from [here](https://github.com/pjstoc2/mercadolibre_analysis)) contains $5,859$ product listings from *Mercado Libre*, a major Latin American e-commerce platform. The data was likely obtained via web scraping. The presence of both original and discounted prices suggests that pricing metadata was parsed directly from the listing structure, possibly through structured HTML extraction.
+
+In the present notebook, we use the following columns:
+
+-   `product_title`: a free-text product title from the listing (in Spanish)
+-   `product_description`: a potentially marketing description (in Spanish)
+-   `price_usd`: the listed retail price, converted to USD
+-   `price_discounted_usd`: the discounted price (if applicable), also converted to USD
+-   `product_url`: a direct link to the product listing (mainly used for debugging)
+-   `product_id`: a synthetic ID assigned during preprocessing (mainly used for debugging)
+
+```{python}
+products = pl.read_csv("./data/mercado_libre_products_cleaned.csv")
+products = (products
+            .rename({'Product': 'product_title', 'Description': 'product_description',
+                      'Product URL': 'product_url',
+                      'MXN': 'price_mxn', 'USD': 'price_usd', 
+                      'Sale Price USD': 'price_discounted_usd'})
+            .with_columns( pl.arange(0, products.height).alias('product_id') )
+            .select([ 'product_id', 'product_title', 'product_description', 'price_usd', 'price_discounted_usd', 'product_url'])
+           )
+```
+
+-   Let's take a look at the data frame with the product information.
+
+```{r}
+py$products$to_pandas()
+```
+
+-   Next, we connect to OpenAI.
+
+```{python}
+client = OpenAI(api_key=os.environ["OPENAI_API_KEY"])
+```
+
+### Product Attribute Extraction
+
+-   Below is the prompt that serves to extract the pricing-related features from the product title and product description. In principle, the product images can be included as well.
+
+```{python}
+
+prompt_template_product_properties = """
+You are a product analyst.
+
+Extract pricing-relevant attributes from each of the following products.
+
+Focus exclusively on the **actual nature and use** of the product — its type, components, materials, and intended use — as well as the intended target group.  
+Do not be influenced by stylistic choices, promotional language, or verbosity in the original title or description.
+
+For each product, extract the following information:
+- Brand – if applicable
+- Core Product Name without any unnecessary qualifications, if one is available; in English if internationally known
+- Product Type – general category or function of the item
+- Key Components – any major physical or electronic subcomponents (e.g., power adapter, filter unit)
+- Distinguishing Product Features – physical or functional traits not found in all comparable products (e.g., "72h battery life", "IP68 water resistance", "remote control", "8-core CPU")
+- Variant Features – options that vary across listings or versions, such as size, color, voltage, memory, etc.
+- Functional Tier – classify the product as "budget", "standard", or "premium" based on: objective technical features, material quality, and positioning within the brand’s lineup or market segment.
+    - Exclude marketing phrasing and minor stylistic differences (e.g., LED clock, color options, decorative packaging).
+    - A product is premium only if it clearly surpasses alternatives in core functionality, quality, and typical price level.
+- Materials – main materials used (e.g., plastic, steel, leather)
+- Intended Use – main use case (e.g., "home cleaning", "child transport", "audio playback")
+- Target User – intended end-user (e.g., "toddlers", "pet owners", "DIY hobbyists")
+- Quantity or Unit Size – volume, weight, or unit count (in metric units if applicable)
+- Year of Make – if known or can be inferred
+- Regulatory Certifications or Standards – if applicable (e.g., CE, FDA, NOM)
+- Likely Group Marketed To – broad audience the product seems designed for (e.g., "fitness enthusiasts", "tech-savvy users")
+- Likely Income Bracket – infer "low", "middle", or "high" based on the nature of the product and its expected price range, not on superficial style
+
+
+Products:
+{product_blocks}
+
+Instructions:
+Return a syntactically valid Python list of dicts. Each dict must correspond to one product, and must include the following fields in this exact order:
+
+`product_id, brand, product_name, product_type, components, product_features, variant_features, functional_tier, materials, intended_use, target_user, quantity, year_make, regulatory_certifications, marketed_to, marketed_to_income`
+
+- When a property is unknown or unclear, and an educated guess is not possible, return `'-'` for that field
+- Do **not** use vague summaries or marketing phrasing — extract or infer concrete factual content only
+- Use **European metrics** for quantity/unit size (e.g., ml, cm, g); convert if necessary
+- Do not include explanations, markdown, or formatting beyond the list of dicts
+""".strip()
+```
+
+-   Here, we define the the logic of the product feature extraction.
+
+```{python}
+
+def make_product_blocks(product_list):
+    blocks = []
+    for i, product in enumerate(product_list, 1):
+        blocks.append(f"""Product {i}:
+                          <ID>
+                          {product['product_id']}
+                          </ID>
+                          <TITLE>
+                          {product['product_title']}
+                          </TITLE>
+                          <DESCRIPTION>
+                          {product['product_description']}
+                          </DESCRIPTION>
+                      """)
+    return "\n\n".join(blocks).strip()
+
+@memory_summary.cache(ignore=["client"])
+def summarize_product_descriptions_batch(client, product_list):
+        """ """
+        product_blocks = make_product_blocks(product_list)
+        
+        prompt = prompt_template_product_properties.format(
+            product_blocks=product_blocks
+        )
+
+        try:
+          response = client.chat.completions.create(
+              model="gpt-3.5-turbo",
+              messages=[{"role": "user", "content": prompt}],
+              temperature=0,
+          )
+          
+          reply = response.choices[0].message.content
+          reply = re.sub(r"^```(?:python)?\s*|\s*```$", "", reply.strip(), flags=re.IGNORECASE)
+          reply = ast.literal_eval(reply)
+
+        except:
+          if batch_size == 1:
+              raise
+          new_batch_size = math.floor(batch_size/2)
+          #print(f"new batch size: {new_batch_size}")
+          #if "maximum context length" in str(e):
+          return summarize_product_descriptions(client, product_list, batch_size=new_batch_size)
+        
+        # to-do: make sure all products were returned, and re-request the missing ones if any were missing
+
+        return reply
+
+
+@memory_summary.cache(ignore=["client"])
+def summarize_product_descriptions(client, product_list, batch_size=10):
+    """ """
+    num_batches = math.ceil(len(product_list) / batch_size)
+    product_list_it = iter(product_list)
+    
+    results = []
+    for _ in tqdm(range(num_batches), desc="Retrieving price ranges"):
+        product_batch = list(itertools.islice(product_list_it, batch_size))
+        result_batch = summarize_product_descriptions_batch(client, product_batch)
+        results.extend(result_batch)
+
+    return results
+
+```
+
+-   Let's extract pricing-related product attributes now, caching them during and after retrieval.
+
+```{python}
+product_list = products[['product_id', 'product_title', 'product_description']].to_dicts()
+
+fname_product_summaries = "product_summaries_chatgtp35_turbo.pkl"
+if not os.path.exists(fname_product_summaries):
+    product_summaries = summarize_product_descriptions(client, product_list, batch_size = 10)
+    
+    with open(fname_product_summaries, "wb") as f:
+      pickle.dump(product_summaries, f)
+      
+else:
+    with open(fname_product_summaries, "rb") as f:
+        product_summaries = pickle.load(f)
+
+```
+
+```{python}
+
+# Coerce lists to strings for compatibility
+product_summaries_uniform = [
+    {k: ", ".join(v) if isinstance(v, list) else v for k, v in row.items()}
+    for row in product_summaries
+]
+
+product_summaries_uniform_df = pl.DataFrame(product_summaries_uniform)
+
+```
+
+-   Let's take a look at the results of this feature extraction.
+
+```{r}
+py$product_summaries_uniform_df$to_pandas()
+```
+
+### Price Range Elicitation
+
+```{python}
+# to-do: do mention that we're looking for *list* prices, and not any kind of discounted or promotional prices -- or maybe elicit both types of prices (sometimes the 'discounted price' is the actual price)
+prompt_template_price_range = """
+You are a pricing assistant.
+
+Estimate the typical **online retail** price range for each of the following products, based on publicly available prices in {region}, as close to the year {year} as possible. Prioritize prices from local online platforms and regional e-commerce sites. If local data is scarce, use prices from the most **geographically or economically comparable regions** for which prices are available.
+- Prioritize sources with high traffic and strong market influence (e.g., Amazon, local online supermarkets, major regional e-commerce platforms).
+- Reflect everyday consumer pricing — exclude promotional or bulk prices.
+
+All prices must be reported in **{currency}**. If source prices are in a different currency, adjust to {currency} using appropriate historical exchange rates and contextual knowledge.
+
+Focus exclusively on the **actual nature and use** of the product, and the target group — its type, components, materials, and intended use.
+- Ignore stylistic or marketing choices in the title or description (e.g., exaggerated adjectives, description length, or promotional phrasing).
+- Prioritize functional and categorical cues, such as:
+  - What is the product?
+  - What is it made of?
+  - Who is it for (e.g. child vs. adult, consumer vs. professional)?
+  - How is it typically used?
+
+For each product, estimate:
+- The **lowest plausible price** — the lowest price a typical retailer might charge for this item, excluding outliers or defective goods.
+- The **highest plausible price** — the upper bound of reasonable retail pricing, excluding rare luxury versions or bundles.
+- The **most typical price** — the price point at which the product is most commonly sold (median or mode).
+
+Products:
+{product_summary}
+
+Instructions:
+Return a syntacticly valid python list of lists, each in the following format:
+[product_id, lowest_price, highest_price, typical_price]
+
+Do not include explanations, citations, or formatting beyond this structure.
+""".strip()
+
+```
+
+```{python}
+
+@memory_pricing.cache(ignore=["client"])
+def retrieve_price_ranges_batch(client, product_summary, currency, year, region):
+    """ """
+    prompt = prompt_template_price_range.format(
+        product_summary=pprint.pformat(product_summary),
+        currency=currency,
+        year=year,
+        region=region,
+    )
+    #prompt = re.sub(r'\s+', ' ', prompt)
+    #print(prompt)
+    
+    response = client.chat.completions.create(
+        model="gpt-4o",
+        messages=[{"role": "user", "content": prompt}],
+        temperature=0,
+    )
+    
+    reply = response.choices[0].message.content
+    reply = re.sub(r"^```(?:python)?\s*|\s*```$", "", reply.strip(), flags=re.IGNORECASE)
+    estimates = ast.literal_eval(reply)
+    
+    results = []
+    for est in estimates:
+        cur_result = { 'product_id':  est[0], 'lower': est[1], 'upper': est[2], 'typical': est[3] }
+        results.append( cur_result )
+    
+    # to-do: make sure all products were returned, and re-request the missing ones if any were missing
+    
+    return results
+
+@memory_pricing.cache(ignore=["client"])
+def retrieve_price_ranges(client, product_summary, currency, year, region, batch_size=10):
+    """ """
+    num_batches = math.ceil(len(product_summary) / batch_size)
+    product_list_it = iter(product_summary)
+    
+    results = []
+    for _ in tqdm(range(num_batches), desc="Retrieving price ranges"):
+        product_batch = list(itertools.islice(product_list_it, batch_size))
+        result_batch = retrieve_price_ranges_batch(client, product_batch, currency, year, region)
+        results.extend(result_batch)
+
+    return results
+
+```
+
+```{python}
+currency = "USD"
+year = 2025
+region = "Mexico"
+```
+
+```{python}
+fname_estimates = "estimates_chatgtp4o.pkl"
+
+if not os.path.exists(fname_estimates):
+    estimates = retrieve_price_ranges(client, product_summaries_uniform, currency, year, region, batch_size = 15)
+    
+    with open(fname_estimates, "wb") as f:
+      pickle.dump(estimates, f)
+      
+else:
+    with open(fname_estimates, "rb") as f:
+        estimates = pickle.load(f)
+
+```
+
+## Evaluation
+
+```{python}
+import pickle
+
+with open("product_summaries_chatgtp35_turbo.pkl", "rb") as f:
+    product_summaries = pickle.load(f)
+
+```
+
+```{python}
+estimates = pl.DataFrame( estimates )
+estimates = estimates.with_columns( pl.col("product_id").cast(pl.Int128) ) 
+product_prices = products.join( estimates, how = "left", on = "product_id" )
+product_prices_pd = product_prices.to_pandas()
+```
+
+```{r}
+product_prices <- py$product_prices$to_pandas() %>% filter(!is.na(typical))
+```
+
+### Accuracy on List Prices
+
+-   The plot below shows the actual product list prices in USD (x-axis), along with the elicited prices (y-axis). Both axes are on the log-scale. The vertical bars correspond to price range. Even though there are significant deviations, we can see that the model produces price estimates close to the observed list price.
+
+```{r thumbnail-image, fig.width=6, fig.height=6}
+#| label: thumbnail-image
+product_prices %>% filter(!is.na(typical)) %>%
+  ggplot(aes(x = price_usd, y = typical)) +
+  geom_point(alpha=0.3) +
+  geom_errorbar(aes(ymin=lower, ymax=upper), alpha=0.3, width=0) +
+  geom_abline(intercept = 0, slope = 1, linetype = "dashed", color = "red") +
+  #scale_x_continuous(limits = c(0, 4000)) + scale_y_continuous(limits = c(0, 4000)) +
+  theme_bw() +
+  scale_x_log10(labels = label_dollar(prefix = "$", accuracy = 1)) +
+  scale_y_log10(labels = label_dollar(prefix = "$", accuracy = 1)) +
+  xlab("Actual list price in USD (log-scale)") +
+  ylab("Elicited price in USD (log-scale)")
+
+```
+
+### Accuracy on Discounted Prices
+
+-   This plot shows the discounted prices in USD (x-axis), along with the elicited prices (y-axis). This plot shows that elicited prices tend to be higher than observed discounted prices.
+
+```{r fig.width=6, fig.height=6}
+
+product_prices %>% filter(!is.na(typical)) %>% 
+  ggplot(aes(x = price_discounted_usd, y = typical)) +
+  geom_point(alpha=0.3) +
+  geom_errorbar(aes(ymin=lower, ymax=upper), alpha=0.3, width=0) +
+  geom_abline(intercept = 0, slope = 1, linetype = "dashed", color = "red") +
+  #scale_x_continuous(limits = c(0, 4000)) + scale_y_continuous(limits = c(0, 4000)) +
+  theme_bw() +
+  scale_x_log10(labels = label_dollar(prefix = "$", accuracy = 1)) + 
+  scale_y_log10(labels = label_dollar(prefix = "$", accuracy = 1)) +
+  xlab("Actual discounted price in USD (log-scale)") +
+  ylab("Elicited price in USD (log-scale)")
+
+```
+
+## Price Distributions
+
+The elicited price range tends to overestimate actual prices more often than it underestimates them. This is not particularly surprising if we assume that the distribution of market prices for a given product is right-skewed, as is the case with a log-normal distribution.
+
+To reason more clearly about how these price estimates come about, we adopt a stylized model of the generative process:
+
+For each product type $i$, the LLM is exposed during training to a sample of $k_i$ observed prices.
+
+It returns:
+
+-   the minimum of this sample as the lower bound,
+
+-   the maximum as the upper bound, and
+
+-   a typical price that likely corresponds to the median or mode of the sample (theoretically, the mode would be most defensible as a "typical" price).
+
+Of course, this model is a deliberate oversimplification. In practice, most products are not represented verbatim in the training data. Instead, the LLM likely draws on similar products and generalizes across categories. But even so, this toy model helps clarify what kind of information the LLM is plausibly encoding and returning — namely, some noisy abstraction over a finite sample of real-world prices with unknown size.
+
+```{r}
+product_prices %>% summarize(
+  perc_list_price_lower = mean(price_usd < lower),
+  perc_list_price_higher = mean(price_usd > upper) 
+
+```
+
+### Simple Log-Normal Model
+
+-   The goal is to use the LLM-generated estimates to infer a plausible price distribution for each product.
+-   Ideally, this would involve modeling the generative process explicitly—treating the elicited range and typical price as functions of latent price distributions, and marginalizing over unknown parameters such as the sample size and distributional shape.
+-   In practice, however, we take a simpler approach: we calibrate the parameters of a log-normal distribution such that the observed proportions of actual prices falling below or above the elicited range align with the expected coverage probabilities. Given our above-stated assumptions, we can reverse-engineer the values of the log-normal parameters $\mu_i$, $\sigma_i$ for each product $i$, using the relationship below. Solving these equations gives estimates of $\mu$ and $\sigma$ for each product.
+
+$$ log(\text{lower}) = \mu + z_{0.3} \cdot \sigma $$ $$ log(\text{upper}) = \mu + z_{0.8} \cdot \sigma $$
+
+```{r}
+# Define z-scores for assumed quantile boundaries of the elicited range
+z_lower <- qnorm(0.3)
+z_upper <- qnorm(0.8)
+
+# Calibrate log-normal parameters assuming lower and upper are 30% and 80% quantiles
+product_prices <- 
+  py$product_prices_pd %>%
+  filter(!is.na(lower) & !is.na(upper) & !is.na(price_usd)) %>%
+  mutate(
+    p1_log_sigma = (log(upper) - log(lower)) / (z_upper - z_lower),
+    p1_log_mu = log(lower) - p1_log_sigma * z_lower
+  )
+```
+
+We then validate this calibration by checking how well the empirical price data agrees with the implied distribution. Specifically, we:
+
+1.  Use the calibrated $\mu$ and $\sigma$ to compute a range of quantiles.
+
+2.  For each theoretical quantile, we calculate the proportion of real prices that fall under it.
+
+3.  We compare these empirical proportions to the theoretical coverage probabilities.
+
+If the calibration is good, the empirical and theoretical values should match closely. If not, it suggests that either:
+
+-   The log-normal assumption is inadequate
+
+-   The quantile interpretation of the LLM's bounds is incorrect
+
+-   Or there are systematic biases (e.g., skewed sampling, outliers, etc.)
+
+```{r fig.width=6, fig.height=6}
+# Define theoretical cumulative probabilities to test calibration
+calibration_probs <- c(0.01, seq(0.05, 0.95, 0.05), 0.99)
+
+# For each quantile level, compute predicted price threshold and empirical coverage
+empirical_cdfs <- sapply(calibration_probs, function(p) {
+  predicted_threshold <- with(product_prices, exp(p1_log_mu + p1_log_sigma * qnorm(p)))
+  mean(product_prices$price_usd < predicted_threshold)
+})
+
+# Assemble calibration data frame
+calibration_df <- data.frame(
+  theoretical_cdf = calibration_probs,
+  empirical_cdf = empirical_cdfs
+)
+
+# Plot calibration curve
+ggplot(calibration_df, aes(x = theoretical_cdf, y = empirical_cdf)) +
+  geom_point() + geom_line() +
+  geom_abline(slope = 1, intercept = 0, linetype = "dotted", color = "red") +
+  labs(
+    x = "Target quantile (log-normal model)",
+    y = "Observed proportion below quantile",
+    title = "Calibration Plot: Log-normal Model vs. Observed Prices"
+  ) +
+  theme_bw()
+```
+
+It seems that the probability estimates are well-calibrated. Each theoretical quantile corresponds to an approximately equal empirical proportion.
+
+### Shifted Log-Normal Model
+
+-   While the simple log-normal model appears to do a decent job of accounting for individual product price distributions, the log-normal has support on the entire real line, which means that all positive prices are possible, even if they are not very likely.
+-   In reality, this may lead to an excessive amount of probability mass being allocated to unrealistically small prices.
+-   As a solution, it may make sense to model individual product prices as *shifted log-normals.*
+
+$$ log(\text{lower} - delta) = \mu + z_{0.3} \cdot \sigma $$ $$ log(\text{mode} - delta) = \mu -\sigma^2 $$ $$ log(\text{median} - delta) = \mu + z_{0.5} \cdot \sigma $$ $$ log(\text{upper} - delta) = \mu + z_{0.8} \cdot \sigma $$
+
+```{r}
+# Define z-scores for assumed quantile boundaries of the elicited range
+z_lower <- qnorm(0.3)
+z_upper <- qnorm(0.8)
+
+# Calibrate log-normal parameters assuming lower and upper are 30% and 80% quantiles
+product_prices <- 
+  py$product_prices_pd %>%
+  filter(!is.na(lower) & !is.na(upper) & !is.na(price_usd)) %>%
+  mutate(
+    p2_delta = (log(upper) - log(lower)) / (z_upper - z_lower),
+    p2_log_sigma = (log(upper) - log(lower)) / (z_upper - z_lower),
+    p2_log_mu = log(lower) - p1_log_sigma * z_lower
+  )
+```
+
+We then validate this calibration by checking how well the empirical price data agrees with the implied distribution. Specifically, we:
+
+1.  Use the calibrated $\mu$ and $\sigma$ to compute a range of quantiles.
+
+2.  For each theoretical quantile, we calculate the proportion of real prices that fall under it.
+
+3.  We compare these empirical proportions to the theoretical coverage probabilities.
+
+If the calibration is good, the empirical and theoretical values should match closely. If not, it suggests that either:
+
+-   The log-normal assumption is inadequate
+
+-   The quantile interpretation of the LLM's bounds is incorrect
+
+-   Or there are systematic biases (e.g., skewed sampling, outliers, etc.)
+
+```{r fig.width=6, fig.height=6}
+# Define theoretical cumulative probabilities to test calibration
+calibration_probs <- c(0.01, seq(0.05, 0.95, 0.05), 0.99)
+
+# For each quantile level, compute predicted price threshold and empirical coverage
+empirical_cdfs <- sapply(calibration_probs, function(p) {
+  predicted_threshold <- with(product_prices, exp(p1_log_mu + p1_log_sigma * qnorm(p)))
+  mean(product_prices$price_usd < predicted_threshold)
+})
+
+# Assemble calibration data frame
+calibration_df <- data.frame(
+  theoretical_cdf = calibration_probs,
+  empirical_cdf = empirical_cdfs
+)
+
+# Plot calibration curve
+ggplot(calibration_df, aes(x = theoretical_cdf, y = empirical_cdf)) +
+  geom_point() +
+  geom_abline(slope = 1, intercept = 0, linetype = "dotted", color = "red") +
+  labs(
+    x = "Target quantile (log-normal model)",
+    y = "Observed proportion below quantile",
+    title = "Calibration Plot: Log-normal Model vs. Observed Prices"
+  ) +
+  theme_bw()
+```
+
+It seems that the probability estimates are well-calibrated. Each theoretical quantile corresponds to an approximately equal empirical proportion.
+
+## Repository
+
+All data and source code are available here: 👉 <https://github.com/plogacev/case_studies/tree/main/price_distribution_elicitation>
