@@ -1,23 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://plogacev.github.io/projects/index.html</loc>
-    <lastmod>2026-01-19T00:36:40.159Z</lastmod>
+    <loc>https://plogacev.github.io/case-studies/pricedist_elicitation/price_distribution_elicitation.html</loc>
+    <lastmod>2026-01-25T20:15:58.050Z</lastmod>
   </url>
   <url>
-    <loc>https://plogacev.github.io/contact.html</loc>
-    <lastmod>2026-01-19T00:36:40.674Z</lastmod>
+    <loc>https://plogacev.github.io/case-studies/time_series_analysis_1/ts_1_synthetic_data.html</loc>
+    <lastmod>2026-01-25T20:15:57.907Z</lastmod>
   </url>
   <url>
-    <loc>https://plogacev.github.io/about/index.html</loc>
-    <lastmod>2026-01-19T00:36:39.920Z</lastmod>
-  </url>
-  <url>
-    <loc>https://plogacev.github.io/blog/index.html</loc>
-    <lastmod>2026-01-19T00:36:40.448Z</lastmod>
+    <loc>https://plogacev.github.io/case-studies/pricedist_changepoints/greedy_cp_selection.html</loc>
+    <lastmod>2026-01-25T20:15:57.934Z</lastmod>
   </url>
   <url>
     <loc>https://plogacev.github.io/index.html</loc>
-    <lastmod>2026-01-19T00:36:39.673Z</lastmod>
+    <lastmod>2026-01-25T20:11:46.937Z</lastmod>
+  </url>
+  <url>
+    <loc>https://plogacev.github.io/case-studies/time_series_analysis_1/index.html</loc>
+    <lastmod>2026-01-25T20:16:42.116Z</lastmod>
+  </url>
+  <url>
+    <loc>https://plogacev.github.io/case-studies/pricedist_elicitation/index.html</loc>
+    <lastmod>2026-01-25T20:16:42.536Z</lastmod>
+  </url>
+  <url>
+    <loc>https://plogacev.github.io/case-studies/pricedist_changepoints/index.html</loc>
+    <lastmod>2026-01-25T20:16:42.387Z</lastmod>
+  </url>
+  <url>
+    <loc>https://plogacev.github.io/blog/index.html</loc>
+    <lastmod>2026-01-25T20:11:23.227Z</lastmod>
+  </url>
+  <url>
+    <loc>https://plogacev.github.io/about/index.html</loc>
+    <lastmod>2026-01-25T20:11:22.727Z</lastmod>
+  </url>
+  <url>
+    <loc>https://plogacev.github.io/case-studies/index.html</loc>
+    <lastmod>2026-01-25T20:16:16.137Z</lastmod>
+  </url>
+  <url>
+    <loc>https://plogacev.github.io/case-studies/pricedist_changepoints/model_assumptions.html</loc>
+    <lastmod>2026-01-25T20:15:57.933Z</lastmod>
+  </url>
+  <url>
+    <loc>https://plogacev.github.io/case-studies/stockouts/index.html</loc>
+    <lastmod>2026-01-25T20:16:42.252Z</lastmod>
+  </url>
+  <url>
+    <loc>https://plogacev.github.io/contact.html</loc>
+    <lastmod>2026-01-25T20:11:22.718Z</lastmod>
+  </url>
+  <url>
+    <loc>https://plogacev.github.io/projects/index.html</loc>
+    <lastmod>2026-01-25T20:11:46.927Z</lastmod>
+  </url>
+  <url>
+    <loc>https://plogacev.github.io/case-studies/stockouts/stockouts.html</loc>
+    <lastmod>2026-01-25T20:15:58.063Z</lastmod>
+  </url>
+  <url>
+    <loc>https://plogacev.github.io/case-studies/time_series_analysis_1/ts_2_analysis.html</loc>
+    <lastmod>2026-01-25T20:15:57.908Z</lastmod>
   </url>
 </urlset>

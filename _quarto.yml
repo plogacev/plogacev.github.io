@@ -28,6 +28,9 @@ website:
       - text: Projects
         aria-label: "Projects"
         href: projects/index.qmd
+      - text: Case Studies
+        aria-label: "Technical Case Studies"
+        href: case-studies/index.qmd
       - text: Blog
         aria-label: "Blog"
         href: blog/index.qmd

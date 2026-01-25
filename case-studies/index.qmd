@@ -1,0 +1,18 @@
+---
+title: "Technical Case Studies"
+pagetitle: "Pavel Logačev - Technical Case Studies"
+description: "In-depth data science case studies demonstrating Bayesian methods, time series analysis, changepoint detection, and LLM applications."
+subtitle: "Detailed explorations of data science methods and applications"
+listing:
+  contents:
+    - "*/index.qmd"
+  sort: date desc
+  type: grid
+  categories: false
+  sort-ui: false
+  filter-ui: false
+  fields: [title, subtitle]
+page-layout: full
+---
+
+Detailed case studies with full code and methodology. Each project demonstrates practical applications of Bayesian statistics, time series analysis, and machine learning techniques.

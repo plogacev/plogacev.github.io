@@ -1,0 +1,13 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+---
+description: Enable LLM in .qmd
+globs: ["**/*.qmd"]
+alwaysApply: true
+---
+- Treat this file as code
+- Use Python syntax by default
+- Allow edits, explanations, refactors

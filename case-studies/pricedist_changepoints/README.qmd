@@ -1,0 +1,29 @@
+---
+title: "Bayesian Changepoint Detection on Price Histograms"
+author: "Pavel Logačev"
+date: "r Sys.Date()"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-tools: true
+    df-print: paged
+engine: knitr
+editor: visual
+---
+
+## Summary
+
+The notebooks in this folder demonstrate multiple implementations of a Bayesian changepoint detection model applied to synthetic sales data, where product prices change over time. The goal is to detect structural changes in pricing regime based on price histograms over time when the pricing of a product undergoes a meaningful change — such as list price changes, promotions, or changes in the availability of discounts.
+
+We assume that the distribution of prices for a product on any given day depends on the underlying price regime, which changes infrequently. While the price regime (list price and available discounts) remains stable for extended periods, the daily average price can fluctuate substantially due to varying proportions of discounted sales. Therefore, using the average price within a stable regime as a predictor is likely more informative than using volatile daily average prices.
+
+The model determines pricing regimes based on daily price histograms (i.e., distributions of sold units across different price points). The first implementation, written in Rcpp, uses discrete parameters. The parameter estimation is carried out using a genetic algorithm implementation in R. The second implementation marginalizes out the discrete segmentation parameters and estimates probabilities of specific changepoint locations. Both are designed to serve as a modular component within larger hierarchical models for retail analytics.
+
+## 1. Theoretical Model Assumptions
+
+\[[Notebook](./model_assumptions.html)\]
+
+## 2. Greedy Changepoint Selection
+
+\[[Notebook](./changepoint_cp_selection.html)\]

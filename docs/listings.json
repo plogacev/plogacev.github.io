@@ -1,10 +1,19 @@
 [
   {
-    "listing": "/projects/index.html",
+    "listing": "/blog/index.html",
     "items": []
   },
   {
-    "listing": "/blog/index.html",
+    "listing": "/case-studies/index.html",
+    "items": [
+      "/case-studies/pricedist_elicitation/index.html",
+      "/case-studies/stockouts/index.html",
+      "/case-studies/pricedist_changepoints/index.html",
+      "/case-studies/time_series_analysis_1/index.html"
+    ]
+  },
+  {
+    "listing": "/projects/index.html",
     "items": []
   }
 ]

@@ -1,0 +1,21 @@
+---
+title: "Price Distribution Elicitation from an LLM"
+subtitle: "Using GPT-4 to elicit calibrated price distributions"
+date: 2025-07-14
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-tools: true
+    df-print: paged
+engine: knitr
+editor: visual
+---
+
+## Summary
+
+Demonstrates a two-stage pipeline that uses large language models (LLMs) to elicit reasonable price distributions for consumer products when competitor pricing data is insufficient or historical sales data is sparse. It extracts structured product attributes from free-text titles and descriptions (via GPT-3.5-turbo), then uses GPT-4o to elicit a retail price range (minimum, typical, maximum) based on those attributes and regional context. The elicited price ranges are used to reverse-engineer log-normal distribution parameters, which are validated against actual prices scraped from Mercado Libre. The result is a calibrated, probabilistic estimate of product pricing grounded in LLM-elicited knowledge.
+
+## 1. Implementation with ChatGPT
+
+🔗 \[[Notebook](./price_distribution_elicitation.html)\]
