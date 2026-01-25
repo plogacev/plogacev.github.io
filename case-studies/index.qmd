@@ -11,7 +11,8 @@ listing:
   categories: false
   sort-ui: false
   filter-ui: false
-  fields: [title, subtitle]
+  fields: [image, title, subtitle]
+  image-height: 180px
 page-layout: full
 ---
 

@@ -26,3 +26,60 @@ $link-color: #0077b5;
   border-bottom: 2px solid #0077b5;
   margin-bottom: -2px;
 }
+
+/* Case studies card styling */
+.quarto-listing-default .listing-image,
+.quarto-grid-item .listing-item-img-placeholder,
+.quarto-grid-item .thumbnail {
+  border-radius: 8px 8px 0 0;
+  object-fit: cover;
+}
+
+.quarto-grid-item {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background: #fff;
+}
+
+.quarto-grid-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 119, 181, 0.12);
+  border-color: #0077b5;
+}
+
+.quarto-grid-item .card-body {
+  padding: 1rem 1.25rem;
+}
+
+.quarto-grid-item .card-title {
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.quarto-grid-item .card-text {
+  color: #555;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.quarto-grid-item .listing-image {
+  background: #f8f9fa;
+}
+
+/* Subtle accent on card top border */
+.quarto-grid-item::before {
+  content: "";
+  display: block;
+  height: 3px;
+  background: linear-gradient(90deg, #0077b5, #00a0dc);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.quarto-grid-item:hover::before {
+  opacity: 1;
+}

@@ -525,6 +525,7 @@ py$summary
 - Here, we'll plot the estimated the random walk component, which also incorporates long term trends and growth or decline of sales. For present purposes, this is what amounts to irrelevant noise in the model.
 
 ```{python}
+#| label: thumbnail-image
 # Create a sequence of dates starting at data["date"].min() the length of x['mean'], in steps of 7 days
 rw_states = az.summary(m_fit, var_names=["log_state_base"], filter_vars="like")["mean"].to_numpy()
 dates = pd.date_range(start = data["date"].min(), periods = len(rw_states), freq='7D')

@@ -2,6 +2,7 @@
 title: "Time Series Elasticity Analysis"
 subtitle: "Bayesian decomposition of sales dynamics with NumPyro"
 date: 2025-06-30
+image: images/thumbnail.png
 format:
   html:
     toc: true

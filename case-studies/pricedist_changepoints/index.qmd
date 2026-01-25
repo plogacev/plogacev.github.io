@@ -2,6 +2,7 @@
 title: "Bayesian Changepoint Detection on Price Histograms"
 subtitle: "Detecting structural changes in pricing regimes"
 date: 2025-06-30
+image: images/thumbnail.png
 format:
   html:
     toc: true

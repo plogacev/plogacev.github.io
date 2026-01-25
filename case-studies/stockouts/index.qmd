@@ -2,6 +2,7 @@
 title: "A Hidden-Markov Model of Stockout Detection"
 subtitle: "Bayesian HMM for detecting unobserved inventory outages"
 date: 2025-07-14
+image: images/hmm_complete.svg
 format:
   html:
     toc: true

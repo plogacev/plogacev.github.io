@@ -151,7 +151,8 @@ knitr::kable(t(detected_changepoints), caption = "Detected Changepoints")
 
 The plot below illustrates the results vis a vis the simulation assumptions.
 
-```{r fig.height=3, fig.width=10}
+```{r thumbnail-image, fig.height=3, fig.width=10}
+#| label: thumbnail-image
 p_price +
       geom_vline( data = data.frame(x = detected_changepoints, changepoint = "detected"),
                   aes(xintercept = x, color = changepoint), linetype = "dashed") +

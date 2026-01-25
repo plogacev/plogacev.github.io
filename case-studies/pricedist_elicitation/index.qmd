@@ -2,6 +2,7 @@
 title: "Price Distribution Elicitation from an LLM"
 subtitle: "Using GPT-4 to elicit calibrated price distributions"
 date: 2025-07-14
+image: images/thumbnail.png
 format:
   html:
     toc: true
