@@ -263,7 +263,7 @@
     "href": "case-studies/index.html",
     "title": "Technical Case Studies",
     "section": "",
-    "text": "Detailed case studies with full code and methodology. Each project demonstrates practical applications of Bayesian statistics, time series analysis, and machine learning techniques.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nA Hidden-Markov Model of Stockout Detection\n\n\nBayesian HMM for detecting unobserved inventory outages\n\n\n\n\n\n\n\n\n\n\n\n\n\nPrice Distribution Elicitation from an LLM\n\n\nUsing GPT-4o to estimate plausible price ranges for products\n\n\n\n\n\n\n\n\n\n\n\n\n\nBayesian Changepoint Detection on Price Histograms\n\n\nDetecting structural changes in pricing regimes\n\n\n\n\n\n\n\n\n\n\n\n\n\nTime Series Elasticity Analysis\n\n\nBayesian decomposition of sales dynamics with NumPyro\n\n\n\n\n\n\n\nNo matching items\n\n Back to top"
+    "text": "Detailed case studies with full code and methodology. Each project demonstrates practical applications of Bayesian statistics, time series analysis, and machine learning techniques.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nA Hidden-Markov Model of Stockout Detection\n\n\nBayesian HMM for detecting unobserved inventory outages\n\n\n\n\n\n\n\n\n\n\n\n\nPrice Distribution Elicitation from an LLM\n\n\nUsing GPT-4o to estimate plausible price ranges for products\n\n\n\n\n\n\n\n\n\n\n\n\nBayesian Changepoint Detection on Price Histograms\n\n\nDetecting structural changes in pricing regimes\n\n\n\n\n\n\n\n\n\n\n\n\nTime Series Elasticity Analysis\n\n\nBayesian decomposition of sales dynamics with NumPyro\n\n\n\n\n\nNo matching items\n Back to top"
   },
   {
     "objectID": "case-studies/pricedist_changepoints/model_assumptions.html",
