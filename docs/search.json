@@ -149,9 +149,9 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Pavel Logačev",
+    "title": "Bayesian Changepoint Detection on Price Histograms",
     "section": "",
-    "text": "I’m a freelance data scientist specializing in statistical modeling for business decisions — particularly in settings where data is messy, experimentation is limited, and off-the-shelf solutions fall short.\nMy work spans demand modeling, price elasticity estimation, forecasting, and causal inference. I build custom models using Bayesian methods, designed around the structure of your specific problem.\nI’ve worked across B2C and B2B contexts, collaborating closely with stakeholders to understand how business processes actually work — so models reflect what matters and make the most of available data.\nLearn more →\n\n    \n    \n  \n\n\n\n\n\n\n Back to top"
+    "text": "I’m a freelance data scientist specializing in statistical modeling for business decisions — particularly in settings where data is messy, experimentation is limited, and off-the-shelf solutions fall short.\nMy work spans demand modeling, price elasticity estimation, forecasting, and causal inference. I build custom models using Bayesian methods, designed around the structure of your specific problem.\nI’ve worked across B2C and B2B contexts, collaborating closely with stakeholders to understand how business processes actually work — so models reflect what matters and make the most of available data.\nLearn more →"
   },
   {
     "objectID": "case-studies/time_series_analysis_1/index.html",
@@ -263,7 +263,7 @@
     "href": "case-studies/index.html",
     "title": "Technical Case Studies",
     "section": "",
-    "text": "Detailed case studies with full code and methodology. Each project demonstrates practical applications of Bayesian statistics, time series analysis, and machine learning techniques.\n\n\n\n\n\n\n\n\n\n\n\nPrice Distribution Elicitation from an LLM\n\n\nUsing GPT-4 to elicit calibrated price distributions\n\n\n\n\n\n\n\n\n\n\nA Hidden-Markov Model of Stockout Detection\n\n\nBayesian HMM for detecting unobserved inventory outages\n\n\n\n\n\n\n\n\n\n\nBayesian Changepoint Detection on Price Histograms\n\n\nDetecting structural changes in pricing regimes\n\n\n\n\n\n\n\n\n\n\nTime Series Elasticity Analysis\n\n\nBayesian decomposition of sales dynamics with NumPyro\n\n\n\n\n\n\n\nNo matching items\n\n Back to top"
+    "text": "Detailed case studies with full code and methodology. Each project demonstrates practical applications of Bayesian statistics, time series analysis, and machine learning techniques.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPrice Distribution Elicitation from an LLM\n\n\nUsing GPT-4 to elicit calibrated price distributions\n\n\n\n\n\n\n\n\n\n\n\n\nA Hidden-Markov Model of Stockout Detection\n\n\nBayesian HMM for detecting unobserved inventory outages\n\n\n\n\n\n\n\n\n\n\n\n\nBayesian Changepoint Detection on Price Histograms\n\n\nDetecting structural changes in pricing regimes\n\n\n\n\n\n\n\n\n\n\n\n\nTime Series Elasticity Analysis\n\n\nBayesian decomposition of sales dynamics with NumPyro\n\n\n\n\n\nNo matching items\n Back to top"
   },
   {
     "objectID": "case-studies/pricedist_changepoints/model_assumptions.html",
@@ -411,5 +411,159 @@
     "title": "Bayesian Analysis of Sales",
     "section": "",
     "text": "This case study demonstrates how Bayesian modeling can effectively decompose sales variance into meaningful components, providing a structured way to analyze the underlying factors driving sales fluctuations. By applying this approach to a synthetic dataset, we validated the model’s ability to separate out long-term growth, seasonal effects, and price sensitivity while simultaneously quantifying uncertainty.\nThe key takeaways include:\n\nDecomposing complexity: The model successfully isolates different components influencing sales, making it easier to interpret real-world dynamics.\nQuantifying uncertainty: In addition to point estimates, Bayesian inference provides full posterior distributions, enabling better risk assessment.\nInformed decision-making: By accounting for all sources of variance, businesses can make more confident strategic decisions that explicitly consider uncertainty. For instance, price optimization can be performed on the entire posterior distribution of the estimate of the price elasticity of demand.\n\nThese findings highlight the advantages of probabilistic modeling in sales analysis, offering a flexible and interpretable method."
+  },
+  {
+    "objectID": "index.html#what-i-do",
+    "href": "index.html#what-i-do",
+    "title": "Bayesian Changepoint Detection on Price Histograms",
+    "section": "What I Do",
+    "text": "What I Do\n\nPrice elasticity estimation and price optimization\nBayesian methods for sparse data\nDemand modeling and forecasting\nCausal inference (A/B tests, observational studies)\nCustom models tailored to your domain and problem"
+  },
+  {
+    "objectID": "index.html#background",
+    "href": "index.html#background",
+    "title": "Bayesian Changepoint Detection on Price Histograms",
+    "section": "Background",
+    "text": "Background\nPhD in Cognitive Science (University of Potsdam). Before freelancing, I worked in academic research and then transitioned to applied data science in industry.\nI’ve worked with retailers, distributors, and restaurant chains on problems involving pricing, demand, and forecasting. Most of my work is done through agencies, but I also take on direct engagements.\nBased in Berlin. I work with clients across Europe and North America.\nI speak English, German, Russian, and a little Turkish."
+  },
+  {
+    "objectID": "index.html#drop-me-a-note",
+    "href": "index.html#drop-me-a-note",
+    "title": "Bayesian Changepoint Detection on Price Histograms",
+    "section": "Drop me a note",
+    "text": "Drop me a note\nIf you’d like to discuss a potential project, collaboration, or have a question about statistical modeling, forecasting, or data science — feel free to reach out.\nYou can also find me on:"
+  },
+  {
+    "objectID": "index.html#summary",
+    "href": "index.html#summary",
+    "title": "Bayesian Changepoint Detection on Price Histograms",
+    "section": "Summary",
+    "text": "Summary\nThe notebooks in this folder demonstrate multiple implementations of a Bayesian changepoint detection model applied to synthetic sales data, where product prices change over time. The goal is to detect structural changes in pricing regime based on price histograms over time when the pricing of a product undergoes a meaningful change — such as list price changes, promotions, or changes in the availability of discounts.\nWe assume that the distribution of prices for a product on any given day depends on the underlying price regime, which changes infrequently. While the price regime (list price and available discounts) remains stable for extended periods, the daily average price can fluctuate substantially due to varying proportions of discounted sales. Therefore, using the average price within a stable regime as a predictor is likely more informative than using volatile daily average prices.\nThe model determines pricing regimes based on daily price histograms (i.e., distributions of sold units across different price points). The first implementation, written in Rcpp, uses discrete parameters. The parameter estimation is carried out using a genetic algorithm implementation in R. The second implementation marginalizes out the discrete segmentation parameters and estimates probabilities of specific changepoint locations. Both are designed to serve as a modular component within larger hierarchical models for retail analytics."
+  },
+  {
+    "objectID": "index.html#theoretical-model-assumptions",
+    "href": "index.html#theoretical-model-assumptions",
+    "title": "Bayesian Changepoint Detection on Price Histograms",
+    "section": "1. Theoretical Model Assumptions",
+    "text": "1. Theoretical Model Assumptions\n[Notebook]"
+  },
+  {
+    "objectID": "index.html#greedy-changepoint-selection",
+    "href": "index.html#greedy-changepoint-selection",
+    "title": "Bayesian Changepoint Detection on Price Histograms",
+    "section": "2. Greedy Changepoint Selection",
+    "text": "2. Greedy Changepoint Selection\n[Notebook]"
+  },
+  {
+    "objectID": "index.html#summary-1",
+    "href": "index.html#summary-1",
+    "title": "Bayesian Changepoint Detection on Price Histograms",
+    "section": "Summary",
+    "text": "Summary\nDemonstrates a two-stage pipeline that uses large language models (LLMs) to elicit reasonable price distributions for consumer products when competitor pricing data is insufficient or historical sales data is sparse. It extracts structured product attributes from free-text titles and descriptions (via GPT-3.5-turbo), then uses GPT-4o to elicit a retail price range (minimum, typical, maximum) based on those attributes and regional context. The elicited price ranges are used to reverse-engineer log-normal distribution parameters, which are validated against actual prices scraped from Mercado Libre. The result is a calibrated, probabilistic estimate of product pricing grounded in LLM-elicited knowledge."
+  },
+  {
+    "objectID": "index.html#implementation-with-chatgpt",
+    "href": "index.html#implementation-with-chatgpt",
+    "title": "Bayesian Changepoint Detection on Price Histograms",
+    "section": "1. Implementation with ChatGPT",
+    "text": "1. Implementation with ChatGPT\n🔗 [Notebook]"
+  },
+  {
+    "objectID": "index.html#summary-2",
+    "href": "index.html#summary-2",
+    "title": "Bayesian Changepoint Detection on Price Histograms",
+    "section": "Summary",
+    "text": "Summary\nBayesian Hidden Markov Model for detecting stockouts in sales data with no explicit inventory information. A synthetic dataset is generated with steady latent demand and known stockout periods to demonstrate the principle. Realized sales are treated as true demand realizations except during stockouts, which structurally force sales to zero and hide actual demand. The model treats sales as emissions from two hidden states - regular sales and stockout - with state transitions governed by a Markov process. Inference is performed in Stan using MAP estimation and the Viterbi algorithm to recover the most likely stockout periods. The result shows how probabilistic state-switching can uncover unobserved stockouts that distort sales data."
+  },
+  {
+    "objectID": "index.html#simple-hmm",
+    "href": "index.html#simple-hmm",
+    "title": "Bayesian Changepoint Detection on Price Histograms",
+    "section": "1. Simple HMM",
+    "text": "1. Simple HMM\n🔗 [Notebook]"
+  },
+  {
+    "objectID": "index.html#summary-3",
+    "href": "index.html#summary-3",
+    "title": "Bayesian Changepoint Detection on Price Histograms",
+    "section": "Summary",
+    "text": "Summary\nSales data can be somewhat chaotic — fluctuating strongly due to market trends, changes in advertising strategy, seasonal cycles, and external shocks. Many analytical methods struggle to disentangle meaningful patterns from noise. The present project explores the potential of a Bayesian time series model to break down variance into distinct components.\nWe put it to the test using a synthetic sales dataset designed with well-defined patterns: long-term growth, yearly seasonality, weekly variation, and price sensitivity. The model performed remarkably well, accurately identifying key trends while also quantifying uncertainty. The results highlight the power of Bayesian inference in revealing the drivers of sales dynamics, offering businesses a clearer, data-driven perspective and enabling decision-making that fully accounts for the uncertainty in the estimates."
+  },
+  {
+    "objectID": "index.html#synthetic-data-generation",
+    "href": "index.html#synthetic-data-generation",
+    "title": "Bayesian Changepoint Detection on Price Histograms",
+    "section": "1. Synthetic Data Generation",
+    "text": "1. Synthetic Data Generation\n🔗 [Notebook]"
+  },
+  {
+    "objectID": "index.html#data-analysis",
+    "href": "index.html#data-analysis",
+    "title": "Bayesian Changepoint Detection on Price Histograms",
+    "section": "2. Data Analysis",
+    "text": "2. Data Analysis\n🔗[Notebook]\n{r message=FALSE, warning=FALSE} library(Rcpp) source(\"./source/data_generation.r\") source(\"./source/greedy_cp_selection.r\") Rcpp::sourceCpp(\"./source/greedy_cp_selection.cpp\")"
+  },
+  {
+    "objectID": "index.html#summary-4",
+    "href": "index.html#summary-4",
+    "title": "Bayesian Changepoint Detection on Price Histograms",
+    "section": "Summary",
+    "text": "Summary\nThis notebook demonstrates a Bayesian changepoint detection algorithm for histogram-valued time series. It is based on a greedy search tailored for transactional price data with varying pricing regimes.\n\nEach day’s price distribution is modeled via discretized histograms.\nThe changepoint configuration is selected via greedy MAP estimation.\nIn the future, parameters may be obtained by means of sampling instead of greedy search. (For instance, using RcppSMC or a custom sampler, e.g., MH)."
+  },
+  {
+    "objectID": "index.html#modeling-approach",
+    "href": "index.html#modeling-approach",
+    "title": "Bayesian Changepoint Detection on Price Histograms",
+    "section": "Modeling Approach",
+    "text": "Modeling Approach\nWe model the price distribution of a product as a histogram over discrete price points, because in B2C scenarios, only a few specifc prices are available at any given time. Some customer groups may be offered a discount, while most purchase at the list price. Modeling daily means or medians may lose the multimodal structure that matters most for detecting pricing regimes. Histogram-valued preserve the full distributional shape, making it possible to detect subtle regime shifts such as list price changes or availability of discounts. The method is useful for detecting changes in pricing regimes, such as list price changes, promotions, or changes in the availability of discounts.\nEach day is represented by a histogram over discrete price points. The time series is transformed into a histogram-valued sequence, represented as a matrix of counts. We assume that pricing follows distinct pricing regimes, each associated with a different price distribution. Changes in pricing regime occur when the pricing of a product undergoes a meaningful change — such as list price changes, promotions, or changes in the availability of discounts. Changepoints are defined as time indices where the underlying price distribution regime changes, leading to a change in relative frequency of price points.\n\nData Format\nThe synthetic data used in this notebook simulates 800 days of pricing activity, segmented into 10 regimes characterized by different list prices, discounts, and discount availability\nset.seed(123)\n\nsegments &lt;- data.frame(\n             start_day = c(1,  90, 250, 300, 400, 500, 550, 600, 700, 750),\n            list_price = c(5,    6,   6,   6,   6, 5.5, 5.5, 5.5, 7, 7),\n        discount_price = c(4,    4,   5,   5,   5, 4.5, 4.5, 4.5, 2, 2),\n   discount_percentage = c(.25, .1,  .1, .25,  .5, .01, .03, .15,.3, .4)\n)\n\nn_days &lt;- 800\nlambda_qty &lt;- 20\ndf &lt;- generate_transaction_prices(segments, n_days, lambda_qty, seed = 123)\nhist &lt;- compute_price_histogram(df)\nactual_changepoints &lt;- segments$start_day[-1]-0.5\n\nknitr::kable(segments, caption = \"Price Regimes Overview\")\nThe plot below shows the synthetic data set, with the actual changepoints marked with dashed vertical lines. This is the dataset we’ll use to test the segmentation algorithm.\n```{r fig.height=3, fig.width=10} p_price &lt;- hist$df %&gt;% rename(quantity = qty) %&gt;% filter(quantity &gt; 0) %&gt;% ggplot(aes(day, price)) + geom_point(aes(size=quantity, alpha = quantity)) + geom_vline( data = data.frame(x = actual_changepoints, changepoint = “actual”), aes(xintercept = x, color = changepoint), linetype = “dashed”) + theme_bw() + theme(legend.position = “top”)\nprint(p_price)\n\n### Model Structure\n\n#### Segmentation\n\nWe define a segmentation of a histogram-valued time series $h$ of length $T$ as a vector $z \\in \\{0, 1\\}^{T-1}$, where $z_t=1$ indicates a changepoint between indices $t$ and $t+1$, and $0$ indicates its absence. From the index vector $z$, we can derive a segmentation in the form of $\\mathcal{S}(z)$, i.e., a set of all segment intervals $[t_1, t_2]$.\n\nThe model is intended to select a segmentation $z$ that best balances *(i)* goodness-of-fit (how well the empirical histograms are explained within segments) with *(ii)* model simplicity (how many changepoints are included). The balance is governed by the regularizing parameter $\\lambda$, which is selected by optimizing the posterior likelihood over it.\n\nThe posterior over a changepoint configurations $z$ is assumed to be:\n\n$$\np(z \\mid \\mathbf{n}, \\lambda) \\propto p(\\mathbf{n} \\mid z) \\cdot p(z) \\cdot p(\\lambda)\n$$\n\n### Likelihood\n\nThe data likelihood is computed as the product of likelihoods of the segments defined by the segmentation $\\mathcal{S}(z)$, where $\\mathbf{n}_{[t_1, t_2]}$ stands for the histogram over the interval $[t_1, t_2]$.\n\n$$\np(\\mathbf{n} \\mid z) = \\prod_{(t_1, t_2) \\in \\mathcal{S}(z)} p(\\mathbf{n}_{[t_1, t_2]})\\text{,}\n$$\n\n```{=html}\n&lt;!--\n$$\n\\mathbf{n_{[t_1, t_2]}} = \\sum_{t = t_1}^{t_2} \\mathbf{h}_t\n$$\n--&gt;\nThe likelihood of a segment \\(\\mathbf{n}_{[t_1, t_2]}\\) is set to it (regularized) maximum likelihood estimate … (explain more) …, where \\(\\hat{p}_i\\) is the (regularized) maximum likelihood estimate of the relative frequencies of the different price points. This corresponds to using the maximum likelihood estimate of the multinomial probabilities within each segment. Although technically this is not fully Bayesian (since we’re not integrating over latent parameters), it can be viewed as an empirical Bayes approximation.\n\\[\np(\\mathbf{n}_{[t_1, t_2]}) = \\sum_{i=1}^{K} (\\hat{p}_i)^{n_i}\n\\]\nIn computing \\(\\hat{p}_i\\), we smooth each bin count with a small constant \\(\\epsilon\\) to prevent division by zero.\n\\[\n\\hat{p}_i = \\frac{n_i + \\epsilon}{\\sum_j (n_j + \\epsilon)}\n\\]\n\n\nPrior\nWe place a Bernoulli prior on each potential changepoint, to penalize excessive complexity: small \\(\\lambda\\) values encourage fewer changepoints, favoring parsimony. In consequence, the model selects the segmentation \\(z\\) that best balances goodness-of-fit (how well the empirical histograms are explained within segments) with model simplicity (how many changepoints are included). The balance is governed by \\(\\lambda\\).\n\\[\nz_t \\sim \\text{Bernoulli}(\\lambda)\n\\]"
+  },
+  {
+    "objectID": "index.html#estimation",
+    "href": "index.html#estimation",
+    "title": "Bayesian Changepoint Detection on Price Histograms",
+    "section": "Estimation",
+    "text": "Estimation\nTo estimate the changepoint configuration \\(z\\), we use a greedy forward search:\n\nStart with no changepoints.\nIteratively add the changepoint that most increases the penalized posterior.\nStop when no further improvement is possible.\n\nThis process is repeated for different values of \\(\\lambda\\), and the \\(\\lambda\\) value that maximizes the resulting posterior is selected using one-dimensional optimization (optimize() in R)."
+  },
+  {
+    "objectID": "index.html#implementation",
+    "href": "index.html#implementation",
+    "title": "Bayesian Changepoint Detection on Price Histograms",
+    "section": "Implementation",
+    "text": "Implementation\nThis project implements a greedy changepoint detection algorithm for time series of price histograms. The codebase consists of three components:\n\nA data generator that simulates daily transaction-level price data under piecewise constant pricing regimes (generate_transaction_prices()).\nA transformation step that maps transactional data into a histogram matrix (compute_price_histogram()).\nA C++ backend that performs fast log-likelihood evaluation and greedy changepoint selection via Rcpp."
+  },
+  {
+    "objectID": "index.html#changepoint-detection-results",
+    "href": "index.html#changepoint-detection-results",
+    "title": "Bayesian Changepoint Detection on Price Histograms",
+    "section": "Changepoint Detection Results",
+    "text": "Changepoint Detection Results\nIn the present example, the algorithm detects the same number changepoints, and the estimates ones, are largely fairly close to the simulated ones. A formal evaluation is pending. It stands to reason that the accuracy of changepoint identification will depend on the similarity between adjacent segments, as well as segment length.\nopt_res &lt;- locate_optimal_changepoints( hist$histogram, max_lambda = 0.3 )\ndetected_changepoints &lt;- which(opt_res$changepoints) - 0.5\n\nknitr::kable(t(actual_changepoints), caption = \"Original Changepoints\")\nknitr::kable(t(detected_changepoints), caption = \"Detected Changepoints\")\n\nThe plot below illustrates the results vis a vis the simulation assumptions.\n{r thumbnail-image, fig.height=3, fig.width=10} #| label: thumbnail-image p_price +       geom_vline( data = data.frame(x = detected_changepoints, changepoint = \"detected\"),                   aes(xintercept = x, color = changepoint), linetype = \"dashed\") +       scale_color_manual(name = \"changepoint\", values = c(\"detected\" = \"blue\", \"actual\" = \"red\"),                         guide = guide_legend(override.aes = list( linetype = \"solid\", size = 1))                         )"
+  },
+  {
+    "objectID": "index.html#limitations",
+    "href": "index.html#limitations",
+    "title": "Bayesian Changepoint Detection on Price Histograms",
+    "section": "Limitations",
+    "text": "Limitations\n\nThe algorithm is designed to detect even small changes in average price if they are sufficiently frequent.\nIn the present version, it cannot deal with days with no sales, and may possibly identify them as a new pricing regime, thus zero-sales days have to be excluded before running it.\nThe algorithm is not designed to deal with overlapping price regimes."
+  },
+  {
+    "objectID": "index.html#repository",
+    "href": "index.html#repository",
+    "title": "Bayesian Changepoint Detection on Price Histograms",
+    "section": "Repository",
+    "text": "Repository\nAll source code is available here:\n👉 https://github.com/plogacev/case_studies/tree/main/pricedist_changepoints\n\ndouble log1m_exp(double x)\n{\nif (x &gt;= 0.0) stop(\"log1m_exp is undefined for x &gt;= 0\");\n...\n}"
+  },
+  {
+    "objectID": "index.html#scope",
+    "href": "index.html#scope",
+    "title": "Bayesian Changepoint Detection on Price Histograms",
+    "section": "Scope",
+    "text": "Scope\n[This is work in progress.]\nAll model implementations in this repo are designed to detect change points in pricing time series data. All models are based on a set of assumptions outlined below: In brief, we will assume that the relative frequency of specific prices for a product on a given day depends on the underlying price regime, which is associated with a specific distribution of prices, and changes rather infrequently. The models in this repo are all designed to detect structural changes in pricing regimes based on daily price histograms. Changepoints occur when the pricing of a product undergoes a meaningful change — such as list price changes, promotions, or changes in the availability of discounts.\nThis document outlines the general model assumptions and logic. While none of the actual implementations in this repo actually implement all of them, all models work with some of the assumptions outlined here."
+  },
+  {
+    "objectID": "index.html#theoretical-generative-model",
+    "href": "index.html#theoretical-generative-model",
+    "title": "Bayesian Changepoint Detection on Price Histograms",
+    "section": "Theoretical Generative Model",
+    "text": "Theoretical Generative Model\nWe model the daily distribution of purchase prices for a product as dependent on the current latent price regime. Within each regime, there is assumed to be one list price, and one or multiple discounts, at which a product can be purchased. Discounts may have different amounts of availability: for instance, only 2% of customers may be eligible for a 10% discount, while only 1% of customers may be eligible for a 20% discount. Price regimes change occasionally. This can be due to changes of the list price, promotions, changes in the magnitude or availability of discounts, or multiple factors.\nWe assume that each day belongs to a specific pricing regime. At end of the day \\(t\\), the regime either changes (with probability \\(\\rho_t\\)) or remains the same (with probability \\(1 - \\rho_t\\)). Each regime is characterized by a distribution over prices. We assume that it follows a multinomial distribution, such that the distribution of prices in pricing regime \\(k\\) follows \\(\\text{Multinomial}(\\tau_k)\\).\nWe encode a segmentation of a price time series of length \\(T\\) using a changepoint indicator vector \\(z\\) of length \\(T-1\\), where \\(z_t=1\\) indicates a changepoint between time \\(t\\) and \\(t+1\\), and \\(z_t=0\\) indicates the absence of a changepoint. As a result, each indicator vector defines a set of \\(K\\) segments, where \\(t_1^{(k)}\\) and \\(t_2^{(k)}\\) are the start and end points of segment \\(k\\): \\[\n  [t_1^{(1)},\\, t_2^{(1)}], [t_1^{(2)},\\, t_2^{(2)}],\\quad \\dots,\\quad [t_1^{(K)},\\, t_2^{(K)}]\n\\] When the pricing regime changes, it needs to change significantly. Thus, we specify a prior \\(\\theta\\) over the difference between two adjacent price regime distributions, where the actual difference may be specified in any number ways, including a difference between means, the Wasserstein distance, etc.\nThe complete posterior distribution for the changepoint detection model combines the likelihood of the observed data with the prior distributions over the changepoint configuration and the regime differences. The posterior is given by:\n\\[\np(z, \\theta, \\tau \\mid y_{1:T})\n\\propto\np(y_{1:T} \\mid z, \\theta, \\tau)\n\\cdot\np(z, \\theta, \\tau)\\text{, where }\n\\]\n\\[\np(z, \\theta, \\tau) =\np(z)\n\\cdot\np(\\theta)\n\\cdot\np(\\tau)\\text{, and where }\n\\]\n\n\\(p(y_{1:T} \\mid z, \\theta, \\tau)\\) is the likelihood of the observed data given the changepoint configuration \\(z\\), the changepoint prior \\(\\theta\\), and the regime parameters \\(\\tau\\).\n\\(p(z)\\) is the prior probability of the changepoint configuration, modeled as a Bernoulli process with changepoint probability \\(\\rho\\).\n\\(p(\\theta)\\) is the prior distribution over the magnitude of the price regime change, specified based on domain knowledge.\n\\(p(\\tau)\\) is the prior distribution over the regime parameters \\(\\tau\\), which incorporates the belief about the differences between successive regimes.\n\nIt follows from the structure of the model that likelihood of \\(y_{1:T}\\) is as below.\n\\[\n  p(y_{1:T} \\mid z, \\theta, \\tau) = \\prod_{k=1}^{K} \\prod_{t=t_1^{(k)}}^{t_2^{(k)}} \\text{Multinomial}(y_t \\mid \\tau_k)\n\\]\nThe prior probability \\(p(z)\\) of a changepoint configuration \\(z\\) can be modeled using a Bernoulli process with a changepoint probability \\(\\rho\\). Assuming each \\(z_t\\) is an independent Bernoulli random variable, the prior can be expressed as below, where \\(\\rho\\) is the probability of a changepoint occurring between any two consecutive time points.\n\n\\[\n  z \\sim Bernoulli(\\rho)\n\\]\nWe further incorporate a prior for the differences between successive \\(\\tau_k\\) to capture the belief that changes in pricing regimes are typically abrupt rather than gradual, and that two adjacent pricing regimes need to be substantially different in order to justify positing a regime switch. In other words, it penalizes small differences between any two adjacent pricing regimes. One example specification is as below, where \\(\\delta\\) is any kind of distance function calculating absolute differences between two distributions.\n\\[\n  \\delta(\\tau_k, \\tau_{k+1}) \\sim Normal( \\theta_{\\mu}, \\theta_{\\sigma} )\n\\]"
   }
 ]
