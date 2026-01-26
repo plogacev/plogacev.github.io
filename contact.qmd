@@ -15,11 +15,11 @@ resources:
   - assets/contact.css
 ---
 
+## Get in touch
+
 ::: {.grid}
 
-::: {.g-col-5 #note}
-
-## Get in touch
+::: {.g-col-12 .g-col-md-5 #note}
 
 If you'd like to discuss a potential project, collaboration, or have a question about statistical modeling, forecasting, or data science — feel free to reach out.
 
@@ -27,12 +27,12 @@ You can also find me on:
 
 :::
 
-::: {.g-col-1}
+::: {.g-col-0 .g-col-md-1}
 :::
 
-::: {.g-col-6 #form}
+::: {.g-col-12 .g-col-md-6 #form}
 
-<form style="margin-top: 2.5em;" action="https://formspree.io/f/mwkapgzw" method="POST" accept-charset="utf-8">
+<form action="https://formspree.io/f/mwkapgzw" method="POST" accept-charset="utf-8">
 
 <label for="full-name">Full Name</label>
 <input type="text" name="name" id="full-name" class="form-control" placeholder="First and Last" required>
