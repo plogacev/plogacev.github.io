@@ -25,6 +25,9 @@ If you'd like to discuss a potential project, collaboration, or have a question 
 
 You can also find me on:
 
+<a href="https://github.com/plogacev" class="me-3" style="font-size: 1.5rem;"><i class="bi bi-github"></i></a>
+<a href="https://www.linkedin.com/in/pavel-logacev" style="font-size: 1.5rem;"><i class="bi bi-linkedin"></i></a>
+
 :::
 
 ::: {.g-col-0 .g-col-md-1}
