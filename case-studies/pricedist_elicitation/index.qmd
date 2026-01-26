@@ -100,12 +100,13 @@ products = (products
             .with_columns( pl.arange(0, products.height).alias('product_id') )
             .select([ 'product_id', 'product_title', 'product_description', 'price_usd', 'price_discounted_usd', 'product_url'])
            )
+products_pd = products.to_pandas()
 ```
 
 -   Let's take a look at the data frame with the product information.
 
 ```{r}
-py$products$to_pandas()
+py$products_pd
 ```
 
 -   Next, we connect to OpenAI.
@@ -259,13 +260,13 @@ product_summaries_uniform = [
 ]
 
 product_summaries_uniform_df = pl.DataFrame(product_summaries_uniform)
-
+product_summaries_uniform_df_pd = product_summaries_uniform_df.to_pandas()
 ```
 
 -   Let's take a look at the results of this feature extraction.
 
 ```{r}
-py$product_summaries_uniform_df$to_pandas()
+py$product_summaries_uniform_df_pd
 ```
 
 ### Price Range Elicitation
