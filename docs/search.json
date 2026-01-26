@@ -14,11 +14,11 @@
     "text": "If you’d like to discuss a potential project, collaboration, or have a question about statistical modeling, forecasting, or data science — feel free to reach out.\nYou can also find me on:\n \n\n\n\n\n\n\nFull Name \nEmail Address \nMessage\n\n\nSend message"
   },
   {
-    "objectID": "contact.html#drop-me-a-note",
-    "href": "contact.html#drop-me-a-note",
-    "title": "Get in touch",
+    "objectID": "contact.html#get-in-touch",
+    "href": "contact.html#get-in-touch",
+    "title": "Pavel Logačev",
     "section": "",
-    "text": "If you’d like to discuss a potential project, collaboration, or have a question about statistical modeling, forecasting, or data science — feel free to reach out.\nYou can also find me on:"
+    "text": "If you’d like to discuss a potential project, collaboration, or have a question about statistical modeling, forecasting, or data science — feel free to reach out.\nYou can also find me on:\n \n\n\n\n\n\n\nFull Name \nEmail Address \nMessage\n\n\nSend message"
   },
   {
     "objectID": "case-studies/time_series_analysis_1/ts_1_synthetic_data.html",
@@ -221,7 +221,7 @@
     "href": "case-studies/index.html",
     "title": "Technical Case Studies",
     "section": "",
-    "text": "Detailed case studies with full code and methodology. Each project demonstrates practical applications of Bayesian statistics, time series analysis, and machine learning techniques.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nA Hidden-Markov Model of Stockout Detection\n\n\nBayesian HMM for detecting unobserved inventory outages\n\n\n\n\n\n\n\n\n\n\n\n\nPrice Distribution Elicitation from an LLM\n\n\nUsing GPT-4o to estimate plausible price ranges for products\n\n\n\n\n\n\n\n\n\n\n\n\nBayesian Changepoint Detection on Price Histograms\n\n\nDetecting structural changes in pricing regimes\n\n\n\n\n\n\n\n\n\n\n\n\nTime Series Elasticity Analysis\n\n\nBayesian decomposition of sales dynamics with NumPyro\n\n\n\n\n\nNo matching items\n Back to top"
+    "text": "Detailed case studies with full code and methodology. Each project demonstrates practical applications of Bayesian statistics, time series analysis, and machine learning techniques.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nA Hidden-Markov Model of Stockout Detection\n\n\nBayesian HMM for detecting unobserved inventory outages\n\n\n\n\n\n\n\n\n\n\n\n\nPrice Distribution Elicitation from an LLM\n\n\nUsing GPT-4o to estimate plausible price ranges for products\n\n\n\n\n\n\n\n\n\n\n\n\nBayesian Changepoint Detection on Price Histograms\n\n\nDetecting structural changes in pricing regimes\n\n\n\n\n\n\n\n\n\n\n\n\nLocal-level state-space model with sparse state innovations for elasticity analysis\n\n\nBayesian decomposition of sales dynamics with NumPyro\n\n\n\n\n\nNo matching items\n Back to top"
   },
   {
     "objectID": "case-studies/pricedist_changepoints/index.html",
@@ -296,28 +296,28 @@
   {
     "objectID": "case-studies/time_series_analysis_1/index.html",
     "href": "case-studies/time_series_analysis_1/index.html",
-    "title": "Time Series Elasticity Analysis",
+    "title": "Local-level state-space model with sparse state innovations for elasticity analysis",
     "section": "",
     "text": "Sales data can be somewhat chaotic — fluctuating strongly due to market trends, changes in advertising strategy, seasonal cycles, and external shocks. Many analytical methods struggle to disentangle meaningful patterns from noise. The present project explores the potential of a Bayesian time series model to break down variance into distinct components.\nWe put it to the test using a synthetic sales dataset designed with well-defined patterns: long-term growth, yearly seasonality, weekly variation, and price sensitivity. The model performed remarkably well, accurately identifying key trends while also quantifying uncertainty. The results highlight the power of Bayesian inference in revealing the drivers of sales dynamics, offering businesses a clearer, data-driven perspective and enabling decision-making that fully accounts for the uncertainty in the estimates."
   },
   {
     "objectID": "case-studies/time_series_analysis_1/index.html#summary",
     "href": "case-studies/time_series_analysis_1/index.html#summary",
-    "title": "Time Series Elasticity Analysis",
+    "title": "Local-level state-space model with sparse state innovations for elasticity analysis",
     "section": "",
     "text": "Sales data can be somewhat chaotic — fluctuating strongly due to market trends, changes in advertising strategy, seasonal cycles, and external shocks. Many analytical methods struggle to disentangle meaningful patterns from noise. The present project explores the potential of a Bayesian time series model to break down variance into distinct components.\nWe put it to the test using a synthetic sales dataset designed with well-defined patterns: long-term growth, yearly seasonality, weekly variation, and price sensitivity. The model performed remarkably well, accurately identifying key trends while also quantifying uncertainty. The results highlight the power of Bayesian inference in revealing the drivers of sales dynamics, offering businesses a clearer, data-driven perspective and enabling decision-making that fully accounts for the uncertainty in the estimates."
   },
   {
     "objectID": "case-studies/time_series_analysis_1/index.html#synthetic-data-generation",
     "href": "case-studies/time_series_analysis_1/index.html#synthetic-data-generation",
-    "title": "Time Series Elasticity Analysis",
+    "title": "Local-level state-space model with sparse state innovations for elasticity analysis",
     "section": "1. Synthetic Data Generation",
     "text": "1. Synthetic Data Generation\n🔗 [Notebook]"
   },
   {
     "objectID": "case-studies/time_series_analysis_1/index.html#data-analysis",
     "href": "case-studies/time_series_analysis_1/index.html#data-analysis",
-    "title": "Time Series Elasticity Analysis",
+    "title": "Local-level state-space model with sparse state innovations for elasticity analysis",
     "section": "2. Data Analysis",
     "text": "2. Data Analysis\n🔗[Notebook]"
   },
@@ -369,12 +369,5 @@
     "title": "Pavel Logačev",
     "section": "",
     "text": "I’m a freelance data scientist specializing in statistical modeling for business decisions — particularly in settings where data is messy, experimentation is limited, and off-the-shelf solutions fall short.\nMy work spans demand modeling, price elasticity estimation, forecasting, and causal inference. I build custom models using Bayesian methods, designed around the structure of your specific problem.\nI’ve worked across B2C and B2B contexts, collaborating closely with stakeholders to understand how business processes actually work — so models reflect what matters and make the most of available data.\nLearn more →\n\n    \n    \n  \n\n\n\n\n\n\n Back to top"
-  },
-  {
-    "objectID": "contact.html#get-in-touch",
-    "href": "contact.html#get-in-touch",
-    "title": "Pavel Logačev",
-    "section": "",
-    "text": "If you’d like to discuss a potential project, collaboration, or have a question about statistical modeling, forecasting, or data science — feel free to reach out.\nYou can also find me on:\n \n\n\n\n\n\n\nFull Name \nEmail Address \nMessage\n\n\nSend message"
   }
 ]
