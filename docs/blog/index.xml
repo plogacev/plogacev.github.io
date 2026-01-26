@@ -9,7 +9,7 @@
 <link>https://plogacev.github.io/blog/</link>
 <atom:link href="https://plogacev.github.io/blog/index.xml" rel="self" type="application/rss+xml"/>
 <description>Blog posts on data science, statistical modeling, Bayesian methods, and practical applications of machine learning.</description>
-<generator>quarto-1.5.57</generator>
-<lastBuildDate>Sun, 25 Jan 2026 20:20:55 GMT</lastBuildDate>
+<generator>quarto-1.7.33</generator>
+<lastBuildDate>Mon, 26 Jan 2026 11:28:59 GMT</lastBuildDate>
 </channel>
 </rss>

@@ -1,0 +1,19 @@
+{
+  "hash": "9cfc40be140cd541093a35a8ddf50b7a",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Time Series Elasticity Analysis\"\nsubtitle: \"Bayesian decomposition of sales dynamics with NumPyro\"\ndate: 2025-06-30\nimage: images/thumbnail.png\nformat:\n  html:\n    toc: true\n    code-fold: true\n    code-tools: true\n    df-print: paged\nengine: knitr\neditor: visual\n---\n\n## Summary\n\nSales data can be somewhat chaotic — fluctuating strongly due to market trends, changes in advertising strategy, seasonal cycles, and external shocks. Many analytical methods struggle to disentangle meaningful patterns from noise. The present project explores the potential of a Bayesian time series model to break down variance into distinct components.\n\nWe put it to the test using a synthetic sales dataset designed with well-defined patterns: long-term growth, yearly seasonality, weekly variation, and price sensitivity. The model performed remarkably well, accurately identifying key trends while also quantifying uncertainty. The results highlight the power of Bayesian inference in revealing the drivers of sales dynamics, offering businesses a clearer, data-driven perspective and enabling decision-making that fully accounts for the uncertainty in the estimates.\n\n## 1. Synthetic Data Generation\n\n🔗 \\[[Notebook](./ts_1_synthetic_data.html)\\]\n\n## 2. Data Analysis\n\n🔗\\[[Notebook](./ts_2_analysis.html)\\]\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {
+      "include-in-header": [
+        "<link href=\"../../site_libs/pagedtable-1.1/css/pagedtable.css\" rel=\"stylesheet\" />\n<script src=\"../../site_libs/pagedtable-1.1/js/pagedtable.js\"></script>\n"
+      ]
+    },
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

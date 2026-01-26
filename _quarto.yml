@@ -16,6 +16,7 @@ website:
   back-to-top-navigation: true
 
   navbar:
+    background: dark
     tools:
     - icon: github
       href: https://github.com/plogacev
