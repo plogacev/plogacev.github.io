@@ -1,7 +1,6 @@
 ---
 pagetitle: Pavel Logačev - Contact
-title: Get in touch
-description: "Contact Pavel Logačev for data science consulting, statistical modeling projects, or collaborations."
+title-block-style: none
 name: Contact Form
 page-layout: article
 format:
@@ -20,22 +19,20 @@ resources:
 
 ::: {.g-col-5 #note}
 
-## Drop me a note
+## Get in touch
 
 If you'd like to discuss a potential project, collaboration, or have a question about statistical modeling, forecasting, or data science — feel free to reach out.
 
 You can also find me on:
 
 :::
-<!-- source: https://github.com/mccarthy-m-g/tidytales/blob/main/about/index.qmd#L24-L46 -->
 
 ::: {.g-col-1}
 :::
 
 ::: {.g-col-6 #form}
 
-<form style="margin-top: -2.5em;" action="https://formspree.io/f/mwkapgzw" method="POST" accept-charset="utf-8">
-
+<form action="https://formspree.io/f/mwkapgzw" method="POST" accept-charset="utf-8">
 
 <label for="full-name">Full Name</label>
 <input type="text" name="name" id="full-name" class="form-control" placeholder="First and Last" required>
@@ -44,10 +41,7 @@ You can also find me on:
 <input type="email" name="_replyto" id="email-address" class="form-control" placeholder="your@email.here" required>
 
 <label for="message">Message</label>
-  <textarea rows="6" name="message" id="message" class="form-control" required></textarea>
-  <!--
-   placeholder="Aenean lacinia bibendum nulla sed consectetur. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Donec ullamcorper nulla non metus auctor fringilla nullam quis risus."
-  -->
+<textarea rows="6" name="message" id="message" class="form-control" required></textarea>
 
 <button type="submit" class="btn btn-primary mt-4">Send message</button>
 </form>

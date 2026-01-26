@@ -9,9 +9,9 @@
   {
     "objectID": "contact.html",
     "href": "contact.html",
-    "title": "Get in touch",
+    "title": "Pavel Logačev",
     "section": "",
-    "text": "If you’d like to discuss a potential project, collaboration, or have a question about statistical modeling, forecasting, or data science — feel free to reach out.\nYou can also find me on:\n\n\n\n\n\n\n\n\nFull Name \nEmail Address \nMessage\n\n\n\nSend message"
+    "text": "If you’d like to discuss a potential project, collaboration, or have a question about statistical modeling, forecasting, or data science — feel free to reach out.\nYou can also find me on:\n\n\n\n\n\n\n\nFull Name \nEmail Address \nMessage\n\n\nSend message"
   },
   {
     "objectID": "contact.html#drop-me-a-note",
@@ -369,5 +369,12 @@
     "title": "Pavel Logačev",
     "section": "",
     "text": "I’m a freelance data scientist specializing in statistical modeling for business decisions — particularly in settings where data is messy, experimentation is limited, and off-the-shelf solutions fall short.\nMy work spans demand modeling, price elasticity estimation, forecasting, and causal inference. I build custom models using Bayesian methods, designed around the structure of your specific problem.\nI’ve worked across B2C and B2B contexts, collaborating closely with stakeholders to understand how business processes actually work — so models reflect what matters and make the most of available data.\nLearn more →\n\n    \n    \n  \n\n\n\n\n\n\n Back to top"
+  },
+  {
+    "objectID": "contact.html#get-in-touch",
+    "href": "contact.html#get-in-touch",
+    "title": "Pavel Logačev",
+    "section": "",
+    "text": "If you’d like to discuss a potential project, collaboration, or have a question about statistical modeling, forecasting, or data science — feel free to reach out.\nYou can also find me on:"
   }
 ]
