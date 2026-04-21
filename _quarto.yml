@@ -50,6 +50,7 @@ format:
     lightbox: true
     include-in-header:
       - _includes/structured-data.html
+      - _includes/ga4-tracking.html
 
 execute:
   freeze: auto
