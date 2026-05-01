@@ -5,15 +5,11 @@
   },
   {
     "listing": "/blog/index.html",
-    "items": []
-  },
-  {
-    "listing": "/case-studies/index.html",
     "items": [
-      "/case-studies/stockouts/index.html",
-      "/case-studies/pricedist_elicitation/index.html",
-      "/case-studies/pricedist_changepoints/index.html",
-      "/case-studies/time_series_analysis_1/index.html"
+      "/blog/stockouts/index.html",
+      "/blog/pricedist_elicitation/index.html",
+      "/blog/pricedist_changepoints/index.html",
+      "/blog/time_series_analysis_1/index.html"
     ]
   }
 ]

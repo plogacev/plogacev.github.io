@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="Blog posts on data science, statistical modeling, Bayesian methods, and practical applications of machine learning.">
+<meta name="description" content="Technical write-ups on Bayesian methods, time series analysis, changepoint detection, pricing, and LLM applications.">
 
 <title>Pavel Logačev - Blog – Pavel Logačev</title>
 <style>
@@ -80,9 +80,9 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-date','listing-title','listing-subtitle','listing-categories','listing-reading-time',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: ['listing-image','listing-title','listing-subtitle',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
-      searchColumns: ["listing-categories"],
+      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -169,12 +169,18 @@ window.Quarto = {
 };
 </script>
 
-<link rel="alternate" type="application/rss+xml" title="Pavel Logačev" href="index.xml" data-external="1"><meta property="og:title" content="Pavel Logačev - Blog">
-<meta property="og:description" content="Blog posts on data science, statistical modeling, Bayesian methods, and practical applications of machine learning.">
+<meta property="og:title" content="Pavel Logačev - Blog">
+<meta property="og:description" content="Technical write-ups on Bayesian methods, time series analysis, changepoint detection, pricing, and LLM applications.">
+<meta property="og:image" content="https://plogacev.github.io/blog/pricedist_elicitation/images/thumbnail.png">
 <meta property="og:site_name" content="Pavel Logačev">
+<meta property="og:image:height" content="1152">
+<meta property="og:image:width" content="1152">
 <meta name="twitter:title" content="Pavel Logačev - Blog">
-<meta name="twitter:description" content="Blog posts on data science, statistical modeling, Bayesian methods, and practical applications of machine learning.">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:description" content="Technical write-ups on Bayesian methods, time series analysis, changepoint detection, pricing, and LLM applications.">
+<meta name="twitter:image" content="https://plogacev.github.io/blog/pricedist_elicitation/images/thumbnail.png">
+<meta name="twitter:image-height" content="1152">
+<meta name="twitter:image-width" content="1152">
+<meta name="twitter:card" content="summary_large_image">
 </head>
 
 <body class="nav-fixed quarto-light">
@@ -203,13 +209,9 @@ window.Quarto = {
 <span class="menu-text">Projects</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../case-studies/index.html"> 
-<span class="menu-text">Case Studies</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link active" href="../blog/index.html" aria-current="page"> 
+    <a class="nav-link active" href="../blog/index.html" aria-current="page">
 <span class="menu-text">Blog</span></a>
-  </li>  
+  </li>
   <li class="nav-item">
     <a class="nav-link" href="../contact.html"> 
 <span class="menu-text">Contact</span></a>
@@ -227,26 +229,24 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(0)</span></div></div></div>
+    
 <!-- main -->
-<main class="content column-page-left" id="quarto-document-content">
+<main class="content column-page" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Blog</h1>
-<p class="subtitle lead">Thoughts on data science, statistics, and modeling</p>
+<p class="subtitle lead">Notes on data science, statistics, and modeling</p>
 </div>
 
 <div>
   <div class="description">
-    Blog posts on data science, statistical modeling, Bayesian methods, and practical applications of machine learning.
+    Technical write-ups on Bayesian methods, time series analysis, changepoint detection, pricing, and LLM applications.
   </div>
 </div>
 
 
-<div class="quarto-title-meta column-page-left">
+<div class="quarto-title-meta column-page">
 
     
   
@@ -262,31 +262,106 @@ window.Quarto = {
 
 
 
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="listing-actions-group">
-   <div class="input-group input-group-sm quarto-listing-sort">
-    <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
-    <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
-      <option value="" disabled="" selected="" hidden="">Order By</option>
-      <option value="index" data-direction="asc">Default</option>
-      <option value="listing-title" data-direction="asc">
-        Title
-      </option>
-      <option value="listing-date-sort" data-direction="asc">
-        Date - Oldest
-      </option>
-      <option value="listing-date-sort" data-direction="desc">
-        Date - Newest
-      </option>
-    </select>
-  </div>
-    <div class="input-group input-group-sm quarto-listing-filter">
-      <span class="input-group-text"><i class="bi bi-search"></i></span>
-      <input type="text" class="search form-control" placeholder="Filter">
-    </div>
+<div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
+<div class="list grid quarto-listing-cols-3">
+<div class="g-col-1" data-index="0" data-listing-date-sort="1752444000000" data-listing-file-modified-sort="1769380458855" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="12" data-listing-word-count-sort="2299">
+<a href="../blog/stockouts/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="../blog/stockouts/images/hmm_complete.svg" class="thumbnail-image card-img" style="height: 180px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+A Hidden-Markov Model of Stockout Detection
+</h5>
+<div class="card-subtitle listing-subtitle">
+Bayesian HMM for detecting unobserved inventory outages
 </div>
-<div class="list quarto-listing-default">
-
+<div class="listing-categories">
+<div class="listing-category">bayesian</div>
+<div class="listing-category">hmm</div>
+<div class="listing-category">time-series</div>
+<div class="listing-category">inventory</div>
+</div>
+<div class="card-text listing-date">
+<span class="date">Jul 14, 2025</span>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="1" data-listing-date-sort="1752098400000" data-listing-file-modified-sort="1769426400883" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="22" data-listing-word-count-sort="4238">
+<a href="../blog/pricedist_elicitation/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="../blog/pricedist_elicitation/images/thumbnail.png" class="thumbnail-image card-img" style="height: 180px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Price Distribution Elicitation from an LLM
+</h5>
+<div class="card-subtitle listing-subtitle">
+Using GPT-4o to estimate plausible price ranges for products
+</div>
+<div class="listing-categories">
+<div class="listing-category">llm</div>
+<div class="listing-category">pricing</div>
+<div class="listing-category">elicitation</div>
+</div>
+<div class="card-text listing-date">
+<span class="date">Jul 10, 2025</span>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="2" data-listing-date-sort="1751234400000" data-listing-file-modified-sort="1769374584076" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="217">
+<a href="../blog/pricedist_changepoints/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="../blog/pricedist_changepoints/images/thumbnail.png" class="thumbnail-image card-img" style="height: 180px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Bayesian Changepoint Detection on Price Histograms
+</h5>
+<div class="card-subtitle listing-subtitle">
+Detecting structural changes in pricing regimes
+</div>
+<div class="listing-categories">
+<div class="listing-category">bayesian</div>
+<div class="listing-category">changepoint-detection</div>
+<div class="listing-category">pricing</div>
+</div>
+<div class="card-text listing-date">
+<span class="date">Jun 30, 2025</span>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="3" data-listing-date-sort="1751234400000" data-listing-file-modified-sort="1769432077929" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="128">
+<a href="../blog/time_series_analysis_1/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="../blog/time_series_analysis_1/images/thumbnail.png" class="thumbnail-image card-img" style="height: 180px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Local-level state-space model with sparse state innovations for elasticity analysis
+</h5>
+<div class="card-subtitle listing-subtitle">
+Bayesian decomposition of sales dynamics with NumPyro
+</div>
+<div class="listing-categories">
+<div class="listing-category">bayesian</div>
+<div class="listing-category">state-space</div>
+<div class="listing-category">time-series</div>
+<div class="listing-category">elasticity</div>
+</div>
+<div class="card-text listing-date">
+<span class="date">Jun 30, 2025</span>
+</div>
+</div>
+</div></a>
+</div>
 </div>
 <div class="listing-no-matching d-none">No matching items</div>
 </div><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
