@@ -1,18 +1,18 @@
 ---
 title: "Blog"
 pagetitle: "Pavel Logačev - Blog"
-description: "Blog posts on data science, statistical modeling, Bayesian methods, and practical applications of machine learning."
-subtitle: "Thoughts on data science, statistics, and modeling"
+description: "Technical write-ups on Bayesian methods, time series analysis, changepoint detection, pricing, and LLM applications."
+subtitle: "Notes on data science, statistics, and modeling"
 listing:
   contents:
     - "*/index.qmd"
-    - "*/index.markdown"
   sort: date desc
-  type: default
+  type: grid
   categories: true
-  sort-ui: true
-  filter-ui: true
-  fields: [date, title, subtitle, categories, reading-time]
+  sort-ui: false
+  filter-ui: false
+  fields: [image, title, subtitle, categories, date]
+  image-height: 180px
   feed: true
 page-layout: full
 ---

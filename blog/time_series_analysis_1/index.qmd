@@ -2,6 +2,7 @@
 title: "Local-level state-space model with sparse state innovations for elasticity analysis"
 subtitle: "Bayesian decomposition of sales dynamics with NumPyro"
 date: 2025-06-30
+categories: [bayesian, state-space, time-series, elasticity]
 image: images/thumbnail.png
 format:
   html:

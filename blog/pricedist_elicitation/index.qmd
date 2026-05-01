@@ -3,6 +3,7 @@ title: "Price Distribution Elicitation from an LLM"
 subtitle: "Using GPT-4o to estimate plausible price ranges for products"
 author: "Pavel Logačev"
 date: 2025-07-10
+categories: [llm, pricing, elicitation]
 image: images/thumbnail.png
 format:
   html:
