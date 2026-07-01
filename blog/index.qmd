@@ -8,7 +8,7 @@ listing:
     - "*/index.qmd"
   sort: date desc
   type: grid
-  categories: true
+  categories: false
   sort-ui: false
   filter-ui: false
   fields: [image, title, subtitle, categories, date]
