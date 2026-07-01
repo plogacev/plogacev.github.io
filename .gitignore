@@ -1,3 +1,13 @@
 /.quarto/
 
 **/*.quarto_ipynb
+
+# Local Python env for reticulate (recreate from requirements.txt)
+/env/
+# Machine-specific render env vars (RETICULATE_PYTHON path, placeholder key)
+/_environment
+
+# Obsolete per-document figure dirs in source (superseded by _freeze/)
+blog/**/*_files/
+
+.DS_Store

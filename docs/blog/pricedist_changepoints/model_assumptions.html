@@ -1,18 +1,13 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-LZL5CN8MM1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-LZL5CN8MM1');
-</script>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.33">
+<meta name="generator" content="quarto-1.8.27">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
 <meta name="author" content="Pavel Logačev">
+
 <title>Bayesian Changepoint Detection on Price Histograms – Pavel Logačev</title>
 <style>
 code{white-space: pre-wrap;}
@@ -63,6 +58,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 
+
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
@@ -72,14 +68,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../../">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-c167bd3ca66df8466345003acd51f1a2.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="../../site_libs/bootstrap/bootstrap-88a12cf4d4b61017bb7faabf04eb1918.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -105,7 +103,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><script type="application/ld+json">
+}</script>
+<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Person",
@@ -143,8 +142,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "addressCountry": "Germany"
   }
 }
-</script><link href="../../site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
-<script src="../../site_libs/pagedtable-1.1/js/pagedtable.js"></script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+</script>
+<!-- Google tag (gtag.js) -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-LZL5CN8MM1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-LZL5CN8MM1');
+</script>
+<link href="../../site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="../../site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
     // MathJax Typeset
@@ -155,7 +168,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -170,6 +183,7 @@ window.Quarto = {
   typesetMath
 };
 </script>
+
 <meta property="og:title" content="Bayesian Changepoint Detection on Price Histograms">
 <meta property="og:description" content="Freelance Data Scientist specializing in Bayesian methods, demand modeling, price elasticity, and causal inference.">
 <meta property="og:site_name" content="Pavel Logačev">
@@ -177,10 +191,13 @@ window.Quarto = {
 <meta name="twitter:description" content="Freelance Data Scientist specializing in Bayesian methods, demand modeling, price elasticity, and causal inference.">
 <meta name="twitter:card" content="summary">
 </head>
+
 <body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Pavel Logačev</span>
@@ -192,9 +209,13 @@ window.Quarto = {
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
-<li class="nav-item">
+  <li class="nav-item">
     <a class="nav-link" href="../../about/index.html"> 
 <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../services.html"> 
+<span class="menu-text">Services</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../projects/index.html"> 
@@ -209,25 +230,33 @@ window.Quarto = {
 <span class="menu-text">Contact</span></a>
   </li>  
 </ul>
-</div> <!-- /navcollapse -->
+          </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
     <a href="https://github.com/plogacev" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
     <a href="https://www.linkedin.com/in/pavel-logacev" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-linkedin"></i></a>
 </div>
       </div> <!-- /container-fluid -->
-    </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
    
   <ul>
-<li><a href="#scope" id="toc-scope" class="nav-link active" data-scroll-target="#scope">Scope</a></li>
+  <li><a href="#scope" id="toc-scope" class="nav-link active" data-scroll-target="#scope">Scope</a></li>
   <li><a href="#theoretical-generative-model" id="toc-theoretical-generative-model" class="nav-link" data-scroll-target="#theoretical-generative-model">Theoretical Generative Model</a></li>
-  </ul></nav>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
 <div class="quarto-title-block"><div><h1 class="title">Bayesian Changepoint Detection on Price Histograms</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
 </div>
 
@@ -254,11 +283,17 @@ window.Quarto = {
   
 
 
-</header><section id="scope" class="level2"><h2 class="anchored" data-anchor-id="scope">Scope</h2>
+</header>
+
+
+<section id="scope" class="level2">
+<h2 class="anchored" data-anchor-id="scope">Scope</h2>
 <p><em>[This is work in progress.]</em></p>
 <p>All model implementations in this repo are designed to detect change points in pricing time series data. All models are based on a set of assumptions outlined below: In brief, we will assume that the relative frequency of specific prices for a product on a given day depends on the underlying price regime, which is associated with a specific distribution of prices, and changes rather infrequently. The models in this repo are all designed to detect structural changes in pricing regimes based on daily price histograms. Changepoints occur when the pricing of a product undergoes a meaningful change — such as list price changes, promotions, or changes in the availability of discounts.</p>
 <p>This document outlines the general model assumptions and logic. While none of the actual implementations in this repo actually implement all of them, all models work with some of the assumptions outlined here.</p>
-</section><section id="theoretical-generative-model" class="level2"><h2 class="anchored" data-anchor-id="theoretical-generative-model">Theoretical Generative Model</h2>
+</section>
+<section id="theoretical-generative-model" class="level2">
+<h2 class="anchored" data-anchor-id="theoretical-generative-model">Theoretical Generative Model</h2>
 <p>We model the daily distribution of purchase prices for a product as dependent on the current latent price regime. Within each regime, there is assumed to be one list price, and one or multiple discounts, at which a product can be purchased. Discounts may have different amounts of availability: for instance, only 2% of customers may be eligible for a 10% discount, while only 1% of customers may be eligible for a 20% discount. Price regimes change occasionally. This can be due to changes of the list price, promotions, changes in the magnitude or availability of discounts, or multiple factors.</p>
 <p>We assume that each day belongs to a specific pricing regime. At end of the day <span class="math inline">\(t\)</span>, the regime either changes (with probability <span class="math inline">\(\rho_t\)</span>) or remains the same (with probability <span class="math inline">\(1 - \rho_t\)</span>). Each regime is characterized by a distribution over prices. We assume that it follows a multinomial distribution, such that the distribution of prices in pricing regime <span class="math inline">\(k\)</span> follows <span class="math inline">\(\text{Multinomial}(\tau_k)\)</span>.</p>
 <p>We encode a segmentation of a price time series of length <span class="math inline">\(T\)</span> using a changepoint indicator vector <span class="math inline">\(z\)</span> of length <span class="math inline">\(T-1\)</span>, where <span class="math inline">\(z_t=1\)</span> indicates a changepoint between time <span class="math inline">\(t\)</span> and <span class="math inline">\(t+1\)</span>, and <span class="math inline">\(z_t=0\)</span> indicates the absence of a changepoint. As a result, each indicator vector defines a set of <span class="math inline">\(K\)</span> segments, where <span class="math inline">\(t_1^{(k)}\)</span> and <span class="math inline">\(t_2^{(k)}\)</span> are the start and end points of segment <span class="math inline">\(k\)</span>: <span class="math display">\[
@@ -281,14 +316,10 @@ p(\theta)
 p(\tau)\text{, and where }
 \]</span></p>
 <ul>
-<li>
-<span class="math inline">\(p(y_{1:T} \mid z, \theta, \tau)\)</span> is the likelihood of the observed data given the changepoint configuration <span class="math inline">\(z\)</span>, the changepoint prior <span class="math inline">\(\theta\)</span>, and the regime parameters <span class="math inline">\(\tau\)</span>.</li>
-<li>
-<span class="math inline">\(p(z)\)</span> is the prior probability of the changepoint configuration, modeled as a Bernoulli process with changepoint probability <span class="math inline">\(\rho\)</span>.</li>
-<li>
-<span class="math inline">\(p(\theta)\)</span> is the prior distribution over the magnitude of the price regime change, specified based on domain knowledge.</li>
-<li>
-<span class="math inline">\(p(\tau)\)</span> is the prior distribution over the regime parameters <span class="math inline">\(\tau\)</span>, which incorporates the belief about the differences between successive regimes.</li>
+<li><span class="math inline">\(p(y_{1:T} \mid z, \theta, \tau)\)</span> is the likelihood of the observed data given the changepoint configuration <span class="math inline">\(z\)</span>, the changepoint prior <span class="math inline">\(\theta\)</span>, and the regime parameters <span class="math inline">\(\tau\)</span>.</li>
+<li><span class="math inline">\(p(z)\)</span> is the prior probability of the changepoint configuration, modeled as a Bernoulli process with changepoint probability <span class="math inline">\(\rho\)</span>.</li>
+<li><span class="math inline">\(p(\theta)\)</span> is the prior distribution over the magnitude of the price regime change, specified based on domain knowledge.</li>
+<li><span class="math inline">\(p(\tau)\)</span> is the prior distribution over the regime parameters <span class="math inline">\(\tau\)</span>, which incorporates the belief about the differences between successive regimes.</li>
 </ul>
 <p>It follows from the structure of the model that likelihood of <span class="math inline">\(y_{1:T}\)</span> is as below.</p>
 <p><span class="math display">\[
@@ -307,7 +338,10 @@ p(\tau)\text{, and where }
 
 <!-- -->
 
-</section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
     const anchorJS = new window.AnchorJS();
@@ -358,13 +392,14 @@ p(\tau)\text{, and where }
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -757,7 +792,7 @@ p(\tau)\text{, and where }
     }
   });
   </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Bayesian Changepoint Detection on Price Histograms"</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Pavel Logačev"</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "r Sys.Date()"</span></span>
@@ -852,9 +887,10 @@ p(\tau)\text{, and where }
 <span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a>  </span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a>  </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
+
 
 
 

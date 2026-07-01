@@ -1,18 +1,13 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-LZL5CN8MM1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-LZL5CN8MM1');
-</script>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.33">
+<meta name="generator" content="quarto-1.8.27">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
 <meta name="author" content="Pavel Logačev">
+
 <title>Generating Synthetic Order Volume – Pavel Logačev</title>
 <style>
 code{white-space: pre-wrap;}
@@ -63,6 +58,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 
+
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
@@ -72,14 +68,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../../">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-c167bd3ca66df8466345003acd51f1a2.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="../../site_libs/bootstrap/bootstrap-88a12cf4d4b61017bb7faabf04eb1918.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -105,7 +106,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><script type="application/ld+json">
+}</script>
+<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Person",
@@ -143,8 +145,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "addressCountry": "Germany"
   }
 }
-</script><link href="../../site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
-<script src="../../site_libs/pagedtable-1.1/js/pagedtable.js"></script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+</script>
+<!-- Google tag (gtag.js) -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-LZL5CN8MM1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-LZL5CN8MM1');
+</script>
+<link href="../../site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="../../site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
     // MathJax Typeset
@@ -155,7 +171,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -170,15 +186,25 @@ window.Quarto = {
   typesetMath
 };
 </script>
+
 <meta property="og:title" content="Generating Synthetic Order Volume">
+<meta property="og:image" content="https://plogacev.github.io/blog/time_series_analysis_1/ts_1_synthetic_data_files/figure-html/unnamed-chunk-4-1.png">
 <meta property="og:site_name" content="Pavel Logačev">
+<meta property="og:image:height" content="921">
+<meta property="og:image:width" content="1228">
 <meta name="twitter:title" content="Generating Synthetic Order Volume">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://plogacev.github.io/blog/time_series_analysis_1/ts_1_synthetic_data_files/figure-html/unnamed-chunk-4-1.png">
+<meta name="twitter:image-height" content="921">
+<meta name="twitter:image-width" content="1228">
+<meta name="twitter:card" content="summary_large_image">
 </head>
+
 <body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Pavel Logačev</span>
@@ -190,9 +216,13 @@ window.Quarto = {
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
-<li class="nav-item">
+  <li class="nav-item">
     <a class="nav-link" href="../../about/index.html"> 
 <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../services.html"> 
+<span class="menu-text">Services</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../projects/index.html"> 
@@ -207,28 +237,30 @@ window.Quarto = {
 <span class="menu-text">Contact</span></a>
   </li>  
 </ul>
-</div> <!-- /navcollapse -->
+          </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
     <a href="https://github.com/plogacev" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
     <a href="https://www.linkedin.com/in/pavel-logacev" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-linkedin"></i></a>
 </div>
       </div> <!-- /container-fluid -->
-    </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
    
   <ul>
-<li>
-<a href="#generating-synthetic-order-volume" id="toc-generating-synthetic-order-volume" class="nav-link active" data-scroll-target="#generating-synthetic-order-volume">Generating Synthetic Order Volume</a>
+  <li><a href="#generating-synthetic-order-volume" id="toc-generating-synthetic-order-volume" class="nav-link active" data-scroll-target="#generating-synthetic-order-volume">Generating Synthetic Order Volume</a>
   <ul class="collapse">
-<li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
   <li><a href="#import-required-libraries-and-define-functions" id="toc-import-required-libraries-and-define-functions" class="nav-link" data-scroll-target="#import-required-libraries-and-define-functions">1. Import Required Libraries And Define Functions</a></li>
-  <li>
-<a href="#data-generation-process" id="toc-data-generation-process" class="nav-link" data-scroll-target="#data-generation-process">2. Data Generation Process</a>
+  <li><a href="#data-generation-process" id="toc-data-generation-process" class="nav-link" data-scroll-target="#data-generation-process">2. Data Generation Process</a>
   <ul class="collapse">
-<li><a href="#create-the-time-series" id="toc-create-the-time-series" class="nav-link" data-scroll-target="#create-the-time-series">2.1. Create the Time Series</a></li>
+  <li><a href="#create-the-time-series" id="toc-create-the-time-series" class="nav-link" data-scroll-target="#create-the-time-series">2.1. Create the Time Series</a></li>
   <li><a href="#long-term-growth-curve" id="toc-long-term-growth-curve" class="nav-link" data-scroll-target="#long-term-growth-curve">2.2. Long-Term Growth Curve</a></li>
   <li><a href="#yearly-seasonal-pattern" id="toc-yearly-seasonal-pattern" class="nav-link" data-scroll-target="#yearly-seasonal-pattern">2.3. Yearly Seasonal Pattern</a></li>
   <li><a href="#weekly-seasonal-pattern" id="toc-weekly-seasonal-pattern" class="nav-link" data-scroll-target="#weekly-seasonal-pattern">2.4. Weekly Seasonal Pattern</a></li>
@@ -236,17 +268,19 @@ window.Quarto = {
   <li><a href="#random-walk-unmodeled-influences-and-external-shocks" id="toc-random-walk-unmodeled-influences-and-external-shocks" class="nav-link" data-scroll-target="#random-walk-unmodeled-influences-and-external-shocks">2.6. Random Walk: Unmodeled Influences and External Shocks</a></li>
   <li><a href="#effect-of-price" id="toc-effect-of-price" class="nav-link" data-scroll-target="#effect-of-price">2.7. Effect of Price</a></li>
   <li><a href="#scaled-sales" id="toc-scaled-sales" class="nav-link" data-scroll-target="#scaled-sales">2.8. Scaled Sales</a></li>
-  </ul>
-</li>
+  </ul></li>
   <li><a href="#realized-sales" id="toc-realized-sales" class="nav-link" data-scroll-target="#realized-sales">3. Realized Sales</a></li>
   <li><a href="#sanity-check" id="toc-sanity-check" class="nav-link" data-scroll-target="#sanity-check">4. Sanity-Check</a></li>
   <li><a href="#save-sales" id="toc-save-sales" class="nav-link" data-scroll-target="#save-sales">5. Save Sales</a></li>
+  </ul></li>
   </ul>
-</li>
-  </ul></nav>
+</nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
 <div class="quarto-title-block"><div><h1 class="title">Generating Synthetic Order Volume</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
 </div>
 
@@ -273,30 +307,38 @@ window.Quarto = {
   
 
 
-</header><section id="generating-synthetic-order-volume" class="level1"><h1>Generating Synthetic Order Volume</h1>
-<section id="introduction" class="level2"><h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+</header>
+
+
+<section id="generating-synthetic-order-volume" class="level1">
+<h1>Generating Synthetic Order Volume</h1>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
 <p>Understanding real-world sales patterns often requires modeling specific aspects of the data which can be obscured by factors that are of no theoretical interest. For instance, the effects of price sensitivity may be obscured by seasonal patterns, seasonal patterns may be partially obscured by one-off events, effects of consumer confidence, or by long-term trends, among others. By constructing a synthetic dataset with well-defined components, we can test whether a model can effectively recover these hidden relationshop.</p>
 <p>This notebook creates synthetic sales data for an online store and explains the logic behind its generation. The goal is to simulate a realistic sales time series incorporating latent seasonality (both weekly and yearly), latent growth over time, as well as influences of unmodeled factors via a random walk. The generated data can be used for testing time series models that aim to uncover some of these latent structures.</p>
 <p>Key aspects of our data:</p>
 <ul>
-<li>
-<strong>Latent Growth.</strong> Sales increase gradually, accelerating after a certain point, and then saturate.</li>
-<li>
-<strong>Yearly Seasonality.</strong> Sales vary throughout the year, with a peak during certain periods (e.g., summer or holiday seasons).</li>
-<li>
-<strong>Weekly Seasonality.</strong> A periodic pattern emerges within each week (e.g., higher sales on weekends).</li>
-<li>
-<strong>Random Walk Noise.</strong> Unmodeled variations and external shocks are captured through a random walk process, ensuring realistic fluctuations.</li>
-</ul></section><section id="import-required-libraries-and-define-functions" class="level2"><h2 class="anchored" data-anchor-id="import-required-libraries-and-define-functions">1. Import Required Libraries And Define Functions</h2>
+<li><strong>Latent Growth.</strong> Sales increase gradually, accelerating after a certain point, and then saturate.</li>
+<li><strong>Yearly Seasonality.</strong> Sales vary throughout the year, with a peak during certain periods (e.g., summer or holiday seasons).</li>
+<li><strong>Weekly Seasonality.</strong> A periodic pattern emerges within each week (e.g., higher sales on weekends).</li>
+<li><strong>Random Walk Noise.</strong> Unmodeled variations and external shocks are captured through a random walk process, ensuring realistic fluctuations.</li>
+</ul>
+</section>
+<section id="import-required-libraries-and-define-functions" class="level2">
+<h2 class="anchored" data-anchor-id="import-required-libraries-and-define-functions">1. Import Required Libraries And Define Functions</h2>
 <div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> ggplot, aes, geom_line, labs, theme_minimal, theme_bw, scale_x_continuous, scale_x_discrete, scale_x_datetime</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> ggplot, aes, geom_line, labs, theme_minimal, theme_bw, scale_x_continuous, scale_x_discrete, scale_x_datetime</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Creates a simple plot using plotnine</span></span>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Creates a simple plot using plotnine</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_function(x, y, title, xlab, ylab):</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Convert x to numpy array</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> np.array(x)</span>
@@ -312,15 +354,20 @@ window.Quarto = {
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Create the plot using ggplot</span></span>
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    plot <span class="op">=</span> (ggplot(df, aes(x<span class="op">=</span><span class="st">"x"</span>, y<span class="op">=</span><span class="st">"y"</span>)) <span class="op">+</span> geom_line() <span class="op">+</span> labs(title<span class="op">=</span>title, x<span class="op">=</span>xlab, y<span class="op">=</span>ylab) <span class="op">+</span> theme_bw())</span>
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> plot</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-</section><section id="data-generation-process" class="level2"><h2 class="anchored" data-anchor-id="data-generation-process">2. Data Generation Process</h2>
+</section>
+<section id="data-generation-process" class="level2">
+<h2 class="anchored" data-anchor-id="data-generation-process">2. Data Generation Process</h2>
 <p>In the initial steps, we will create a number of independent components that contribute to the price independently. In principle, the way to interpret them is ‘this is what sales would look like over the time frame considered is all else remained equal’.</p>
-<section id="create-the-time-series" class="level3"><h3 class="anchored" data-anchor-id="create-the-time-series">2.1. Create the Time Series</h3>
+<section id="create-the-time-series" class="level3">
+<h3 class="anchored" data-anchor-id="create-the-time-series">2.1. Create the Time Series</h3>
 <p>A daily time series is generated starting from June 1, 2021, up to the present day. This ensures sufficient data points to analyze trends and seasonality.</p>
 <div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set the random seed</span></span>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set the random seed</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># define date range</span></span>
@@ -329,15 +376,19 @@ window.Quarto = {
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>date_range <span class="op">=</span> pd.date_range(start<span class="op">=</span>start_date, end<span class="op">=</span>end_date, freq<span class="op">=</span><span class="st">"D"</span>)</span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># generate time index</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>days_since_start <span class="op">=</span> np.arange(<span class="bu">len</span>(date_range))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>days_since_start <span class="op">=</span> np.arange(<span class="bu">len</span>(date_range))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-</section><section id="long-term-growth-curve" class="level3"><h3 class="anchored" data-anchor-id="long-term-growth-curve">2.2. Long-Term Growth Curve</h3>
+</section>
+<section id="long-term-growth-curve" class="level3">
+<h3 class="anchored" data-anchor-id="long-term-growth-curve">2.2. Long-Term Growth Curve</h3>
 <p>Long-term sales growth is modeled as a modified logistic function, representing an initial slow growth phase, followed by acceleration, and eventual saturation. This function ensures that sales begin near zero, increase slowly at first, then accelerate before stabilizing.</p>
 <p><span class="math display">\[ f(t)  = L \cdot (1 + exp(-k \cdot (t - t_0)))^{(-1/v)} \]</span></p>
 <p>Parameters: - <strong>L.</strong> Upper bound on sales (saturation level). - <strong>k.</strong> Growth rate. - <strong>x_0.</strong> Inflection point (where acceleration peaks). - <strong>v.</strong> Asymmetry parameter (v &lt; 1 slower growth to the right of <strong>x0</strong>, 0 &lt; v &lt; 1 slower growth to the left of <strong>x0</strong>)</p>
 <div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Logistic function parameters</span></span>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Logistic function parameters</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> <span class="dv">1</span>      <span class="co"># Upper saturation limit</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>k <span class="op">=</span> <span class="fl">0.0125</span> <span class="co"># Growth rate</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>t0 <span class="op">=</span> <span class="dv">1100</span>  <span class="co"># Inflection point</span></span>
@@ -348,69 +399,142 @@ window.Quarto = {
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>growth <span class="op">=</span> growth_fn(days_since_start)</span>
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> plot_function(x<span class="op">=</span>date_range, y<span class="op">=</span>growth, title<span class="op">=</span><span class="st">"Logistic Growth Over Time"</span>, xlab<span class="op">=</span><span class="st">"Days Since Start"</span>, ylab<span class="op">=</span><span class="st">"Sales Factor"</span>)</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>_ <span class="op">=</span> p.draw(show<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>_ <span class="op">=</span> p.draw(show<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="ts_1_synthetic_data_files/figure-html/unnamed-chunk-4-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="ts_1_synthetic_data_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="614"></a></p>
+</figure>
 </div>
-</section><section id="yearly-seasonal-pattern" class="level3"><h3 class="anchored" data-anchor-id="yearly-seasonal-pattern">2.3. Yearly Seasonal Pattern</h3>
+</div>
+</div>
+</section>
+<section id="yearly-seasonal-pattern" class="level3">
+<h3 class="anchored" data-anchor-id="yearly-seasonal-pattern">2.3. Yearly Seasonal Pattern</h3>
 <p>Yearly seasonality is introduced using a scaled cosine transformations of the day of the year. This captures periodic effects such as, in this case, increased summer sales. This function is scaled to oscillate between 0.8 and 1.2 over the course of a year, which, when multiplied with the average sales function futher down will decrease winter sales by up to <span class="math inline">\(20\%\)</span>, and increase summer sales by up to <span class="math inline">\(20\%\)</span>.</p>
 <div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Yearly seasonality</span></span>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Yearly seasonality</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>yearly_seasonality_fn <span class="op">=</span> <span class="kw">lambda</span> day: <span class="dv">1</span> <span class="op">+</span> <span class="fl">0.2</span> <span class="op">*</span> np.cos(<span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> day <span class="op">/</span> <span class="fl">365.25</span> <span class="op">-</span> np.pi)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>yearly_seasonality <span class="op">=</span> yearly_seasonality_fn(date_range.day_of_year)</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> plot_function(x<span class="op">=</span><span class="bu">range</span>(<span class="dv">0</span>,<span class="dv">366</span>), y<span class="op">=</span>yearly_seasonality_fn, title<span class="op">=</span><span class="st">"Yearly Seasonality"</span>, xlab<span class="op">=</span><span class="st">"Day of the Year"</span>, ylab<span class="op">=</span><span class="st">"Sales Factor"</span>)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>_ <span class="op">=</span> p.draw(show<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>_ <span class="op">=</span> p.draw(show<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="ts_1_synthetic_data_files/figure-html/unnamed-chunk-5-3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="ts_1_synthetic_data_files/figure-html/unnamed-chunk-5-3.png" class="img-fluid figure-img" width="614"></a></p>
+</figure>
 </div>
-</section><section id="weekly-seasonal-pattern" class="level3"><h3 class="anchored" data-anchor-id="weekly-seasonal-pattern">2.4. Weekly Seasonal Pattern</h3>
+</div>
+</div>
+</section>
+<section id="weekly-seasonal-pattern" class="level3">
+<h3 class="anchored" data-anchor-id="weekly-seasonal-pattern">2.4. Weekly Seasonal Pattern</h3>
 <p>Weekly seasonality is also modeled a scaled cosine transformations of the day of the week. In this case, we model a drop in sales, primarily on Thursday-Friday. This function is scaled to oscillate between 0.9 and 1.1 over the course of the week, which, when multiplied with the average sales function futher will change sales by <span class="math inline">\(\pm 10\%\)</span>.</p>
 <div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Weekly seasonality</span></span>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Weekly seasonality</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>weekly_seasonality_fn <span class="op">=</span> <span class="kw">lambda</span> day: <span class="dv">1</span> <span class="op">+</span> <span class="fl">0.1</span> <span class="op">*</span> np.cos(<span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> day <span class="op">/</span> <span class="dv">7</span>)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>weekly_seasonality <span class="op">=</span> weekly_seasonality_fn(date_range.weekday)</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> plot_function(x<span class="op">=</span><span class="bu">range</span>(<span class="dv">0</span>,<span class="dv">7</span>), y<span class="op">=</span>weekly_seasonality_fn, title<span class="op">=</span><span class="st">"Weekly Seasonality"</span>, xlab<span class="op">=</span><span class="st">"Day of the Week"</span>, ylab<span class="op">=</span><span class="st">"Sales Factor"</span>) </span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>_ <span class="op">=</span> p.draw(show<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>_ <span class="op">=</span> p.draw(show<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="ts_1_synthetic_data_files/figure-html/unnamed-chunk-6-5.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="ts_1_synthetic_data_files/figure-html/unnamed-chunk-6-5.png" class="img-fluid figure-img" width="614"></a></p>
+</figure>
 </div>
-</section><section id="combining-growth-and-seasonality" class="level3"><h3 class="anchored" data-anchor-id="combining-growth-and-seasonality">2.5. Combining Growth and Seasonality</h3>
+</div>
+</div>
+</section>
+<section id="combining-growth-and-seasonality" class="level3">
+<h3 class="anchored" data-anchor-id="combining-growth-and-seasonality">2.5. Combining Growth and Seasonality</h3>
 <div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>sales <span class="op">=</span> np.array(growth) <span class="op">*</span> np.array( yearly_seasonality ) <span class="op">*</span> np.array( weekly_seasonality )</span>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>sales <span class="op">=</span> np.array(growth) <span class="op">*</span> np.array( yearly_seasonality ) <span class="op">*</span> np.array( weekly_seasonality )</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>breaks <span class="op">=</span> [pd.Timestamp(d) <span class="cf">for</span> d <span class="kw">in</span> [<span class="st">"2017-01-01"</span>, <span class="st">"2019-01-01"</span>, <span class="st">"2021-01-01"</span>, <span class="st">"2023-01-01"</span>, <span class="st">"2025-01-01"</span>]]</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> plot_function(x<span class="op">=</span>date_range, y<span class="op">=</span>sales, title<span class="op">=</span><span class="st">"Growth + Seasonality"</span>, xlab<span class="op">=</span><span class="st">"Date"</span>, ylab<span class="op">=</span><span class="st">"Sales Factor"</span>) <span class="op">+</span> scale_x_datetime(breaks <span class="op">=</span> breaks)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>_ <span class="op">=</span> p.draw(show<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>_ <span class="op">=</span> p.draw(show<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="ts_1_synthetic_data_files/figure-html/unnamed-chunk-7-7.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="ts_1_synthetic_data_files/figure-html/unnamed-chunk-7-7.png" class="img-fluid figure-img" width="614"></a></p>
+</figure>
 </div>
-</section><section id="random-walk-unmodeled-influences-and-external-shocks" class="level3"><h3 class="anchored" data-anchor-id="random-walk-unmodeled-influences-and-external-shocks">2.6. Random Walk: Unmodeled Influences and External Shocks</h3>
+</div>
+</div>
+</section>
+<section id="random-walk-unmodeled-influences-and-external-shocks" class="level3">
+<h3 class="anchored" data-anchor-id="random-walk-unmodeled-influences-and-external-shocks">2.6. Random Walk: Unmodeled Influences and External Shocks</h3>
 <p>A random walk is used to simulate external influences and unpredictable variations. This component accounts for factors not explicitly modeled, such as promotions, economic shifts, or changes in popularity, or influences of competitors. The random walk is centered (mean zero) to ensure it does not systematically bias the trend. This ensures that the long-term sales trajectory remains driven by the logistic growth component rather than arbitrary drift. This does not amount to any sort of assumption about the data-generating process in a more realistic scenario. This is done strictly to maintain interpretability in the bringing together of the different parts of the synthetic demand.</p>
 <div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">441</span>)</span>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">441</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>random_walk <span class="op">=</span> np.cumsum(np.random.normal(scale<span class="op">=</span><span class="fl">.015</span>, size<span class="op">=</span><span class="bu">len</span>(date_range)))</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>centered_random_walk <span class="op">=</span> random_walk <span class="op">-</span> np.mean(random_walk)</span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> plot_function(x<span class="op">=</span>date_range, y <span class="op">=</span> centered_random_walk, title<span class="op">=</span><span class="st">"Random Walk Component"</span>, xlab<span class="op">=</span><span class="st">"Date"</span>, ylab<span class="op">=</span><span class="st">"Latent Sales"</span>) <span class="op">+</span> scale_x_datetime(breaks <span class="op">=</span> breaks)</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>_ <span class="op">=</span> p.draw(show<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>_ <span class="op">=</span> p.draw(show<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="ts_1_synthetic_data_files/figure-html/unnamed-chunk-8-9.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="ts_1_synthetic_data_files/figure-html/unnamed-chunk-8-9.png" class="img-fluid figure-img" width="614"></a></p>
+</figure>
+</div>
+</div>
 </div>
 <p>Let’s visualize the growth together with the random walk for future reference, because they will be estimated as one component in the model in the next notebook.</p>
 <div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>growth_plus_rw <span class="op">=</span> np.exp( np.log(growth) <span class="op">+</span> centered_random_walk)</span>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>growth_plus_rw <span class="op">=</span> np.exp( np.log(growth) <span class="op">+</span> centered_random_walk)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> plot_function(x<span class="op">=</span>date_range, y <span class="op">=</span> growth_plus_rw, title<span class="op">=</span><span class="st">"Growth + Random Walk Component"</span>, xlab<span class="op">=</span><span class="st">"Date"</span>, ylab<span class="op">=</span><span class="st">"Latent Sales"</span>) <span class="op">+</span> scale_x_datetime(breaks <span class="op">=</span> breaks)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>_ <span class="op">=</span> p.draw(show<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>_ <span class="op">=</span> p.draw(show<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="ts_1_synthetic_data_files/figure-html/unnamed-chunk-9-11.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="ts_1_synthetic_data_files/figure-html/unnamed-chunk-9-11.png" class="img-fluid figure-img" width="614"></a></p>
+</figure>
+</div>
+</div>
 </div>
 <p>The random walk is combined with the sales pattern created so far in log-space in order to ensure that the effects are multiplicative. This aligns with real-world sales data, where sales fluctuations are typically proportional rather than absolute. This is also a simple way of preventing sales from dropping below 0.</p>
 <div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>sales_with_random_component <span class="op">=</span> np.exp( np.log(sales) <span class="op">+</span> centered_random_walk)</span>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>sales_with_random_component <span class="op">=</span> np.exp( np.log(sales) <span class="op">+</span> centered_random_walk)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> plot_function(x<span class="op">=</span>date_range, y <span class="op">=</span> sales_with_random_component, title<span class="op">=</span><span class="st">"Growth + Seasonality + Random Walk"</span>, xlab<span class="op">=</span><span class="st">"Date"</span>, ylab<span class="op">=</span><span class="st">"Latent Sales"</span>) <span class="op">+</span> scale_x_datetime(breaks <span class="op">=</span> breaks)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>_ <span class="op">=</span> p.draw(show<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>_ <span class="op">=</span> p.draw(show<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="ts_1_synthetic_data_files/figure-html/unnamed-chunk-10-13.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="ts_1_synthetic_data_files/figure-html/unnamed-chunk-10-13.png" class="img-fluid figure-img" width="614"></a></p>
+</figure>
 </div>
-</section><section id="effect-of-price" class="level3"><h3 class="anchored" data-anchor-id="effect-of-price">2.7. Effect of Price</h3>
+</div>
+</div>
+</section>
+<section id="effect-of-price" class="level3">
+<h3 class="anchored" data-anchor-id="effect-of-price">2.7. Effect of Price</h3>
 <div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sample_log_price_change(n, p, min_delta, max_delta):</span>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sample_log_price_change(n, p, min_delta, max_delta):</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Sample n values from a mixture of:</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">    - 0 with probability p</span></span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co">    - Uniform(min_delta, max_delta) with probability (1-p)</span></span>
@@ -420,11 +544,13 @@ window.Quarto = {
 <span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Combine: replace values with 0 where zero_mask is True</span></span>
 <span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    delta_log_price <span class="op">=</span> np.where(zero_mask, <span class="dv">0</span>, delta_log_price_nonzero)</span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> delta_log_price</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> delta_log_price</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>delta_log_price <span class="op">=</span> [<span class="fl">0.0</span>]<span class="op">*</span><span class="bu">len</span>(date_range)</span>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>delta_log_price <span class="op">=</span> [<span class="fl">0.0</span>]<span class="op">*</span><span class="bu">len</span>(date_range)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>delta_log_price[<span class="dv">150</span>] <span class="op">=</span> <span class="fl">.1</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>delta_log_price[<span class="dv">300</span>] <span class="op">=</span> <span class="fl">.1</span></span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>delta_log_price[<span class="dv">500</span>] <span class="op">=</span> <span class="op">-</span><span class="fl">.15</span></span>
@@ -432,46 +558,98 @@ window.Quarto = {
 <span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>delta_log_price[<span class="dv">1000</span>] <span class="op">=</span> <span class="fl">.1</span></span>
 <span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>delta_log_price[<span class="dv">1200</span>] <span class="op">=</span> <span class="fl">.05</span></span>
 <span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> plot_function(x<span class="op">=</span>date_range, y <span class="op">=</span> np.cumsum(delta_log_price), title<span class="op">=</span><span class="st">"Difference in log price to baseline"</span>, xlab<span class="op">=</span><span class="st">"Date"</span>, ylab<span class="op">=</span><span class="st">"Δ log(price)"</span>) <span class="op">+</span> scale_x_datetime(breaks <span class="op">=</span> breaks)</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>_ <span class="op">=</span> p.draw(show<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>_ <span class="op">=</span> p.draw(show<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="ts_1_synthetic_data_files/figure-html/unnamed-chunk-12-15.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="ts_1_synthetic_data_files/figure-html/unnamed-chunk-12-15.png" class="img-fluid figure-img" width="614"></a></p>
+</figure>
+</div>
+</div>
 </div>
 <div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>price_base <span class="op">=</span> <span class="dv">20</span></span>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>price_base <span class="op">=</span> <span class="dv">20</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>log_price <span class="op">=</span> np.log(price_base) <span class="op">+</span> np.cumsum(delta_log_price)</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> plot_function(x<span class="op">=</span>date_range, y <span class="op">=</span> np.exp( log_price ), title<span class="op">=</span><span class="st">"Product Price"</span>, xlab<span class="op">=</span><span class="st">"Date"</span>, ylab<span class="op">=</span><span class="st">"Price"</span>) <span class="op">+</span> scale_x_datetime(breaks <span class="op">=</span> breaks)</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>_ <span class="op">=</span> p.draw(show<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>_ <span class="op">=</span> p.draw(show<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="ts_1_synthetic_data_files/figure-html/unnamed-chunk-13-17.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="ts_1_synthetic_data_files/figure-html/unnamed-chunk-13-17.png" class="img-fluid figure-img" width="614"></a></p>
+</figure>
+</div>
+</div>
 </div>
 <div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>elasticity <span class="op">=</span> <span class="op">-</span><span class="fl">1.4</span></span>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>elasticity <span class="op">=</span> <span class="op">-</span><span class="fl">1.4</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>sales_with_price_effect <span class="op">=</span> np.exp( np.log(sales_with_random_component) <span class="op">+</span> elasticity <span class="op">*</span> (log_price <span class="op">-</span> np.mean(log_price)) )</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> plot_function(x<span class="op">=</span>date_range, y <span class="op">=</span> sales_with_price_effect, title<span class="op">=</span><span class="st">""</span>, xlab<span class="op">=</span><span class="st">"Day of the Week"</span>, ylab<span class="op">=</span><span class="st">"Latent Sales"</span>) <span class="op">+</span> scale_x_datetime(breaks <span class="op">=</span> breaks)</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>_ <span class="op">=</span> p.draw(show<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>_ <span class="op">=</span> p.draw(show<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="ts_1_synthetic_data_files/figure-html/unnamed-chunk-14-19.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10"><img src="ts_1_synthetic_data_files/figure-html/unnamed-chunk-14-19.png" class="img-fluid figure-img" width="614"></a></p>
+</figure>
 </div>
-</section><section id="scaled-sales" class="level3"><h3 class="anchored" data-anchor-id="scaled-sales">2.8. Scaled Sales</h3>
+</div>
+</div>
+</section>
+<section id="scaled-sales" class="level3">
+<h3 class="anchored" data-anchor-id="scaled-sales">2.8. Scaled Sales</h3>
 <p>At this point, we scale the expected sales to a more realistic range for actual sales.</p>
 <div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>max_sales <span class="op">=</span> <span class="dv">200</span> <span class="co"># scale the sales to a more realistic range</span></span>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>max_sales <span class="op">=</span> <span class="dv">200</span> <span class="co"># scale the sales to a more realistic range</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>scale_factor <span class="op">=</span> max_sales <span class="op">/</span> sales_with_price_effect.<span class="bu">max</span>()</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>sales_scaled <span class="op">=</span> scale_factor <span class="op">*</span> sales_with_price_effect </span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> plot_function(x<span class="op">=</span>date_range, y <span class="op">=</span> sales_scaled, title<span class="op">=</span><span class="st">"Scaled Latent Sales"</span>, xlab<span class="op">=</span><span class="st">"Date"</span>, ylab<span class="op">=</span><span class="st">"Latent Sales"</span>) <span class="op">+</span> scale_x_datetime(breaks <span class="op">=</span> breaks)</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>_ <span class="op">=</span> p.draw(show<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>_ <span class="op">=</span> p.draw(show<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="ts_1_synthetic_data_files/figure-html/unnamed-chunk-15-21.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11"><img src="ts_1_synthetic_data_files/figure-html/unnamed-chunk-15-21.png" class="img-fluid figure-img" width="614"></a></p>
+</figure>
 </div>
-</section></section><section id="realized-sales" class="level2"><h2 class="anchored" data-anchor-id="realized-sales">3. Realized Sales</h2>
+</div>
+</div>
+</section>
+</section>
+<section id="realized-sales" class="level2">
+<h2 class="anchored" data-anchor-id="realized-sales">3. Realized Sales</h2>
 <p>What we constructed until now are the expected sales <span class="math inline">\(\lambda\)</span> for each day. We realize them for each day <span class="math inline">\(i\)</span> by drawing them from a Poisson distribution with parameter <span class="math inline">\(\lambda_i\)</span>. This approach ensures that while the underlying sales structure is generated smoothly, the final dataset exhibits realistic integer sales values with appropriate stochastic variation.</p>
 <div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>sales_realized <span class="op">=</span> np.random.poisson(lam<span class="op">=</span>sales_scaled)</span>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>sales_realized <span class="op">=</span> np.random.poisson(lam<span class="op">=</span>sales_scaled)</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> plot_function(x<span class="op">=</span>date_range, y <span class="op">=</span> sales_realized, title<span class="op">=</span><span class="st">"Realized Sales"</span>, xlab<span class="op">=</span><span class="st">"Date"</span>, ylab<span class="op">=</span><span class="st">"Latent Sales"</span>) <span class="op">+</span> scale_x_datetime(breaks <span class="op">=</span> breaks)</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>_ <span class="op">=</span> p.draw(show<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>_ <span class="op">=</span> p.draw(show<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="ts_1_synthetic_data_files/figure-html/unnamed-chunk-16-23.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12"><img src="ts_1_synthetic_data_files/figure-html/unnamed-chunk-16-23.png" class="img-fluid figure-img" width="614"></a></p>
+</figure>
 </div>
-</section><section id="sanity-check" class="level2"><h2 class="anchored" data-anchor-id="sanity-check">4. Sanity-Check</h2>
+</div>
+</div>
+</section>
+<section id="sanity-check" class="level2">
+<h2 class="anchored" data-anchor-id="sanity-check">4. Sanity-Check</h2>
 <p>Here, we check that the composition of the sales time series is as expected. We’ll estimate regression coefficients for all the components. All should be 1, with the exception of the effect of price, which should equal the specified elastictiy. Please note though, that although all components are additive in log-space, their contributions are not equal, since they are scaled differently.</p>
 <div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># fit poisson glm</span></span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> pd.DataFrame({</span>
@@ -486,37 +664,47 @@ window.Quarto = {
 <span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> sales_realized</span>
 <span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>poisson_model <span class="op">=</span> sm.GLM(y, X, family<span class="op">=</span>sm.families.Poisson()).fit()</span>
 <span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>summary <span class="op">=</span> poisson_model.summary()</span>
-<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>( summary )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>( summary )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-</section><section id="save-sales" class="level2"><h2 class="anchored" data-anchor-id="save-sales">5. Save Sales</h2>
+</section>
+<section id="save-sales" class="level2">
+<h2 class="anchored" data-anchor-id="save-sales">5. Save Sales</h2>
 <p>Having instantiated the sales time series, we save the latent and realized sales in CSV format.</p>
 <div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pl.DataFrame({</span>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pl.DataFrame({</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"date"</span>: date_range.astype(<span class="bu">str</span>).tolist(),</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"log_price"</span>: log_price,  </span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"sales_latent"</span>: sales_scaled,</span>
 <span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"sales"</span>: sales_realized</span>
 <span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>df.write_csv(<span class="st">"sales_synthetic.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>df.write_csv(<span class="st">"sales_synthetic.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pickle</span>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pickle</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"sim_parameters.pkl"</span>, <span class="st">"wb"</span>) <span class="im">as</span> f:</span>
 <span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    wdays <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">0</span>, <span class="dv">7</span>))</span>
 <span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    weekly_seasonality <span class="op">=</span> [weekly_seasonality_fn(wday) <span class="cf">for</span> wday <span class="kw">in</span> wdays]</span>
 <span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    yearly_seasonality <span class="op">=</span> yearly_seasonality_fn(date_range.day_of_year)</span>
 <span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    sim_parameters <span class="op">=</span> date_range, growth, growth_plus_rw, scale_factor, wdays, weekly_seasonality, yearly_seasonality</span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    pickle.dump(sim_parameters, f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    pickle.dump(sim_parameters, f)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 
 
 <!-- -->
 
-</section></section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section>
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
     const anchorJS = new window.AnchorJS();
@@ -567,13 +755,14 @@ window.Quarto = {
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -966,7 +1155,7 @@ window.Quarto = {
     }
   });
   </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb20" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Generating Synthetic Order Volume"</span></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Pavel Logačev"</span></span>
 <span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "r Sys.Date()"</span></span>
@@ -1250,9 +1439,42 @@ window.Quarto = {
 <span id="cb20-320"><a href="#cb20-320" aria-hidden="true" tabindex="-1"></a>    pickle.dump(sim_parameters, f)</span>
 <span id="cb20-321"><a href="#cb20-321" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-322"><a href="#cb20-322" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-</code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
 
 
 

@@ -26,6 +26,9 @@ website:
       - text: About
         aria-label: "About"
         href: about/index.qmd
+      - text: Services
+        aria-label: "Services"
+        href: services.qmd
       - text: Projects
         aria-label: "Projects"
         href: projects/index.qmd

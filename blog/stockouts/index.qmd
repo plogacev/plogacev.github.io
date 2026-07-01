@@ -182,8 +182,9 @@ The HMM is implemented as a Bayesian model in Stan, and we use MAP estimation to
 ```{r message=FALSE, warning=FALSE, results=FALSE}
 library(cmdstanr)
 
-# Compile the custom Stan model
-model <- cmdstan_model("./stockouts_v1.stan")
+# Compile the custom Stan model (force_recompile so the binary is always
+# built for the current platform, rather than reusing a committed one).
+model <- cmdstan_model("./stockouts_v1.stan", force_recompile = TRUE)
 
 data_stan <- list(n_days = nrow(df), sales_qty = df$sales )
 

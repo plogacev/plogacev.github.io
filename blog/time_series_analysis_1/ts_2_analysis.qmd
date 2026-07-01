@@ -500,6 +500,10 @@ with open("sim_parameters.pkl", "rb") as f:
 m_fit, model_arguments = run_nuts(data['sales'], data['log_price'], data['wday'], data['yday_fraction'], 
                                     downsampling_factor=7, n_chains=4, num_warmup=1_000, num_samples=1_000,
                                     step_size=0.01, max_tree_depth=8)
+
+# Convert to an ArviZ InferenceData object for the summaries below.
+# (arviz >= 1.0 no longer auto-converts a raw NumPyro MCMC object.)
+idata = az.from_numpyro(m_fit)
 ```
 
 ### 2.3 Inspect the MCMC results
@@ -515,7 +519,7 @@ m_fit, model_arguments = run_nuts(data['sales'], data['log_price'], data['wday']
 
 ```{python}
 # Let's look at the estimated random walk component of the model.
-summary = az.summary(m_fit, var_names=["sigma", "log_state_delta"], filter_vars="like")
+summary = az.summary(idata, var_names=["sigma", "log_state_delta"], filter_vars="like", ci_kind="hdi", ci_prob=0.94)
 ```
 
 ```{r}
@@ -527,12 +531,12 @@ py$summary
 ```{python}
 #| label: thumbnail-image
 # Create a sequence of dates starting at data["date"].min() the length of x['mean'], in steps of 7 days
-rw_states = az.summary(m_fit, var_names=["log_state_base"], filter_vars="like")["mean"].to_numpy()
+rw_states = az.summary(idata, var_names=["log_state_base"], filter_vars="like", round_to=None)["mean"].to_numpy()
 dates = pd.date_range(start = data["date"].min(), periods = len(rw_states), freq='7D')
 #p = plot_function(dates, np.exp(rw_states), "Estimated Random Walk Component", "Date", "Sales") # to-do: add uncertainty bands
 
-df_1 = pl.DataFrame({'x': date_range, 'y': growth_plus_rw*scale_factor, 'var': 'Simulated Trend + Random Walk' })
-df_2 = pl.DataFrame({'x': dates, 'y': np.exp(rw_states), 'var': 'Estimated Trend + Random Walk' })
+df_1 = pl.DataFrame({'x': date_range, 'y': growth_plus_rw*scale_factor, 'var': 'Simulated Trend + Random Walk' }).with_columns(pl.col("x").cast(pl.Date))
+df_2 = pl.DataFrame({'x': dates, 'y': np.exp(rw_states), 'var': 'Estimated Trend + Random Walk' }).with_columns(pl.col("x").cast(pl.Date))
 df = pl.concat([df_1, df_2])
 
 p = ggplot(df, aes("x", "y", color = "var")) + geom_line() + theme_bw() + theme(legend_position='top') + guides(color=guide_legend(title=""))
@@ -544,7 +548,7 @@ _ = p.draw(show=True)
 - The model appears to correctly identifies weekly sales fluctuations.
 
 ```{python}
-coefs_wday = az.summary(m_fit, var_names=["wday_coefficients"], filter_vars="like")
+coefs_wday = az.summary(idata, var_names=["wday_coefficients"], filter_vars="like", round_to=None, ci_kind="hdi", ci_prob=0.94)
 ```
 
 ```{r}
@@ -569,7 +573,7 @@ _ = p.draw(show=True)
 - Seasonal peaks and troughs are largely accurately captured, with minor deviations.
 
 ```{python}
-coefs_yday = az.summary(m_fit, var_names=["yday_coefficients"], filter_vars="like")
+coefs_yday = az.summary(idata, var_names=["yday_coefficients"], filter_vars="like", round_to=None, ci_kind="hdi", ci_prob=0.94)
 ```
 
 ```{r}
@@ -584,7 +588,7 @@ yday_effect = jnp.dot(model_arguments["contrasts_yday"], jnp.array(coefs_yday["m
 df_1 = pl.DataFrame({'x': date_range, 'y': yearly_seasonality - np.mean(yearly_seasonality), 'var': 'Simulated Yearly Seasonality' }).with_columns(
     pl.col("x").cast(pl.Date)
 )
-df_2 = pl.DataFrame({'x': data["date"].tolist(), 'y': yday_effect.tolist(), 'var': 'Estimated Yearly Seasonality' })
+df_2 = pl.DataFrame({'x': data["date"].tolist(), 'y': yday_effect.tolist(), 'var': 'Estimated Yearly Seasonality' }).with_columns(pl.col("x").cast(pl.Date))
 df = pl.concat([df_1, df_2])
 
 p = ggplot(df, aes("x", "y", color = "var")) + geom_line() + theme_bw() + theme(legend_position='top') + guides(color=guide_legend(title=""))
@@ -597,7 +601,7 @@ _ = p.draw(show=True)
 - The estimated elasticity coefficient is close enough to the true value ($-1.4$), though the $94\%$ credible interval is quite wide.
 
 ```{python}
-summary = az.summary(m_fit, var_names=["elasticity"])
+summary = az.summary(idata, var_names=["elasticity"], ci_kind="hdi", ci_prob=0.94)
 ```
 
 ```{r}

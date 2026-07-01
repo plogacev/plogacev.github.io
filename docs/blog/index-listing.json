@@ -1,9 +1,0 @@
-{
-  "listing": "/blog/index.html",
-  "items": [
-    "/blog/stockouts/index.html",
-    "/blog/pricedist_elicitation/index.html",
-    "/blog/pricedist_changepoints/index.html",
-    "/blog/time_series_analysis_1/index.html"
-  ]
-}
